@@ -1,0 +1,2 @@
+# Namespace Member Variables
+
