@@ -1,46 +1,116 @@
-# SDK README
+# Galbot SDK
 
-## 源码下载
+![Version](https://img.shields.io/badge/version-1.5.1-blue.svg)
+![Robot Model](https://img.shields.io/badge/Robot-G1-red.svg)
+![GBS Version](https://img.shields.io/badge/GBS-1.3-green.svg)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-20--24-orange.svg)
+![Python](https://img.shields.io/badge/Python-3.8--3.14-yellow.svg)
+
+**[中文](#中文文档) | [English](#english-docs)**
+
+---
+
+## 中文文档
+
+欢迎使用 Galbot SDK（Galbot机器人软件开发套件）！
+
+本 SDK 支持 C++ 和 Python，提供完整的 API 参考、使用教程和示例代码。
+
+### 源码下载
 
 ```bash
 git clone https://github.com/GalaxyGeneralRobotics/GalbotSDK.git
 cd GalbotSDK
 git lfs pull
 ```
-请确保安装了git-lfs, 如Ubuntu/Debian下可用如下命令安装:
+
+请确保安装了 git-lfs，如 Ubuntu/Debian 下可用如下命令安装：
+
 ```bash
 sudo apt-get install git-lfs
 ```
 
-## 版本匹配
+### 📌 版本匹配
 
-**重要**：安装前请确认您的机器人版本！！！
+**重要**：安装前请确认您的机器人版本！
 
-### 当前版本
-- **最新SDK**: V1.5.0
-- **发布日期**: 2026-01-15
+#### 当前版本
+
+- **最新 SDK**: V1.5.1
+- **发布日期**: 2026-01-16
 - **对应机器人版本**: V1.13.9
-- **版本对应表**: 参照 [版本说明](VERSION.md)
+- **维护状态**: ✅ 当前维护版本
 
-## 安装说明
+更多版本历史请参阅 [CHANGELOG.md](CHANGELOG.md)
 
-**安装SDK到本地**
-```bash
-./install.sh
-```
-根据提示选择安装目录，默认的路径为/opt/galbot  
-如果需要安装到机器人，首先ssh登录到机器人上
+### 📚 查看完整文档
 
-**远程部署SDK库到机器人**
-```bash
-./deploy_to_robot.sh
-```
-根据提示输入机器人IP和用户，并用密码验证传输
+#### 🌐 方法一：启动本地文档服务器（推荐）
 
-## SDK 文档
-文档查看方式：
+在 SDK 根目录执行：
+
 ```bash
 cd docs
 python3 -m http.server 8000
 ```
-打开http://localhost:8000/ 在本地浏览器中访问文档
+
+然后在浏览器中打开：**http://localhost:8000/zh/**
+
+#### 📄 方法二：直接打开文件
+
+用浏览器打开文件：`docs/zh/index.html`
+
+
+
+---
+
+## English Docs
+
+Welcome to Galbot SDK (Galbot Robot Software Development Kit)!
+
+This SDK supports C++ and Python, providing complete API reference, tutorials, and example code.
+
+### Source Code Download
+
+```bash
+git clone https://github.com/GalaxyGeneralRobotics/GalbotSDK.git
+cd GalbotSDK
+git lfs pull
+```
+
+Please ensure git-lfs is installed. For Ubuntu/Debian, you can install it with:
+
+```bash
+sudo apt-get install git-lfs
+```
+
+### 📌 Version Compatibility
+
+**Important**: Please confirm your robot version before installation!
+
+#### Current Version
+
+- **Latest SDK**: V1.5.1
+- **Release Date**: 2026-01-16
+- **Compatible Robot Version**: V1.13.9
+- **Maintenance Status**: ✅ Currently Maintained
+
+For more version history, please refer to [CHANGELOG.md](CHANGELOG.md)
+
+### 📚 View Complete Documentation
+
+#### 🌐 Method 1: Start Local Documentation Server (Recommended)
+
+Execute in the SDK root directory:
+
+```bash
+cd docs
+python3 -m http.server 8000
+```
+
+Then open in your browser: **http://localhost:8000/en/**
+
+#### 📄 Method 2: Open File Directly
+
+Open the file in your browser: `docs/en/index.html`
+

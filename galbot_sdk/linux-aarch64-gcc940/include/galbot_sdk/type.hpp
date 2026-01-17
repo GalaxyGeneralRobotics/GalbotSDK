@@ -1,3 +1,16 @@
+/**
+ * @file type.hpp
+ * @brief Core type definitions for Galbot SDK
+ *
+ * This file defines fundamental data structures, enumerations, and types used throughout
+ * the Galbot SDK, including robot states, sensor data, motion planning configurations,
+ * and geometric primitives for robotic manipulation and navigation.
+ *
+ * @author Galbot SDK Team
+ * @version 1.5.1
+ * @copyright Copyright (c) 2023-2026 Galbot. All rights reserved.
+ */
+
 #pragma once
 
 #include <array>
@@ -8,196 +21,339 @@
 
 #include <opencv2/opencv.hpp>
 
-namespace galbot {
-namespace sdk {
-namespace g1 {
+/**
+ * @namespace galbot
+ * @brief Root namespace for Galbot robotics software
+ */
+ namespace galbot {
 
-// 导航状态
+  /**
+   * @namespace galbot::sdk
+   * @brief Galbot Software Development Kit namespace
+   */
+  namespace sdk {
+
+  /**
+   * @namespace galbot::sdk::g1
+   * @brief Namespace for Galbot G1 humanoid robot
+   */
+  namespace g1 {
+
+/**
+ * @brief Navigation task execution status enumeration
+ *
+ * Defines the possible outcomes when executing navigation commands such as
+ * moving to a goal position or following a path.
+ */
 enum class NavigationStatus {
-  SUCCESS,          // 执行成功
-  FAIL,             // 执行失败
-  TIMEOUT,          // 执行超时
-  INVALID_INPUT,    // 输入参数不符合要求
-  MODE_ERR,         // 模式错误不支持
-  COMM_ERR,         // 通信错误
-  WAIT_INITIALIZED  // 等待初始化完成中,暂不可用
+  SUCCESS,          /**< Execution succeeded, navigation task completed as expected */
+  FAIL,             /**< Execution failed due to unspecified error */
+  TIMEOUT,          /**< Execution timeout, task did not complete within allowed time */
+  INVALID_INPUT,    /**< Input parameters do not meet requirements or are out of valid range */
+  MODE_ERR,         /**< Current mode does not support this operation */
+  COMM_ERR,         /**< Communication error occurred during execution */
+  WAIT_INITIALIZED  /**< Waiting for system initialization, navigation system not ready */
 };
 
-// 执行状态
+/**
+ * @brief Control command execution status enumeration
+ *
+ * Represents the execution status of robot control commands, including
+ * joint control, end-effector control, and other motion control operations.
+ */
 enum class ControlStatus {
-  SUCCESS,            // 执行成功
-  TIMEOUT,            // 执行超时
-  FAULT,              // 发生故障无法继续执行
-  INVALID_INPUT,      // 输入参数不符合要求
-  INIT_FAILED,        // 内部通讯组件创建失败
-  IN_PROGRESS,        // 正在运动中但未到位
-  STOPPED_UNREACHED,  // 已停止但未到达目标
-  DATA_FETCH_FAILED,  // 数据获取失败
-  PUBLISH_FAIL,       // 数据发送失败
-  COMM_DISCONNECTED,  // 连接失败
-  STATUS_NUM          // 状态枚举总数量
+  SUCCESS,            /**< Execution succeeded, command completed with valid result */
+  TIMEOUT,            /**< Execution timeout, task not completed within specified time limit */
+  FAULT,              /**< Fault occurred, system detected anomaly and aborted execution */
+  INVALID_INPUT,      /**< Input parameters invalid or not meeting interface requirements */
+  INIT_FAILED,        /**< Initialization failed, internal communication or dependent component creation failed */
+  IN_PROGRESS,        /**< Command is executing but has not reached target state */
+  STOPPED_UNREACHED,  /**< Stopped during execution without reaching target position or state */
+  DATA_FETCH_FAILED,  /**< Data retrieval failed during operation, unable to read required state */
+  PUBLISH_FAIL,       /**< Control or state data publication failed, command may not be transmitted */
+  COMM_DISCONNECTED,  /**< Communication connection lost, cannot continue execution */
+  STATUS_NUM          /**< Total number of status enumerations (for boundary checking or array sizing) */
 };
 
-// 执行状态
+/**
+ * @brief Sensor execution status enumeration
+ *
+ * Represents the status of sensor data acquisition and processing operations,
+ * applicable to cameras, lidar, IMU, force sensors, and other sensor types.
+ */
 enum class SensorStatus {
-  SUCCESS,            // 执行成功
-  TIMEOUT,            // 执行超时
-  FAULT,              // 发生故障无法继续执行
-  INVALID_INPUT,      // 输入参数不符合要求
-  INIT_FAILED,        // 内部通讯组件创建失败
-  IN_PROGRESS,        // 正在运动中但未到位
-  STOPPED_UNREACHED,  // 已停止但未到达目标
-  DATA_FETCH_FAILED,  // 数据获取失败
-  PUBLISH_FAIL,       // 数据发送失败
-  COMM_DISCONNECTED,  // 连接失败
-  STATUS_NUM          // 状态枚举总数量
+  SUCCESS,            /**< Execution succeeded, sensor data valid and operation completed */
+  TIMEOUT,            /**< Execution timeout, data acquisition or operation not completed within specified time limit */
+  FAULT,              /**< Fault occurred, sensor detected anomaly and cannot continue normal operation */
+  INVALID_INPUT,      /**< Input parameters invalid or not meeting interface requirements */
+  INIT_FAILED,        /**< Initialization failed, internal communication or dependent component creation failed */
+  IN_PROGRESS,        /**< Operation in progress but not yet completed */
+  STOPPED_UNREACHED,  /**< Stopped during execution without completing expected operation */
+  DATA_FETCH_FAILED,  /**< Data acquisition or reading failed, sensor may be disconnected or malfunctioning */
+  PUBLISH_FAIL,       /**< Data transmission or reporting failed, unable to publish sensor data */
+  COMM_DISCONNECTED,  /**< Sensor communication connection lost, no data available */
+  STATUS_NUM          /**< Total number of status enumerations (for boundary checking or array sizing) */
 };
 
-// 执行状态
+/**
+ * @brief Robot motion execution status enumeration
+ *
+ * Represents the execution status of robot motion commands, including
+ * trajectory following, pose reaching, and other motion planning operations.
+ */
 enum class MotionStatus {
-  SUCCESS,              // 执行成功
-  TIMEOUT,              // 执行超时
-  FAULT,                // 发生故障无法继续执行
-  INVALID_INPUT,        // 输入参数不符合要求
-  INIT_FAILED,          // 内部通讯组件创建失败
-  IN_PROGRESS,          // 正在运动中但未到位
-  STOPPED_UNREACHED,    // 已停止但未到达目标
-  DATA_FETCH_FAILED,    // 数据获取失败
-  PUBLISH_FAIL,         // 数据发送失败
-  COMM_DISCONNECTED,    // 连接失败
-  STATUS_NUM,           // 状态枚举总数量
-  UNSUPPORTED_FUNCRION  // 暂不支持功能
+  SUCCESS,              /**< Execution succeeded, motion reached expected target position/pose */
+  TIMEOUT,              /**< Execution timeout, motion not completed within specified time limit */
+  FAULT,                /**< Fault occurred, motion cannot continue due to hardware or safety issue */
+  INVALID_INPUT,        /**< Input parameters invalid or not meeting interface requirements */
+  INIT_FAILED,          /**< Internal initialization failed, communication component or resource creation failed */
+  IN_PROGRESS,          /**< Motion in progress but has not reached target yet */
+  STOPPED_UNREACHED,    /**< Stopped during motion without reaching target position/pose */
+  DATA_FETCH_FAILED,    /**< Data retrieval failed, e.g., sensor or state reading failure */
+  PUBLISH_FAIL,         /**< Data transmission or command delivery failed, motion command may not be executed */
+  COMM_DISCONNECTED,    /**< Communication disconnected or control node unavailable */
+  STATUS_NUM,           /**< Total number of status enumerations (for boundary checking or array sizing) */
+  UNSUPPORTED_FUNCRION  /**< Function not yet supported, called interface or operation not implemented (note: typo in enum name preserved for API compatibility) */
 };
 
-// 轨迹执行状态
+/**
+ * @brief Robot trajectory execution status enumeration
+ *
+ * Represents the real-time execution status when the robot follows a
+ * pre-planned trajectory consisting of multiple waypoints.
+ */
 enum class TrajectoryControlStatus {
-  INVALID_INPUT,      // 输入参数不符合要求
-  RUNNING,            // 正在运行中
-  COMPLETED,          // 运行到位
-  STOPPED_UNREACHED,  // 已停止未到达
-  ERROR,              // 发生故障无法继续执行
-  DATA_FETCH_FAILED,  // 执行数据获取失败
-  STATUS_NUM          // 状态枚举总数量
+  INVALID_INPUT,      /**< Input parameters do not meet requirements, trajectory cannot be executed */
+  RUNNING,            /**< Trajectory is currently executing, not yet completed */
+  COMPLETED,          /**< Trajectory execution completed successfully, reached final target point */
+  STOPPED_UNREACHED,  /**< Stopped during trajectory execution without reaching endpoint */
+  ERROR,              /**< Error occurred, trajectory execution cannot continue */
+  DATA_FETCH_FAILED,  /**< Execution data retrieval failed, e.g., joint state or sensor feedback unavailable */
+  STATUS_NUM          /**< Total number of status enumerations (for boundary checking or array sizing) */
 };
 
-// 关节组
+/**
+ * @brief Joint group enumeration describing different functional modules of the robot
+ *
+ * Groups robot joints into functional units for coordinated control and motion planning.
+ * Each group typically represents a kinematic chain or end-effector subsystem.
+ */
 enum class JointGroup {
-  HEAD,               // 头部
-  LEFT_ARM,           // 左臂
-  RIGHT_ARM,          // 右臂
-  LEG,                // 腿部
-  CHASSIS,            // 底盘
-  LEFT_GRIPPER,       // 左夹爪
-  RIGHT_GRIPPER,      // 右夹爪
-  LEFT_SUCTION_CUP,   // 左吸盘
-  RIGHT_SUCTION_CUP,  // 右吸盘
-  JOINT_GROUP_NUM     // 关节组枚举总数量
+  HEAD,               /**< Head joint group, typically for pan-tilt or vision orientation */
+  LEFT_ARM,           /**< Left arm joint group, multi-DOF manipulator chain */
+  RIGHT_ARM,          /**< Right arm joint group, multi-DOF manipulator chain */
+  LEG,                /**< Leg joint group, for humanoid or legged robots */
+  CHASSIS,            /**< Chassis joint group, mobile base or lower platform */
+  LEFT_GRIPPER,       /**< Left gripper joint group, typically 1-2 DOF parallel jaw gripper */
+  RIGHT_GRIPPER,      /**< Right gripper joint group, typically 1-2 DOF parallel jaw gripper */
+  LEFT_SUCTION_CUP,   /**< Left suction cup joint group, vacuum-based end-effector */
+  RIGHT_SUCTION_CUP,  /**< Right suction cup joint group, vacuum-based end-effector */
+  JOINT_GROUP_NUM     /**< Total number of joint group enumerations (for boundary checking or array sizing) */
 };
 
+/**
+ * @brief Sensor type enumeration describing various sensors on the robot
+ *
+ * Identifies different sensor types available on the robot for perception,
+ * localization, and manipulation tasks.
+ */
 enum class SensorType {
-  HEAD_LEFT_CAMERA,        // 头部左相机
-  HEAD_RIGHT_CAMERA,       // 头部右相机
-  LEFT_ARM_CAMERA,         // 左臂相机
-  RIGHT_ARM_CAMERA,        // 右臂相机
-  LEFT_ARM_DEPTH_CAMERA,   // 左臂深度相机
-  RIGHT_ARM_DEPTH_CAMERA,  // 右臂深度相机
-  BASE_LIDAR,              // 底盘激光雷达
-  TORSO_IMU,               // 躯干imu
-  BASE_ULTRASONIC,         // 超声波传感器
-  SENSOR_NUM               // 传感器枚举值总数量
+  HEAD_LEFT_CAMERA,        /**< Head left camera, typically RGB camera for stereo vision */
+  HEAD_RIGHT_CAMERA,       /**< Head right camera, typically RGB camera for stereo vision */
+  LEFT_ARM_CAMERA,         /**< Left arm camera, mounted on left manipulator for visual servoing */
+  RIGHT_ARM_CAMERA,        /**< Right arm camera, mounted on right manipulator for visual servoing */
+  LEFT_ARM_DEPTH_CAMERA,   /**< Left arm depth camera, provides RGB-D data for left arm workspace */
+  RIGHT_ARM_DEPTH_CAMERA,  /**< Right arm depth camera, provides RGB-D data for right arm workspace */
+  BASE_LIDAR,              /**< Base lidar, laser scanner for 2D/3D environment mapping and obstacle detection */
+  TORSO_IMU,               /**< Torso IMU (Inertial Measurement Unit), measures acceleration and angular velocity */
+  BASE_ULTRASONIC,         /**< Base ultrasonic sensor array, for proximity detection and collision avoidance */
+  SENSOR_NUM               /**< Total number of sensor enumerations (for boundary checking or array sizing) */
 };
 
-// 底盘超声波传感器探头枚举（8个方向）
+/**
+ * @brief Chassis ultrasonic sensor probe enumeration (8 directions)
+ *
+ * Identifies individual ultrasonic sensors arranged around the mobile base chassis
+ * for omnidirectional obstacle detection and proximity sensing.
+ */
 enum class UltrasonicType {
-  FRONT_LEFT,   // 前左
-  FRONT_RIGHT,  // 前右
-  RIGHT_LEFT,   // 右左
-  RIGHT_RIGHT,  // 右右
-  BACK_LEFT,    // 后左
-  BACK_RIGHT,   // 后右
-  LEFT_LEFT,    // 左左
-  LEFT_RIGHT,   // 左右
-  ULTRASONIC_NUM
+  FRONT_LEFT,    /**< Front left ultrasonic sensor */
+  FRONT_RIGHT,   /**< Front right ultrasonic sensor */
+  RIGHT_LEFT,    /**< Right side front ultrasonic sensor */
+  RIGHT_RIGHT,   /**< Right side rear ultrasonic sensor */
+  BACK_LEFT,     /**< Back left ultrasonic sensor */
+  BACK_RIGHT,    /**< Back right ultrasonic sensor */
+  LEFT_LEFT,     /**< Left side front ultrasonic sensor */
+  LEFT_RIGHT,    /**< Left side rear ultrasonic sensor */
+  ULTRASONIC_NUM /**< Total number of ultrasonic sensors (for boundary checking or array sizing) */
 };
 
-// 力传感器枚举
+/**
+ * @brief Force sensor enumeration describing robot wrist force sensors
+ *
+ * Identifies force/torque sensors mounted at the robot's wrist joints for
+ * force-controlled manipulation and contact detection.
+ */
 enum class GalbotOneFoxtrotSensor {
-  LEFT_WRIST_FORCE,   // 左腕力传感器
-  RIGHT_WRIST_FORCE,  // 右腕力传感器
-  FORCE_NUM,          // 力传感器枚举值总数量
+  LEFT_WRIST_FORCE,   /**< Left wrist force/torque sensor, typically 6-axis (3 forces + 3 torques) */
+  RIGHT_WRIST_FORCE,  /**< Right wrist force/torque sensor, typically 6-axis (3 forces + 3 torques) */
+  FORCE_NUM,          /**< Total number of force sensor enumerations (for boundary checking or array sizing) */
 };
 
+/**
+ * @brief Device information structure
+ *
+ * Describes basic information about the robot or module, used for device management,
+ * logging, diagnostics, and maintenance tracking.
+ */
 struct DeviceInfo {
-  std::string model;             // 设备型号
-  std::string serial_number;     // 序列号
-  std::string firmware_version;  // 系统固件版本
-  std::string hardware_version;  // 硬件版本
-  std::string manufacturer;      // 制造商
+  std::string model;            /**< Device model name or identifier */
+  std::string serial_number;    /**< Unique serial number for device identification */
+  std::string firmware_version; /**< System firmware version string (e.g., "1.2.3") */
+  std::string hardware_version; /**< Hardware version or revision number */
+  std::string manufacturer;     /**< Manufacturer name or company identifier */
 };
 
+/**
+ * @brief Ultrasonic sensor data structure
+ *
+ * Contains a single ultrasonic distance measurement with timestamp.
+ */
 struct UltrasonicData {
-  int64_t timestamp;  // 时间戳，单位秒
-  double distance;    // 距离，单位米
+  int64_t timestamp_ns; /**< Measurement timestamp in nanoseconds since epoch */
+  double distance;      /**< Measured distance to nearest obstacle (meters) */
 };
 
-// 运动链类型
-enum class ChainType { HEAD, LEFT_ARM, RIGHT_ARM, LEG, TORSO, CHAIN_NUM };
+/**
+ * @brief Robot kinematic chain type enumeration
+ *
+ * Identifies different kinematic chains in the robot structure for forward/inverse
+ * kinematics calculations and motion planning.
+ */
+enum class ChainType {
+  HEAD,       /**< Head kinematic chain, from base/torso to head end-effector */
+  LEFT_ARM,   /**< Left arm kinematic chain, from base/torso to left end-effector */
+  RIGHT_ARM,  /**< Right arm kinematic chain, from base/torso to right end-effector */
+  LEG,        /**< Leg kinematic chain, for legged locomotion */
+  TORSO,      /**< Torso kinematic chain, connects base to upper body */
+  CHAIN_NUM   /**< Total number of kinematic chains (for boundary checking or array sizing) */
+};
 
-// 单个关节指令
+/**
+ * @brief Single joint control command
+ *
+ * Specifies desired motion parameters for a single robot joint in a trajectory or control command.
+ */
 struct JointCommand {
-  double position;      // 位置命令（弧度）
-  double velocity;      // 速度命令（弧度/秒）
-  double acceleration;  // 加速度命令
-  double effort;        // 力矩命令（牛米）
+  double position;     /**< Desired joint position (radians) */
+  double velocity;     /**< Desired joint velocity (radians/second) */
+  double acceleration; /**< Desired joint acceleration (radians/second²) */
+  double effort;       /**< Desired joint torque/effort (Newton-meters) */
 };
 
-// 单个轨迹点
+/**
+ * @brief Single trajectory point
+ *
+ * Represents a waypoint in a robot trajectory, specifying joint states at a particular time.
+ */
 struct TrajectoryPoint {
-  double time_from_start_second;                // 目标到达时间，值为距离轨迹开始执行时间，单位秒
-  std::vector<JointCommand> joint_command_vec;  // 具体执行关节指令
+  double time_from_start_second;               /**< Time from trajectory start (seconds) */
+  std::vector<JointCommand> joint_command_vec; /**< List of joint commands for all joints at this waypoint */
 };
 
-// 轨迹
+/**
+ * @brief Joint trajectory
+ *
+ * Represents a complete robot trajectory consisting of multiple waypoints over time.
+ */
 struct Trajectory {
-  std::vector<TrajectoryPoint> points;
-  std::vector<std::string> joint_groups;
-  std::vector<std::string> joint_names;
+  std::vector<TrajectoryPoint> points;     /**< Ordered list of trajectory waypoints */
+  std::vector<std::string> joint_groups;   /**< Names of joint groups involved in this trajectory */
+  std::vector<std::string> joint_names;    /**< Names of individual joints controlled by this trajectory */
 };
 
+/**
+ * @brief Error information
+ *
+ * Describes an error from a single module or component, including error code and
+ * human-readable description for debugging and diagnostics.
+ */
 struct Error {
-  std::string commpent;     // 故障模块
-  uint64_t error_code;      // 故障代码
-  std::string description;  // 错误描述
+  std::string commpent;    /**< Fault module or component name (note: field name contains typo but preserved for API compatibility) */
+  uint64_t error_code;     /**< Numerical error code for programmatic error handling */
+  std::string description; /**< Human-readable error description */
 
+  /**
+   * @brief Constructor
+   * @param commpent_input Fault module or component name
+   * @param error_code_input Numerical error code
+   * @param description_input Human-readable error description
+   */
   Error(std::string commpent_input, int error_code_input, std::string description_input)
       : commpent(std::move(commpent_input)), error_code(error_code_input), description(std::move(description_input)) {}
 };
 
+/**
+ * @brief Error information collection
+ *
+ * Contains a timestamped collection of error messages from multiple modules or components.
+ */
 struct ErrorInfo {
-  int64_t timestamp_ns;
-  std::vector<Error> error_vec;
+  int64_t timestamp_ns;         /**< Timestamp when errors were collected (nanoseconds since epoch) */
+  std::vector<Error> error_vec; /**< Vector of error messages from various system components */
 };
 
+/**
+ * @brief 3D point
+ *
+ * Represents a position in three-dimensional Cartesian space.
+ */
 struct Point {
-  double x = 0.0;
-  double y = 0.0;
-  double z = 0.0;
+  double x = 0.0; /**< X coordinate (meters) */
+  double y = 0.0; /**< Y coordinate (meters) */
+  double z = 0.0; /**< Z coordinate (meters) */
 };
 
+/**
+ * @brief Quaternion
+ *
+ * Represents a 3D rotation using quaternion representation (x, y, z, w).
+ * A unit quaternion has magnitude 1 and represents a valid rotation.
+ */
 struct Quaternion {
-  double x = 0.0;
-  double y = 0.0;
-  double z = 0.0;
-  double w = 1.0;
+  double x = 0.0; /**< X component of the quaternion vector part */
+  double y = 0.0; /**< Y component of the quaternion vector part */
+  double z = 0.0; /**< Z component of the quaternion vector part */
+  double w = 1.0; /**< W component, scalar part (for identity rotation, w=1 and x=y=z=0) */
 };
 
+/**
+ * @brief Pose (position + orientation) structure
+ *
+ * Represents a full 6-DOF (Degrees of Freedom) pose in 3D space, combining
+ * position (translation) and orientation (rotation) information.
+ * Commonly used for robot end-effector poses, object poses, and coordinate frame transforms.
+ */
 struct Pose {
-  Point position;
-  Quaternion orientation;
+  Point position;         /**< Position in 3D space (x, y, z) in meters */
+  Quaternion orientation; /**< Orientation as unit quaternion (x, y, z, w) */
+
+  /**
+   * @brief Default constructor
+   *
+   * Initializes pose at origin (0,0,0) with identity rotation.
+   */
   Pose() = default;
 
+  /**
+   * @brief Initialize Pose using separate position and quaternion containers
+   * @tparam T Container type supporting subscript access and size() method (e.g., std::vector<double>, std::array<double>)
+   * @param pos 3D position vector [x, y, z] in meters, must have size 3
+   * @param quat Quaternion vector [x, y, z, w], must have size 4
+   * @throws std::runtime_error if pos size != 3 or quat size != 4
+   */
   template <typename T>
-  Pose(const T& pos, const T& quat) {  // quat顺序xyzw
+  Pose(const T& pos, const T& quat) {
     if (pos.size() != 3 || quat.size() != 4) {
       throw std::runtime_error("Pose size error, pos size must be 3, quat(x,y,z,w) size must be 4!");
     }
@@ -210,6 +366,13 @@ struct Pose {
     orientation.w = quat[3];
   }
 
+  /**
+   * @brief Initialize Pose using a single 7-dimensional vector
+   * @tparam T Container type supporting subscript access and size() method
+   * @param vec 7D vector: [x, y, z, qx, qy, qz, qw] where first 3 elements are position (meters)
+   *            and last 4 elements are quaternion
+   * @throws std::runtime_error if vec size != 7
+   */
   template <typename T>
   Pose(const T& vec) {
     if (vec.size() != 7) {
@@ -225,56 +388,252 @@ struct Pose {
   }
 };
 
-enum class ActuateType { ACTUATE_WITH_CHAIN_ONLY, ACTUATE_WITH_TORSO, ACTUATE_WITH_LEG, ACTUATE_TYPE_NUM };
+/**
+ * @brief Actuation type enumeration
+ *
+ * Specifies which kinematic chains should be actuated during motion planning and execution.
+ * This controls whether the robot uses only the target arm, or also involves torso or leg motion.
+ */
+enum class ActuateType {
+  ACTUATE_WITH_CHAIN_ONLY, /**< Actuate only the target joint chain (e.g., arm only), base remains fixed */
+  ACTUATE_WITH_TORSO,      /**< Actuate target joint chain and torso for extended workspace */
+  ACTUATE_WITH_LEG,        /**< Actuate target joint chain and legs for mobile manipulation */
+  ACTUATE_TYPE_NUM         /**< Total number of actuation types (for boundary checking or array sizing) */
+};
 
-enum class SeedType { RANDOM_SEED, RANDOM_PROGRESSIVE_SEED, USER_DEFINED_SEED, SEED_TYPE_NUM };
+/**
+ * @brief IK solver seed type enumeration
+ *
+ * Specifies the initialization strategy for inverse kinematics (IK) solvers.
+ * Different seed types affect convergence speed and solution quality.
+ */
+enum class SeedType {
+  RANDOM_SEED,             /**< Random seed, generates random initial joint configurations */
+  RANDOM_PROGRESSIVE_SEED, /**< Random progressive seed, tries multiple random seeds iteratively (recommended for robustness) */
+  USER_DEFINED_SEED,       /**< User-defined seed, uses explicitly provided initial joint configuration */
+  SEED_TYPE_NUM            /**< Total number of seed types (for boundary checking or array sizing) */
+};
 
-enum ReferenceFrame { FRAME_WORLD, FRAME_BASE };
+/**
+ * @brief Reference frame enumeration
+ *
+ * Specifies the coordinate frame in which poses, positions, or trajectories are expressed.
+ * Note: This is a plain enum (not enum class) for C-style compatibility.
+ */
+enum ReferenceFrame {
+  FRAME_WORLD, /**< World/global coordinate frame, fixed reference frame */
+  FRAME_BASE   /**< Robot base coordinate frame, attached to mobile base */
+};
 
-// todo 末端frame，参考frame
+
+/**
+ * @brief Motion planning configuration structure
+ *
+ * Comprehensive configuration for robot motion planning and execution, controlling behavior
+ * such as planning mode, collision checking, reference frames, and execution parameters.
+ */
 struct PlannerConfig {
-  bool is_direct_execute = false;                                        // 规划后是否执行轨迹
-  bool is_blocking = false;                                              // 是否同步等待轨迹执行到位或规划完成
-  double timeout_second = 20;                                            // 最大等待时长（秒）
-  ActuateType actuate_type = ActuateType::ACTUATE_WITH_CHAIN_ONLY;       // 规划类型，是否带腰或腿部规划
-  bool is_tool_pose = false;                                             // 是否为工具末端位姿
-  bool is_relative_pose = false;                                         // 是否为相对点位
-  bool is_check_collision = true;                                        // 是否检查碰撞
-  std::string reference_frame = "base_link";                             // 参考坐标系
-  std::unordered_map<JointGroup, std::vector<double>> joint_state = {};  // 初始关节状态
+  /**
+   * @brief Whether to execute trajectory immediately after planning
+   *
+   * - true: Plan and execute the trajectory in one operation
+   * - false: Only plan the trajectory without executing (for preview or validation)
+   */
+  bool is_direct_execute = false;
+
+  /**
+   * @brief Whether to wait synchronously for operation completion
+   *
+   * - true: Block until planning/execution completes or timeout occurs
+   * - false: Return immediately after initiating operation (asynchronous mode)
+   */
+  bool is_blocking = false;
+
+  /**
+   * @brief Timeout duration for blocking operations (seconds)
+   *
+   * Maximum time to wait for planning or execution completion when is_blocking = true.
+   * Default: 20 seconds
+   */
+  double timeout_second = 20;
+
+  /**
+   * @brief Actuation mode specifying which kinematic chains to use
+   *
+   * Determines whether to use only the target arm, or also involve torso/leg motion
+   * for extended workspace or mobile manipulation.
+   */
+  ActuateType actuate_type = ActuateType::ACTUATE_WITH_CHAIN_ONLY;
+
+  /**
+   * @brief Whether target is specified as tool center point (TCP) pose
+   *
+   * - true: Target is end-effector TCP pose (Cartesian space)
+   * - false: Target is joint space configuration
+   */
+  bool is_tool_pose = false;
+
+  /**
+   * @brief Whether target pose is relative to current pose
+   *
+   * - true: Target pose is relative displacement from current end-effector pose
+   * - false: Target pose is absolute in the specified reference frame
+   */
+  bool is_relative_pose = false;
+
+  /**
+   * @brief Whether to enable collision checking during planning
+   *
+   * - true: Check collisions with obstacles and self-collisions
+   * - false: Disable collision checking (use with caution)
+   */
+  bool is_check_collision = true;
+
+  /**
+   * @brief Reference coordinate frame for target pose
+   *
+   * Specifies the coordinate frame in which target poses are expressed.
+   * Common values: "base_link", "world", "odom"
+   */
+  std::string reference_frame = "base_link";
+
+  /**
+   * @brief Initial joint state for planning
+   *
+   * Specifies starting joint configuration for planning. If empty, uses current robot state.
+   * Key: Joint group identifier
+   * Value: Vector of joint angles (radians) for that group
+   */
+  std::unordered_map<JointGroup, std::vector<double>> joint_state = {};
+
+  /**
+   * @brief Whether to plan Cartesian linear path
+   *
+   * - true: Plan straight-line motion in Cartesian space (end-effector moves in straight line)
+   * - false: Plan standard joint-space or task-space trajectory (may not be Cartesian linear)
+   */
   bool move_line = false;
 };
 
+/**
+ * @brief Planning task result structure
+ *
+ * Contains the complete result of a motion planning operation, including success status,
+ * generated trajectory, kinematics solutions, and collision information.
+ */
 struct PlanTaskResult {
+  /**
+   * @brief Unique task identifier
+   *
+   * Used to track and distinguish different planning tasks, especially in asynchronous operations.
+   */
   std::string task_id;
 
+  /**
+   * @brief Success flag
+   *
+   * - true: Planning completed successfully
+   * - false: Planning failed (check error_code and error_message for details)
+   */
   bool success;
+
+  /**
+   * @brief Numerical error code
+   *
+   * Used for programmatic error handling. Zero typically indicates success,
+   * non-zero values indicate specific error conditions.
+   */
   int error_code;
+
+  /**
+   * @brief Human-readable error message
+   *
+   * Provides detailed description of failure reason or exception information when success = false.
+   */
   std::string error_message;
 
-  // 轨迹结果
+  /**
+   * @brief Trajectory result
+   *
+   * Contains the complete planned trajectory with joint positions and timing information.
+   */
   struct Trajectory {
+    /**
+     * @brief Joint positions at each waypoint
+     *
+     * Each element is a vector of joint angles (radians) representing robot configuration
+     * at one waypoint. Inner vector size = number of joints, outer vector size = number of waypoints.
+     */
     std::vector<std::vector<double>> joint_positions;
+
+    /**
+     * @brief Timestamps for each waypoint (seconds)
+     *
+     * Cumulative time from trajectory start. Size must match joint_positions size.
+     */
     std::vector<double> timestamps;
   } trajectory;
 
-  // IK 结果
+  /**
+   * @brief Inverse kinematics solution
+   *
+   * Maps kinematic chain name to solved joint configuration (radians).
+   * Key: Joint chain name (e.g., "left_arm", "right_arm")
+   * Value: Vector of joint angles (radians)
+   */
   std::unordered_map<std::string, std::vector<double>> ik_result;
 
-  // FK 结果
+  /**
+   * @brief Forward kinematics solution
+   *
+   * Maps link or end-effector name to computed pose.
+   * Key: Link or end-effector name (e.g., "left_gripper", "right_hand")
+   * Value: Computed pose (position + orientation)
+   */
   std::unordered_map<std::string, Pose> fk_result;
 
-  // 碰撞结果（可选）
+  /**
+   * @brief Collision detection result
+   *
+   * Optional field containing collision distances or penetration depths.
+   * Empty vector typically means no collision check was performed.
+   * Non-empty values may represent minimum distances to obstacles or collision severity.
+   */
   std::vector<double> collision_result;
 };
 
+/**
+ * @brief Single joint state structure
+ *
+ * Represents the complete real-time state of a single robot joint, including
+ * kinematic quantities (position, velocity, acceleration) and dynamic quantities
+ * (torque/effort and motor current).
+ */
 struct JointState {
-  double position;      // 关节当前位置（弧度）
-  double velocity;      // 关节当前速度（弧度/秒）
-  double acceleration;  // 关节当前加速度（弧度/秒²）
-  double effort;        // 关节力矩（牛米）
-  double current;       // 电机电流（安培）
+  double position;     /**< Joint angular position (radians) */
+  double velocity;     /**< Joint angular velocity (radians/second) */
+  double acceleration; /**< Joint angular acceleration (radians/second²) */
+  double effort;       /**< Joint torque/effort (Newton-meters) */
+  double current;      /**< Motor current (amperes) */
+
+  /**
+   * @brief Default constructor
+   *
+   * Initializes all state variables to zero.
+   */
   JointState() = default;
+
+  /**
+   * @brief Parameterized constructor
+   *
+   * Initializes joint state with specified values.
+   *
+   * @param position_input Joint angular position (radians)
+   * @param velocity_input Joint angular velocity (radians/second)
+   * @param acceleration_input Joint angular acceleration (radians/second²)
+   * @param effort_input Joint torque/effort (Newton-meters)
+   * @param current_input Motor current (amperes)
+   */
   JointState(double position_input, double velocity_input, double acceleration_input, double effort_input,
              double current_input)
       : position(position_input),
@@ -284,477 +643,603 @@ struct JointState {
         current(current_input) {}
 };
 
+/**
+ * @brief Joint state message structure
+ *
+ * Timestamped collection of joint states for multiple joints, typically representing
+ * a snapshot of the robot's complete joint configuration at one instant.
+ */
 struct JointStateMessage {
-  int64_t timestamp_ns;
-  std::vector<JointState> joint_state_vec;
-};
-
-struct TransformMessage {
-  int64_t timestamp_ns;
-  Point translation;
-  Quaternion rotation;
-};
-
-struct Vector3 {
-  double x;
-  double y;
-  double z;
-};
-// 六维力数据
-struct EffortInfo {
-  int64_t timestamp_ns;
-  Vector3 force;   // 力
-  Vector3 torque;  // 力矩
-};
-
-// 力传感器数据
-struct ForceData {
-  double timestamp_s;
-  Vector3 force;
-  Vector3 torque;
-};
-
-// IMU数据
-struct ImuData {
-  int64_t timestamp_ns;
-  Vector3 accel;   // 加速度
-  Vector3 gyro;    // 陀螺仪
-  Vector3 magnet;  // 磁力计
-};
-
-// 里程计数据
-struct OdomData {
-  int64_t timestamp;                  // 时间戳（秒）
-  std::array<double, 3> position;     // 位置 [x, y, z]（单位：m）
-  std::array<double, 4> orientation;  // 姿态四元数 [x, y, z, w]（单位：无）
-
-  /** 暂时无法获取
-  std::array<double, 3> linear_velocity; // 线速度 [vx, vy, vz]（单位：m/s）
-  std::array<double, 3> angular_velocity; // 角速度 [wx, wy, wz]（单位：rad/s）
-   */
-};
-
-// 夹爪状态
-struct GripperState {
-  int64_t timestamp_ns;
-  double width;                         // 夹爪宽度（m）
-  double velocity;                      // 夹爪速度（m/s）
-  double effort;                        // 夹爪夹持力（N）
-  bool is_moving = false;               // 是否正在运动
-  std::vector<double> joint_positions;  // 关节位置
-};
-
-enum class SUCTION_ACTION_STATE {
-  suction_action_idle,     // 没有吸取
-  suction_action_sucking,  // 正在吸取中
-  suction_action_success,  // 压力变小 则吸取成功
-  suction_action_failed,   // 吸取过程没有释放 失败
-};
-
-struct SuctionCupState {
-  int64_t timestamp_ns;
-  bool activation;  // 当前是否正在吸
-  double pressure;  // 当前压力（pa）
-  SUCTION_ACTION_STATE action_state;
+  int64_t timestamp_ns;                    /**< Acquisition timestamp (nanoseconds since epoch) */
+  std::vector<JointState> joint_state_vec; /**< Vector of individual joint states */
 };
 
 /**
- * @brief 时间戳结构体
+ * @brief Transform message structure
  *
- * 用于表示高精度的时间点，通常包含秒和纳秒两部分。
- * 对应于 ROS 2 标准中的 builtin_interfaces/Time 或 std_msgs/Header 中的 stamp。
+ * Represents a timestamped coordinate frame transformation, consisting of
+ * translation and rotation. Commonly used for TF (Transform) trees in robotics.
+ */
+struct TransformMessage {
+  int64_t timestamp_ns; /**< Transform timestamp (nanoseconds since epoch) */
+  Point translation;    /**< Translation vector (meters) */
+  Quaternion rotation;  /**< Rotation as unit quaternion (x, y, z, w) */
+};
+
+/**
+ * @brief 3D vector structure
+ *
+ * Represents a three-dimensional vector, used for forces, torques, velocities,
+ * accelerations, and other vectorial quantities.
+ */
+struct Vector3 {
+  double x; /**< X component */
+  double y; /**< Y component */
+  double z; /**< Z component */
+};
+
+/**
+ * @brief 6D wrench information (force + torque)
+ *
+ * Represents a 6-DOF wrench (force and torque) typically measured by a force/torque sensor.
+ * Also known as a spatial force or generalized force.
+ */
+struct EffortInfo {
+  int64_t timestamp_ns; /**< Measurement timestamp (nanoseconds since epoch) */
+  Vector3 force;        /**< Force vector (Newtons): [fx, fy, fz] */
+  Vector3 torque;       /**< Torque vector (Newton-meters): [tx, ty, tz] */
+};
+
+/**
+ * @brief Force sensor data
+ *
+ * Contains timestamped force and torque measurements from a 6-axis force/torque sensor,
+ * typically mounted at robot wrists or tool interfaces.
+ */
+struct ForceData {
+  int64_t timestamp_ns; /**< Measurement timestamp (nanoseconds since epoch) */
+  Vector3 force;        /**< Force vector (Newtons): [fx, fy, fz] */
+  Vector3 torque;       /**< Torque vector (Newton-meters): [tx, ty, tz] */
+};
+
+/**
+ * @brief IMU data structure
+ *
+ * Contains timestamped data from an Inertial Measurement Unit (IMU), including
+ * accelerometer, gyroscope, and magnetometer measurements.
+ */
+struct ImuData {
+  int64_t timestamp_ns; /**< Measurement timestamp (nanoseconds since epoch) */
+  Vector3 accel;        /**< Linear acceleration (meters/second²): [ax, ay, az] */
+  Vector3 gyro;         /**< Angular velocity (radians/second): [ωx, ωy, ωz] */
+  Vector3 magnet;       /**< Magnetic field strength (micro-Tesla): [mx, my, mz] */
+};
+
+/**
+ * @brief Odometry data
+ *
+ * Contains robot pose estimate from odometry sources (wheel encoders, visual odometry, etc.).
+ * Used for robot localization and navigation.
+ */
+struct OdomData {
+  int64_t timestamp;                  /**< Odometry timestamp (seconds since epoch) */
+  std::array<double, 3> position;     /**< Position [x, y, z] (meters) */
+  std::array<double, 4> orientation;  /**< Orientation as quaternion [qx, qy, qz, qw] */
+
+  /**
+   * @note Velocity fields temporarily unavailable in this version:
+   * - std::array<double, 3> linear_velocity;  // Linear velocity [vx, vy, vz] (meters/second)
+   * - std::array<double, 3> angular_velocity; // Angular velocity [ωx, ωy, ωz] (radians/second)
+   */
+};
+
+/**
+ * @brief Gripper state
+ *
+ * Represents the current state of a parallel-jaw gripper, including opening width,
+ * motion status, and grasping force.
+ */
+struct GripperState {
+  int64_t timestamp_ns;                 /**< State timestamp (nanoseconds since epoch) */
+  double width;                         /**< Gripper opening width (meters), distance between fingers */
+  double velocity;                      /**< Gripper closing/opening velocity (meters/second), positive = opening */
+  double effort;                        /**< Gripper grasping force (Newtons), force applied by fingers */
+  bool is_moving = false;               /**< Motion flag: true if gripper is currently moving, false if stationary */
+  std::vector<double> joint_positions;  /**< Gripper joint positions (radians), typically 1-2 joints for finger actuators */
+};
+
+/**
+ * @brief Suction cup action state enumeration
+ *
+ * Represents the operational state of a vacuum suction cup end-effector,
+ * tracking the suction process from idle to success or failure.
+ */
+enum class SUCTION_ACTION_STATE {
+  suction_action_idle,     /**< Idle state, vacuum not activated */
+  suction_action_sucking,  /**< Suction in progress, attempting to grasp object */
+  suction_action_success,  /**< Suction successful, pressure decreased indicating secure grasp */
+  suction_action_failed,   /**< Suction failed, pressure did not decrease (no object or seal failure) */
+};
+
+/**
+ * @brief Suction cup state
+ *
+ * Contains the current state of a vacuum suction cup gripper, including
+ * activation status, pressure reading, and action state.
+ */
+struct SuctionCupState {
+  int64_t timestamp_ns;                  /**< State timestamp (nanoseconds since epoch) */
+  bool activation;                       /**< Activation flag: true if vacuum is on, false if off */
+  double pressure;                       /**< Current vacuum pressure (Pascals), typically negative for suction */
+  SUCTION_ACTION_STATE action_state;     /**< Current suction action state */
+};
+
+
+/**
+ * @brief Timestamp structure
+ *
+ * Represents high-precision time points with second and nanosecond components.
+ * Compatible with ROS 2 builtin_interfaces/Time and std_msgs/Header timestamp format.
  */
 struct Timestamp {
   /**
-   * @brief 秒 (Seconds)
+   * @brief Seconds component
    *
-   * 自 UNIX Epoch (1970-01-01 00:00:00 UTC) 以来的秒数。
+   * Number of seconds since UNIX Epoch (1970-01-01 00:00:00 UTC).
    */
   int64_t sec;
 
   /**
-   * @brief 纳秒 (Nanoseconds)
+   * @brief Nanoseconds component
    *
-   * 秒内的纳秒部分，范围通常为 [0, 999,999,999]。
+   * Nanosecond portion within the current second.
+   * Valid range: [0, 999,999,999] (< 1 second)
    */
   uint32_t nanosec;
 };
 
 /**
- * @brief 消息头结构体
+ * @brief Message header structure
  *
- * 用于记录数据产生的时间和参考坐标系
+ * Standard message header containing timestamp and coordinate frame information.
+ * Compatible with ROS 2 std_msgs/Header format, used in sensor messages and transforms.
  */
 struct Header {
   /**
-   * @brief 数据采集的时间戳
+   * @brief Timestamp of data acquisition
+   *
+   * Records when the data was captured or generated.
    */
   Timestamp stamp;
 
   /**
-   * @brief 坐标系 ID (Frame ID)
+   * @brief Frame ID
    *
-   * 标识点云数据是在哪个坐标系下采集的，例如 "lidar_link" 或 "map"
+   * Identifies the coordinate frame in which the data is expressed.
+   * Examples: "base_link", "world", "camera_optical_frame", "lidar_link", "map"
    */
   std::string frame_id;
 };
 
 /**
- * @brief RGB/彩色图像数据结构体
+ * @brief RGB/color image data structure
  *
- * 用于存储压缩后的普通图像（如 JPEG, PNG）。
- * 通常用于可视化的摄像头数据。
+ * Contains compressed color image data from RGB cameras.
+ * Compatible with ROS 2 sensor_msgs/CompressedImage format.
  */
 struct RgbData {
   /**
-   * @brief 消息头
-   * 包含采集时间戳和相机坐标系 ID。
+   * @brief Message header
+   *
+   * Contains acquisition timestamp and camera coordinate frame ID.
    */
   Header header;
 
   /**
-   * @brief 图像格式
-   * 例如: "jpeg", "png", "bgr8; jpeg compressed bgr8"
+   * @brief Image format descriptor
+   *
+   * Specifies compression format and encoding.
+   * Examples: "jpeg", "png", "bgr8; jpeg compressed bgr8"
    */
   std::string format;
 
   /**
-   * @brief 压缩的图像数据
-   * 二进制数据流。
+   * @brief Compressed image data
+   *
+   * Binary blob containing the compressed image (JPEG, PNG, etc.).
    */
   std::vector<uint8_t> data;
 
   /**
-   * @brief 将内部存储的压缩数据解码为 OpenCV Mat 对象
+   * @brief Decode compressed image data to OpenCV Mat
    *
-   * 该函数使用 cv::imdecode 对二进制流进行解码。
+   * Decodes the internally stored compressed binary data using cv::imdecode.
    *
-   * @note
-   * 1. 默认解码为 BGR 格式（OpenCV 标准），而非 RGB。
-   * 2. 如果数据为空或解码失败，将返回 nullptr。
-   *
-   * @return std::shared_ptr<cv::Mat>
-   *         成功时返回指向解码后图像的智能指针；
-   *         失败时返回 nullptr。
+   * @return std::shared_ptr<cv::Mat> Smart pointer to decoded image on success, nullptr on failure
    */
   std::shared_ptr<cv::Mat> convert_to_cv2_mat();
 };
 
 /**
- * @brief 深度图像数据结构体
+ * @brief Depth image data structure
  *
- * 用于存储压缩后的深度图像。
- * 包含额外的 depth_scale 用于恢复真实的深度数值。
+ * Contains compressed depth image data from depth cameras or RGB-D sensors.
+ * Compatible with ROS 2 sensor_msgs/CompressedImage format with depth extensions.
  */
 struct DepthData {
   /**
-   * @brief 消息头
+   * @brief Message header
+   *
+   * Contains acquisition timestamp and camera coordinate frame ID.
    */
   Header header;
 
+  /**
+   * @brief Image height (pixels)
+   *
+   * Number of rows in the depth image.
+   */
   uint32_t height;
 
+  /**
+   * @brief Image width (pixels)
+   *
+   * Number of columns in the depth image.
+   */
   uint32_t width;
 
   /**
-   * @brief 图像格式
-   * 例如: "16UC1; compressedDepth png"
+   * @brief Image format descriptor
+   *
+   * Specifies depth encoding and compression format.
+   * Example: "16UC1; compressedDepth png" (16-bit unsigned, 1 channel, PNG compressed)
    */
   std::string format;
 
   /**
-   * @brief 压缩的深度数据
+   * @brief Depth image data
+   *
+   * Binary blob containing raw or compressed depth image data.
    */
   std::vector<uint8_t> data;
 
   /**
-   * @brief 深度缩放比例/量化因子
+   * @brief Depth scale factor
    *
-   * 用于将压缩或量化的像素值还原为物理距离（通常单位为毫米或米）。
+   * Quantization factor for converting pixel values to metric depth.
+   * True depth (meters) = pixel_value / depth_scale
+   * Example: depth_scale = 1000 means pixel values are in millimeters
    */
   uint32_t depth_scale;
 
+  /**
+   * @brief Convert depth data to OpenCV Mat
+   *
+   * Decodes and converts depth data to cv::Mat format for processing.
+   *
+   * @return std::shared_ptr<cv::Mat> Smart pointer to decoded depth image on success, nullptr on failure
+   */
   std::shared_ptr<cv::Mat> convert_to_cv2_mat();
 };
 
+
 /**
- * @brief 点云字段描述符
+ * @brief Point cloud field descriptor
  *
- * 这个消息保存了 PointCloud2 消息格式中一个点条目的描述。
- * 它定义了数据在二进制 blob 中的布局方式。
+ * Describes one data field in a PointCloud2 point structure, defining its name,
+ * type, offset, and count. Compatible with ROS 2 sensor_msgs/PointField.
  */
 struct PointField {
   /**
-   * @brief 数据类型枚举
+   * @brief Data type enumeration
    *
-   * 定义了点云数据中数值的存储类型，对应字节大小和解析方式。
+   * Defines primitive data types for point cloud fields, determining byte size
+   * and interpretation method for each field value.
    */
   enum DataType : uint8_t {
-    UNKNOWN = 0,
-    INT8 = 1,
-    UINT8 = 2,
-    INT16 = 3,
-    UINT16 = 4,
-    INT32 = 5,
-    UINT32 = 6,
-    FLOAT32 = 7,
-    FLOAT64 = 8
+    UNKNOWN = 0,   /**< Unknown or unspecified type */
+    INT8 = 1,      /**< 8-bit signed integer (1 byte) */
+    UINT8 = 2,     /**< 8-bit unsigned integer (1 byte) */
+    INT16 = 3,     /**< 16-bit signed integer (2 bytes) */
+    UINT16 = 4,    /**< 16-bit unsigned integer (2 bytes) */
+    INT32 = 5,     /**< 32-bit signed integer (4 bytes) */
+    UINT32 = 6,    /**< 32-bit unsigned integer (4 bytes) */
+    FLOAT32 = 7,   /**< 32-bit IEEE 754 floating point (4 bytes) */
+    FLOAT64 = 8    /**< 64-bit IEEE 754 floating point (8 bytes) */
   };
 
   /**
-   * @brief 字段名称
+   * @brief Field name
    *
-   * 常见的字段名包括:
-   * - "x", "y", "z": 笛卡尔坐标
-   * - "intensity": 反射强度
-   * - "rgb": 颜色信息
-   * - "ring": 线束索引
+   * Identifier for this data channel. Standard field names include:
+   * - "x", "y", "z": 3D Cartesian coordinates (meters)
+   * - "intensity": Reflection intensity (unitless or sensor-specific)
+   * - "rgb" or "rgba": Color information (packed RGB or RGBA)
+   * - "ring": Lidar ring/laser index (integer)
+   * - "timestamp": Per-point timestamp (seconds or nanoseconds)
    */
   std::string name;
 
   /**
-   * @brief 字节偏移量
+   * @brief Byte offset from point start
    *
-   * 该字段在单个点的结构体起始位置的字节偏移量。
-   * 例如：若 x 是 float32 (4字节)，则 y 的偏移量通常为 4。
+   * Byte offset of this field from the beginning of a point's data structure.
+   * Example: For point layout {x:float32, y:float32, z:float32}, offsets are:
+   * x=0, y=4, z=8
    */
   uint32_t offset;
 
   /**
-   * @brief 数据类型
+   * @brief Data type of this field
    *
-   * 引用上方的 DataType 枚举，指明该字段的数据格式。
+   * Specifies the primitive data type using the DataType enumeration.
    */
   DataType datatype;
 
   /**
-   * @brief 元素数量
+   * @brief Number of elements in this field
    *
-   * 该字段包含多少个元素。通常对于标量（如 x, intensity）为 1。
+   * Array length for this field. Typically 1 for scalar fields (x, y, z, intensity).
+   * May be > 1 for array fields (e.g., count=3 for a 3-element vector).
    */
   uint32_t count;
 };
 
 /**
- * @brief 激光雷达数据结构体
+ * @brief Lidar data structure
  *
- * 这是一个通用的 N 维点集合结构，与 ROS 2 的 sensor_msgs/msg/PointCloud2 对应。
- * 核心数据存储在 data 字节数组中，通过 fields 描述如何解析。
+ * Generic N-dimensional point cloud structure compatible with ROS 2 sensor_msgs/PointCloud2.
+ * Stores point data as a binary blob with field descriptors defining the data layout.
+ * Supports both ordered (structured) and unordered (unstructured) point clouds.
  */
 struct LidarData {
   /**
-   * @brief 消息头
+   * @brief Message header
    *
-   * 包含时间戳和坐标系信息，用于时间同步和坐标变换。
+   * Contains acquisition timestamp and coordinate frame for temporal and spatial reference.
    */
   Header header;
 
   /**
-   * @brief 点云的高度
+   * @brief Point cloud height (rows)
    *
-   * - 如果是无序点云 (Unordered Cloud)，height 为 1。
-   * - 如果是有序点云 (Ordered Cloud，如来自深度相机或类似图像结构的雷达)，
-   *   height 表示行数。
+   * - Unordered point cloud: height = 1 (single row)
+   * - Ordered point cloud: height = number of rows (e.g., from spinning lidar or depth camera)
    */
   uint32_t height;
 
   /**
-   * @brief 点云的宽度
+   * @brief Point cloud width (points per row)
    *
-   * - 如果是无序点云，width 表示点云中点的总数。
-   * - 如果是有序点云，width 表示一行的点数。
+   * - Unordered point cloud: width = total number of points
+   * - Ordered point cloud: width = number of points per row (columns)
+   * Total points = height × width
    */
   uint32_t width;
 
   /**
-   * @brief 字段描述列表
+   * @brief Field descriptors
    *
-   * 描述了二进制 data 数据中，每个点包含哪些通道（x, y, z, ...）及其布局。
+   * Describes the data channels (x, y, z, intensity, rgb, etc.) present in each point
+   * and their binary layout (offset, type, count).
    */
   std::vector<PointField> fields;
 
   /**
-   * @brief 大端序标识
+   * @brief Endianness flag
    *
-   * 如果数据是 Big Endian 格式，则为 true；否则为 Little Endian（通常为
-   * false）。
+   * - true: Data is Big Endian byte order
+   * - false: Data is Little Endian byte order (typical for x86/ARM systems)
    */
   bool is_bigendian;
 
   /**
-   * @brief 点步长 (Point Step)
+   * @brief Point step (bytes per point)
    *
-   * 单个点占用的总字节数。
-   * 计算方式通常为所有 fields 占用字节数的总和（需考虑内存对齐）。
+   * Total byte size of a single point structure, including all fields and padding.
+   * Must be ≥ sum of all field sizes, may include alignment padding.
    */
   uint32_t point_step;
 
   /**
-   * @brief 行步长 (Row Step)
+   * @brief Row step (bytes per row)
    *
-   * 一行数据占用的总字节数。
-   * 计算公式: row_step = point_step * width
+   * Total byte size of one row of points.
+   * Formula: row_step = point_step × width
    */
   uint32_t row_step;
 
   /**
-   * @brief 点云二进制数据
+   * @brief Point cloud binary data
    *
-   * 存储实际点数据的二进制 Blob。
-   * 数组大小应为: row_step * height
+   * Binary blob containing all point data in row-major order.
+   * Size should equal: row_step × height bytes
+   * Each point occupies point_step bytes, laid out according to fields descriptors.
    */
   std::vector<uint8_t> data;
 
   /**
-   * @brief 稠密数据标识
+   * @brief Dense cloud flag
    *
-   * - true: 数据中没有无效点（如 NaN 或 Inf）。
-   * - false: 数据中可能包含无效点。
+   * - true: All points are valid, no NaN or Inf values present
+   * - false: Cloud may contain invalid points (NaN/Inf coordinates or fields)
    */
   bool is_dense;
 };
 
 /**
- * @brief 感兴趣区域 (ROI)
+ * @brief Region of interest (ROI)
  *
- * 对应 ROS 2 的 sensor_msgs/msg/RegionOfInterest
- * 用于指定图像中的一个子窗口。
+ * Defines a rectangular sub-region within an image for selective processing.
+ * Compatible with ROS 2 sensor_msgs/RegionOfInterest.
  */
 struct RegionOfInterest {
   /**
-   * @brief ROI 最左侧像素的 x 坐标
+   * @brief X offset (left edge)
    *
-   * 0 表示 ROI 包含图像左边缘。
+   * Horizontal pixel coordinate of the ROI's left edge.
+   * 0 means ROI starts at the image's left edge.
    */
   uint32_t x_offset;
 
   /**
-   * @brief ROI 最顶端像素的 y 坐标
+   * @brief Y offset (top edge)
    *
-   * 0 表示 ROI 包含图像上边缘。
+   * Vertical pixel coordinate of the ROI's top edge.
+   * 0 means ROI starts at the image's top edge.
    */
   uint32_t y_offset;
 
   /**
-   * @brief ROI 的高度 (像素)
+   * @brief ROI height (pixels)
+   *
+   * Number of pixel rows in the region of interest.
    */
   uint32_t height;
 
   /**
-   * @brief ROI 的宽度 (像素)
+   * @brief ROI width (pixels)
+   *
+   * Number of pixel columns in the region of interest.
    */
   uint32_t width;
 
   /**
-   * @brief 是否进行矫正
+   * @brief Rectification flag
    *
-   * - true: 表示应该从该 ROI 计算出一个独特的矫正后 ROI。
-   * - false: 通常表示捕获的是全分辨率图像，或者不应用 ROI 逻辑。
+   * - true: Apply camera rectification to this ROI before processing
+   * - false: Use raw image data without rectification, or capture full resolution
    */
   bool do_rectify;
 };
 
 /**
- * @brief 相机标定信息
+ * @brief Camera calibration information
  *
- * 对应 ROS 2 的 sensor_msgs/msg/CameraInfo。
- * 包含相机的内参、畸变参数以及外参等信息。
+ * Complete camera calibration data including intrinsic parameters, distortion coefficients,
+ * rectification, and projection matrices. Compatible with ROS 2 sensor_msgs/CameraInfo.
  */
 struct CameraInfo {
   /**
-   * @brief 消息头
-   * 包含时间戳和坐标系 ID (例如 "camera_optical_frame")。
+   * @brief Message header
+   *
+   * Contains timestamp and camera coordinate frame ID (e.g., "camera_optical_frame").
    */
   Header header;
 
   /**
-   * @brief 图像高度 (像素)
-   * 标定时的图像分辨率高度。
+   * @brief Image height (pixels)
+   *
+   * Vertical resolution of images produced by this camera at calibration time.
    */
   uint32_t height;
 
   /**
-   * @brief 图像宽度 (像素)
-   * 标定时的图像分辨率宽度。
+   * @brief Image width (pixels)
+   *
+   * Horizontal resolution of images produced by this camera at calibration time.
    */
   uint32_t width;
 
   /**
-   * @brief 畸变模型
+   * @brief Distortion model name
    *
-   * 通常是 "plumb_bob" (径向和切向畸变)。
+   * Specifies the lens distortion model used.
+   * Common values:
+   * - "plumb_bob": Brown-Conrady model with radial (k1,k2,k3) and tangential (p1,p2) distortion
+   * - "rational_polynomial": Extended model with additional parameters
+   * - "equidistant": Fisheye lens model
    */
   std::string distortion_model;
 
   /**
-   * @brief 畸变参数 (D)
+   * @brief Distortion coefficients (D)
    *
-   * 大小取决于畸变模型。对于 "plumb_bob"，通常有 5 个参数: (k1, k2, t1, t2,
-   * k3)。
+   * Vector of distortion parameters, size and interpretation depend on distortion_model.
+   * For "plumb_bob": [k1, k2, p1, p2, k3] (5 parameters)
+   * - k1, k2, k3: Radial distortion coefficients
+   * - p1, p2: Tangential distortion coefficients
    */
   std::vector<double> d;
 
   /**
-   * @brief 内参矩阵 (K)
+   * @brief Intrinsic camera matrix (K)
    *
-   * 3x3 矩阵，行优先存储 (Row-major)。
-   * [fx  0 cx]
-   * [ 0 fy cy]
-   * [ 0  0  1]
-   * 用于将相机坐标系下的 3D 点投影到 2D 像素坐标。
+   * 3×3 matrix in row-major order, maps 3D points in camera frame to 2D pixel coordinates:
+   * @code
+   * [fx  0  cx]
+   * [ 0  fy cy]
+   * [ 0  0   1]
+   * @endcode
+   * - fx, fy: Focal lengths in pixel units
+   * - cx, cy: Principal point (optical center) in pixels
    */
   std::array<double, 9> k;
 
   /**
-   * @brief 旋转/矫正矩阵 (R)
+   * @brief Rectification matrix (R)
    *
-   * 3x3 矩阵，行优先存储。
-   * 仅用于立体相机 (Stereo)，用于将两个相机的图像平面旋转到共面（行对齐）。
-   * 对于单目相机，通常为单位矩阵。
+   * 3×3 rotation matrix in row-major order.
+   * For stereo cameras: rotates left/right camera image planes to be coplanar and row-aligned.
+   * For monocular cameras: typically identity matrix (no rectification needed).
    */
   std::array<double, 9> r;
 
   /**
-   * @brief 投影矩阵 (P)
+   * @brief Projection matrix (P)
    *
-   * 3x4 矩阵，行优先存储。
-   * [fx'  0  cx' Tx]
-   * [ 0  fy' cy' Ty]
-   * [ 0   0   1   0]
-   * 用于将 3D 点投影到矫正后的图像坐标系。
+   * 3×4 matrix in row-major order, projects 3D points to rectified image coordinates:
+   * @code
+   * [fx'  0   cx' Tx]
+   * [ 0   fy' cy' Ty]
+   * [ 0   0    1   0]
+   * @endcode
+   * - fx', fy': Rectified focal lengths
+   * - cx', cy': Rectified principal point
+   * - Tx, Ty: Stereo baseline (Tx = -fx' × baseline for right camera)
    */
   std::array<double, 12> p;
 
   /**
-   * @brief X 方向的合并像素 (Binning)
+   * @brief Horizontal binning factor
    *
-   * 0 或 1 表示不进行合并。
+   * Number of camera pixels combined horizontally for each output pixel.
+   * Values: 0 or 1 = no binning, 2 = 2×1 binning, etc.
    */
   uint32_t binning_x;
 
   /**
-   * @brief Y 方向的合并像素 (Binning)
+   * @brief Vertical binning factor
+   *
+   * Number of camera pixels combined vertically for each output pixel.
+   * Values: 0 or 1 = no binning, 2 = 1×2 binning, etc.
    */
   uint32_t binning_y;
 
   /**
-   * @brief 感兴趣区域 (ROI)
+   * @brief Region of interest (ROI)
    *
-   * 原始全分辨率图像中的子窗口。
+   * Specifies a sub-window within the full sensor resolution.
    */
   RegionOfInterest roi;
 
   // ==========================================
-  // 下面是 Proto 定义中包含但标准 ROS 2 CameraInfo 中没有的字段
+  // Extended fields (not in standard ROS 2 CameraInfo)
   // ==========================================
 
   /**
-   * @brief 相机类型
+   * @brief Camera type identifier
+   *
+   * Optional field specifying camera type or model.
+   * Examples: "monocular", "stereo_left", "stereo_right", "depth"
    */
   std::string camera_type;
 
   /**
-   * @brief 变换矩阵 T
+   * @brief Additional transform matrix
+   *
+   * Optional transformation matrix for vendor-specific or extended calibration data.
+   * Size and interpretation depend on implementation.
    */
   std::vector<double> T;
 };
