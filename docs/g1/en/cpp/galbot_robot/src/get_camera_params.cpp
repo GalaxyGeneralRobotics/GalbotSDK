@@ -134,7 +134,7 @@ int main() {
         return -1;
     }
     // Wait for camera data ready
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(10000));
 
     // Get RGB image data
     std::shared_ptr<RgbData> rgb_data = robot.get_rgb_data(SensorType::HEAD_LEFT_CAMERA);

@@ -32,6 +32,26 @@ void print_rgb_data(const std::shared_ptr<RgbData> &rgb_data) {
   std::cout << "Image saved to result_image.jpg" << std::endl;
 }
 
+void print_ir_data(const std::string& name, const std::shared_ptr<IrData>& ir_data) {
+  if (ir_data == nullptr) {
+    std::cout << name << " is nullptr" << std::endl;
+    return;
+  }
+
+  std::cout << name << " timestamp: " << ir_data->header.timestamp_ns << std::endl;
+  std::cout << "format is " << ir_data->format << std::endl;
+  std::cout << "frame_id is " << ir_data->header.frame_id << std::endl;
+  std::cout << "size is " << ir_data->width << "x" << ir_data->height << std::endl;
+  std::cout << "data size is " << ir_data->data.size() << std::endl;
+
+  std::shared_ptr<cv::Mat> img = ir_data->convert_to_cv2_mat();
+  if (img && !img->empty()) {
+    std::string filename = name + ".png";
+    cv::imwrite(filename, *img);
+    std::cout << "Image saved to " << filename << std::endl;
+  }
+}
+
 void print_depth_data(const std::shared_ptr<DepthData> depth_data_ptr) {
   if (depth_data_ptr == nullptr) {
     std::cout << "depth_data_ptr is nullptr" << std::endl;
@@ -73,8 +93,10 @@ int main() {
 
     // Initialize sensors; only cameras and LiDAR sensors passed during initialization can retrieve data
     std::unordered_set<SensorType> sensor_types =  {
-        SensorType::HEAD_LEFT_CAMERA,       // Head left camera
-        SensorType::LEFT_ARM_DEPTH_CAMERA,  // Left arm depth camera
+        SensorType::HEAD_LEFT_CAMERA,           // Head left camera
+        SensorType::LEFT_ARM_DEPTH_CAMERA,      // Left arm depth camera
+        SensorType::LEFT_ARM_INFRA_CAMERA_1,    // Left arm IR camera 1
+        SensorType::LEFT_ARM_INFRA_CAMERA_2,    // Left arm IR camera 2
     };
 
     // Initialize system
@@ -85,7 +107,7 @@ int main() {
         return -1;
     }
     // Wait for camera data ready
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(10000));
 
     // Get RGB image data
     std::shared_ptr<RgbData> rgb_data = robot.get_rgb_data(SensorType::HEAD_LEFT_CAMERA);
@@ -103,6 +125,24 @@ int main() {
         print_depth_data(depth_data);
     } else {
         std::cerr << "Failed to get depth image data!" << std::endl;
+    }
+
+    // Get left arm IR camera 1 image data
+    std::shared_ptr<IrData> ir1_data = robot.get_ir_data(SensorType::LEFT_ARM_INFRA_CAMERA_1);
+    if (ir1_data) {
+        std::cout << "IR camera 1 data retrieved successfully!" << std::endl;
+        print_ir_data("left_arm_infra1", ir1_data);
+    } else {
+        std::cerr << "Failed to get IR camera 1 data!" << std::endl;
+    }
+
+    // Get left arm IR camera 2 image data
+    std::shared_ptr<IrData> ir2_data = robot.get_ir_data(SensorType::LEFT_ARM_INFRA_CAMERA_2);
+    if (ir2_data) {
+        std::cout << "IR camera 2 data retrieved successfully!" << std::endl;
+        print_ir_data("left_arm_infra2", ir2_data);
+    } else {
+        std::cerr << "Failed to get IR camera 2 data!" << std::endl;
     }
 
     // Exit system and release SDK resources

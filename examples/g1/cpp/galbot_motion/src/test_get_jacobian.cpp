@@ -90,6 +90,24 @@ int main() {
 
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
+    // --- Print supported links (valid target_frame link names for get_jacobian) ---
+    std::cout << "\n=== Supported links (valid target_frame for get_jacobian) ===" << std::endl;
+    {
+        const auto& support_links = planner.get_support_links();
+        std::cout << "get_support_links() returned " << support_links.size() << " links:" << std::endl;
+        for (const auto& link : support_links) {
+            std::cout << "  - " << link << std::endl;
+        }
+
+        const auto ee_links = planner.get_link_names(true);
+        std::cout << "get_link_names(only_end_effector=true) returned " << ee_links.size()
+                  << " end-effector links:" << std::endl;
+        for (const auto& link : ee_links) {
+            std::cout << "  - " << link << std::endl;
+        }
+        std::cout << std::endl;
+    }
+
     // Joint configurations for testing
     std::vector<double> left_arm_joints = {1.9999, -1.6000, -0.5999, -1.6999, 0.0000, -0.7999, 0.0000};
     std::vector<double> right_arm_joints = {-2.0000, 1.6001, 0.6001, 1.7000, 0.0000, 0.8000, 0.0000};
@@ -116,11 +134,11 @@ int main() {
         g_fail_count++;
     }
 
-    // --- Test 3: Tool frame, world reference ---
+    // --- Test 3: Tool frame, world reference (NOT supported -> INVALID_INPUT) ---
     try {
-        std::cout << "=== Test 3: Tool frame / world reference ===" << std::endl;
+        std::cout << "=== Test 3: Tool frame / world reference (expected INVALID_INPUT) ===" << std::endl;
         auto res = planner.get_jacobian("left_arm", "Tool", "world");
-        run_test("left_arm Tool/world", MotionStatus::SUCCESS, res, planner);
+        run_test("left_arm Tool/world", MotionStatus::INVALID_INPUT, res, planner);
     } catch (const std::exception& e) {
         std::cerr << "[FAIL] Test 3 exception: " << e.what() << std::endl;
         g_test_count++;
@@ -186,11 +204,11 @@ int main() {
         g_fail_count++;
     }
 
-    // --- Test 9: Left arm, Tool frame, base_link reference ---
+    // --- Test 9: Left arm, Tool frame, base_link reference (NOT supported -> INVALID_INPUT) ---
     try {
-        std::cout << "=== Test 9: Tool frame / base_link reference ===" << std::endl;
+        std::cout << "=== Test 9: Tool frame / base_link reference (expected INVALID_INPUT) ===" << std::endl;
         auto res = planner.get_jacobian("left_arm", "Tool", "base_link");
-        run_test("left_arm Tool/base_link", MotionStatus::SUCCESS, res, planner);
+        run_test("left_arm Tool/base_link", MotionStatus::INVALID_INPUT, res, planner);
     } catch (const std::exception& e) {
         std::cerr << "[FAIL] Test 9 exception: " << e.what() << std::endl;
         g_test_count++;
@@ -235,6 +253,31 @@ int main() {
         run_test("left_arm zero joints", MotionStatus::SUCCESS, res, planner);
     } catch (const std::exception& e) {
         std::cerr << "[FAIL] Test 12 exception: " << e.what() << std::endl;
+        g_test_count++;
+        g_fail_count++;
+    }
+
+    // --- Test 13: torso chain (torso shares the leg end-effector: leg_end_effector_mount_link) ---
+    try {
+        std::cout << "=== Test 13: torso chain / EndEffector / base_link ===" << std::endl;
+        auto res = planner.get_jacobian("torso", "EndEffector", "base_link");
+        run_test("torso EndEffector/base_link", MotionStatus::SUCCESS, res, planner);
+    } catch (const std::exception& e) {
+        std::cerr << "[FAIL] Test 13 exception: " << e.what() << std::endl;
+        g_test_count++;
+        g_fail_count++;
+    }
+
+    // --- Test 14: leg chain with joint values (EndEffector maps to leg_end_effector_mount_link;
+    //     G1 leg DOF = 5, so pass five joint values) ---
+    try {
+        std::cout << "=== Test 14: leg chain / EndEffector / base_link (5 joints) ===" << std::endl;
+        std::unordered_map<std::string, std::vector<double>> leg_joint_state = {
+            {"leg", {0.0, 0.0, 0.0, 0.0, 0.0}}};
+        auto res = planner.get_jacobian("leg", "EndEffector", "base_link", leg_joint_state);
+        run_test("leg EndEffector/base_link", MotionStatus::SUCCESS, res, planner);
+    } catch (const std::exception& e) {
+        std::cerr << "[FAIL] Test 14 exception: " << e.what() << std::endl;
         g_test_count++;
         g_fail_count++;
     }

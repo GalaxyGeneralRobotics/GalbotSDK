@@ -1,6 +1,6 @@
 # Galbot SDK
 
-![Version](https://img.shields.io/badge/version-1.9.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.9.1-blue.svg)
 ![Robot Model](https://img.shields.io/badge/Robot-G1%2FS1-red.svg)
 ![GBS Version](https://img.shields.io/badge/GBS-1.17-green.svg)
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-20--24-orange.svg)
@@ -28,9 +28,9 @@ git clone https://github.com/GalaxyGeneralRobotics/GalbotSDK.git
 
 #### 当前版本
 
-- **最新 SDK**: V1.9.0
-- **发布日期**: 2026-06-12
-- **对应机器人环境版本**: G1 V1.17
+- **最新 SDK**: V1.9.1
+- **发布日期**: 2026-07-03
+- **对应机器人环境版本**: V1.17
 - **维护状态**: ✅ 当前维护版本
 
 更多版本历史请参阅 [CHANGELOG.md](CHANGELOG.md)
@@ -73,9 +73,9 @@ git clone https://github.com/GalaxyGeneralRobotics/GalbotSDK.git
 
 #### Current Version
 
-- **Latest SDK**: V1.9.0
-- **Release Date**: 2026-06-12
-- **Compatible Robot Version**: G1 V1.17
+- **Latest SDK**: V1.9.1
+- **Release Date**: 2026-07-03
+- **Compatible Robot Version**: V1.17
 - **Maintenance Status**: ✅ Currently Maintained
 
 For more version history, please refer to [CHANGELOG.md](CHANGELOG.md)

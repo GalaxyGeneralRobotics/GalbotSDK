@@ -4,7 +4,7 @@ from pathlib import Path
 import platform
 
 # SDK 版本号（构建时自动注入）
-__version__ = "1.9.0"
+__version__ = "1.9.1"
 version = __version__
 
 from .galbot_sdk_logger import init_logger, debug, info, warning, error, critical

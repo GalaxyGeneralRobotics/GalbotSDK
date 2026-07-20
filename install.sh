@@ -339,34 +339,67 @@ needs_toolchain_update() {
 }
 
 # 检查是否需要更新三方库
-# 通过校验缓存的压缩包 sha256 来判断
+# 通过检查库文件是否存在、校验缓存的压缩包 sha256 来判断
 needs_thirdparty_update() {
     local pkg_name=$1
     local platform=$2
     local expected_sha256=$3
     local version=$4
+    local pattern=$5
     local cache_dir="$INSTALL_DIR/.cache"
     local cached_file="$cache_dir/${pkg_name}-${version}-${platform}.tar.gz"
-    
+    local lib_dir="$INSTALL_DIR/galbot_sdk/$platform/lib"
+
     if [ "$FORCE_INSTALL" = true ]; then
         return 0
     fi
-    
+
+    # 检查库文件是否存在（使用 pattern 匹配）
+    local lib_pattern="$pattern"
+    if [ -z "$lib_pattern" ]; then
+        lib_pattern="lib${pkg_name}*"
+    fi
+
+    if [ ! -d "$lib_dir" ]; then
+        log_info "  lib 目录不存在，需要安装"
+        return 0
+    fi
+
+    # 检查 lib 目录下是否存在匹配的库文件
+    # pattern 可能包含多个模式，用 | 分隔（OR 逻辑，任意一个匹配即可）
+    local lib_files=""
+    if [[ "$lib_pattern" == *"|"* ]]; then
+        # 多模式：逐个检查，累积结果
+        local IFS='|'
+        for p in $lib_pattern; do
+            local matches=$(find "$lib_dir" -maxdepth 1 \( -type f -o -type l \) -name "$p" 2>/dev/null)
+            lib_files="$lib_files$matches"
+        done
+    else
+        # 单模式
+        lib_files=$(find "$lib_dir" -maxdepth 1 \( -type f -o -type l \) -name "$lib_pattern" 2>/dev/null)
+    fi
+
+    if [ -z "$lib_files" ]; then
+        log_info "  库文件不存在: $lib_pattern"
+        return 0
+    fi
+
     # 检查缓存的压缩包是否存在
     if ! cached_file_exists "$cached_file"; then
         return 0
     fi
-    
+
     # 计算缓存压缩包的实际 sha256
     local actual_sha256
     actual_sha256=$(cached_file_sha256 "$cached_file")
-    
+
     if [ "$actual_sha256" != "$expected_sha256" ]; then
         log_warn "  $pkg_name 缓存校验失败，需要重新下载"
         return 0
     fi
-    
-    # 缓存存在且校验通过，无需更新
+
+    # 库文件存在，缓存存在且校验通过，无需更新
     return 1
 }
 
@@ -415,31 +448,45 @@ for tc in data.get('toolchains', []):
             log_info "  需要更新: $toolchain_name (v$version)"
             return 0
         fi
-        
+
         log_info "  安装工具链: $toolchain_name (v$version)"
-        
+
         # 创建缓存目录
         run_cmd mkdir -p "$cache_dir"
-        
-        # 下载到缓存目录
-        local tmp_file=$(mktemp)
-        
-        if ! download_file "$url" "$local_path" "$tmp_file" "$sha256"; then
-            log_error "  工具链下载失败"
-            run_cmd rm -f "$tmp_file"
-            return 1
+
+        # 检查缓存文件是否已存在且校验通过，避免重复下载
+        local cache_valid=false
+        if cached_file_exists "$cached_file"; then
+            local actual_sha256
+            actual_sha256=$(cached_file_sha256 "$cached_file")
+            if [ "$actual_sha256" = "$sha256" ]; then
+                cache_valid=true
+                log_success "  使用已有缓存: ${toolchain_name}.tar.gz"
+            fi
         fi
-        
-        # 移动到缓存目录
-        run_cmd mv "$tmp_file" "$cached_file"
-        
+
+        # 如果缓存无效，才下载
+        if [ "$cache_valid" = false ]; then
+            # 下载到缓存目录
+            local tmp_file=$(mktemp)
+
+            if ! download_file "$url" "$local_path" "$tmp_file" "$sha256"; then
+                log_error "  工具链下载失败"
+                run_cmd rm -f "$tmp_file"
+                return 1
+            fi
+
+            # 移动到缓存目录
+            run_cmd mv "$tmp_file" "$cached_file"
+        fi
+
         # 解压到安装目录
         local toolchain_dir="$INSTALL_DIR/toolchain"
         run_cmd mkdir -p "$toolchain_dir"
-        
+
         log_info "  解压到 $toolchain_dir/"
         run_cmd tar xzf "$cached_file" -C "$toolchain_dir" --no-same-owner
-        
+
         log_success "  工具链安装完成: $toolchain_name"
     else
         log_success "  工具链校验通过，已是最新: $toolchain_name"
@@ -497,17 +544,17 @@ for pkg in data.get('packages', []):
         
         local cached_file="$cache_dir/${name}-${version}-${platform}.tar.gz"
         
-        if needs_thirdparty_update "$name" "$platform" "$sha256" "$version"; then
+        if needs_thirdparty_update "$name" "$platform" "$sha256" "$version" "$pattern"; then
             if [ "$CHECK_ONLY" = true ]; then
                 log_info "  需要更新: $name (v$version)"
                 continue
             fi
-            
+
             log_info "  安装: $name (v$version)"
-            
+
             # 创建缓存目录
             run_cmd mkdir -p "$cache_dir"
-            
+
             # 清理该库的旧版本缓存（保留当前版本）（列目录与 run_cmd 一致，避免读不到 root 的 .cache）
             while IFS= read -r old_cache; do
                 [ -z "$old_cache" ] && continue
@@ -516,19 +563,33 @@ for pkg in data.get('packages', []):
                     run_cmd rm -f "$old_cache"
                 fi
             done < <(run_cmd find "$cache_dir" -maxdepth 1 -name "${name}-*-${platform}.tar.gz" 2>/dev/null)
-            
-            # 下载到临时目录
-            local tmp_file=$(mktemp)
-            
-            if ! download_file "$url" "$local_path" "$tmp_file" "$sha256"; then
-                log_error "  三方库 $name（平台 $platform）下载/校验失败，安装中止，请检查网络后重新下载"
-                run_cmd rm -f "$tmp_file"
-                return 1
+
+            # 检查缓存文件是否已存在且校验通过，避免重复下载
+            local cache_valid=false
+            if cached_file_exists "$cached_file"; then
+                local actual_sha256
+                actual_sha256=$(cached_file_sha256 "$cached_file")
+                if [ "$actual_sha256" = "$sha256" ]; then
+                    cache_valid=true
+                    log_success "  使用已有缓存: ${name}-${version}-${platform}.tar.gz"
+                fi
             fi
-            
-            # 移动到缓存目录
-            run_cmd mv "$tmp_file" "$cached_file"
-            
+
+            # 如果缓存无效，才下载
+            if [ "$cache_valid" = false ]; then
+                # 下载到临时目录
+                local tmp_file=$(mktemp)
+
+                if ! download_file "$url" "$local_path" "$tmp_file" "$sha256"; then
+                    log_error "  三方库 $name 平台 $platform 下载/校验失败，安装中止，请检查网络后重新下载"
+                    run_cmd rm -f "$tmp_file"
+                    return 1
+                fi
+
+                # 移动到缓存目录
+                run_cmd mv "$tmp_file" "$cached_file"
+            fi
+
             # 清理旧版本文件（在解压前）
             # 从 JSON 中读取 pattern，如果没有则使用默认规则
             local lib_pattern="$pattern"
@@ -536,17 +597,17 @@ for pkg in data.get('packages', []):
                 # 默认模式：lib{name}*
                 lib_pattern="lib${name}*"
             fi
-            
+
             if [ -n "$lib_pattern" ] && [ -d "$lib_dir" ]; then
                 log_info "  清理旧版本文件: $lib_pattern"
                 # 查找并删除匹配的文件（包括符号链接）
                 find "$lib_dir" -maxdepth 1 \( -type f -o -type l \) -name "$lib_pattern" -exec rm -f {} \; 2>/dev/null || true
             fi
-            
+
             # 解压到 lib 目录
             run_cmd mkdir -p "$lib_dir"
             run_cmd tar xzf "$cached_file" -C "$lib_dir" --strip-components=1 --no-same-owner
-            
+
             log_success "  $name 安装完成"
         else
             log_success "  校验通过: $name"
@@ -691,6 +752,7 @@ install_tools() {
     # 复制 check_robot_compat.py 和 wrapper
     local compat_script="$SCRIPT_DIR/check_robot_compat.py"
     local wrapper_script="$SCRIPT_DIR/galbot_sdk_wrapper.sh"
+    local embosa_ip_script="$SCRIPT_DIR/configure_embosa_ip.sh"
 
     if [ ! -f "$compat_script" ]; then
         log_warn "未找到 check_robot_compat.py，跳过工具安装"
@@ -719,6 +781,12 @@ install_tools() {
         # 复制 galbot_sdk wrapper
         run_cmd cp "$wrapper_script" "$bin_dir/galbot_sdk"
         run_cmd chmod +x "$bin_dir/galbot_sdk"
+
+        # 复制 embosa IP 配置脚本
+        if [ -f "$embosa_ip_script" ]; then
+            run_cmd cp "$embosa_ip_script" "$bin_dir/configure_embosa_ip.sh"
+            run_cmd chmod +x "$bin_dir/configure_embosa_ip.sh"
+        fi
 
         log_success "  版本检查工具安装完成: $platform"
     done

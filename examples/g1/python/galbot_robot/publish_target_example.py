@@ -78,7 +78,8 @@ def make_group_target_config():
 def make_pose_target_config():
     config = TargetConfig()
     config.target_data = TARGET_DATA_FRAME_POSE
-    config.target_type = TARGET_TYPE_PROVERRIDE
+    # config.target_type = TARGET_TYPE_PROVERRIDE
+    config.target_type = TARGET_TYPE_OVERRIDE
     config.target_sampling = TargetSampling.TARGET_SAMPLING_LINEAR_INTERPOLATE
     config.target_priority = 1
     return config
@@ -126,13 +127,13 @@ def build_joint_target(group_name, joint_names, positions, time_from_start_s):
     return target
 
 
-def build_chassis_pose_target(x, y, yaw, time_from_start_s, frame_id="odom", reference_frame_id="odom"):
+def build_chassis_pose_target(x, y, yaw, time_from_start_s, frame_id="rel(0)", reference_frame_id="odom"):
     target = make_empty_target()
 
     task_traj = TargetTaskTrajectory()
     task_traj.target_config = make_pose_target_config()
     task_traj.group_names = [G1JointGroup.chassis]
-    task_traj.subtask_names = [CHASSIS_SUBTASK_POSE]
+    task_traj.subtask_names = [f"{CHASSIS_SUBTASK_POSE}_{now_ns()}"]
 
     triad = FrameTriad()
     triad.header.timestamp_ns = now_ns()
@@ -156,7 +157,7 @@ def build_chassis_twist_target(vx, vy, wz, time_from_start_s):
     task_traj = TargetTaskTrajectory()
     task_traj.target_config = make_twist_target_config()
     task_traj.group_names = [G1JointGroup.chassis]
-    task_traj.subtask_names = [CHASSIS_SUBTASK_TWIST]
+    task_traj.subtask_names = [f"{CHASSIS_SUBTASK_TWIST}_{now_ns()}"]
 
     twist = Twist()
     twist.linear = make_vector3(vx, vy, 0.0)

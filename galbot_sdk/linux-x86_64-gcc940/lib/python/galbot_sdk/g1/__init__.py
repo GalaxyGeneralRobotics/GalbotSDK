@@ -2,10 +2,10 @@
 G1 SDK Package - Pre-configured for MachineType.G1
 
 This package provides G1-specific wrappers for GalbotNavigation, GalbotMotion,
-and GalbotRobot that automatically initialize with MachineType.G1.
+GalbotPerception, and GalbotRobot that automatically initialize with MachineType.G1.
 
 Usage:
-    from galbot_sdk.g1 import GalbotNavigation, GalbotMotion, GalbotRobot
+    from galbot_sdk.g1 import GalbotNavigation, GalbotMotion, GalbotPerception, GalbotRobot
 
     nav = GalbotNavigation()
     nav.init()
@@ -27,6 +27,7 @@ from .. import (
     MachineType,
     GalbotNavigation as _BaseGalbotNavigation,
     GalbotMotion as _BaseGalbotMotion,
+    GalbotPerception as _BaseGalbotPerception,
     GalbotRobot as _BaseGalbotRobot,
 )
 from .. import *  # noqa: F401, F403
@@ -71,6 +72,28 @@ class GalbotMotion:
         if GalbotMotion._instance is None:
             GalbotMotion._instance = _BaseGalbotMotion.get_instance(MachineType.G1)
             self._impl = GalbotMotion._instance
+
+    def __getattr__(self, name):
+        return getattr(self._impl, name)
+
+
+class GalbotPerception:
+    """
+    G1-specific GalbotPerception wrapper.
+    Automatically initialized with MachineType.G1 - no need to pass it explicitly.
+    """
+    _instance = None
+    _py_instance = None
+
+    def __new__(cls):
+        if cls._py_instance is None:
+            cls._py_instance = super().__new__(cls)
+        return cls._py_instance
+
+    def __init__(self):
+        if GalbotPerception._instance is None:
+            GalbotPerception._instance = _BaseGalbotPerception.get_instance(MachineType.G1)
+            self._impl = GalbotPerception._instance
 
     def __getattr__(self, name):
         return getattr(self._impl, name)

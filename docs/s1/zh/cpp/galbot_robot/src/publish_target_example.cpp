@@ -107,7 +107,8 @@ TargetConfig make_group_target_config() {
 TargetConfig make_pose_target_config() {
   TargetConfig config;
   config.target_data = TARGET_DATA_FRAME_POSE;
-  config.target_type = TARGET_TYPE_PROVERRIDE;
+  // config.target_type = TARGET_TYPE_PROVERRIDE;
+  config.target_type = TARGET_TYPE_OVERRIDE; // single point, override
   config.target_sampling = TargetSampling::TARGET_SAMPLING_LINEAR_INTERPOLATE;
   config.target_priority = 1;
   return config;
@@ -148,13 +149,13 @@ SingoriXTarget build_swerve_chassis_pose_target(double x,
                                                 double y,
                                                 double yaw,
                                                 double time_from_start_s,
-                                                const std::string& frame_id = "odom",
+                                                const std::string& frame_id = "rel(0)", // "rel(0)" means relative to the current base_link pose
                                                 const std::string& reference_frame_id = "odom") {
   SingoriXTarget target = make_empty_target();
   auto& task_traj = target.target_task_trajectory_map[kChassisTaskName];
   task_traj.target_config = make_pose_target_config();
   task_traj.group_names = {S1JointGroup::SWERVE_CHASSIS};
-  task_traj.subtask_names = {kChassisSubtaskPose};
+  task_traj.subtask_names = {std::string(kChassisSubtaskPose) + "_" + std::to_string(now_ns())};
 
   TaskCommand command;
   command.time_from_start_s = time_from_start_s;
@@ -183,7 +184,7 @@ SingoriXTarget build_swerve_chassis_twist_target(double vx,
   auto& task_traj = target.target_task_trajectory_map[kChassisTaskName];
   task_traj.target_config = make_twist_target_config();
   task_traj.group_names = {S1JointGroup::SWERVE_CHASSIS};
-  task_traj.subtask_names = {kChassisSubtaskTwist};
+  task_traj.subtask_names = {std::string(kChassisSubtaskTwist) + "_" + std::to_string(now_ns())};
 
   TaskCommand command;
   command.time_from_start_s = time_from_start_s;
@@ -283,7 +284,7 @@ int main() {
   constexpr double kPoseTimeS = 4.0;
   constexpr double kTwistCommandTimeS = 0.2;
   constexpr double kTwistDurationS = 2.0;
-
+  constexpr double kTorsoJt = 0.60; // torso target height,  meter
   print_menu();
 
   std::string command;
@@ -297,7 +298,7 @@ int main() {
     }
 
     if (command == "joint") {
-      const auto target = build_joint_target(S1JointGroup::TORSO, torso_single_joint, {0.03}, kJointTimeS);
+      const auto target = build_joint_target(S1JointGroup::TORSO, torso_single_joint, {kTorsoJt}, kJointTimeS);
       print_result("joint", robot.PublishTarget(target));
       continue;
     }
@@ -325,7 +326,7 @@ int main() {
         continue;
       }
       const auto target = merge_targets({
-          build_joint_target(S1JointGroup::TORSO, torso_single_joint, {0.03}, kJointTimeS),
+          build_joint_target(S1JointGroup::TORSO, torso_single_joint, {kTorsoJt}, kJointTimeS),
           build_swerve_chassis_pose_target(0.1, 0.0, 0.0, kPoseTimeS),
       });
       print_result("mixed_pose", robot.PublishTarget(target));
@@ -337,7 +338,7 @@ int main() {
         continue;
       }
       const auto target = merge_targets({
-          build_joint_target(S1JointGroup::TORSO, torso_single_joint, {-0.03}, kJointTimeS),
+          build_joint_target(S1JointGroup::TORSO, torso_single_joint, {kTorsoJt}, kJointTimeS),
           build_swerve_chassis_twist_target(0.05, 0.0, 0.0, kTwistCommandTimeS),
       });
       run_twist_scene(robot, "mixed_twist", target, kTwistDurationS);

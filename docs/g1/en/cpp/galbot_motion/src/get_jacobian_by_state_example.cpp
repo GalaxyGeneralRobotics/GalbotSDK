@@ -85,17 +85,6 @@ std::vector<double> make_fixed_whole_body_joint(size_t dof) {
   return values;
 }
 
-std::string choose_chain_name(GalbotMotion& motion) {
-  const auto support_chains = motion.get_support_chains();
-  if (support_chains.find("left_arm") != support_chains.end()) {
-    return "left_arm";
-  }
-  if (!support_chains.empty()) {
-    return *support_chains.begin();
-  }
-  return "left_arm";
-}
-
 int main() {
   auto& motion = GalbotMotion::get_instance(MachineType::G1);
   auto& robot = GalbotRobot::get_instance(MachineType::G1);
@@ -104,14 +93,29 @@ int main() {
     std::cerr << "GalbotMotion initialization failed." << std::endl;
     return 1;
   }
+  std::cout << "GalbotMotion initialized successfully" << std::endl;
+
   if (!robot.init()) {
     std::cerr << "GalbotRobot initialization failed." << std::endl;
     return 1;
   }
+  std::cout << "GalbotRobot initialized successfully" << std::endl;
 
   std::this_thread::sleep_for(std::chrono::seconds(3));
 
-  const std::string chain_name = choose_chain_name(motion);
+  std::set<std::string> support_chains = motion.get_support_chains();
+  std::cout << "support_chains (" << support_chains.size() << "): [";
+  for (auto it = support_chains.begin(); it != support_chains.end(); ++it) {
+    if (it != support_chains.begin()) {
+      std::cout << ", ";
+    }
+    std::cout << *it;
+  }
+  std::cout << "]" << std::endl;
+  if (support_chains.empty()) {
+    support_chains = {"head", "left_arm", "right_arm", "torso", "leg"};
+  }
+
   const std::string target_frame = "EndEffector";
   const std::string reference_frame = "base_link";
 
@@ -129,23 +133,29 @@ int main() {
   reference_robot_states->whole_body_joint = make_fixed_whole_body_joint(whole_body_dof);
   reference_robot_states->base_state = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0};
 
-  try {
-    std::cout << "=== get_jacobian_by_state with explicit RobotStates ===" << std::endl;
-    print_get_jacobian_by_state_params(chain_name, target_frame, reference_frame, reference_robot_states);
-    auto result = motion.get_jacobian_by_state(chain_name, target_frame, reference_frame, reference_robot_states);
-    print_jacobian("explicit RobotStates", result, motion);
-  } catch (const std::exception& e) {
-    std::cerr << "explicit RobotStates exception: " << e.what() << std::endl;
+  // Compute the Jacobian for every chain using an explicit RobotStates
+  for (const auto& chain_name : support_chains) {
+    try {
+      std::cout << "=== get_jacobian_by_state (explicit RobotStates): " << chain_name << " ===" << std::endl;
+      print_get_jacobian_by_state_params(chain_name, target_frame, reference_frame, reference_robot_states);
+      auto result = motion.get_jacobian_by_state(chain_name, target_frame, reference_frame, reference_robot_states);
+      print_jacobian(chain_name + " explicit RobotStates", result, motion);
+    } catch (const std::exception& e) {
+      std::cerr << chain_name << " explicit RobotStates exception: " << e.what() << std::endl;
+    }
   }
 
-  try {
-    std::cout << "=== get_jacobian_by_state with nullptr RobotStates ===" << std::endl;
-    std::shared_ptr<RobotStates> null_robot_states = nullptr;
-    print_get_jacobian_by_state_params(chain_name, target_frame, reference_frame, null_robot_states);
-    auto result = motion.get_jacobian_by_state(chain_name, target_frame, reference_frame, null_robot_states);
-    print_jacobian("nullptr RobotStates", result, motion);
-  } catch (const std::exception& e) {
-    std::cerr << "nullptr RobotStates exception: " << e.what() << std::endl;
+  // Compute the Jacobian for every chain using nullptr (the current robot state)
+  for (const auto& chain_name : support_chains) {
+    try {
+      std::cout << "=== get_jacobian_by_state (nullptr RobotStates): " << chain_name << " ===" << std::endl;
+      std::shared_ptr<RobotStates> null_robot_states = nullptr;
+      print_get_jacobian_by_state_params(chain_name, target_frame, reference_frame, null_robot_states);
+      auto result = motion.get_jacobian_by_state(chain_name, target_frame, reference_frame, null_robot_states);
+      print_jacobian(chain_name + " nullptr RobotStates", result, motion);
+    } catch (const std::exception& e) {
+      std::cerr << chain_name << " nullptr RobotStates exception: " << e.what() << std::endl;
+    }
   }
 
   robot.request_shutdown();

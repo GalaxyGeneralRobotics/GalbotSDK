@@ -20,7 +20,7 @@ from galbot_sdk.s1 import (
 )
 
 _K_SPEED_RAD_S = 0.12
-_K_TIMEOUT_S = 20.0
+_K_TIMEOUT_S = 35.0
 
 _K_PRESET_TORSO: List[float] = [0.58]
 _K_PRESET_HEAD: List[float] = [0.0, 0.0]

@@ -4,7 +4,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 project(example)
-set(SDK_INSTALL_PATH /opt/galbot/)
+set(SDK_INSTALL_PATH /opt/galbot/ CACHE PATH "Galbot SDK install root")
 include(${SDK_INSTALL_PATH}/galbot_sdk/common.cmake)
 
 # 全局关闭/清空 RPATH，避免可执行文件写入固定 SDK 路径
@@ -14,7 +14,7 @@ set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
 set(CMAKE_INSTALL_RPATH "")
 
 # 对每个代码片段编译一个可执行文件
-set(examples_subdir galbot_robot galbot_motion galbot_navigation tutorials)
+set(examples_subdir galbot_robot galbot_motion galbot_navigation galbot_perception tutorials)
 foreach(subdir ${examples_subdir})
     set(CUR_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/${subdir}/src)
     set(EXAMPLE_BIN_DIR ${CMAKE_CURRENT_BINARY_DIR}/${subdir})

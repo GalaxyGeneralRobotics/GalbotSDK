@@ -64,6 +64,17 @@ int main() {
         std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(poll_interval_s * 1000)));
     }
 
+    // Stop navigation
+    navigation.stop_navigation();
+
+    // Get current pose again
+    Pose current_pose = navigation.get_current_pose();
+    std::cout << "Current pose: Position(" << current_pose.position.x << ", "
+            << current_pose.position.y << ", " << current_pose.position.z
+            << "), orientation(" << current_pose.orientation.x << ", "
+            << current_pose.orientation.y << ", " << current_pose.orientation.z
+                << ", " << current_pose.orientation.w << ")" << std::endl;
+
     robot.request_shutdown();
     robot.wait_for_shutdown();
     robot.destroy();

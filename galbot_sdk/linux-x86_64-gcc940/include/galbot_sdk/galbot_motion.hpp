@@ -643,8 +643,14 @@ class GalbotMotion {
  * whole-body joint vector or base pose must be specified explicitly.
  *
  * @param chain_name       Kinematic chain identifier (e.g., "left_arm", "right_arm")
- * @param target_frame     Frame on chain for Jacobian computation: "EndEffector" (flange)
- *                         or "Tool" (TCP). Default: "EndEffector"
+ * @param target_frame     Target link for Jacobian computation. Valid values:
+ *                         - "EndEffector" (default): the chain end-effector flange,
+ *                           i.e. "<chain_name>_end_effector_mount_link".
+ *                         - any valid URDF link name returned by get_support_links()
+ *                           / get_link_names().
+ *                         "Tool" (TCP) is NOT supported: the kinematic service computes
+ *                         the Jacobian by link name only and has no tool-pose capability,
+ *                         so passing "Tool" returns MotionStatus::UNSUPPORTED_FUNCRION.
  * @param reference_frame  Reference coordinate frame: "base_link" (robot-base frame)
  *                         or "world" (world-fixed frame). Default: "base_link"
  * @param joint_state      Chain joint override map: {chain_name -> joint_angles}.
@@ -657,6 +663,7 @@ class GalbotMotion {
  *
  * @note Jacobian rows: [vx, vy, vz, wx, wy, wz] (linear then angular velocity).
  * @note Columns correspond to joints in the chain, ordered by joint index.
+ * @note Use get_support_links() / get_link_names() to discover valid target_frame link names.
  */
 virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian(
     const std::string& chain_name,
@@ -681,7 +688,11 @@ virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian(
  * or chain-joint override queries.
  *
  * @param chain_name              Kinematic chain identifier (e.g., "left_arm", "right_arm")
- * @param target_frame            Frame on chain for Jacobian computation. Default: "EndEffector"
+ * @param target_frame            Target link for Jacobian computation. Default: "EndEffector"
+ *                                (the chain flange, "<chain_name>_end_effector_mount_link"),
+ *                                or any valid URDF link name from get_support_links().
+ *                                "Tool" (TCP) is NOT supported and returns
+ *                                MotionStatus::UNSUPPORTED_FUNCRION (see get_jacobian()).
  * @param reference_frame         Reference coordinate frame. Default: "base_link"
  * @param reference_robot_states  Complete robot state; nullptr uses current complete robot state
  * @param params                  Planning parameters (timeout, etc.)

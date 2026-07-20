@@ -1193,10 +1193,10 @@
 <p>建图需要雷达服务处于运行状态。在 HPU 终端输入以下命令查看雷达进程：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>top
 </span></code></pre></div>
-<p>如果雷达已被自动拉起，可以在进程列表中看到名为 <code>service_livox_capture</code> 的进程，如下图所示：</p>
+<p>如果雷达已被自动拉起，可以在进程列表中看到名为 <code>service_lidar_capture</code> 的进程，如下图所示：</p>
 <p><img alt="雷达服务" src="/image/ldserv.jpg" /></p>
 <p>如果雷达未启动，使用以下命令启动雷达（注意：不要重复启动）：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/data/galbot/bin/service_livox_capture
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/data/galbot/bin/service_lidar_capture
 </span></code></pre></div>
 <p>确保地图路径具有可写权限</p>
 <p>默认地图路径存放在 <code>/var/maps/</code> 目录下。如果该路径不存在或没有写入权限，请创建路径并赋予可写权限：</p>

@@ -103,15 +103,6 @@ def make_fixed_whole_body_joint(dof):
     return [fixed_values[index % len(fixed_values)] for index in range(dof)]
 
 
-def choose_chain_name(motion):
-    support_chains = set(motion.get_supported_chains())
-    if "left_arm" in support_chains:
-        return "left_arm"
-    if support_chains:
-        return sorted(support_chains)[0]
-    return "left_arm"
-
-
 def run_example():
     motion = GalbotMotion()
     robot = GalbotRobot()
@@ -131,7 +122,11 @@ def run_example():
     try:
         time.sleep(3)
 
-        chain_name = choose_chain_name(motion)
+        support_chains = set(motion.get_supported_chains())
+        print(f"support_chains ({len(support_chains)}): {sorted(support_chains)}")
+        if not support_chains:
+            support_chains = {"head", "left_arm", "right_arm", "torso", "leg"}
+
         target_frame = "EndEffector"
         reference_frame = "base_link"
 
@@ -149,41 +144,47 @@ def run_example():
         )
         reference_robot_states.base_state = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
 
-        try:
-            print("=== get_jacobian_by_state with explicit RobotStates ===")
-            print_get_jacobian_by_state_params(
-                chain_name,
-                target_frame,
-                reference_frame,
-                reference_robot_states,
-            )
-            result = motion.get_jacobian_by_state(
-                chain_name,
-                target_frame,
-                reference_frame,
-                reference_robot_states,
-            )
-            print_jacobian("explicit RobotStates", result)
-        except Exception as e:
-            print(f"explicit RobotStates exception: {e}")
+        # Compute the Jacobian for every chain using an explicit RobotStates
+        for chain_name in sorted(support_chains):
+            try:
+                print(
+                    f"=== get_jacobian_by_state (explicit RobotStates): {chain_name} ==="
+                )
+                print_get_jacobian_by_state_params(
+                    chain_name,
+                    target_frame,
+                    reference_frame,
+                    reference_robot_states,
+                )
+                result = motion.get_jacobian_by_state(
+                    chain_name,
+                    target_frame,
+                    reference_frame,
+                    reference_robot_states,
+                )
+                print_jacobian(f"{chain_name} explicit RobotStates", result)
+            except Exception as e:
+                print(f"{chain_name} explicit RobotStates exception: {e}")
 
-        try:
-            print("=== get_jacobian_by_state with None RobotStates ===")
-            print_get_jacobian_by_state_params(
-                chain_name,
-                target_frame,
-                reference_frame,
-                None,
-            )
-            result = motion.get_jacobian_by_state(
-                chain_name,
-                target_frame,
-                reference_frame,
-                None,
-            )
-            print_jacobian("None RobotStates", result)
-        except Exception as e:
-            print(f"None RobotStates exception: {e}")
+        # Compute the Jacobian for every chain using None (the current robot state)
+        for chain_name in sorted(support_chains):
+            try:
+                print(f"=== get_jacobian_by_state (None RobotStates): {chain_name} ===")
+                print_get_jacobian_by_state_params(
+                    chain_name,
+                    target_frame,
+                    reference_frame,
+                    None,
+                )
+                result = motion.get_jacobian_by_state(
+                    chain_name,
+                    target_frame,
+                    reference_frame,
+                    None,
+                )
+                print_jacobian(f"{chain_name} None RobotStates", result)
+            except Exception as e:
+                print(f"{chain_name} None RobotStates exception: {e}")
 
         return 0
     finally:

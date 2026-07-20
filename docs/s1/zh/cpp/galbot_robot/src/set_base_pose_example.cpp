@@ -58,7 +58,8 @@ int main() {
         double x = 1.0;           // Target x coordinate
         double y = 0.0;           // Target y coordinate
         double yaw = 0.0;         // Target orientation
-        std::string frame_id = "base_link";
+        // std::string frame_id = "base_link";
+        std::string frame_id = "rel(0)";
         std::string reference_frame_id = "odom";
         bool is_blocking = true;
         double timeout_s = 15.0;
@@ -79,7 +80,8 @@ int main() {
         double x = 0.0;           // Target x coordinate (return to origin)
         double y = 0.0;           // Target y coordinate
         double yaw = 0.0;         // Target orientation
-        std::string frame_id = "base_link";
+        // std::string frame_id = "base_link";
+        std::string frame_id = "rel(0)";
         std::string reference_frame_id = "odom";
         double time_from_start_s = 5.0;  // Custom 5-second motion (slower and more stable)
         bool is_blocking = true;

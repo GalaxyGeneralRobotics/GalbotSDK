@@ -54,9 +54,9 @@ namespace sdk {
  * This class provides a singleton interface for controlling the Galbot robot.
  * It supports:
  * - Joint position and trajectory control
- * - End-effector control (grippers and suction cups)
+ * - End-effector control
  * - Mobile base velocity control
- * - Sensor data acquisition (IMU, cameras, LiDAR, ultrasonic)
+ * - Sensor data acquisition
  * - Coordinate frame transformations
  * - System lifecycle management
  *
@@ -264,7 +264,7 @@ class GalbotRobot {
      * @param end_effector Joint group name specifying which gripper to control (e.g., "left_gripper", "right_gripper")
      * @param width_m Target gripper opening width in meters (m), measured between
      *                the inner surfaces of the gripper fingers. G1 gripper width range is 0 to 0.12 m. S1 long-stroke gripper
-     *                width range is 0 to 0.11 m. S1 short-stroke gripper width range is 0 to 0.076 m.
+     *                width range is 0.007 to 0.11 m. S1 short-stroke gripper width range is 0.007 to 0.076 m.
      * @param velocity_mps Gripper closing/opening velocity in meters per second (m/s).
      *                     Default: 0.03 m/s. The value range is greater than 0 and 
      *                     less than or equal to 0.2 m/s.
@@ -441,13 +441,17 @@ class GalbotRobot {
      * @param x Target x position (meters)
      * @param y Target y position (meters)
      * @param yaw Target yaw (radians)
-     * @param frame_id Frame id of target. Options: "base_link" / "odom" / "map". Default: "odom"
+     * @param frame_id Frame id of target. Current recommended value: "rel(0)".
+     *                 "rel(0)" means the x/y/yaw target is interpreted relative to the current base pose.
+     *                 "base_link", "odom", and "map" are retained for compatibility, but are not recommended
+     *                 for current use and may be changed or removed in a future update.
+     *                 Default: "rel(0)"
      * @param reference_frame_id Reference frame id. Options: "odom" / "map"
      * @param is_blocking If true, waits for controller response; if false, returns immediately after request
      * @param timeout_s Timeout for blocking request (seconds)
      * @return ControlStatus indicating success or failure of command transmission
      */
-    virtual ControlStatus set_base_pose(double x, double y, double yaw, const std::string& frame_id = "odom",
+    virtual ControlStatus set_base_pose(double x, double y, double yaw, const std::string& frame_id = "rel(0)",
                                         const std::string& reference_frame_id = "odom", bool is_blocking = true,
                                         double timeout_s = 15.0) = 0;
     /**
@@ -458,7 +462,10 @@ class GalbotRobot {
      * @param x Target x position (meters)
      * @param y Target y position (meters)
      * @param yaw Target yaw (radians)
-     * @param frame_id Frame id of target. Options: "base_link" / "odom" / "map".
+     * @param frame_id Frame id of target. Current recommended value: "rel(0)".
+     *                 "rel(0)" means the x/y/yaw target is interpreted relative to the current base pose.
+     *                 "base_link", "odom", and "map" are retained for compatibility, but are not recommended
+     *                 for current use and may be changed or removed in a future update.
      * @param reference_frame_id Reference frame id. Options: "odom" / "map"
      * @param time_from_start_s Chassis pose interpolation time (seconds)
      * @param is_blocking If true, waits for controller response; if false, returns immediately after request
@@ -710,6 +717,22 @@ class GalbotRobot {
      * @note Depth values are typically in millimeters (mm) or meters (m) depending on sensor
      */
     virtual std::shared_ptr<DepthData> get_depth_data(const SensorType depth_camera) = 0;
+    /**
+     * @brief Get latest infrared image from specified IR camera
+     *
+     * Retrieves the most recent infrared image captured by the specified IR camera.
+     * Only available when ir_enabled is true in the camera parameter configuration.
+     *
+     * @param ir_camera SensorType enumeration specifying which IR camera to query
+     *                  (LEFT_ARM_INFRA_CAMERA_1/2 or RIGHT_ARM_INFRA_CAMERA_1/2)
+     * @return Shared pointer to IrData containing grayscale image buffer and timestamp.
+     *         Returns nullptr if camera is not enabled, ir_enabled is false, or data
+     *         retrieval fails.
+     *
+     * @note The IR sensor must be included in enable_sensor_set during initialization
+     * @note ir_enabled must be true in the camera parameter topic for subscription to occur
+     */
+    virtual std::shared_ptr<IrData> get_ir_data(const SensorType ir_camera) = 0;
     /**
      * @brief Get synchronized observation aligned by camera timestamp.
      *

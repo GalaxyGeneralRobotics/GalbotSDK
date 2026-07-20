@@ -1304,10 +1304,10 @@
 <p>Mapping requires the LiDAR service to be running. Enter the following command on the HPU terminal to check the LiDAR process:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>top
 </span></code></pre></div>
-<p>If the LiDAR has been automatically started, you can see a process named <code>service_livox_capture</code> in the process list, as shown below:</p>
+<p>If the LiDAR has been automatically started, you can see a process named <code>service_lidar_capture</code> in the process list, as shown below:</p>
 <p><img alt="LiDAR Service" src="/image/ldserv.jpg" /></p>
 <p>If the LiDAR is not running, use the following command to start it (do not start it repeatedly):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/data/galbot/bin/service_livox_capture
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/data/galbot/bin/service_lidar_capture
 </span></code></pre></div>
 <p>Ensure the map path has write permissions</p>
 <p>The default map path is stored in the <code>/var/maps/</code> directory. If the path does not exist or does not have write permissions, create the path and grant write permissions:</p>

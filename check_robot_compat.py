@@ -12,7 +12,7 @@ Galbot SDK 版本兼容性检查工具
 SDK 版本获取优先级:
     1. 用户手动指定 (--sdk-version)
     2. 从 galbot_sdk 包动态获取 (__version__)
-    3. 构建时注入的默认版本号 (兼容旧版 SDK)
+    3. 若无法自动获取，则提示用户通过 --sdk-version 手动指定
 
 机器人版本获取优先级:
     1. 用户手动指定 (--robot-version, 优先级最高)
@@ -116,9 +116,6 @@ VERSION_COMPATIBILITY_MAP = [
     ("1.9.0", "1.9.99", ["GBS_1.17.x"]),
 ]
 
-# 构建时注入的默认 SDK 版本（兼容旧版本 SDK）
-_BUILTIN_SDK_VERSION = "1.9.0"
-
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -187,7 +184,7 @@ def detect_sdk_version(user_specified_version=None):
     智能检测 SDK 版本号，按优先级尝试：
     1. 用户手动指定 (--sdk-version)
     2. 直接 import galbot_sdk 包读取 __version__
-    3. fallback 到构建时注入的版本（兼容旧版本 SDK）
+    3. 无法自动获取时提示用户通过 --sdk-version 手动指定
 
     返回: (version, source_description, warning_message_or_None)
     """
@@ -196,21 +193,28 @@ def detect_sdk_version(user_specified_version=None):
         return user_specified_version, "manual:--sdk-version", None
 
     # 优先级2: 直接 import galbot_sdk 包读取 __version__
+    import_error = None
     try:
         import galbot_sdk
 
         if hasattr(galbot_sdk, "__version__"):
             return galbot_sdk.__version__, "python:galbot_sdk.__version__", None
-    except Exception:
-        pass
+    except Exception as exc:
+        import_error = exc
 
-    # 优先级3: fallback 到构建时注入的版本（兼容旧版本 SDK）
-    warning = (
-        f"⚠️ 无法从 galbot_sdk 包中获取版本信息，"
-        f"使用构建时传入的默认版本号: {_BUILTIN_SDK_VERSION}\n"
-        f"   → 如需精确版本匹配，请升级到包含版本信息的 SDK"
+    detail = (
+        f"导入 galbot_sdk 失败: {import_error}"
+        if import_error
+        else "galbot_sdk 包未提供 __version__"
     )
-    return _BUILTIN_SDK_VERSION, "builtin:compiled", warning
+    raise RuntimeError(
+        "无法自动获取当前 Python 环境中的 SDK 版本。\n"
+        f"原因: {detail}\n"
+        "请通过 --sdk-version 手动指定实际安装的 SDK 版本，例如:\n"
+        "  galbot_sdk check-version --sdk-version 1.8.0\n"
+        "或在离线校验时同时指定机器人版本:\n"
+        "  galbot_sdk check-version --sdk-version 1.8.0 --robot-version GBS_1.16.0"
+    )
 
 
 def get_required_gbs_versions(sdk_version):

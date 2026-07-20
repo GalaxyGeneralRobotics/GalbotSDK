@@ -21,8 +21,11 @@ DexHandType parse_dexhand_type(const std::string& type_name) {
   if (type_name == "sharpa" || type_name == "SHARPA") {
     return DexHandType::SHARPA;
   }
-  std::cerr << "Unknown dexhand type '" << type_name << "'. Choose from: inspire, brainco, sharpa"
-            << std::endl;
+  if (type_name == "linker_l20" || type_name == "LINKER_L20") {
+    return DexHandType::LINKER_L20;
+  }
+  std::cerr << "Unknown dexhand type '" << type_name
+            << "'. Choose from: inspire, brainco, sharpa, linker_l20" << std::endl;
   std::exit(1);
 }
 
@@ -40,7 +43,11 @@ void print_joint_states(const std::string& hand_name, const DexhandState& dexhan
       std::cout << "    joint" << (i + 1) << ": position=" << js.position << ", velocity=" << js.velocity
                 << ", effort=" << js.effort << ", current=" << js.current << std::endl;
     } else {
-      std::cout << "    " << hand_name << "_dexhand_joint" << (i + 1) << ": position=" << js.position
+      // SDK fills joint_name for LINKER_L20 (e.g. left_dexhand_thumb_roll); fall back for others
+      const std::string joint_label = !js.joint_name.empty()
+                                          ? js.joint_name
+                                          : hand_name + "_dexhand_joint" + std::to_string(i + 1);
+      std::cout << "    " << joint_label << ": position=" << js.position
                 << ", velocity=" << js.velocity << ", acceleration=" << js.acceleration
                 << ", effort=" << js.effort << ", current=" << js.current << std::endl;
     }
@@ -71,10 +78,11 @@ void print_dexhand_state(const std::string& hand_name, const DexhandState& dexha
 }
 
 void print_usage(const char* program_name) {
-  std::cerr << "Usage: " << program_name << " [inspire|brainco|sharpa]" << std::endl;
+  std::cerr << "Usage: " << program_name << " [inspire|brainco|sharpa|linker_l20]" << std::endl;
   std::cerr << "  inspire (default): joint state only" << std::endl;
   std::cerr << "  brainco:           joint state only" << std::endl;
   std::cerr << "  sharpa:            joint state + force sensors when available" << std::endl;
+  std::cerr << "  linker_l20:        joint state with per-joint names from SDK" << std::endl;
 }
 
 }  // namespace

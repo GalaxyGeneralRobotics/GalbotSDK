@@ -79,22 +79,6 @@ std::vector<double> make_fixed_joint_values(size_t dof) {
   return values;
 }
 
-size_t get_chain_dof(const std::string& chain_name,
-                     const std::unordered_map<std::string, std::vector<double>>& current_chain_joint_state) {
-  const auto current_it = current_chain_joint_state.find(chain_name);
-  if (current_it != current_chain_joint_state.end() && !current_it->second.empty()) {
-    return current_it->second.size();
-  }
-
-  const std::map<std::string, size_t> fallback_dof = {
-      {"head", 2}, {"left_arm", 7}, {"right_arm", 7}, {"leg", 5}, {"torso", 1}};
-  const auto fallback_it = fallback_dof.find(chain_name);
-  if (fallback_it != fallback_dof.end()) {
-    return fallback_it->second;
-  }
-  return 0;
-}
-
 int main() {
   auto& motion = GalbotMotion::get_instance(MachineType::G1);
   auto& robot = GalbotRobot::get_instance(MachineType::G1);
@@ -103,16 +87,27 @@ int main() {
     std::cerr << "GalbotMotion initialization failed." << std::endl;
     return 1;
   }
+  std::cout << "GalbotMotion initialized successfully" << std::endl;
+
   if (!robot.init()) {
     std::cerr << "GalbotRobot initialization failed." << std::endl;
     return 1;
   }
+  std::cout << "GalbotRobot initialized successfully" << std::endl;
 
   std::this_thread::sleep_for(std::chrono::seconds(3));
 
   std::set<std::string> support_chains = motion.get_support_chains();
+  std::cout << "support_chains (" << support_chains.size() << "): [";
+  for (auto it = support_chains.begin(); it != support_chains.end(); ++it) {
+    if (it != support_chains.begin()) {
+      std::cout << ", ";
+    }
+    std::cout << *it;
+  }
+  std::cout << "]" << std::endl;
   if (support_chains.empty()) {
-    support_chains = {"head", "left_arm", "right_arm", "leg"};
+    support_chains = {"head", "left_arm", "right_arm", "torso", "leg"};
   }
 
   std::unordered_map<std::string, std::vector<double>> current_chain_joint_state;
@@ -125,8 +120,22 @@ int main() {
   const std::string target_frame = "EndEffector";
   const std::string reference_frame = "base_link";
 
+  // Known chain DOF used only when the runtime joint state is unavailable.
+  const std::unordered_map<std::string, size_t> fallback_dof = {
+      {"head", 2}, {"left_arm", 7}, {"right_arm", 7}, {"leg", 5}};
+
   for (const auto& chain_name : support_chains) {
-    const size_t dof = get_chain_dof(chain_name, current_chain_joint_state);
+    // Prefer the runtime joint count; fall back to a known DOF when it is unavailable.
+    size_t dof = 0;
+    const auto current_it = current_chain_joint_state.find(chain_name);
+    if (current_it != current_chain_joint_state.end() && !current_it->second.empty()) {
+      dof = current_it->second.size();
+    } else {
+      const auto fb = fallback_dof.find(chain_name);
+      if (fb != fallback_dof.end()) {
+        dof = fb->second;
+      }
+    }
     if (dof == 0) {
       std::cerr << "Skip chain '" << chain_name << "': unable to determine chain DOF." << std::endl;
       continue;

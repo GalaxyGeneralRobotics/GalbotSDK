@@ -458,14 +458,16 @@ class DexHandType:
     | INSPIRE | Inspire dexterous hand |
     | BRAINCO | BrainCo dexterous hand |
     | SHARPA | Sharpa dexterous hand |
+    | LINKER_L20 | Linker Hand L20 dexterous hand (16 joints, range [0,255]) |
     """
 
     BRAINCO: typing.ClassVar[DexHandType]  # value = <DexHandType.BRAINCO: 1>
     INSPIRE: typing.ClassVar[DexHandType]  # value = <DexHandType.INSPIRE: 0>
+    LINKER_L20: typing.ClassVar[DexHandType]  # value = <DexHandType.LINKER_L20: 3>
     SHARPA: typing.ClassVar[DexHandType]  # value = <DexHandType.SHARPA: 2>
     __members__: typing.ClassVar[
         dict[str, DexHandType]
-    ]  # value = {'INSPIRE': <DexHandType.INSPIRE: 0>, 'BRAINCO': <DexHandType.BRAINCO: 1>, 'SHARPA': <DexHandType.SHARPA: 2>}
+    ]  # value = {'INSPIRE': <DexHandType.INSPIRE: 0>, 'BRAINCO': <DexHandType.BRAINCO: 1>, 'SHARPA': <DexHandType.SHARPA: 2>, 'LINKER_L20': <DexHandType.LINKER_L20: 3>}
     def __eq__(self, other: typing.Any) -> bool: ...
     def __getstate__(self) -> int: ...
     def __hash__(self) -> int: ...
@@ -1681,7 +1683,7 @@ class GalbotOneFoxtrotSensor:
 
 class GalbotPerception:
     """
-    Perception module interface. Use get_instance(machine_type) for the platform singleton; G1 supported, S1 raises.
+    Perception module interface. Use get_instance(machine_type) for the platform singleton; G1 and S1 are supported.
     """
     def get_latest_result(self, module: PerceptionModule) -> tuple:
         """
@@ -1948,6 +1950,24 @@ class GalbotRobot:
                 - 'magnet': Magnetometer Vector3 {'x': float, 'y': float, 'z': float}
 
             Returns empty dictionary on failure.
+        """
+    def get_ir_data(self, camera_id: SensorType) -> dict:
+        """
+        Get latest infrared image data from specified IR camera.
+
+        Parameters:
+            camera_id (SensorType): IR camera sensor ID to query.
+                Valid values: LEFT_ARM_INFRA_CAMERA_1, LEFT_ARM_INFRA_CAMERA_2,
+                              RIGHT_ARM_INFRA_CAMERA_1, RIGHT_ARM_INFRA_CAMERA_2
+
+        Returns:
+            dict: Dictionary containing the following keys:
+                - 'header': Message header with timestamp and frame information
+                - 'format': Image format, e.g., 'mono8; jpeg compressed mono8'
+                - 'data': Compressed grayscale image binary data (bytes)
+
+            Returns empty dictionary if camera is not enabled, ir_enabled is false,
+            or no data has been received yet.
         """
     def get_joint_group_names(self) -> list[str]:
         """
@@ -2293,7 +2313,7 @@ class GalbotRobot:
         x: typing.SupportsFloat,
         y: typing.SupportsFloat,
         yaw: typing.SupportsFloat,
-        frame_id: str = "odom",
+        frame_id: str = "rel(0)",
         reference_frame_id: str = "odom",
         is_blocking: bool = True,
         timeout_s: typing.SupportsFloat = 15.0,
@@ -2305,7 +2325,11 @@ class GalbotRobot:
             x (float): Target x position.
             y (float): Target y position.
             yaw (float): Target yaw (rad).
-            frame_id (str): Frame id ("base_link"/"odom"/"map"). Default "odom".
+            frame_id (str): Frame id. Current recommended value: "rel(0)", which means the
+                x/y/yaw target is interpreted relative to the current base pose.
+                "base_link", "odom", and "map" are retained for compatibility, but are not
+                recommended for current use and may be changed or removed in a future update.
+                Default "rel(0)".
             reference_frame_id (str): Reference frame id ("odom"/"map"). Default "odom".
             is_blocking (bool): Whether to block until command execution completes (optional, default: True).
             timeout_s (float): Blocking timeout in seconds (optional, default: 15.0).
@@ -2332,7 +2356,10 @@ class GalbotRobot:
             x (float): Target x position (meters).
             y (float): Target y position (meters).
             yaw (float): Target yaw (radians).
-            frame_id (str): Frame id of target ("base_link"/"odom"/"map").
+            frame_id (str): Frame id of target. Current recommended value: "rel(0)", which means
+                the x/y/yaw target is interpreted relative to the current base pose.
+                "base_link", "odom", and "map" are retained for compatibility, but are not
+                recommended for current use and may be changed or removed in a future update.
             reference_frame_id (str): Reference frame id ("odom"/"map").
             time_from_start_s (float): Chassis pose interpolation time (seconds).
             is_blocking (bool): Whether to block until command execution completes (optional, default: True).
@@ -2416,7 +2443,7 @@ class GalbotRobot:
         Parameters:
             end_effector (str): Gripper name, e.g. "left_gripper" or "right_gripper".
             width_m (float): Target gripper width in meters. G1 gripper width range is 0 to 0.12 m. S1 long-stroke gripper
-            width range is 0 to 0.11 m. S1 short-stroke gripper width range is 0 to 0.076 m.
+            width range is 0.007 to 0.11 m. S1 short-stroke gripper width range is 0.007 to 0.076 m.
             velocity_mps (float): Gripper motion speed in m/s (optional, default: 0.03). The value range is greater than 0 and
             less than or equal to 0.2 m/s.
             effort (float): Gripper effort in Nm (optional, default: 5). The value range is greater than 0 and
@@ -3921,6 +3948,10 @@ class SensorType:
     | RIGHT_ARM_CAMERA | Right arm camera |
     | LEFT_ARM_DEPTH_CAMERA | Left arm depth camera |
     | RIGHT_ARM_DEPTH_CAMERA | Right arm depth camera |
+    | LEFT_ARM_INFRA_CAMERA_1 | Left arm infrared camera 1 |
+    | LEFT_ARM_INFRA_CAMERA_2 | Left arm infrared camera 2 |
+    | RIGHT_ARM_INFRA_CAMERA_1 | Right arm infrared camera 1 |
+    | RIGHT_ARM_INFRA_CAMERA_2 | Right arm infrared camera 2 |
     | BASE_ULTRASONIC | Base ultrasonic sensor |
     | CHASSIS_IMU | Chassis LiDAR IMU |
     | BASE_LIDAR | Base LiDAR |
@@ -3932,11 +3963,11 @@ class SensorType:
     | RIGHT_REAR_SURROUND_CAMERA | Right rear surround color camera |
     """
 
-    BASE_LIDAR: typing.ClassVar[SensorType]  # value = <SensorType.BASE_LIDAR: 6>
+    BASE_LIDAR: typing.ClassVar[SensorType]  # value = <SensorType.BASE_LIDAR: 10>
     BASE_ULTRASONIC: typing.ClassVar[
         SensorType
-    ]  # value = <SensorType.BASE_ULTRASONIC: 15>
-    CHASSIS_IMU: typing.ClassVar[SensorType]  # value = <SensorType.CHASSIS_IMU: 12>
+    ]  # value = <SensorType.BASE_ULTRASONIC: 19>
+    CHASSIS_IMU: typing.ClassVar[SensorType]  # value = <SensorType.CHASSIS_IMU: 16>
     HEAD_LEFT_CAMERA: typing.ClassVar[
         SensorType
     ]  # value = <SensorType.HEAD_LEFT_CAMERA: 0>
@@ -3949,29 +3980,41 @@ class SensorType:
     LEFT_ARM_DEPTH_CAMERA: typing.ClassVar[
         SensorType
     ]  # value = <SensorType.LEFT_ARM_DEPTH_CAMERA: 4>
+    LEFT_ARM_INFRA_CAMERA_1: typing.ClassVar[
+        SensorType
+    ]  # value = <SensorType.LEFT_ARM_INFRA_CAMERA_1: 6>
+    LEFT_ARM_INFRA_CAMERA_2: typing.ClassVar[
+        SensorType
+    ]  # value = <SensorType.LEFT_ARM_INFRA_CAMERA_2: 7>
     LEFT_FRONT_SURROUND_CAMERA: typing.ClassVar[
         SensorType
-    ]  # value = <SensorType.LEFT_FRONT_SURROUND_CAMERA: 16>
+    ]  # value = <SensorType.LEFT_FRONT_SURROUND_CAMERA: 20>
     LEFT_REAR_SURROUND_CAMERA: typing.ClassVar[
         SensorType
-    ]  # value = <SensorType.LEFT_REAR_SURROUND_CAMERA: 18>
-    LIDAR_IMU: typing.ClassVar[SensorType]  # value = <SensorType.LIDAR_IMU: 14>
+    ]  # value = <SensorType.LEFT_REAR_SURROUND_CAMERA: 22>
+    LIDAR_IMU: typing.ClassVar[SensorType]  # value = <SensorType.LIDAR_IMU: 18>
     RIGHT_ARM_CAMERA: typing.ClassVar[
         SensorType
     ]  # value = <SensorType.RIGHT_ARM_CAMERA: 3>
     RIGHT_ARM_DEPTH_CAMERA: typing.ClassVar[
         SensorType
     ]  # value = <SensorType.RIGHT_ARM_DEPTH_CAMERA: 5>
+    RIGHT_ARM_INFRA_CAMERA_1: typing.ClassVar[
+        SensorType
+    ]  # value = <SensorType.RIGHT_ARM_INFRA_CAMERA_1: 8>
+    RIGHT_ARM_INFRA_CAMERA_2: typing.ClassVar[
+        SensorType
+    ]  # value = <SensorType.RIGHT_ARM_INFRA_CAMERA_2: 9>
     RIGHT_FRONT_SURROUND_CAMERA: typing.ClassVar[
         SensorType
-    ]  # value = <SensorType.RIGHT_FRONT_SURROUND_CAMERA: 17>
+    ]  # value = <SensorType.RIGHT_FRONT_SURROUND_CAMERA: 21>
     RIGHT_REAR_SURROUND_CAMERA: typing.ClassVar[
         SensorType
-    ]  # value = <SensorType.RIGHT_REAR_SURROUND_CAMERA: 19>
-    TORSO_IMU: typing.ClassVar[SensorType]  # value = <SensorType.TORSO_IMU: 13>
+    ]  # value = <SensorType.RIGHT_REAR_SURROUND_CAMERA: 23>
+    TORSO_IMU: typing.ClassVar[SensorType]  # value = <SensorType.TORSO_IMU: 17>
     __members__: typing.ClassVar[
         dict[str, SensorType]
-    ]  # value = {'HEAD_LEFT_CAMERA': <SensorType.HEAD_LEFT_CAMERA: 0>, 'HEAD_RIGHT_CAMERA': <SensorType.HEAD_RIGHT_CAMERA: 1>, 'LEFT_ARM_CAMERA': <SensorType.LEFT_ARM_CAMERA: 2>, 'RIGHT_ARM_CAMERA': <SensorType.RIGHT_ARM_CAMERA: 3>, 'LEFT_ARM_DEPTH_CAMERA': <SensorType.LEFT_ARM_DEPTH_CAMERA: 4>, 'RIGHT_ARM_DEPTH_CAMERA': <SensorType.RIGHT_ARM_DEPTH_CAMERA: 5>, 'BASE_ULTRASONIC': <SensorType.BASE_ULTRASONIC: 15>, 'CHASSIS_IMU': <SensorType.CHASSIS_IMU: 12>, 'BASE_LIDAR': <SensorType.BASE_LIDAR: 6>, 'TORSO_IMU': <SensorType.TORSO_IMU: 13>, 'LIDAR_IMU': <SensorType.LIDAR_IMU: 14>, 'LEFT_FRONT_SURROUND_CAMERA': <SensorType.LEFT_FRONT_SURROUND_CAMERA: 16>, 'RIGHT_FRONT_SURROUND_CAMERA': <SensorType.RIGHT_FRONT_SURROUND_CAMERA: 17>, 'LEFT_REAR_SURROUND_CAMERA': <SensorType.LEFT_REAR_SURROUND_CAMERA: 18>, 'RIGHT_REAR_SURROUND_CAMERA': <SensorType.RIGHT_REAR_SURROUND_CAMERA: 19>, 'HEAD_LIDAR': <SensorType.HEAD_LIDAR: 7>, 'BACK_LIDAR': <SensorType.BACK_LIDAR: 8>, 'CHASSIS_LIDAR': <SensorType.CHASSIS_LIDAR: 9>, 'HEAD_IMU': <SensorType.HEAD_IMU: 10>, 'BACK_IMU': <SensorType.BACK_IMU: 11>}
+    ]  # value = {'HEAD_LEFT_CAMERA': <SensorType.HEAD_LEFT_CAMERA: 0>, 'HEAD_RIGHT_CAMERA': <SensorType.HEAD_RIGHT_CAMERA: 1>, 'LEFT_ARM_CAMERA': <SensorType.LEFT_ARM_CAMERA: 2>, 'RIGHT_ARM_CAMERA': <SensorType.RIGHT_ARM_CAMERA: 3>, 'LEFT_ARM_DEPTH_CAMERA': <SensorType.LEFT_ARM_DEPTH_CAMERA: 4>, 'RIGHT_ARM_DEPTH_CAMERA': <SensorType.RIGHT_ARM_DEPTH_CAMERA: 5>, 'LEFT_ARM_INFRA_CAMERA_1': <SensorType.LEFT_ARM_INFRA_CAMERA_1: 6>, 'LEFT_ARM_INFRA_CAMERA_2': <SensorType.LEFT_ARM_INFRA_CAMERA_2: 7>, 'RIGHT_ARM_INFRA_CAMERA_1': <SensorType.RIGHT_ARM_INFRA_CAMERA_1: 8>, 'RIGHT_ARM_INFRA_CAMERA_2': <SensorType.RIGHT_ARM_INFRA_CAMERA_2: 9>, 'BASE_ULTRASONIC': <SensorType.BASE_ULTRASONIC: 19>, 'CHASSIS_IMU': <SensorType.CHASSIS_IMU: 16>, 'BASE_LIDAR': <SensorType.BASE_LIDAR: 10>, 'TORSO_IMU': <SensorType.TORSO_IMU: 17>, 'LIDAR_IMU': <SensorType.LIDAR_IMU: 18>, 'LEFT_FRONT_SURROUND_CAMERA': <SensorType.LEFT_FRONT_SURROUND_CAMERA: 20>, 'RIGHT_FRONT_SURROUND_CAMERA': <SensorType.RIGHT_FRONT_SURROUND_CAMERA: 21>, 'LEFT_REAR_SURROUND_CAMERA': <SensorType.LEFT_REAR_SURROUND_CAMERA: 22>, 'RIGHT_REAR_SURROUND_CAMERA': <SensorType.RIGHT_REAR_SURROUND_CAMERA: 23>, 'HEAD_LIDAR': <SensorType.HEAD_LIDAR: 11>, 'BACK_LIDAR': <SensorType.BACK_LIDAR: 12>, 'CHASSIS_LIDAR': <SensorType.CHASSIS_LIDAR: 13>, 'HEAD_IMU': <SensorType.HEAD_IMU: 14>, 'BACK_IMU': <SensorType.BACK_IMU: 15>}
     def __eq__(self, other: typing.Any) -> bool: ...
     def __getstate__(self) -> int: ...
     def __hash__(self) -> int: ...

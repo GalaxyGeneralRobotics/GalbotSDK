@@ -182,6 +182,22 @@ enum class SensorType {
   /// @robot G1 S1
   RIGHT_ARM_DEPTH_CAMERA,
 
+  /// @brief Left arm infrared camera 1, provides infrared data for left arm workspace
+  /// @robot G1 S1
+  LEFT_ARM_INFRA_CAMERA_1,
+
+  /// @brief Left arm infrared camera 2, provides infrared data for left arm workspace
+  /// @robot G1 S1
+  LEFT_ARM_INFRA_CAMERA_2,
+
+  /// @brief Right arm infrared camera 1, provides infrared data for right arm workspace
+  /// @robot G1 S1
+  RIGHT_ARM_INFRA_CAMERA_1,
+
+  /// @brief Right arm infrared camera 2, provides infrared data for right arm workspace
+  /// @robot G1 S1
+  RIGHT_ARM_INFRA_CAMERA_2,
+
   /// @brief G1 Base LiDAR
   /// @robot G1
   BASE_LIDAR,
@@ -219,7 +235,7 @@ enum class SensorType {
   LIDAR_IMU,
 
   /// @brief Base ultrasonic sensor array, for proximity detection and collision avoidance
-  /// @robot G1 S1
+  /// @robot G1
   BASE_ULTRASONIC,
 
   /// @brief G1 left-front surround color camera
@@ -245,6 +261,7 @@ enum class SensorType {
 
 /**
  * @brief Chassis ultrasonic sensor probe enumeration (8 directions)
+ * @robot G1
  *
  * Identifies individual ultrasonic sensors arranged around the mobile base chassis
  * for omnidirectional obstacle detection and proximity sensing.
@@ -283,11 +300,14 @@ enum class MachineType {
  * the correct implementation. Inspire and BrainCo dexhands share the standard
  * joint command/state path. Sharpa dexhands use a dedicated 22-joint topic
  * interface; full state is returned in DexhandState (including force sensors).
+ * Linker Hand L20 uses a dedicated 16-joint path keyed by the dexhand group;
+ * like Sharpa, its joint commands and feedback are in radians.
  */
 enum class DexHandType {
-  INSPIRE, /**< Inspire dexterous hand */
-  BRAINCO, /**< BrainCo dexterous hand */
-  SHARPA   /**< Sharpa dexterous hand */
+  INSPIRE,    /**< Inspire dexterous hand */
+  BRAINCO,    /**< BrainCo dexterous hand */
+  SHARPA,     /**< Sharpa dexterous hand */
+  LINKER_L20  /**< Linker Hand L20 dexterous hand */
 };
 
 /**
@@ -534,6 +554,7 @@ struct DeviceInfo {
 
 /**
  * @brief Ultrasonic sensor data structure
+ * @robot G1
  *
  * Contains a single ultrasonic distance measurement with timestamp.
  */
@@ -1381,6 +1402,56 @@ struct RgbData {
 };
 
 /**
+ * @brief Infrared image data structure
+ *
+ * Contains compressed infrared (IR) image data from depth cameras (e.g., RealSense infra1/infra2).
+ * Compatible with ROS 2 sensor_msgs/CompressedImage format with mono encoding.
+ */
+struct IrData {
+  /**
+   * @brief Message header
+   *
+   * Contains acquisition timestamp and camera coordinate frame ID.
+   */
+  Header header;
+
+  /**
+   * @brief Image format descriptor
+   *
+   * Specifies compression format and encoding.
+   * Examples: "mono8; jpeg compressed mono8"
+   */
+  std::string format;
+
+  /**
+   * @brief Image height in pixels
+   */
+  uint32_t height = 0;
+
+  /**
+   * @brief Image width in pixels
+   */
+  uint32_t width = 0;
+
+  /**
+   * @brief Compressed image data
+   *
+   * Binary blob containing the compressed infrared image.
+   */
+  std::vector<uint8_t> data;
+
+  /**
+   * @brief Decode compressed IR image data to OpenCV Mat
+   *
+   * Decodes the internally stored compressed binary data using cv::imdecode
+   * with IMREAD_GRAYSCALE to produce a single-channel Mat.
+   *
+   * @return std::shared_ptr<cv::Mat> Smart pointer to decoded image on success, nullptr on failure
+   */
+  std::shared_ptr<cv::Mat> convert_to_cv2_mat();
+};
+
+/**
  * @brief Depth image data structure
  *
  * Contains compressed depth image data from depth cameras or RGB-D sensors.
@@ -1778,8 +1849,7 @@ struct CameraInfo {
  /**
   * @brief Audio data structure
   *
-  * Encapsulates microphone streaming events and payloads delivered through audio input
-  * callbacks (e.g. GalbotRobot::start_microphone_stream_input).
+  * Encapsulates audio event payloads.
   */
  struct AudioData {
   /**

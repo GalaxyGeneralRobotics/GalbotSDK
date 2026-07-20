@@ -595,10 +595,7 @@
     <li class="md-nav__item"><a href="#1-physical-connection" class="md-nav__link" style="padding-left: 2.3rem;"><span class="md-ellipsis">1. Physical Connection</span></a></li>
     <li class="md-nav__item"><a href="#2-network-configuration" class="md-nav__link" style="padding-left: 2.3rem;"><span class="md-ellipsis">2. Network Configuration</span></a></li>
     <li class="md-nav__item"><a href="#21-configure-pc-network-interface-ip" class="md-nav__link" style="padding-left: 3.2rem;"><span class="md-ellipsis">2.1 Configure PC Network Interface IP</span></a></li>
-    <li class="md-nav__item"><a href="#22-configure-pc-ip-configuration-file" class="md-nav__link" style="padding-left: 3.2rem;"><span class="md-ellipsis">2.2 Configure PC IP Configuration File</span></a></li>
-    <li class="md-nav__item"><a href="#23-configure-orin-ip-configuration-file" class="md-nav__link" style="padding-left: 3.2rem;"><span class="md-ellipsis">2.3 Configure Orin IP Configuration File</span></a></li>
-    <li class="md-nav__item"><a href="#24-configure-xcu-ip-configuration-file" class="md-nav__link" style="padding-left: 3.2rem;"><span class="md-ellipsis">2.4 Configure XCU IP Configuration File</span></a></li>
-    <li class="md-nav__item"><a href="#25-verify-network-connection" class="md-nav__link" style="padding-left: 3.2rem;"><span class="md-ellipsis">2.5 Verify Network Connection</span></a></li>
+    <li class="md-nav__item"><a href="#22-one-click-configuration-for-pc-xcu-and-hpu" class="md-nav__link" style="padding-left: 3.2rem;"><span class="md-ellipsis">2.2 One-Click Configuration for PC, XCU, and HPU</span></a></li>
     <li class="md-nav__item"><a href="#3-install-sdk-on-pc" class="md-nav__link" style="padding-left: 2.3rem;"><span class="md-ellipsis">3. Install SDK on PC</span></a></li>
     <li class="md-nav__item"><a href="#4-compile-programs" class="md-nav__link" style="padding-left: 2.3rem;"><span class="md-ellipsis">4. Compile Programs</span></a></li>
     <li class="md-nav__item"><a href="#5-run-programs" class="md-nav__link" style="padding-left: 2.3rem;"><span class="md-ellipsis">5. Run Programs</span></a></li>
@@ -900,98 +897,32 @@
 <p>Verify configuration</p>
 <p>The Ubuntu IP address is 192.168.100.99, and the Windows system can ping both the robot and the Ubuntu system in the virtual machine</p>
 <p><img alt="windows ping test" src="/image/windows_ping_s1.jpg" /></p>
-<h4 id="22-configure-pc-ip-configuration-file">2.2 Configure PC IP Configuration File</h4>
-<p>File path: <code>/data/config/embosa_ip_config.json</code></p>
-<p>Configuration example (assuming PC: 192.168.100.99, XCU: 192.168.100.66, Orin: 192.168.100.88):</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&quot;embosa_ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="nt">&quot;local_interface&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">            </span><span class="s2">&quot;192.168.100.99&quot;</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="p">],</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="nt">&quot;peer_lists&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="s2">&quot;192.168.100.66&quot;</span><span class="p">,</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">            </span><span class="s2">&quot;192.168.100.88&quot;</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="p">]</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">}</span>
-</span></code></pre></div>
-<h4 id="23-configure-orin-ip-configuration-file">2.3 Configure Orin IP Configuration File</h4>
+<h4 id="22-one-click-configuration-for-pc-xcu-and-hpu">2.2 One-Click Configuration for PC, XCU, and HPU</h4>
 <div class="admonition warning">
-<p class="admonition-title">Prerequisites</p>
-<p>You must first connect to Orin via WiFi, refer to Robot-Side Deployment Step 1</p>
+<p class="admonition-title">Prerequisite</p>
+<p>PC, XCU, and HPU must be able to ping each other</p>
 </div>
-<p>2.3.1 Login to Orin</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh<span class="w"> </span>galbot@&lt;Orin<span class="w"> </span>Wireless<span class="w"> </span>IP&gt;
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># Password: gb@2023</span>
+<p>Run the <code>configure_embosa_ip.sh</code> script in the SDK directory to configure the IP addresses (example: PC: 192.168.100.99, XCU: 192.168.100.66, HPU: 192.168.100.88):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>./configure_embosa_ip.sh
 </span></code></pre></div>
-<p>2.3.2 Edit configuration file</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>vi<span class="w"> </span>/data/config/embosa_ip_config.json
+<p>The script will interactively prompt for the following:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Enter PC IP: 192.168.100.99          # Required
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Enter XCU IP [default 192.168.1.66]:  # Press Enter to use default
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Enter HPU IP [default 192.168.1.88]:  # Press Enter to use default
 </span></code></pre></div>
-<p>2.3.3 Configuration content</p>
-<div class="admonition danger">
-<p class="admonition-title">Important</p>
-<p><code>192.168.100.88</code> and <code>192.168.100.66</code> are internal direct connection IPs between Orin and XCU, must be retained</p>
-</div>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nt">&quot;embosa_ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="nt">&quot;local_interface&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">            </span><span class="s2">&quot;192.168.100.88&quot;</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="p">],</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="nt">&quot;peer_lists&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">            </span><span class="s2">&quot;192.168.100.66&quot;</span><span class="p">,</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">            </span><span class="s2">&quot;192.168.100.99&quot;</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">        </span><span class="p">]</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">}</span>
-</span></code></pre></div>
-<h4 id="24-configure-xcu-ip-configuration-file">2.4 Configure XCU IP Configuration File</h4>
-<p>2.4.1 Login to XCU</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ssh<span class="w"> </span>root@&lt;XCU<span class="w"> </span>Wireless<span class="w"> </span>IP&gt;
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># Password: 12345678</span>
-</span></code></pre></div>
-<p>2.4.2 Edit configuration file</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>vi<span class="w"> </span>/data/config/embosa_ip_config.json
-</span></code></pre></div>
-<p>2.4.3 Configuration content</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nt">&quot;embosa_ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">        </span><span class="nt">&quot;local_interface&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">            </span><span class="s2">&quot;192.168.100.66&quot;</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="p">],</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">        </span><span class="nt">&quot;peer_lists&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">            </span><span class="s2">&quot;192.168.100.88&quot;</span><span class="p">,</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">            </span><span class="s2">&quot;192.168.100.99&quot;</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">        </span><span class="p">]</span>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="p">}</span>
-</span></code></pre></div>
-<h4 id="25-verify-network-connection">2.5 Verify Network Connection</h4>
-<div class="admonition warning">
-<p class="admonition-title">Required Action</p>
-<p>You must restart the robot after modifying the configuration</p>
-</div>
-<p>Test connection after restart:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ping<span class="w"> </span><span class="m">192</span>.168.100.66<span class="w">  </span><span class="c1"># Test XCU</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>ping<span class="w"> </span><span class="m">192</span>.168.100.88<span class="w">  </span><span class="c1"># Test Orin</span>
-</span></code></pre></div>
-<div class="admonition success">
-<p class="admonition-title">Expected Result</p>
-<p>Normal ping response returned</p>
-</div>
-<p><img alt="ping XCU result" src="/image/ping1.jpg" /></p>
-<p><img alt="ping Orin result" src="/image/ping2.jpg" /></p>
+<p>The script will automatically configure the embosa IP for PC, XCU, and HPU, then restart the launcher on each device.</p>
 <h3 id="3-install-sdk-on-pc">3. Install SDK on PC</h3>
 <p>Navigate to the SDK directory and execute the installation script
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>GalbotSDK
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>./install.sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>GalbotSDK
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>./install.sh
 </span></code></pre></div></p>
 <h3 id="4-compile-programs">4. Compile Programs</h3>
 <p>Compile on PC (x86_64)</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">cd</span><span class="w"> </span>examples/cpp/
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>build
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nb">cd</span><span class="w"> </span>build
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>cmake<span class="w"> </span>../<span class="w"> </span>-DCMAKE_TOOLCHAIN_FILE<span class="o">=</span>../cmake/linux-x86_64-gcc940.cmake
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>make
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>examples/cpp/
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>build
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">cd</span><span class="w"> </span>build
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>cmake<span class="w"> </span>../<span class="w"> </span>-DCMAKE_TOOLCHAIN_FILE<span class="o">=</span>../cmake/linux-x86_64-gcc940.cmake
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>make
 </span></code></pre></div>
 <h3 id="5-run-programs">5. Run Programs</h3>
 <p>5.1 Configure environment variables</p>
@@ -999,27 +930,27 @@
 <p class="admonition-title">Path Description</p>
 <p>/opt/galbot/ is the default installation path, can be modified according to your installation path</p>
 </div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">source</span><span class="w"> </span>/opt/galbot/galbot_sdk/linux-x86_64-gcc940/setup.sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">source</span><span class="w"> </span>/opt/galbot/galbot_sdk/linux-x86_64-gcc940/setup.sh
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Persist Environment Variables</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;source /opt/galbot/galbot_sdk/linux-x86_64-gcc940/setup.sh&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;source /opt/galbot/galbot_sdk/linux-x86_64-gcc940/setup.sh&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc
 </span></code></pre></div>
 </div>
 <hr />
 <p>5.2 Run C++ Programs</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">cd</span><span class="w"> </span>/userdata<span class="w">  </span><span class="c1"># or the directory where your program is located</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>./your_app
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>/userdata<span class="w">  </span><span class="c1"># or the directory where your program is located</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>./your_app
 </span></code></pre></div>
 <p>5.3 Run Python Programs</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>python<span class="w"> </span>your_app.py
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>python<span class="w"> </span>your_app.py
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">Python Dependency Installation</p>
 <p>Some Python examples depend on additional libraries. Before running the Python examples, please execute the following script to ensure all required dependencies are installed:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">cd</span><span class="w"> </span>GalbotSDK
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>./install_python_deps.sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>GalbotSDK
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>./install_python_deps.sh
 </span></code></pre></div>
 </div>
 <hr />

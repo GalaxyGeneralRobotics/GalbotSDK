@@ -37,7 +37,7 @@
 /**
  * @brief Enabled perception pipelines (model sets loaded at init).
  *
- * @robot G1
+ * @robot G1 S1
  */
 enum class PerceptionModule {
     FOUNDATION_STEREO = 0,  // High-accuracy stereo depth; for tasks needing precision (e.g. box handling).
@@ -56,7 +56,7 @@ using PointCloudPtr = pcl::PointCloud<pcl::PointXYZ>::Ptr;
 /**
  * @brief Axis-aligned 2D bounding box with class id and score helpers.
  *
- * @robot G1
+ * @robot G1 S1
  */
 typedef struct {
     cv::Rect rect;
@@ -76,7 +76,7 @@ typedef struct {
 /**
  * @brief Structured garbage / bin-like detection output (3D boxes and optional clouds).
  *
- * @robot G1
+ * @robot G1 S1
  */
 struct GarbageResult {
     SENSORDATA_POINTER_TYPEDEFS(GarbageResult);
@@ -99,7 +99,7 @@ struct GarbageResult {
 /**
  * @brief Single-object detection or instance segmentation record (2D box, class, optional mask/keypoints).
  *
- * @robot G1
+ * @robot G1 S1
  */
 struct DetectionAndSegmentationResult {
     SENSORDATA_POINTER_TYPEDEFS(DetectionAndSegmentationResult);
@@ -149,7 +149,7 @@ inline std::ostream& operator<<(std::ostream& os, const DetectionAndSegmentation
 /**
  * @brief Aggregated perception output for one module tick (images, masks, poses, point clouds, etc.).
  *
- * @robot G1
+ * @robot G1 S1
  */
 struct DetectionResult {
     SENSORDATA_POINTER_TYPEDEFS(DetectionResult);

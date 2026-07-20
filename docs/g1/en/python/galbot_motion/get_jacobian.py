@@ -74,21 +74,6 @@ def make_fixed_joint_values(dof):
     return [fixed_values[index % len(fixed_values)] for index in range(dof)]
 
 
-def get_chain_dof(chain_name, current_chain_joint_state):
-    current_joints = current_chain_joint_state.get(chain_name, [])
-    if current_joints:
-        return len(current_joints)
-
-    fallback_dof = {
-        "head": 2,
-        "left_arm": 7,
-        "right_arm": 7,
-        "leg": 5,
-        "torso": 1,
-    }
-    return fallback_dof.get(chain_name, 0)
-
-
 def run_example():
     motion = GalbotMotion()
     robot = GalbotRobot()
@@ -109,8 +94,10 @@ def run_example():
         time.sleep(3)
 
         support_chains = set(motion.get_supported_chains())
+        print(f"support_chains ({len(support_chains)}): {sorted(support_chains)}")
+        # support_chains.discard("torso")
         if not support_chains:
-            support_chains = {"head", "left_arm", "right_arm", "leg"}
+            support_chains = {"head", "left_arm", "right_arm", "torso", "leg"}
 
         try:
             current_chain_joint_state = motion.get_chain_joint_state()
@@ -121,8 +108,16 @@ def run_example():
         target_frame = "EndEffector"
         reference_frame = "base_link"
 
+        # Known chain DOF used only when the runtime joint state is unavailable.
+        fallback_dof = {"head": 2, "left_arm": 7, "right_arm": 7, "leg": 5}
+
         for chain_name in sorted(support_chains):
-            dof = get_chain_dof(chain_name, current_chain_joint_state)
+            # Prefer the runtime joint count; fall back to a known DOF when it is unavailable.
+            current_joints = current_chain_joint_state.get(chain_name, [])
+            if current_joints:
+                dof = len(current_joints)
+            else:
+                dof = fallback_dof.get(chain_name, 0)
             if dof == 0:
                 print(f"Skip chain '{chain_name}': unable to determine chain DOF.")
                 continue

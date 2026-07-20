@@ -4,7 +4,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 project(example)
-set(SDK_INSTALL_PATH /opt/galbot/)
+set(SDK_INSTALL_PATH /opt/galbot/ CACHE PATH "Galbot SDK install root")
 include(${SDK_INSTALL_PATH}/galbot_sdk/common.cmake)
 
 # 全局关闭/清空 RPATH，避免可执行文件写入固定 SDK 路径

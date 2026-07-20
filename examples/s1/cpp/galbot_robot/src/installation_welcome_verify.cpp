@@ -12,7 +12,7 @@
 using namespace galbot::sdk;
 
 constexpr double kSpeedRadS = 0.12;
-constexpr double kTimeoutS = 20.0;
+constexpr double kTimeoutS = 35.0;
 
 constexpr double kHeadArmsDemoDtS = 0.06;
 constexpr int kHeadArmsDemoSeg1 = 28;

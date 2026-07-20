@@ -74,7 +74,7 @@ def make_group_target_config():
 def make_pose_target_config():
     config = TargetConfig()
     config.target_data = TARGET_DATA_FRAME_POSE
-    config.target_type = TARGET_TYPE_PROVERRIDE
+    config.target_type = TARGET_TYPE_OVERRIDE
     config.target_sampling = TargetSampling.TARGET_SAMPLING_LINEAR_INTERPOLATE
     config.target_priority = 1
     return config
@@ -122,13 +122,13 @@ def build_joint_target(group_name, joint_names, positions, time_from_start_s):
     return target
 
 
-def build_swerve_chassis_pose_target(x, y, yaw, time_from_start_s, frame_id="odom", reference_frame_id="odom"):
+def build_swerve_chassis_pose_target(x, y, yaw, time_from_start_s, frame_id="rel(0)", reference_frame_id="odom"):
     target = make_empty_target()
 
     task_traj = TargetTaskTrajectory()
     task_traj.target_config = make_pose_target_config()
     task_traj.group_names = [S1JointGroup.swerve_chassis]
-    task_traj.subtask_names = [CHASSIS_SUBTASK_POSE]
+    task_traj.subtask_names = [f"{CHASSIS_SUBTASK_POSE}_{now_ns()}"]
 
     triad = FrameTriad()
     triad.header.timestamp_ns = now_ns()
@@ -152,7 +152,7 @@ def build_swerve_chassis_twist_target(vx, vy, wz, time_from_start_s):
     task_traj = TargetTaskTrajectory()
     task_traj.target_config = make_twist_target_config()
     task_traj.group_names = [S1JointGroup.swerve_chassis]
-    task_traj.subtask_names = [CHASSIS_SUBTASK_TWIST]
+    task_traj.subtask_names = [f"{CHASSIS_SUBTASK_TWIST}_{now_ns()}"]
 
     twist = Twist()
     twist.linear = make_vector3(vx, vy, 0.0)
@@ -255,6 +255,7 @@ def main():
     pose_time_s = 4.0
     twist_command_time_s = 0.2
     twist_duration_s = 2.0
+    torso_height_m = 0.60  # torso target height in meters
 
     print_menu()
 
@@ -264,7 +265,7 @@ def main():
             break
 
         if command == "joint":
-            target = build_joint_target(S1JointGroup.torso, torso_single_joint, [0.03], joint_time_s)
+            target = build_joint_target(S1JointGroup.torso, torso_single_joint, [torso_height_m], joint_time_s)
             print_error_info("joint", robot.request_target(target))
             continue
 
@@ -287,7 +288,7 @@ def main():
                 continue
             target = merge_targets(
                 [
-                    build_joint_target(S1JointGroup.torso, torso_single_joint, [0.03], joint_time_s),
+                    build_joint_target(S1JointGroup.torso, torso_single_joint, [torso_height_m], joint_time_s),
                     build_swerve_chassis_pose_target(0.1, 0.0, 0.0, pose_time_s),
                 ]
             )
@@ -299,7 +300,7 @@ def main():
                 continue
             target = merge_targets(
                 [
-                    build_joint_target(S1JointGroup.torso, torso_single_joint, [-0.03], joint_time_s),
+                    build_joint_target(S1JointGroup.torso, torso_single_joint, [torso_height_m], joint_time_s),
                     build_swerve_chassis_twist_target(0.05, 0.0, 0.0, twist_command_time_s),
                 ]
             )

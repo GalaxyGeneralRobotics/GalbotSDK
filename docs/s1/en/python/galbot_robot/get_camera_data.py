@@ -47,6 +47,28 @@ def decode_rgb_image(image_data):
         raise ValueError("Fail to Decode RGB Image")
     return img
 
+def decode_ir_image(ir_image):
+    """decode IR (infrared) grayscale image.
+    Supports JPEG-compressed mono8 and raw mono8 byte streams.
+    """
+    data = ir_image["data"]
+    fmt = ir_image.get("format", "")
+
+    # Raw mono8: plain pixel bytes, use height/width directly
+    if fmt == "mono8":
+        h = ir_image.get("height", 0)
+        w = ir_image.get("width", 0)
+        if h == 0 or w == 0:
+            raise ValueError(f"decode_ir_image: height/width unavailable for mono8, got {h}x{w}")
+        return np.frombuffer(data, dtype=np.uint8).reshape(h, w).copy()
+
+    # Compressed (JPEG / PNG)
+    nparr = np.frombuffer(data, np.uint8)
+    img = cv2.imdecode(nparr, cv2.IMREAD_GRAYSCALE)
+    if img is None:
+        raise ValueError(f"decode_ir_image: imdecode failed, format='{fmt}', size={len(data)}")
+    return img
+
 def decode_depth_image(image_data):
     """decode depth image"""
     depth_img = np.frombuffer(image_data["data"], dtype=np.uint16).copy()
@@ -68,8 +90,10 @@ def main():
     robot = GalbotRobot()
 
     # Get left arm RGB and depth images, right arm depth image, chassis lidar data, torso IMU data
-    enable_sensor_set = {SensorType.LEFT_ARM_CAMERA, # Left arm depth camera
-                        SensorType.LEFT_ARM_DEPTH_CAMERA,} # Left arm RGB camera
+    enable_sensor_set = {SensorType.LEFT_ARM_CAMERA,
+                        SensorType.LEFT_ARM_DEPTH_CAMERA,
+                        SensorType.LEFT_ARM_INFRA_CAMERA_1,
+                        SensorType.LEFT_ARM_INFRA_CAMERA_2,}
     robot.init(enable_sensor_set)
     print("Initialization succeeded")
     # Program started, waiting for data
@@ -111,6 +135,26 @@ def main():
             cv2.imshow("depth image", depth_img)
             cv2.waitKey(0)
             cv2.destroyAllWindows()
+
+    # Get left arm IR images
+    for sensor_type, filename in [
+        (SensorType.LEFT_ARM_INFRA_CAMERA_1, "ir_infra1.jpg"),
+        (SensorType.LEFT_ARM_INFRA_CAMERA_2, "ir_infra2.jpg"),
+    ]:
+        ir_data = robot.get_ir_data(sensor_type)
+        if not ir_data or "data" not in ir_data:
+            print(f"IR camera {sensor_type} not ready (ir_enabled may be false)")
+        else:
+            print(f"get ir data {sensor_type} success")
+            print(ir_data['header'])
+            ir_img = decode_ir_image(ir_data)
+
+            cv2.imwrite(filename, ir_img)
+            if SHOW_IMAGE:
+                cv2.namedWindow(f"ir image {sensor_type}", cv2.WINDOW_NORMAL)
+                cv2.imshow(f"ir image {sensor_type}", ir_img)
+                cv2.waitKey(0)
+                cv2.destroyAllWindows()
 
     # send SIGINT shutdown signal
     robot.request_shutdown()

@@ -107,7 +107,8 @@ TargetConfig make_group_target_config() {
 TargetConfig make_pose_target_config() {
   TargetConfig config;
   config.target_data = TARGET_DATA_FRAME_POSE;
-  config.target_type = TARGET_TYPE_PROVERRIDE;
+  // config.target_type = TARGET_TYPE_PROVERRIDE;
+  config.target_type = TARGET_TYPE_OVERRIDE; // single point, override
   config.target_sampling = TargetSampling::TARGET_SAMPLING_LINEAR_INTERPOLATE;
   config.target_priority = 1;
   return config;
@@ -148,13 +149,13 @@ SingoriXTarget build_chassis_pose_target(double x,
                                          double y,
                                          double yaw,
                                          double time_from_start_s,
-                                         const std::string& frame_id = "odom",
+                                         const std::string& frame_id = "rel(0)", // "rel(0)" means relative to the current base_link pose
                                          const std::string& reference_frame_id = "odom") {
   SingoriXTarget target = make_empty_target();
   auto& task_traj = target.target_task_trajectory_map[kChassisTaskName];
   task_traj.target_config = make_pose_target_config();
   task_traj.group_names = {G1JointGroup::CHASSIS};
-  task_traj.subtask_names = {kChassisSubtaskPose};
+  task_traj.subtask_names = {std::string(kChassisSubtaskPose) + "_" + std::to_string(now_ns())};
 
   TaskCommand command;
   command.time_from_start_s = time_from_start_s;
@@ -183,7 +184,7 @@ SingoriXTarget build_chassis_twist_target(double vx,
   auto& task_traj = target.target_task_trajectory_map[kChassisTaskName];
   task_traj.target_config = make_twist_target_config();
   task_traj.group_names = {G1JointGroup::CHASSIS};
-  task_traj.subtask_names = {kChassisSubtaskTwist};
+  task_traj.subtask_names = {std::string(kChassisSubtaskTwist) + "_" + std::to_string(now_ns())};
 
   TaskCommand command;
   command.time_from_start_s = time_from_start_s;

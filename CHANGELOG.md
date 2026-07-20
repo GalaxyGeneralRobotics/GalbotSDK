@@ -8,6 +8,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.9.1] - 2026-06-26
+
+### Added / 新增
+- Added S1 C++ and Python examples for Jacobian computation APIs (`get_jacobian`, `get_jacobian_by_state`). / 新增 S1 雅可比矩阵计算接口（`get_jacobian`、`get_jacobian_by_state`）的 C++ 和 Python 示例
+- Added perception functionality for S1. / 新增 S1 感知功能
+- Added get Infrared image data of an arm camera. / 添加获取手臂摄像头的红外图像数据
+- Added support for Linker Hand L20 Dexterous Hand. / 新增 Linker Hand L20 灵巧手
+
+### Changed / 更改
+- Improved documentation descriptions. / 完善部分文档说明
+- PC deployment add one-click configuration of embosa IP. / PC端部署增加一键配置Embosa IP
+
+### Fixed / 修复
+- Fixed issues caused by an incorrect torso zero position. / 修复 torso 零位不正确引起的相关问题
+- Fixed the issue where the `set_base_pose` interface could not move. / 修复 `set_base_pose` 接口不能运动的问题
+
 ## [1.9.0] - 2026-06-10
 
 ### Added / 新增

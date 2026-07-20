@@ -1,6 +1,6 @@
 """
 Note: When running this example, please confirm that the robot's left arm camera driver `/data/galbot/bin/left_arm_camera_capture`
-    and radar driver `/data/galbot/bin/service_livox_capture` have been loaded;
+    and radar driver `/data/galbot/bin/service_lidar_capture` have been loaded;
 """
 try:
     from galbot_sdk.s1 import GalbotRobot

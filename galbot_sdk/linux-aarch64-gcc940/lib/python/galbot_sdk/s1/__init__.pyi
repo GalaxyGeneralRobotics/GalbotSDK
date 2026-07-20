@@ -18,6 +18,8 @@ __all__: list[str] = [
     "ControlStatus",
     "DATA_FETCH_FAILED",
     "DepthData",
+    "DetectionAndSegmentationResult",
+    "DetectionResult",
     "DexHandType",
     "DexhandState",
     "EUCLIDEAN_DISTANCE",
@@ -31,6 +33,7 @@ __all__: list[str] = [
     "FrameTriad",
     "GalbotMotion",
     "GalbotNavigation",
+    "GalbotPerception",
     "GalbotRobot",
     "GripperState",
     "GroupCommand",
@@ -129,8 +132,6 @@ __all__: list[str] = [
     "UNKNOWN",
     "UNSUPPORTED_FUNCRION",
     "USER_DEFINED_SEED",
-    "UltrasonicData",
-    "UltrasonicType",
     "Vector3",
     "WBCException",
     "Waypoint",
@@ -291,6 +292,159 @@ class DepthData:
     @width.setter
     def width(self, arg0: typing.SupportsInt) -> None: ...
 
+class DetectionAndSegmentationResult:
+    """
+    Single detection/segmentation result
+    """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: ...
+    @property
+    def bbox(self) -> tuple[int, int, int, int]:
+        """
+        Bounding box as (x, y, width, height)
+        """
+    @property
+    def class_index(self) -> int:
+        """
+        Class index
+        """
+    @class_index.setter
+    def class_index(self, arg0: typing.SupportsInt) -> None: ...
+    @property
+    def class_name(self) -> str:
+        """
+        Class name
+        """
+    @class_name.setter
+    def class_name(self, arg0: str) -> None: ...
+    @property
+    def confidence(self) -> float:
+        """
+        Confidence score
+        """
+    @confidence.setter
+    def confidence(self, arg0: typing.SupportsFloat) -> None: ...
+    @property
+    def keypoints(self) -> list[tuple[float, float]]:
+        """
+        Keypoints as list of (x, y) tuples
+        """
+
+class DetectionResult:
+    """
+    Perception detection result
+    """
+    def __init__(self) -> None: ...
+    def clear(self) -> None:
+        """
+        Clear all result fields
+        """
+    def get_result_info(self) -> str:
+        """
+        Get result summary string
+        """
+    @property
+    def bounding_boxes(self) -> list[tuple[int, int, int, int]]:
+        """
+        Bounding boxes as list of (x, y, width, height)
+        """
+    @property
+    def class_indices(self) -> list[int]:
+        """
+        List of class indices
+        """
+    @class_indices.setter
+    def class_indices(
+        self, arg0: collections.abc.Sequence[typing.SupportsInt]
+    ) -> None: ...
+    @property
+    def class_names(self) -> list[str]:
+        """
+        List of class names
+        """
+    @class_names.setter
+    def class_names(self, arg0: collections.abc.Sequence[str]) -> None: ...
+    @property
+    def confidences(self) -> list[float]:
+        """
+        List of confidences
+        """
+    @confidences.setter
+    def confidences(
+        self, arg0: collections.abc.Sequence[typing.SupportsFloat]
+    ) -> None: ...
+    @property
+    def detection_results(self) -> list[DetectionAndSegmentationResult]:
+        """
+        List of DetectionAndSegmentationResult
+        """
+    @detection_results.setter
+    def detection_results(
+        self, arg0: collections.abc.Sequence[DetectionAndSegmentationResult]
+    ) -> None: ...
+    @property
+    def grasp_pose_result(self) -> list[list[float]]:
+        """
+        Grasp pose results
+        """
+    @grasp_pose_result.setter
+    def grasp_pose_result(
+        self,
+        arg0: collections.abc.Sequence[collections.abc.Sequence[typing.SupportsFloat]],
+    ) -> None: ...
+    @property
+    def instance_mask(self) -> typing.Any:
+        """
+        Instance mask as numpy array (HxW or HxWxC), or None if empty
+        """
+    @property
+    def ocr_string(self) -> list[str]:
+        """
+        OCR results
+        """
+    @ocr_string.setter
+    def ocr_string(self, arg0: collections.abc.Sequence[str]) -> None: ...
+    @property
+    def point_clouds(self) -> list:
+        """
+        Point clouds as list of Nx3 numpy arrays
+        """
+    @property
+    def running_info(self) -> str:
+        """
+        Running info string
+        """
+    @running_info.setter
+    def running_info(self, arg0: str) -> None: ...
+    @property
+    def sensor_name(self) -> str:
+        """
+        Sensor name
+        """
+    @sensor_name.setter
+    def sensor_name(self, arg0: str) -> None: ...
+    @property
+    def target_point_poses(
+        self,
+    ) -> list[typing.Annotated[numpy.typing.NDArray[numpy.float32], "[4, 4]"]]:
+        """
+        4x4 poses from perception proto field target_point_poses (same buffer as target_poses here)
+        """
+    @property
+    def target_poses(
+        self,
+    ) -> list[typing.Annotated[numpy.typing.NDArray[numpy.float32], "[4, 4]"]]:
+        """
+        List of 4x4 target pose matrices (C++ targetPoses; perception proto target_point_poses fills this)
+        """
+    @property
+    def timestamp_ns(self) -> int:
+        """
+        Timestamp in nanoseconds
+        """
+    @timestamp_ns.setter
+    def timestamp_ns(self, arg0: typing.SupportsInt) -> None: ...
+
 class DexHandType:
     """
 
@@ -301,14 +455,16 @@ class DexHandType:
     | INSPIRE | Inspire dexterous hand |
     | BRAINCO | BrainCo dexterous hand |
     | SHARPA | Sharpa dexterous hand |
+    | LINKER_L20 | Linker Hand L20 dexterous hand (16 joints, range [0,255]) |
     """
 
     BRAINCO: typing.ClassVar[DexHandType]  # value = <DexHandType.BRAINCO: 1>
     INSPIRE: typing.ClassVar[DexHandType]  # value = <DexHandType.INSPIRE: 0>
+    LINKER_L20: typing.ClassVar[DexHandType]  # value = <DexHandType.LINKER_L20: 3>
     SHARPA: typing.ClassVar[DexHandType]  # value = <DexHandType.SHARPA: 2>
     __members__: typing.ClassVar[
         dict[str, DexHandType]
-    ]  # value = {'INSPIRE': <DexHandType.INSPIRE: 0>, 'BRAINCO': <DexHandType.BRAINCO: 1>, 'SHARPA': <DexHandType.SHARPA: 2>}
+    ]  # value = {'INSPIRE': <DexHandType.INSPIRE: 0>, 'BRAINCO': <DexHandType.BRAINCO: 1>, 'SHARPA': <DexHandType.SHARPA: 2>, 'LINKER_L20': <DexHandType.LINKER_L20: 3>}
     def __eq__(self, other: typing.Any) -> bool: ...
     def __getstate__(self) -> int: ...
     def __hash__(self) -> int: ...
@@ -1457,6 +1613,57 @@ class GalbotNavigation:
                 - status_string: Status string.
         """
 
+class GalbotPerception:
+    """
+    Perception module interface. Use get_instance(machine_type) for the platform singleton; G1 and S1 are supported.
+    """
+    def get_latest_result(self, module: PerceptionModule) -> tuple:
+        """
+        Return the latest cached result for the module without blocking.
+
+        Args:
+            module (PerceptionModule): Perception module.
+
+        Returns:
+            tuple[bool, DetectionResult]: (success, result). success is True if a result is available, False if none.
+        """
+    def init(self, enabled_modules: collections.abc.Set[PerceptionModule]) -> bool:
+        """
+        Initialize perception and load models for the selected modules.
+
+        Args:
+            enabled_modules (set[PerceptionModule]): Set of perception modules to enable.
+
+        Returns:
+            bool: True if every requested module loaded successfully.
+        """
+    def run_once(self, module: PerceptionModule) -> bool:
+        """
+        Run a single inference for the given module.
+
+        Note:
+            After init, wait ~10s for models to be ready before calling run_once.
+
+        Args:
+            module (PerceptionModule): Perception module to run.
+
+        Returns:
+            bool: True if the command was sent successfully.
+        """
+    def wait_for_new_result(
+        self, module: PerceptionModule, timeout_s: typing.SupportsFloat = 5.0
+    ) -> bool:
+        """
+        Block until the module produces a new result, or timeout. Use with run_once to fetch the latest output.
+
+        Args:
+            module (PerceptionModule): Perception module.
+            timeout_s (float): Timeout in seconds (default 5.0).
+
+        Returns:
+            bool: True if new data arrived, False on timeout.
+        """
+
 class GalbotRobot:
     def acquire_controller(self, controller_name: str) -> ControlStatus:
         """
@@ -1641,6 +1848,24 @@ class GalbotRobot:
                 - 'magnet': Magnetometer Vector3 {'x': float, 'y': float, 'z': float}
 
             Returns empty dictionary on failure.
+        """
+    def get_ir_data(self, camera_id: SensorType) -> dict:
+        """
+        Get latest infrared image data from specified IR camera.
+
+        Parameters:
+            camera_id (SensorType): IR camera sensor ID to query.
+                Valid values: LEFT_ARM_INFRA_CAMERA_1, LEFT_ARM_INFRA_CAMERA_2,
+                              RIGHT_ARM_INFRA_CAMERA_1, RIGHT_ARM_INFRA_CAMERA_2
+
+        Returns:
+            dict: Dictionary containing the following keys:
+                - 'header': Message header with timestamp and frame information
+                - 'format': Image format, e.g., 'mono8; jpeg compressed mono8'
+                - 'data': Compressed grayscale image binary data (bytes)
+
+            Returns empty dictionary if camera is not enabled, ir_enabled is false,
+            or no data has been received yet.
         """
     def get_joint_group_names(self) -> list[str]:
         """
@@ -1952,7 +2177,7 @@ class GalbotRobot:
         x: typing.SupportsFloat,
         y: typing.SupportsFloat,
         yaw: typing.SupportsFloat,
-        frame_id: str = "odom",
+        frame_id: str = "rel(0)",
         reference_frame_id: str = "odom",
         is_blocking: bool = True,
         timeout_s: typing.SupportsFloat = 15.0,
@@ -1964,7 +2189,11 @@ class GalbotRobot:
             x (float): Target x position.
             y (float): Target y position.
             yaw (float): Target yaw (rad).
-            frame_id (str): Frame id ("base_link"/"odom"/"map"). Default "odom".
+            frame_id (str): Frame id. Current recommended value: "rel(0)", which means the
+                x/y/yaw target is interpreted relative to the current base pose.
+                "base_link", "odom", and "map" are retained for compatibility, but are not
+                recommended for current use and may be changed or removed in a future update.
+                Default "rel(0)".
             reference_frame_id (str): Reference frame id ("odom"/"map"). Default "odom".
             is_blocking (bool): Whether to block until command execution completes (optional, default: True).
             timeout_s (float): Blocking timeout in seconds (optional, default: 15.0).
@@ -1991,7 +2220,10 @@ class GalbotRobot:
             x (float): Target x position (meters).
             y (float): Target y position (meters).
             yaw (float): Target yaw (radians).
-            frame_id (str): Frame id of target ("base_link"/"odom"/"map").
+            frame_id (str): Frame id of target. Current recommended value: "rel(0)", which means
+                the x/y/yaw target is interpreted relative to the current base pose.
+                "base_link", "odom", and "map" are retained for compatibility, but are not
+                recommended for current use and may be changed or removed in a future update.
             reference_frame_id (str): Reference frame id ("odom"/"map").
             time_from_start_s (float): Chassis pose interpolation time (seconds).
             is_blocking (bool): Whether to block until command execution completes (optional, default: True).
@@ -2075,7 +2307,7 @@ class GalbotRobot:
         Parameters:
             end_effector (str): Gripper name, e.g. "left_gripper" or "right_gripper".
             width_m (float): Target gripper width in meters. G1 gripper width range is 0 to 0.12 m. S1 long-stroke gripper
-            width range is 0 to 0.11 m. S1 short-stroke gripper width range is 0 to 0.076 m.
+            width range is 0.007 to 0.11 m. S1 short-stroke gripper width range is 0.007 to 0.076 m.
             velocity_mps (float): Gripper motion speed in m/s (optional, default: 0.03). The value range is greater than 0 and
             less than or equal to 0.2 m/s.
             effort (float): Gripper effort in Nm (optional, default: 5). The value range is greater than 0 and
@@ -3516,7 +3748,10 @@ class SensorType:
     | RIGHT_ARM_CAMERA | Right arm camera |
     | LEFT_ARM_DEPTH_CAMERA | Left arm depth camera |
     | RIGHT_ARM_DEPTH_CAMERA | Right arm depth camera |
-    | BASE_ULTRASONIC | Base ultrasonic sensor |
+    | LEFT_ARM_INFRA_CAMERA_1 | Left arm infrared camera 1 |
+    | LEFT_ARM_INFRA_CAMERA_2 | Left arm infrared camera 2 |
+    | RIGHT_ARM_INFRA_CAMERA_1 | Right arm infrared camera 1 |
+    | RIGHT_ARM_INFRA_CAMERA_2 | Right arm infrared camera 2 |
     | CHASSIS_IMU | Chassis LiDAR IMU |
     | HEAD_LIDAR | Head LiDAR |
     | BACK_LIDAR | Back LiDAR |
@@ -3525,18 +3760,15 @@ class SensorType:
     | BACK_IMU | Back LiDAR IMU |
     """
 
-    BACK_IMU: typing.ClassVar[SensorType]  # value = <SensorType.BACK_IMU: 11>
-    BACK_LIDAR: typing.ClassVar[SensorType]  # value = <SensorType.BACK_LIDAR: 8>
-    BASE_ULTRASONIC: typing.ClassVar[
-        SensorType
-    ]  # value = <SensorType.BASE_ULTRASONIC: 15>
-    CHASSIS_IMU: typing.ClassVar[SensorType]  # value = <SensorType.CHASSIS_IMU: 12>
-    CHASSIS_LIDAR: typing.ClassVar[SensorType]  # value = <SensorType.CHASSIS_LIDAR: 9>
-    HEAD_IMU: typing.ClassVar[SensorType]  # value = <SensorType.HEAD_IMU: 10>
+    BACK_IMU: typing.ClassVar[SensorType]  # value = <SensorType.BACK_IMU: 15>
+    BACK_LIDAR: typing.ClassVar[SensorType]  # value = <SensorType.BACK_LIDAR: 12>
+    CHASSIS_IMU: typing.ClassVar[SensorType]  # value = <SensorType.CHASSIS_IMU: 16>
+    CHASSIS_LIDAR: typing.ClassVar[SensorType]  # value = <SensorType.CHASSIS_LIDAR: 13>
+    HEAD_IMU: typing.ClassVar[SensorType]  # value = <SensorType.HEAD_IMU: 14>
     HEAD_LEFT_CAMERA: typing.ClassVar[
         SensorType
     ]  # value = <SensorType.HEAD_LEFT_CAMERA: 0>
-    HEAD_LIDAR: typing.ClassVar[SensorType]  # value = <SensorType.HEAD_LIDAR: 7>
+    HEAD_LIDAR: typing.ClassVar[SensorType]  # value = <SensorType.HEAD_LIDAR: 11>
     HEAD_RIGHT_CAMERA: typing.ClassVar[
         SensorType
     ]  # value = <SensorType.HEAD_RIGHT_CAMERA: 1>
@@ -3546,15 +3778,27 @@ class SensorType:
     LEFT_ARM_DEPTH_CAMERA: typing.ClassVar[
         SensorType
     ]  # value = <SensorType.LEFT_ARM_DEPTH_CAMERA: 4>
+    LEFT_ARM_INFRA_CAMERA_1: typing.ClassVar[
+        SensorType
+    ]  # value = <SensorType.LEFT_ARM_INFRA_CAMERA_1: 6>
+    LEFT_ARM_INFRA_CAMERA_2: typing.ClassVar[
+        SensorType
+    ]  # value = <SensorType.LEFT_ARM_INFRA_CAMERA_2: 7>
     RIGHT_ARM_CAMERA: typing.ClassVar[
         SensorType
     ]  # value = <SensorType.RIGHT_ARM_CAMERA: 3>
     RIGHT_ARM_DEPTH_CAMERA: typing.ClassVar[
         SensorType
     ]  # value = <SensorType.RIGHT_ARM_DEPTH_CAMERA: 5>
+    RIGHT_ARM_INFRA_CAMERA_1: typing.ClassVar[
+        SensorType
+    ]  # value = <SensorType.RIGHT_ARM_INFRA_CAMERA_1: 8>
+    RIGHT_ARM_INFRA_CAMERA_2: typing.ClassVar[
+        SensorType
+    ]  # value = <SensorType.RIGHT_ARM_INFRA_CAMERA_2: 9>
     __members__: typing.ClassVar[
         dict[str, SensorType]
-    ]  # value = {'HEAD_LEFT_CAMERA': <SensorType.HEAD_LEFT_CAMERA: 0>, 'HEAD_RIGHT_CAMERA': <SensorType.HEAD_RIGHT_CAMERA: 1>, 'LEFT_ARM_CAMERA': <SensorType.LEFT_ARM_CAMERA: 2>, 'RIGHT_ARM_CAMERA': <SensorType.RIGHT_ARM_CAMERA: 3>, 'LEFT_ARM_DEPTH_CAMERA': <SensorType.LEFT_ARM_DEPTH_CAMERA: 4>, 'RIGHT_ARM_DEPTH_CAMERA': <SensorType.RIGHT_ARM_DEPTH_CAMERA: 5>, 'BASE_ULTRASONIC': <SensorType.BASE_ULTRASONIC: 15>, 'CHASSIS_IMU': <SensorType.CHASSIS_IMU: 12>, 'BASE_LIDAR': <SensorType.BASE_LIDAR: 6>, 'TORSO_IMU': <SensorType.TORSO_IMU: 13>, 'LIDAR_IMU': <SensorType.LIDAR_IMU: 14>, 'LEFT_FRONT_SURROUND_CAMERA': <SensorType.LEFT_FRONT_SURROUND_CAMERA: 16>, 'RIGHT_FRONT_SURROUND_CAMERA': <SensorType.RIGHT_FRONT_SURROUND_CAMERA: 17>, 'LEFT_REAR_SURROUND_CAMERA': <SensorType.LEFT_REAR_SURROUND_CAMERA: 18>, 'RIGHT_REAR_SURROUND_CAMERA': <SensorType.RIGHT_REAR_SURROUND_CAMERA: 19>, 'HEAD_LIDAR': <SensorType.HEAD_LIDAR: 7>, 'BACK_LIDAR': <SensorType.BACK_LIDAR: 8>, 'CHASSIS_LIDAR': <SensorType.CHASSIS_LIDAR: 9>, 'HEAD_IMU': <SensorType.HEAD_IMU: 10>, 'BACK_IMU': <SensorType.BACK_IMU: 11>}
+    ]  # value = {'HEAD_LEFT_CAMERA': <SensorType.HEAD_LEFT_CAMERA: 0>, 'HEAD_RIGHT_CAMERA': <SensorType.HEAD_RIGHT_CAMERA: 1>, 'LEFT_ARM_CAMERA': <SensorType.LEFT_ARM_CAMERA: 2>, 'RIGHT_ARM_CAMERA': <SensorType.RIGHT_ARM_CAMERA: 3>, 'LEFT_ARM_DEPTH_CAMERA': <SensorType.LEFT_ARM_DEPTH_CAMERA: 4>, 'RIGHT_ARM_DEPTH_CAMERA': <SensorType.RIGHT_ARM_DEPTH_CAMERA: 5>, 'LEFT_ARM_INFRA_CAMERA_1': <SensorType.LEFT_ARM_INFRA_CAMERA_1: 6>, 'LEFT_ARM_INFRA_CAMERA_2': <SensorType.LEFT_ARM_INFRA_CAMERA_2: 7>, 'RIGHT_ARM_INFRA_CAMERA_1': <SensorType.RIGHT_ARM_INFRA_CAMERA_1: 8>, 'RIGHT_ARM_INFRA_CAMERA_2': <SensorType.RIGHT_ARM_INFRA_CAMERA_2: 9>, 'BASE_ULTRASONIC': <SensorType.BASE_ULTRASONIC: 19>, 'CHASSIS_IMU': <SensorType.CHASSIS_IMU: 16>, 'BASE_LIDAR': <SensorType.BASE_LIDAR: 10>, 'TORSO_IMU': <SensorType.TORSO_IMU: 17>, 'LIDAR_IMU': <SensorType.LIDAR_IMU: 18>, 'LEFT_FRONT_SURROUND_CAMERA': <SensorType.LEFT_FRONT_SURROUND_CAMERA: 20>, 'RIGHT_FRONT_SURROUND_CAMERA': <SensorType.RIGHT_FRONT_SURROUND_CAMERA: 21>, 'LEFT_REAR_SURROUND_CAMERA': <SensorType.LEFT_REAR_SURROUND_CAMERA: 22>, 'RIGHT_REAR_SURROUND_CAMERA': <SensorType.RIGHT_REAR_SURROUND_CAMERA: 23>, 'HEAD_LIDAR': <SensorType.HEAD_LIDAR: 11>, 'BACK_LIDAR': <SensorType.BACK_LIDAR: 12>, 'CHASSIS_LIDAR': <SensorType.CHASSIS_LIDAR: 13>, 'HEAD_IMU': <SensorType.HEAD_IMU: 14>, 'BACK_IMU': <SensorType.BACK_IMU: 15>}
     def __eq__(self, other: typing.Any) -> bool: ...
     def __getstate__(self) -> int: ...
     def __hash__(self) -> int: ...
@@ -4101,81 +4345,6 @@ class Twist:
         """
     @linear.setter
     def linear(self, arg0: Vector3) -> None: ...
-
-class UltrasonicData:
-    """
-    Ultrasonic sensor data
-    """
-    def __init__(self) -> None: ...
-    @property
-    def distance(self) -> float:
-        """
-        Distance (meters)
-        """
-    @distance.setter
-    def distance(self, arg0: typing.SupportsFloat) -> None: ...
-    @property
-    def timestamp_ns(self) -> int:
-        """
-        Timestamp (nanoseconds)
-        """
-    @timestamp_ns.setter
-    def timestamp_ns(self, arg0: typing.SupportsInt) -> None: ...
-
-class UltrasonicType:
-    """
-
-    Members:
-
-    | Enum Value | Description |
-    | --- | --- |
-    | FRONT_LEFT | Front left |
-    | FRONT_RIGHT | Front right |
-    | RIGHT_LEFT | Right left |
-    | RIGHT_RIGHT | Right right |
-    | BACK_LEFT | Back left |
-    | BACK_RIGHT | Back right |
-    | LEFT_LEFT | Left left |
-    | LEFT_RIGHT | Left right |
-    """
-
-    BACK_LEFT: typing.ClassVar[UltrasonicType]  # value = <UltrasonicType.BACK_LEFT: 4>
-    BACK_RIGHT: typing.ClassVar[
-        UltrasonicType
-    ]  # value = <UltrasonicType.BACK_RIGHT: 5>
-    FRONT_LEFT: typing.ClassVar[
-        UltrasonicType
-    ]  # value = <UltrasonicType.FRONT_LEFT: 0>
-    FRONT_RIGHT: typing.ClassVar[
-        UltrasonicType
-    ]  # value = <UltrasonicType.FRONT_RIGHT: 1>
-    LEFT_LEFT: typing.ClassVar[UltrasonicType]  # value = <UltrasonicType.LEFT_LEFT: 6>
-    LEFT_RIGHT: typing.ClassVar[
-        UltrasonicType
-    ]  # value = <UltrasonicType.LEFT_RIGHT: 7>
-    RIGHT_LEFT: typing.ClassVar[
-        UltrasonicType
-    ]  # value = <UltrasonicType.RIGHT_LEFT: 2>
-    RIGHT_RIGHT: typing.ClassVar[
-        UltrasonicType
-    ]  # value = <UltrasonicType.RIGHT_RIGHT: 3>
-    __members__: typing.ClassVar[
-        dict[str, UltrasonicType]
-    ]  # value = {'FRONT_LEFT': <UltrasonicType.FRONT_LEFT: 0>, 'FRONT_RIGHT': <UltrasonicType.FRONT_RIGHT: 1>, 'RIGHT_LEFT': <UltrasonicType.RIGHT_LEFT: 2>, 'RIGHT_RIGHT': <UltrasonicType.RIGHT_RIGHT: 3>, 'BACK_LEFT': <UltrasonicType.BACK_LEFT: 4>, 'BACK_RIGHT': <UltrasonicType.BACK_RIGHT: 5>, 'LEFT_LEFT': <UltrasonicType.LEFT_LEFT: 6>, 'LEFT_RIGHT': <UltrasonicType.LEFT_RIGHT: 7>}
-    def __eq__(self, other: typing.Any) -> bool: ...
-    def __getstate__(self) -> int: ...
-    def __hash__(self) -> int: ...
-    def __index__(self) -> int: ...
-    def __init__(self, value: typing.SupportsInt) -> None: ...
-    def __int__(self) -> int: ...
-    def __ne__(self, other: typing.Any) -> bool: ...
-    def __repr__(self) -> str: ...
-    def __setstate__(self, state: typing.SupportsInt) -> None: ...
-    def __str__(self) -> str: ...
-    @property
-    def name(self) -> str: ...
-    @property
-    def value(self) -> int: ...
 
 class Vector3:
     """

@@ -1,6 +1,6 @@
 /**
  * @file galbot_perception.hpp
- * @brief Perception interface for on-device vision algorithms (G1 only).
+ * @brief Perception interface for on-device vision algorithms.
  *
  * @author Galbot SDK Team
  * @copyright Copyright (c) 2023-2026 Galbot. All rights reserved.
@@ -32,9 +32,7 @@ namespace sdk {
  * @class GalbotPerception
  * @brief Perception module interface; obtain the singleton via get_instance(MachineType).
  *
- * Implemented for G1 only: get_instance(MachineType::S1) throws std::runtime_error.
- *
- * @robot G1
+ * @robot G1 S1
  */
 class GalbotPerception {
  public:
@@ -42,7 +40,7 @@ class GalbotPerception {
 
   /**
    * @brief Get the singleton instance of GalbotPerception.
-   * @param m Machine type (e.g. MachineType::G1). MachineType::S1 is not supported and throws.
+   * @param m Machine type (e.g. MachineType::G1 or MachineType::S1).
    * @return Reference to the singleton instance for the given machine type.
    */
   static GalbotPerception& get_instance(MachineType m);
