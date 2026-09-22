@@ -1,7 +1,7 @@
 # Galbot SDK
 
 ![Version](https://img.shields.io/badge/version-1.10.0-blue.svg)
-![Robot Model](https://img.shields.io/badge/Robot-G1%2FS1-red.svg)
+![Robot Model](https://img.shields.io/badge/Robot-G1%2FS1%2FG3-red.svg)
 ![GBS Version](https://img.shields.io/badge/GBS-1.18-green.svg)
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-20--24-orange.svg)
 ![Python](https://img.shields.io/badge/Python-3.8--3.14-yellow.svg)
