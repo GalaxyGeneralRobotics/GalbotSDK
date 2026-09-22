@@ -22,15 +22,6 @@
 git clone https://github.com/GalaxyGeneralRobotics/GalbotSDK.git
 ```
 
-### Jetson MMAPI 安装
-
-Orin 和 Thor 的 MMAPI 以 `deps/jetson-mmapi-orin.tar.gz` 和
-`deps/jetson-mmapi-thor.tar.gz` 交付。继续使用原来的 `install.sh` 安装命令即可；
-离线包使用 `install_offline.sh`。安装脚本自动检查并解压对应平台依赖到
-`<安装目录>/deps/`（默认 `/opt/galbot/deps/`），保留库的软链接。
-无需手动解压内部依赖，也无需 Git LFS；下载目录不会被展开的大文件修改。
-编译示例前请先完成安装，使用安装后的 SDK 目录。旧版未压缩的 MMAPI 目录仍兼容。
-
 ### 📌 版本匹配
 
 **重要**：安装前请确认您的机器人版本！
