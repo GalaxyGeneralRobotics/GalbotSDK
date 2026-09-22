@@ -32,6 +32,7 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
+#include "galbot/core_proto/time.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_galbot_2fsystem_5fproto_2fmission_5fmanager_5fproto_2fonboard_5fconfig_2eproto
@@ -47,7 +48,7 @@ struct TableStruct_galbot_2fsystem_5fproto_2fmission_5fmanager_5fproto_2fonboard
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[4]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[6]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -60,6 +61,12 @@ namespace mission_manager_proto {
 class OnboardConfig;
 class OnboardConfigDefaultTypeInternal;
 extern OnboardConfigDefaultTypeInternal _OnboardConfig_default_instance_;
+class OnboardConfig_AbnormalModeInfo;
+class OnboardConfig_AbnormalModeInfoDefaultTypeInternal;
+extern OnboardConfig_AbnormalModeInfoDefaultTypeInternal _OnboardConfig_AbnormalModeInfo_default_instance_;
+class OnboardConfig_BatteryInfo;
+class OnboardConfig_BatteryInfoDefaultTypeInternal;
+extern OnboardConfig_BatteryInfoDefaultTypeInternal _OnboardConfig_BatteryInfo_default_instance_;
 class OnboardConfig_OrinSysState;
 class OnboardConfig_OrinSysStateDefaultTypeInternal;
 extern OnboardConfig_OrinSysStateDefaultTypeInternal _OnboardConfig_OrinSysState_default_instance_;
@@ -74,6 +81,8 @@ extern OnboardConfig_XcuSysStateDefaultTypeInternal _OnboardConfig_XcuSysState_d
 }  // namespace galbot
 PROTOBUF_NAMESPACE_OPEN
 template<> ::galbot::system_proto::mission_manager_proto::OnboardConfig* Arena::CreateMaybeMessage<::galbot::system_proto::mission_manager_proto::OnboardConfig>(Arena*);
+template<> ::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo* Arena::CreateMaybeMessage<::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo>(Arena*);
+template<> ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo* Arena::CreateMaybeMessage<::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo>(Arena*);
 template<> ::galbot::system_proto::mission_manager_proto::OnboardConfig_OrinSysState* Arena::CreateMaybeMessage<::galbot::system_proto::mission_manager_proto::OnboardConfig_OrinSysState>(Arena*);
 template<> ::galbot::system_proto::mission_manager_proto::OnboardConfig_ServiceState* Arena::CreateMaybeMessage<::galbot::system_proto::mission_manager_proto::OnboardConfig_ServiceState>(Arena*);
 template<> ::galbot::system_proto::mission_manager_proto::OnboardConfig_XcuSysState* Arena::CreateMaybeMessage<::galbot::system_proto::mission_manager_proto::OnboardConfig_XcuSysState>(Arena*);
@@ -108,6 +117,61 @@ inline bool OnboardConfig_RobotType_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, OnboardConfig_RobotType* value) {
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<OnboardConfig_RobotType>(
     OnboardConfig_RobotType_descriptor(), name, value);
+}
+enum OnboardConfig_BatteryType : int {
+  OnboardConfig_BatteryType_UNKNOWN_BATTERY_TYPE = 0,
+  OnboardConfig_BatteryType_BMS_MASTER = 1,
+  OnboardConfig_BatteryType_BMS_SLAVE = 2,
+  OnboardConfig_BatteryType_BMS_SYSTEM_STATUS = 3,
+  OnboardConfig_BatteryType_OnboardConfig_BatteryType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  OnboardConfig_BatteryType_OnboardConfig_BatteryType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool OnboardConfig_BatteryType_IsValid(int value);
+constexpr OnboardConfig_BatteryType OnboardConfig_BatteryType_BatteryType_MIN = OnboardConfig_BatteryType_UNKNOWN_BATTERY_TYPE;
+constexpr OnboardConfig_BatteryType OnboardConfig_BatteryType_BatteryType_MAX = OnboardConfig_BatteryType_BMS_SYSTEM_STATUS;
+constexpr int OnboardConfig_BatteryType_BatteryType_ARRAYSIZE = OnboardConfig_BatteryType_BatteryType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* OnboardConfig_BatteryType_descriptor();
+template<typename T>
+inline const std::string& OnboardConfig_BatteryType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, OnboardConfig_BatteryType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function OnboardConfig_BatteryType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    OnboardConfig_BatteryType_descriptor(), enum_t_value);
+}
+inline bool OnboardConfig_BatteryType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, OnboardConfig_BatteryType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<OnboardConfig_BatteryType>(
+    OnboardConfig_BatteryType_descriptor(), name, value);
+}
+enum OnboardConfig_BatteryWorkMode : int {
+  OnboardConfig_BatteryWorkMode_BATTERY_WORK_MODE_INIT = 0,
+  OnboardConfig_BatteryWorkMode_BATTERY_WORK_MODE_STANDBY = 1,
+  OnboardConfig_BatteryWorkMode_BATTERY_WORK_MODE_CHARGING = 2,
+  OnboardConfig_BatteryWorkMode_BATTERY_WORK_MODE_READY = 3,
+  OnboardConfig_BatteryWorkMode_BATTERY_WORK_MODE_DEFAULT = 4,
+  OnboardConfig_BatteryWorkMode_OnboardConfig_BatteryWorkMode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  OnboardConfig_BatteryWorkMode_OnboardConfig_BatteryWorkMode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool OnboardConfig_BatteryWorkMode_IsValid(int value);
+constexpr OnboardConfig_BatteryWorkMode OnboardConfig_BatteryWorkMode_BatteryWorkMode_MIN = OnboardConfig_BatteryWorkMode_BATTERY_WORK_MODE_INIT;
+constexpr OnboardConfig_BatteryWorkMode OnboardConfig_BatteryWorkMode_BatteryWorkMode_MAX = OnboardConfig_BatteryWorkMode_BATTERY_WORK_MODE_DEFAULT;
+constexpr int OnboardConfig_BatteryWorkMode_BatteryWorkMode_ARRAYSIZE = OnboardConfig_BatteryWorkMode_BatteryWorkMode_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* OnboardConfig_BatteryWorkMode_descriptor();
+template<typename T>
+inline const std::string& OnboardConfig_BatteryWorkMode_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, OnboardConfig_BatteryWorkMode>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function OnboardConfig_BatteryWorkMode_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    OnboardConfig_BatteryWorkMode_descriptor(), enum_t_value);
+}
+inline bool OnboardConfig_BatteryWorkMode_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, OnboardConfig_BatteryWorkMode* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<OnboardConfig_BatteryWorkMode>(
+    OnboardConfig_BatteryWorkMode_descriptor(), name, value);
 }
 enum OnboardConfig_ServiceStatus : int {
   OnboardConfig_ServiceStatus_SERVICE_STATUS_UNKNOWN = 0,
@@ -690,6 +754,329 @@ class OnboardConfig_ServiceState PROTOBUF_FINAL :
 };
 // -------------------------------------------------------------------
 
+class OnboardConfig_BatteryInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryInfo) */ {
+ public:
+  inline OnboardConfig_BatteryInfo() : OnboardConfig_BatteryInfo(nullptr) {}
+  virtual ~OnboardConfig_BatteryInfo();
+
+  OnboardConfig_BatteryInfo(const OnboardConfig_BatteryInfo& from);
+  OnboardConfig_BatteryInfo(OnboardConfig_BatteryInfo&& from) noexcept
+    : OnboardConfig_BatteryInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline OnboardConfig_BatteryInfo& operator=(const OnboardConfig_BatteryInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline OnboardConfig_BatteryInfo& operator=(OnboardConfig_BatteryInfo&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const OnboardConfig_BatteryInfo& default_instance();
+
+  static inline const OnboardConfig_BatteryInfo* internal_default_instance() {
+    return reinterpret_cast<const OnboardConfig_BatteryInfo*>(
+               &_OnboardConfig_BatteryInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(OnboardConfig_BatteryInfo& a, OnboardConfig_BatteryInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(OnboardConfig_BatteryInfo* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(OnboardConfig_BatteryInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline OnboardConfig_BatteryInfo* New() const final {
+    return CreateMaybeMessage<OnboardConfig_BatteryInfo>(nullptr);
+  }
+
+  OnboardConfig_BatteryInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<OnboardConfig_BatteryInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const OnboardConfig_BatteryInfo& from);
+  void MergeFrom(const OnboardConfig_BatteryInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(OnboardConfig_BatteryInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryInfo";
+  }
+  protected:
+  explicit OnboardConfig_BatteryInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsystem_5fproto_2fmission_5fmanager_5fproto_2fonboard_5fconfig_2eproto);
+    return ::descriptor_table_galbot_2fsystem_5fproto_2fmission_5fmanager_5fproto_2fonboard_5fconfig_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBatteryLevelFieldNumber = 2,
+    kBatteryTypeFieldNumber = 1,
+    kWorkModeFieldNumber = 3,
+    kBatterySohFieldNumber = 4,
+  };
+  // double battery_level = 2;
+  void clear_battery_level();
+  double battery_level() const;
+  void set_battery_level(double value);
+  private:
+  double _internal_battery_level() const;
+  void _internal_set_battery_level(double value);
+  public:
+
+  // .galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryType battery_type = 1;
+  void clear_battery_type();
+  ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryType battery_type() const;
+  void set_battery_type(::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryType value);
+  private:
+  ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryType _internal_battery_type() const;
+  void _internal_set_battery_type(::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryType value);
+  public:
+
+  // .galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryWorkMode work_mode = 3;
+  void clear_work_mode();
+  ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryWorkMode work_mode() const;
+  void set_work_mode(::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryWorkMode value);
+  private:
+  ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryWorkMode _internal_work_mode() const;
+  void _internal_set_work_mode(::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryWorkMode value);
+  public:
+
+  // double battery_soh = 4;
+  void clear_battery_soh();
+  double battery_soh() const;
+  void set_battery_soh(double value);
+  private:
+  double _internal_battery_soh() const;
+  void _internal_set_battery_soh(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  double battery_level_;
+  int battery_type_;
+  int work_mode_;
+  double battery_soh_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_galbot_2fsystem_5fproto_2fmission_5fmanager_5fproto_2fonboard_5fconfig_2eproto;
+};
+// -------------------------------------------------------------------
+
+class OnboardConfig_AbnormalModeInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.system_proto.mission_manager_proto.OnboardConfig.AbnormalModeInfo) */ {
+ public:
+  inline OnboardConfig_AbnormalModeInfo() : OnboardConfig_AbnormalModeInfo(nullptr) {}
+  virtual ~OnboardConfig_AbnormalModeInfo();
+
+  OnboardConfig_AbnormalModeInfo(const OnboardConfig_AbnormalModeInfo& from);
+  OnboardConfig_AbnormalModeInfo(OnboardConfig_AbnormalModeInfo&& from) noexcept
+    : OnboardConfig_AbnormalModeInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline OnboardConfig_AbnormalModeInfo& operator=(const OnboardConfig_AbnormalModeInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline OnboardConfig_AbnormalModeInfo& operator=(OnboardConfig_AbnormalModeInfo&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const OnboardConfig_AbnormalModeInfo& default_instance();
+
+  static inline const OnboardConfig_AbnormalModeInfo* internal_default_instance() {
+    return reinterpret_cast<const OnboardConfig_AbnormalModeInfo*>(
+               &_OnboardConfig_AbnormalModeInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(OnboardConfig_AbnormalModeInfo& a, OnboardConfig_AbnormalModeInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(OnboardConfig_AbnormalModeInfo* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(OnboardConfig_AbnormalModeInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline OnboardConfig_AbnormalModeInfo* New() const final {
+    return CreateMaybeMessage<OnboardConfig_AbnormalModeInfo>(nullptr);
+  }
+
+  OnboardConfig_AbnormalModeInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<OnboardConfig_AbnormalModeInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const OnboardConfig_AbnormalModeInfo& from);
+  void MergeFrom(const OnboardConfig_AbnormalModeInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(OnboardConfig_AbnormalModeInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "galbot.system_proto.mission_manager_proto.OnboardConfig.AbnormalModeInfo";
+  }
+  protected:
+  explicit OnboardConfig_AbnormalModeInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsystem_5fproto_2fmission_5fmanager_5fproto_2fonboard_5fconfig_2eproto);
+    return ::descriptor_table_galbot_2fsystem_5fproto_2fmission_5fmanager_5fproto_2fonboard_5fconfig_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kErrmsgFieldNumber = 2,
+    kErrcodeFieldNumber = 1,
+  };
+  // string errmsg = 2;
+  void clear_errmsg();
+  const std::string& errmsg() const;
+  void set_errmsg(const std::string& value);
+  void set_errmsg(std::string&& value);
+  void set_errmsg(const char* value);
+  void set_errmsg(const char* value, size_t size);
+  std::string* mutable_errmsg();
+  std::string* release_errmsg();
+  void set_allocated_errmsg(std::string* errmsg);
+  private:
+  const std::string& _internal_errmsg() const;
+  void _internal_set_errmsg(const std::string& value);
+  std::string* _internal_mutable_errmsg();
+  public:
+
+  // uint64 errcode = 1;
+  void clear_errcode();
+  ::PROTOBUF_NAMESPACE_ID::uint64 errcode() const;
+  void set_errcode(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_errcode() const;
+  void _internal_set_errcode(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:galbot.system_proto.mission_manager_proto.OnboardConfig.AbnormalModeInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr errmsg_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 errcode_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_galbot_2fsystem_5fproto_2fmission_5fmanager_5fproto_2fonboard_5fconfig_2eproto;
+};
+// -------------------------------------------------------------------
+
 class OnboardConfig PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.system_proto.mission_manager_proto.OnboardConfig) */ {
  public:
@@ -731,7 +1118,7 @@ class OnboardConfig PROTOBUF_FINAL :
                &_OnboardConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    5;
 
   friend void swap(OnboardConfig& a, OnboardConfig& b) {
     a.Swap(&b);
@@ -802,6 +1189,8 @@ class OnboardConfig PROTOBUF_FINAL :
   typedef OnboardConfig_OrinSysState OrinSysState;
   typedef OnboardConfig_XcuSysState XcuSysState;
   typedef OnboardConfig_ServiceState ServiceState;
+  typedef OnboardConfig_BatteryInfo BatteryInfo;
+  typedef OnboardConfig_AbnormalModeInfo AbnormalModeInfo;
 
   typedef OnboardConfig_RobotType RobotType;
   static constexpr RobotType UNKNOWN_ROBOT_TYPE =
@@ -835,6 +1224,76 @@ class OnboardConfig PROTOBUF_FINAL :
   static inline bool RobotType_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
       RobotType* value) {
     return OnboardConfig_RobotType_Parse(name, value);
+  }
+
+  typedef OnboardConfig_BatteryType BatteryType;
+  static constexpr BatteryType UNKNOWN_BATTERY_TYPE =
+    OnboardConfig_BatteryType_UNKNOWN_BATTERY_TYPE;
+  static constexpr BatteryType BMS_MASTER =
+    OnboardConfig_BatteryType_BMS_MASTER;
+  static constexpr BatteryType BMS_SLAVE =
+    OnboardConfig_BatteryType_BMS_SLAVE;
+  static constexpr BatteryType BMS_SYSTEM_STATUS =
+    OnboardConfig_BatteryType_BMS_SYSTEM_STATUS;
+  static inline bool BatteryType_IsValid(int value) {
+    return OnboardConfig_BatteryType_IsValid(value);
+  }
+  static constexpr BatteryType BatteryType_MIN =
+    OnboardConfig_BatteryType_BatteryType_MIN;
+  static constexpr BatteryType BatteryType_MAX =
+    OnboardConfig_BatteryType_BatteryType_MAX;
+  static constexpr int BatteryType_ARRAYSIZE =
+    OnboardConfig_BatteryType_BatteryType_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  BatteryType_descriptor() {
+    return OnboardConfig_BatteryType_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& BatteryType_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, BatteryType>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function BatteryType_Name.");
+    return OnboardConfig_BatteryType_Name(enum_t_value);
+  }
+  static inline bool BatteryType_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      BatteryType* value) {
+    return OnboardConfig_BatteryType_Parse(name, value);
+  }
+
+  typedef OnboardConfig_BatteryWorkMode BatteryWorkMode;
+  static constexpr BatteryWorkMode BATTERY_WORK_MODE_INIT =
+    OnboardConfig_BatteryWorkMode_BATTERY_WORK_MODE_INIT;
+  static constexpr BatteryWorkMode BATTERY_WORK_MODE_STANDBY =
+    OnboardConfig_BatteryWorkMode_BATTERY_WORK_MODE_STANDBY;
+  static constexpr BatteryWorkMode BATTERY_WORK_MODE_CHARGING =
+    OnboardConfig_BatteryWorkMode_BATTERY_WORK_MODE_CHARGING;
+  static constexpr BatteryWorkMode BATTERY_WORK_MODE_READY =
+    OnboardConfig_BatteryWorkMode_BATTERY_WORK_MODE_READY;
+  static constexpr BatteryWorkMode BATTERY_WORK_MODE_DEFAULT =
+    OnboardConfig_BatteryWorkMode_BATTERY_WORK_MODE_DEFAULT;
+  static inline bool BatteryWorkMode_IsValid(int value) {
+    return OnboardConfig_BatteryWorkMode_IsValid(value);
+  }
+  static constexpr BatteryWorkMode BatteryWorkMode_MIN =
+    OnboardConfig_BatteryWorkMode_BatteryWorkMode_MIN;
+  static constexpr BatteryWorkMode BatteryWorkMode_MAX =
+    OnboardConfig_BatteryWorkMode_BatteryWorkMode_MAX;
+  static constexpr int BatteryWorkMode_ARRAYSIZE =
+    OnboardConfig_BatteryWorkMode_BatteryWorkMode_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  BatteryWorkMode_descriptor() {
+    return OnboardConfig_BatteryWorkMode_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& BatteryWorkMode_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, BatteryWorkMode>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function BatteryWorkMode_Name.");
+    return OnboardConfig_BatteryWorkMode_Name(enum_t_value);
+  }
+  static inline bool BatteryWorkMode_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      BatteryWorkMode* value) {
+    return OnboardConfig_BatteryWorkMode_Parse(name, value);
   }
 
   typedef OnboardConfig_ServiceStatus ServiceStatus;
@@ -871,13 +1330,17 @@ class OnboardConfig PROTOBUF_FINAL :
 
   enum : int {
     kServiceStatesFieldNumber = 10,
+    kBatteryInfosFieldNumber = 12,
+    kAbnormalInfoFieldNumber = 14,
     kRobotSerialNumberFieldNumber = 1,
     kRobotNameFieldNumber = 2,
     kRobotHardwareVersionFieldNumber = 4,
     kMainlineVersionFieldNumber = 5,
     kCurModeFieldNumber = 7,
+    kApplySceneFieldNumber = 13,
     kOrinSysStateFieldNumber = 8,
     kXcuSysStateFieldNumber = 9,
+    kTimestampFieldNumber = 11,
     kRobotTypeFieldNumber = 3,
     kEmergencyStopFieldNumber = 6,
   };
@@ -898,6 +1361,42 @@ class OnboardConfig PROTOBUF_FINAL :
   ::galbot::system_proto::mission_manager_proto::OnboardConfig_ServiceState* add_service_states();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::system_proto::mission_manager_proto::OnboardConfig_ServiceState >&
       service_states() const;
+
+  // repeated .galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryInfo battery_infos = 12;
+  int battery_infos_size() const;
+  private:
+  int _internal_battery_infos_size() const;
+  public:
+  void clear_battery_infos();
+  ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo* mutable_battery_infos(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo >*
+      mutable_battery_infos();
+  private:
+  const ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo& _internal_battery_infos(int index) const;
+  ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo* _internal_add_battery_infos();
+  public:
+  const ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo& battery_infos(int index) const;
+  ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo* add_battery_infos();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo >&
+      battery_infos() const;
+
+  // repeated .galbot.system_proto.mission_manager_proto.OnboardConfig.AbnormalModeInfo abnormal_info = 14;
+  int abnormal_info_size() const;
+  private:
+  int _internal_abnormal_info_size() const;
+  public:
+  void clear_abnormal_info();
+  ::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo* mutable_abnormal_info(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo >*
+      mutable_abnormal_info();
+  private:
+  const ::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo& _internal_abnormal_info(int index) const;
+  ::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo* _internal_add_abnormal_info();
+  public:
+  const ::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo& abnormal_info(int index) const;
+  ::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo* add_abnormal_info();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo >&
+      abnormal_info() const;
 
   // string robot_serial_number = 1;
   void clear_robot_serial_number();
@@ -979,6 +1478,22 @@ class OnboardConfig PROTOBUF_FINAL :
   std::string* _internal_mutable_cur_mode();
   public:
 
+  // string apply_scene = 13;
+  void clear_apply_scene();
+  const std::string& apply_scene() const;
+  void set_apply_scene(const std::string& value);
+  void set_apply_scene(std::string&& value);
+  void set_apply_scene(const char* value);
+  void set_apply_scene(const char* value, size_t size);
+  std::string* mutable_apply_scene();
+  std::string* release_apply_scene();
+  void set_allocated_apply_scene(std::string* apply_scene);
+  private:
+  const std::string& _internal_apply_scene() const;
+  void _internal_set_apply_scene(const std::string& value);
+  std::string* _internal_mutable_apply_scene();
+  public:
+
   // .galbot.system_proto.mission_manager_proto.OnboardConfig.OrinSysState orin_sys_state = 8;
   bool has_orin_sys_state() const;
   private:
@@ -1015,6 +1530,24 @@ class OnboardConfig PROTOBUF_FINAL :
       ::galbot::system_proto::mission_manager_proto::OnboardConfig_XcuSysState* xcu_sys_state);
   ::galbot::system_proto::mission_manager_proto::OnboardConfig_XcuSysState* unsafe_arena_release_xcu_sys_state();
 
+  // .galbot.core_proto.Timestamp timestamp = 11;
+  bool has_timestamp() const;
+  private:
+  bool _internal_has_timestamp() const;
+  public:
+  void clear_timestamp();
+  const ::galbot::core_proto::Timestamp& timestamp() const;
+  ::galbot::core_proto::Timestamp* release_timestamp();
+  ::galbot::core_proto::Timestamp* mutable_timestamp();
+  void set_allocated_timestamp(::galbot::core_proto::Timestamp* timestamp);
+  private:
+  const ::galbot::core_proto::Timestamp& _internal_timestamp() const;
+  ::galbot::core_proto::Timestamp* _internal_mutable_timestamp();
+  public:
+  void unsafe_arena_set_allocated_timestamp(
+      ::galbot::core_proto::Timestamp* timestamp);
+  ::galbot::core_proto::Timestamp* unsafe_arena_release_timestamp();
+
   // .galbot.system_proto.mission_manager_proto.OnboardConfig.RobotType robot_type = 3;
   void clear_robot_type();
   ::galbot::system_proto::mission_manager_proto::OnboardConfig_RobotType robot_type() const;
@@ -1041,13 +1574,17 @@ class OnboardConfig PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::system_proto::mission_manager_proto::OnboardConfig_ServiceState > service_states_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo > battery_infos_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo > abnormal_info_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr robot_serial_number_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr robot_name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr robot_hardware_version_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mainline_version_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr cur_mode_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr apply_scene_;
   ::galbot::system_proto::mission_manager_proto::OnboardConfig_OrinSysState* orin_sys_state_;
   ::galbot::system_proto::mission_manager_proto::OnboardConfig_XcuSysState* xcu_sys_state_;
+  ::galbot::core_proto::Timestamp* timestamp_;
   int robot_type_;
   bool emergency_stop_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -1452,6 +1989,175 @@ inline void OnboardConfig_ServiceState::_internal_set_status(::galbot::system_pr
 inline void OnboardConfig_ServiceState::set_status(::galbot::system_proto::mission_manager_proto::OnboardConfig_ServiceStatus value) {
   _internal_set_status(value);
   // @@protoc_insertion_point(field_set:galbot.system_proto.mission_manager_proto.OnboardConfig.ServiceState.status)
+}
+
+// -------------------------------------------------------------------
+
+// OnboardConfig_BatteryInfo
+
+// .galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryType battery_type = 1;
+inline void OnboardConfig_BatteryInfo::clear_battery_type() {
+  battery_type_ = 0;
+}
+inline ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryType OnboardConfig_BatteryInfo::_internal_battery_type() const {
+  return static_cast< ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryType >(battery_type_);
+}
+inline ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryType OnboardConfig_BatteryInfo::battery_type() const {
+  // @@protoc_insertion_point(field_get:galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryInfo.battery_type)
+  return _internal_battery_type();
+}
+inline void OnboardConfig_BatteryInfo::_internal_set_battery_type(::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryType value) {
+  
+  battery_type_ = value;
+}
+inline void OnboardConfig_BatteryInfo::set_battery_type(::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryType value) {
+  _internal_set_battery_type(value);
+  // @@protoc_insertion_point(field_set:galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryInfo.battery_type)
+}
+
+// double battery_level = 2;
+inline void OnboardConfig_BatteryInfo::clear_battery_level() {
+  battery_level_ = 0;
+}
+inline double OnboardConfig_BatteryInfo::_internal_battery_level() const {
+  return battery_level_;
+}
+inline double OnboardConfig_BatteryInfo::battery_level() const {
+  // @@protoc_insertion_point(field_get:galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryInfo.battery_level)
+  return _internal_battery_level();
+}
+inline void OnboardConfig_BatteryInfo::_internal_set_battery_level(double value) {
+  
+  battery_level_ = value;
+}
+inline void OnboardConfig_BatteryInfo::set_battery_level(double value) {
+  _internal_set_battery_level(value);
+  // @@protoc_insertion_point(field_set:galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryInfo.battery_level)
+}
+
+// .galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryWorkMode work_mode = 3;
+inline void OnboardConfig_BatteryInfo::clear_work_mode() {
+  work_mode_ = 0;
+}
+inline ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryWorkMode OnboardConfig_BatteryInfo::_internal_work_mode() const {
+  return static_cast< ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryWorkMode >(work_mode_);
+}
+inline ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryWorkMode OnboardConfig_BatteryInfo::work_mode() const {
+  // @@protoc_insertion_point(field_get:galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryInfo.work_mode)
+  return _internal_work_mode();
+}
+inline void OnboardConfig_BatteryInfo::_internal_set_work_mode(::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryWorkMode value) {
+  
+  work_mode_ = value;
+}
+inline void OnboardConfig_BatteryInfo::set_work_mode(::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryWorkMode value) {
+  _internal_set_work_mode(value);
+  // @@protoc_insertion_point(field_set:galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryInfo.work_mode)
+}
+
+// double battery_soh = 4;
+inline void OnboardConfig_BatteryInfo::clear_battery_soh() {
+  battery_soh_ = 0;
+}
+inline double OnboardConfig_BatteryInfo::_internal_battery_soh() const {
+  return battery_soh_;
+}
+inline double OnboardConfig_BatteryInfo::battery_soh() const {
+  // @@protoc_insertion_point(field_get:galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryInfo.battery_soh)
+  return _internal_battery_soh();
+}
+inline void OnboardConfig_BatteryInfo::_internal_set_battery_soh(double value) {
+  
+  battery_soh_ = value;
+}
+inline void OnboardConfig_BatteryInfo::set_battery_soh(double value) {
+  _internal_set_battery_soh(value);
+  // @@protoc_insertion_point(field_set:galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryInfo.battery_soh)
+}
+
+// -------------------------------------------------------------------
+
+// OnboardConfig_AbnormalModeInfo
+
+// uint64 errcode = 1;
+inline void OnboardConfig_AbnormalModeInfo::clear_errcode() {
+  errcode_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 OnboardConfig_AbnormalModeInfo::_internal_errcode() const {
+  return errcode_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 OnboardConfig_AbnormalModeInfo::errcode() const {
+  // @@protoc_insertion_point(field_get:galbot.system_proto.mission_manager_proto.OnboardConfig.AbnormalModeInfo.errcode)
+  return _internal_errcode();
+}
+inline void OnboardConfig_AbnormalModeInfo::_internal_set_errcode(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  errcode_ = value;
+}
+inline void OnboardConfig_AbnormalModeInfo::set_errcode(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_errcode(value);
+  // @@protoc_insertion_point(field_set:galbot.system_proto.mission_manager_proto.OnboardConfig.AbnormalModeInfo.errcode)
+}
+
+// string errmsg = 2;
+inline void OnboardConfig_AbnormalModeInfo::clear_errmsg() {
+  errmsg_.ClearToEmpty();
+}
+inline const std::string& OnboardConfig_AbnormalModeInfo::errmsg() const {
+  // @@protoc_insertion_point(field_get:galbot.system_proto.mission_manager_proto.OnboardConfig.AbnormalModeInfo.errmsg)
+  return _internal_errmsg();
+}
+inline void OnboardConfig_AbnormalModeInfo::set_errmsg(const std::string& value) {
+  _internal_set_errmsg(value);
+  // @@protoc_insertion_point(field_set:galbot.system_proto.mission_manager_proto.OnboardConfig.AbnormalModeInfo.errmsg)
+}
+inline std::string* OnboardConfig_AbnormalModeInfo::mutable_errmsg() {
+  // @@protoc_insertion_point(field_mutable:galbot.system_proto.mission_manager_proto.OnboardConfig.AbnormalModeInfo.errmsg)
+  return _internal_mutable_errmsg();
+}
+inline const std::string& OnboardConfig_AbnormalModeInfo::_internal_errmsg() const {
+  return errmsg_.Get();
+}
+inline void OnboardConfig_AbnormalModeInfo::_internal_set_errmsg(const std::string& value) {
+  
+  errmsg_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void OnboardConfig_AbnormalModeInfo::set_errmsg(std::string&& value) {
+  
+  errmsg_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.system_proto.mission_manager_proto.OnboardConfig.AbnormalModeInfo.errmsg)
+}
+inline void OnboardConfig_AbnormalModeInfo::set_errmsg(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  errmsg_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.system_proto.mission_manager_proto.OnboardConfig.AbnormalModeInfo.errmsg)
+}
+inline void OnboardConfig_AbnormalModeInfo::set_errmsg(const char* value,
+    size_t size) {
+  
+  errmsg_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.system_proto.mission_manager_proto.OnboardConfig.AbnormalModeInfo.errmsg)
+}
+inline std::string* OnboardConfig_AbnormalModeInfo::_internal_mutable_errmsg() {
+  
+  return errmsg_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* OnboardConfig_AbnormalModeInfo::release_errmsg() {
+  // @@protoc_insertion_point(field_release:galbot.system_proto.mission_manager_proto.OnboardConfig.AbnormalModeInfo.errmsg)
+  return errmsg_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void OnboardConfig_AbnormalModeInfo::set_allocated_errmsg(std::string* errmsg) {
+  if (errmsg != nullptr) {
+    
+  } else {
+    
+  }
+  errmsg_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), errmsg,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.system_proto.mission_manager_proto.OnboardConfig.AbnormalModeInfo.errmsg)
 }
 
 // -------------------------------------------------------------------
@@ -2008,9 +2714,229 @@ OnboardConfig::service_states() const {
   return service_states_;
 }
 
+// .galbot.core_proto.Timestamp timestamp = 11;
+inline bool OnboardConfig::_internal_has_timestamp() const {
+  return this != internal_default_instance() && timestamp_ != nullptr;
+}
+inline bool OnboardConfig::has_timestamp() const {
+  return _internal_has_timestamp();
+}
+inline const ::galbot::core_proto::Timestamp& OnboardConfig::_internal_timestamp() const {
+  const ::galbot::core_proto::Timestamp* p = timestamp_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::core_proto::Timestamp&>(
+      ::galbot::core_proto::_Timestamp_default_instance_);
+}
+inline const ::galbot::core_proto::Timestamp& OnboardConfig::timestamp() const {
+  // @@protoc_insertion_point(field_get:galbot.system_proto.mission_manager_proto.OnboardConfig.timestamp)
+  return _internal_timestamp();
+}
+inline void OnboardConfig::unsafe_arena_set_allocated_timestamp(
+    ::galbot::core_proto::Timestamp* timestamp) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(timestamp_);
+  }
+  timestamp_ = timestamp;
+  if (timestamp) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.system_proto.mission_manager_proto.OnboardConfig.timestamp)
+}
+inline ::galbot::core_proto::Timestamp* OnboardConfig::release_timestamp() {
+  
+  ::galbot::core_proto::Timestamp* temp = timestamp_;
+  timestamp_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::core_proto::Timestamp* OnboardConfig::unsafe_arena_release_timestamp() {
+  // @@protoc_insertion_point(field_release:galbot.system_proto.mission_manager_proto.OnboardConfig.timestamp)
+  
+  ::galbot::core_proto::Timestamp* temp = timestamp_;
+  timestamp_ = nullptr;
+  return temp;
+}
+inline ::galbot::core_proto::Timestamp* OnboardConfig::_internal_mutable_timestamp() {
+  
+  if (timestamp_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::core_proto::Timestamp>(GetArena());
+    timestamp_ = p;
+  }
+  return timestamp_;
+}
+inline ::galbot::core_proto::Timestamp* OnboardConfig::mutable_timestamp() {
+  // @@protoc_insertion_point(field_mutable:galbot.system_proto.mission_manager_proto.OnboardConfig.timestamp)
+  return _internal_mutable_timestamp();
+}
+inline void OnboardConfig::set_allocated_timestamp(::galbot::core_proto::Timestamp* timestamp) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(timestamp_);
+  }
+  if (timestamp) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(timestamp)->GetArena();
+    if (message_arena != submessage_arena) {
+      timestamp = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, timestamp, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  timestamp_ = timestamp;
+  // @@protoc_insertion_point(field_set_allocated:galbot.system_proto.mission_manager_proto.OnboardConfig.timestamp)
+}
+
+// repeated .galbot.system_proto.mission_manager_proto.OnboardConfig.BatteryInfo battery_infos = 12;
+inline int OnboardConfig::_internal_battery_infos_size() const {
+  return battery_infos_.size();
+}
+inline int OnboardConfig::battery_infos_size() const {
+  return _internal_battery_infos_size();
+}
+inline void OnboardConfig::clear_battery_infos() {
+  battery_infos_.Clear();
+}
+inline ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo* OnboardConfig::mutable_battery_infos(int index) {
+  // @@protoc_insertion_point(field_mutable:galbot.system_proto.mission_manager_proto.OnboardConfig.battery_infos)
+  return battery_infos_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo >*
+OnboardConfig::mutable_battery_infos() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.system_proto.mission_manager_proto.OnboardConfig.battery_infos)
+  return &battery_infos_;
+}
+inline const ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo& OnboardConfig::_internal_battery_infos(int index) const {
+  return battery_infos_.Get(index);
+}
+inline const ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo& OnboardConfig::battery_infos(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.system_proto.mission_manager_proto.OnboardConfig.battery_infos)
+  return _internal_battery_infos(index);
+}
+inline ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo* OnboardConfig::_internal_add_battery_infos() {
+  return battery_infos_.Add();
+}
+inline ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo* OnboardConfig::add_battery_infos() {
+  // @@protoc_insertion_point(field_add:galbot.system_proto.mission_manager_proto.OnboardConfig.battery_infos)
+  return _internal_add_battery_infos();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryInfo >&
+OnboardConfig::battery_infos() const {
+  // @@protoc_insertion_point(field_list:galbot.system_proto.mission_manager_proto.OnboardConfig.battery_infos)
+  return battery_infos_;
+}
+
+// string apply_scene = 13;
+inline void OnboardConfig::clear_apply_scene() {
+  apply_scene_.ClearToEmpty();
+}
+inline const std::string& OnboardConfig::apply_scene() const {
+  // @@protoc_insertion_point(field_get:galbot.system_proto.mission_manager_proto.OnboardConfig.apply_scene)
+  return _internal_apply_scene();
+}
+inline void OnboardConfig::set_apply_scene(const std::string& value) {
+  _internal_set_apply_scene(value);
+  // @@protoc_insertion_point(field_set:galbot.system_proto.mission_manager_proto.OnboardConfig.apply_scene)
+}
+inline std::string* OnboardConfig::mutable_apply_scene() {
+  // @@protoc_insertion_point(field_mutable:galbot.system_proto.mission_manager_proto.OnboardConfig.apply_scene)
+  return _internal_mutable_apply_scene();
+}
+inline const std::string& OnboardConfig::_internal_apply_scene() const {
+  return apply_scene_.Get();
+}
+inline void OnboardConfig::_internal_set_apply_scene(const std::string& value) {
+  
+  apply_scene_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void OnboardConfig::set_apply_scene(std::string&& value) {
+  
+  apply_scene_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.system_proto.mission_manager_proto.OnboardConfig.apply_scene)
+}
+inline void OnboardConfig::set_apply_scene(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  apply_scene_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.system_proto.mission_manager_proto.OnboardConfig.apply_scene)
+}
+inline void OnboardConfig::set_apply_scene(const char* value,
+    size_t size) {
+  
+  apply_scene_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.system_proto.mission_manager_proto.OnboardConfig.apply_scene)
+}
+inline std::string* OnboardConfig::_internal_mutable_apply_scene() {
+  
+  return apply_scene_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* OnboardConfig::release_apply_scene() {
+  // @@protoc_insertion_point(field_release:galbot.system_proto.mission_manager_proto.OnboardConfig.apply_scene)
+  return apply_scene_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void OnboardConfig::set_allocated_apply_scene(std::string* apply_scene) {
+  if (apply_scene != nullptr) {
+    
+  } else {
+    
+  }
+  apply_scene_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), apply_scene,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.system_proto.mission_manager_proto.OnboardConfig.apply_scene)
+}
+
+// repeated .galbot.system_proto.mission_manager_proto.OnboardConfig.AbnormalModeInfo abnormal_info = 14;
+inline int OnboardConfig::_internal_abnormal_info_size() const {
+  return abnormal_info_.size();
+}
+inline int OnboardConfig::abnormal_info_size() const {
+  return _internal_abnormal_info_size();
+}
+inline void OnboardConfig::clear_abnormal_info() {
+  abnormal_info_.Clear();
+}
+inline ::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo* OnboardConfig::mutable_abnormal_info(int index) {
+  // @@protoc_insertion_point(field_mutable:galbot.system_proto.mission_manager_proto.OnboardConfig.abnormal_info)
+  return abnormal_info_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo >*
+OnboardConfig::mutable_abnormal_info() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.system_proto.mission_manager_proto.OnboardConfig.abnormal_info)
+  return &abnormal_info_;
+}
+inline const ::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo& OnboardConfig::_internal_abnormal_info(int index) const {
+  return abnormal_info_.Get(index);
+}
+inline const ::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo& OnboardConfig::abnormal_info(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.system_proto.mission_manager_proto.OnboardConfig.abnormal_info)
+  return _internal_abnormal_info(index);
+}
+inline ::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo* OnboardConfig::_internal_add_abnormal_info() {
+  return abnormal_info_.Add();
+}
+inline ::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo* OnboardConfig::add_abnormal_info() {
+  // @@protoc_insertion_point(field_add:galbot.system_proto.mission_manager_proto.OnboardConfig.abnormal_info)
+  return _internal_add_abnormal_info();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::system_proto::mission_manager_proto::OnboardConfig_AbnormalModeInfo >&
+OnboardConfig::abnormal_info() const {
+  // @@protoc_insertion_point(field_list:galbot.system_proto.mission_manager_proto.OnboardConfig.abnormal_info)
+  return abnormal_info_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -2030,6 +2956,16 @@ template <> struct is_proto_enum< ::galbot::system_proto::mission_manager_proto:
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::galbot::system_proto::mission_manager_proto::OnboardConfig_RobotType>() {
   return ::galbot::system_proto::mission_manager_proto::OnboardConfig_RobotType_descriptor();
+}
+template <> struct is_proto_enum< ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryType>() {
+  return ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryType_descriptor();
+}
+template <> struct is_proto_enum< ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryWorkMode> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryWorkMode>() {
+  return ::galbot::system_proto::mission_manager_proto::OnboardConfig_BatteryWorkMode_descriptor();
 }
 template <> struct is_proto_enum< ::galbot::system_proto::mission_manager_proto::OnboardConfig_ServiceStatus> : ::std::true_type {};
 template <>

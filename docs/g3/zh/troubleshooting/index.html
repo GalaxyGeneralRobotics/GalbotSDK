@@ -1,0 +1,2160 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.galbot.com/g3/troubleshooting/">
+      
+      
+        <link rel="prev" href="../set_config_reference/">
+      
+      
+        <link rel="next" href="../license/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>故障排除 - galbot_sdk - G3</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/nav_collapse.css">
+    
+      <link rel="stylesheet" href="../stylesheets/sidebar_scroll.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="galbot_sdk - G3" class="md-header__button md-logo" aria-label="galbot_sdk - G3" data-md-component="logo">
+      
+  <img src="/image/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            galbot_sdk - G3
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              故障排除
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GalaxyGeneralRobotics/GalbotSDK" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GalbotSDK
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../overview/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概览
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../installation_system_requirements/" class="md-tabs__link">
+          
+  
+  
+  安装与配置
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../routine_operations/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  常规操作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tutorials/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  入门教程
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples_python/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python 示例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples_cpp/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  C++ 示例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api_python_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python API 参考
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api_cpp_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  C++ API 参考
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../set_config_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  set_config 参考
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  故障排除
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../license/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  许可证
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="galbot_sdk - G3" class="md-nav__button md-logo" aria-label="galbot_sdk - G3" data-md-component="logo">
+      
+  <img src="/image/logo.png" alt="logo">
+
+    </a>
+    galbot_sdk - G3
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GalaxyGeneralRobotics/GalbotSDK" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GalbotSDK
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安装与配置
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    安装与配置
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_system_requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统要求
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_and_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    环境部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_version_compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本兼容性检查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_terminology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    术语说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routine_operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常规操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    入门教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples_python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples_cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ 示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_python_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python API 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_cpp_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ API 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../set_config_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set_config 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    故障排除
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    故障排除
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        快速定位
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开始前先确认
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开始前先确认">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通用检查项（建议先做）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#control-and-motion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制与运动
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="控制与运动">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#no-response-to-control-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        发送控制指令无响应
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdk-works-locally-but-not-over-wired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机器人上运行 SDK 程序可用，但有线连接不行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#robot-joint-cannot-move" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机器人关节无法运动
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="机器人关节无法运动">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#joint-limit-overrun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可能原因一：关节超出运动范围限制
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可能原因一：关节超出运动范围限制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#joint-limit-overrun-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关节超限处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#joint-initialization-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可能原因二：关节初始化失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcu-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可能原因三：MCU 故障
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abnormal-mode-localization-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机器人进入异常模式：定位服务异常
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abnormal-mode-restart-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机器人进入异常模式，重启服务
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#robot-chassis-cannot-move" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机器人底盘无法移动
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end-effector-control-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        末端执行器控制失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-sound-from-speaker-enable-galbot-vtn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机器人扬声器无声音/启用音频服务 galbot_vtn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-list-attribute-append-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python 中对 SDK 对象的 list 属性 .append() 不生效
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-and-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        系统与配置
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="系统与配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-check-current-operating-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何查看当前工作模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-check-robot-system-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何查看机器人系统版本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-check-robot-sdk-version-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何检查机器人系统版本与 SDK 兼容性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emergency-stop-e-stop-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机器人紧急开关（急停按钮）说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboard-computing-units-hpu-xcu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        机器人机载算力单元介绍（HPU + XCU）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-access-hpu-and-xcu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何进入 HPU 与 XCU
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-check-robot-serial-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何查看机器 SN 号
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-check-joint-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何检查关节是否正常
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-enable-real-time-end-effector-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何启用末端实时控制指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-joint-limits-are-configured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关节限位在哪里配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-disable-a-system-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        启用/禁用某个系统服务
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embosa-ip-config-reset-after-reboot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重启后 embosa IP 配置被改回去
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#camera-and-calibration-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相机与标定信息
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="相机与标定信息">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-change-camera-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何修改相机分辨率
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-check-camera-frame-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何查看相机帧率
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-check-camera-intrinsics-extrinsics-calibration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何查看相机内外参和标定信息
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logs-and-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        日志与调试
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="日志与调试">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-low-level-service-logs-are-stored" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        底层服务日志在哪里
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-sdk-logs-are-stored" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SDK log 在哪里
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-enable-and-debug-core-dumps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何开启 core 文件并调试
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-on-robot-cannot-find-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在 Robot 上执行 Python 找不到 module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-example-error-numpy-has-no-typedict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        执行 Python 示例报错：numpy 没有 typeDict
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-and-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安装与环境
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="安装与环境">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-start-sdk-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SDK Docker 启动方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-use-perception-service-gbs-11516" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何使用感知服务（GBS 1.15.16+）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#still-not-resolved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        仍未解决？
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    许可证
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="_1">故障排除</h1>
+<p>这份文档整理了 SDK 使用中常见的问题。排查时请先做“通用检查”，确认机器人处于可工作前提，再进入状态/版本确认和具体问题定位。</p>
+<h2 id="quick-navigation">快速定位</h2>
+<p>如果你的问题暂未在下方列表中找到，可直接跳转到文末的<a href="#still-not-resolved">仍未解决？</a>获取进一步支持渠道。</p>
+<p>建议先按这个统一顺序排查：</p>
+<ol>
+<li><a href="#general-checks">通用检查项</a>：先确认急停已松开，再确认当前工作模式是否进入 <code>ABNORMAL</code>，确保机器人处于正常工作模式（这是所有功能正常工作的前提）。</li>
+<li><a href="#system-and-configuration">系统与配置</a>：在确认工作模式正常后，再查看机器人与SDK版本信息是否对应。</li>
+<li>具体故障现象：最后进入对应问题章节做专项排查。</li>
+</ol>
+<p>如果你是“想确认机器状态或版本”，看这里：</p>
+<ul>
+<li><a href="#how-to-check-current-operating-mode">如何查看当前工作模式</a></li>
+<li><a href="#how-to-check-robot-system-version">如何查看机器人系统版本</a></li>
+<li><a href="#how-to-check-robot-sdk-version-compatibility">如何检查机器人系统版本与 SDK 兼容性</a></li>
+<li><a href="#emergency-stop-e-stop-overview">机器人紧急开关（急停按钮）说明</a></li>
+<li><a href="#onboard-computing-units-hpu-xcu">机器人机载算力单元介绍（HPU + XCU）</a></li>
+<li><a href="#how-to-access-hpu-and-xcu">如何进入 HPU 与 XCU</a></li>
+<li><a href="#how-to-check-robot-serial-number">如何查看机器 SN 号</a></li>
+<li><a href="#how-to-check-joint-health">如何检查关节是否正常</a></li>
+</ul>
+<p>如果你是“机器人不动/不响应”，再看这里：</p>
+<ul>
+<li><a href="#no-response-to-control-commands">发送控制指令无响应</a></li>
+<li><a href="#sdk-works-locally-but-not-over-wired">机器人上运行 SDK 程序可用，但有线连接不行</a></li>
+<li><a href="#robot-joint-cannot-move">机器人关节无法运动</a></li>
+<li><a href="#abnormal-mode-restart-services">机器人进入异常模式，重启服务</a></li>
+<li><a href="#abnormal-mode-localization-error">机器人进入异常模式：定位服务异常</a></li>
+<li><a href="#robot-chassis-cannot-move">机器人底盘无法移动</a></li>
+<li><a href="#end-effector-control-failure">末端执行器控制失败</a></li>
+<li><a href="#no-sound-from-speaker-enable-galbot-vtn">机器人扬声器无声音</a></li>
+<li><a href="#python-list-attribute-append-not-working">Python 中对 SDK 对象的 list 属性 <code>.append()</code> 不生效</a></li>
+</ul>
+<p>如果你是“系统配置相关”，看这里：</p>
+<ul>
+<li><a href="#how-to-enable-real-time-end-effector-control">如何启用末端实时控制指令</a></li>
+<li><a href="#where-joint-limits-are-configured">关节限位在哪里配置</a></li>
+<li><a href="#enable-disable-a-system-service">启用/禁用某个系统服务</a></li>
+<li><a href="#embosa-ip-config-reset-after-reboot">重启后 embosa IP 配置被改回去</a></li>
+</ul>
+<p>如果你是“相机相关问题”，看这里：</p>
+<ul>
+<li><a href="#how-to-change-camera-resolution">如何修改相机分辨率</a></li>
+<li><a href="#how-to-check-camera-frame-rate">如何查看相机帧率</a></li>
+<li><a href="#how-to-check-camera-intrinsics-extrinsics-calibration">如何查看相机内外参和标定信息</a></li>
+</ul>
+<p>如果你是“其他问题”，看这里：</p>
+<ul>
+<li><a href="#where-sdk-logs-are-stored">SDK log 在哪里</a></li>
+<li><a href="#how-to-enable-and-debug-core-dumps">如何开启 core 文件并调试</a></li>
+<li><a href="#python-on-robot-cannot-find-module">在 Robot 上执行 Python 找不到 module</a></li>
+<li><a href="#python-example-error-numpy-has-no-typedict">执行 Python 示例报错：<code>numpy</code> 没有 <code>typeDict</code></a></li>
+<li><a href="#how-to-start-sdk-docker">SDK Docker 启动方式</a></li>
+<li><a href="#how-to-use-perception-service-gbs-11516">如何使用感知服务（GBS 1.15.16+）</a></li>
+</ul>
+<h2 id="before-you-start">开始前先确认</h2>
+<ul>
+<li>日志和进程命令要在对应端执行，先判断问题属于哪一类服务：</li>
+<li>HPU：定位、导航、规划、感知等服务（例如 localization、navigation、mps、perception）。</li>
+<li>XCU：运动控制相关服务（例如 <code>singorix</code>、末端控制、模式管理等）。</li>
+<li>快速判断方法：机器人“能连上但不动/动作异常”优先查 XCU；“能动但地图、路径、避障、感知结果异常”优先查 HPU。</li>
+<li>路径、服务名、配置字段区分大小写。</li>
+<li>如果是 PC 端远程部署，先确认网络和 IP 配置已正确生效。</li>
+</ul>
+<h3 id="general-checks">通用检查项（建议先做）</h3>
+<ol>
+<li>急停状态：先确认机器人背部红色急停按钮已松开/已弹出。</li>
+<li>工作模式：在 XCU 执行 <code>/data/bin/sys_tool</code>，确认当前模式不是 <code>ABNORMAL</code>。</li>
+<li>异常服务定位：若当前模式是 <code>ABNORMAL</code>，先查看 <code>/userdata/log/mission_manager/mission_manager.INFO</code> 并搜索 <code>abnormal_service</code>，恢复到正常模式后再继续后续排查。</li>
+<li>状态/版本确认：仅在模式正常后，再检查 SN、系统版本、当前模式详情等基础信息。</li>
+<li>服务状态：按问题类型检查 <code>singorix</code>、<code>galbot_chassis_service</code> 等关键服务是否在线。</li>
+</ol>
+<h2 id="control-and-motion">控制与运动</h2>
+<h3 id="no-response-to-control-commands">发送控制指令无响应</h3>
+<p>先按上面的<a href="#general-checks">通用检查项</a>走完，再继续看控制链路。</p>
+<p>先看主日志：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>tail<span class="w"> </span>-f<span class="w"> </span>/userdata/log/SingoriX/info/singorix_wbcs_main.INFO
+</span></code></pre></div>
+<p>再检查 <code>singorix</code> 进程：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ps<span class="w"> </span>-ef<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>singorix<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>grep
+</span></code></pre></div>
+<p>如果 <code>singorix</code> 在，但控制还是没响应，再看底盘相关进程：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ps<span class="w"> </span>-ef<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>chassis
+</span></code></pre></div>
+<p>若是 PC 端部署，重启后配置容易被改回去，这时要检查 HPU 和 XCU 上 <code>/data/config/system.cfg</code> 里的 <code>enable_modify_embosa_cfg</code>。它为 <code>false</code> 时，<code>embosa_ip_config.json</code> 才不会在重启流程里被覆盖。</p>
+<p><img alt="急停按钮状态" src="/image/emergency_stop_button.png" title="急停按钮状态" />
+<img alt="检查 singorix 服务" src="/image/singorix_service_check.png" title="检查 singorix 服务" />
+<img alt="底盘服务异常" src="/image/chassis_service_error.png" title="底盘服务异常" /></p>
+<h3 id="sdk-works-locally-but-not-over-wired">机器人上运行 SDK 程序可用，但有线连接不行</h3>
+<p>问题现象：SDK 程序在机器人本机运行正常，但通过 PC 有线连接运行失败。<br />
+常见原因：<code>embosa_ip</code> 未正确配置，或配置被重置。</p>
+<p>处理建议：</p>
+<ol>
+<li>先检查网络配置是否正确，重点核对 PC、XCU、HPU 的 IP 与 <code>embosa_ip_config.json</code>。</li>
+<li>配置参考文档：<br />
+<a href="../installation_pc_ubuntu/#2-配置网络">PC端部署 - Ubuntu / 2. 配置网络</a></li>
+<li>如果已经配置正确但再次检查发现被重置，按以下小节处理：<br />
+<a href="#embosa-ip-config-reset-after-reboot">重启后 embosa IP 配置被改回去</a></li>
+</ol>
+<h3 id="robot-joint-cannot-move">机器人关节无法运动</h3>
+<p>本问题适用于头部、腿部或手臂的某个关节无响应的情况。</p>
+<p>先查看 <code>singorix</code> 日志确认具体错误类型：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>tail<span class="w"> </span>-f<span class="w"> </span>/userdata/log/SingoriX/info/singorix_wbcs_main.INFO
+</span></code></pre></div>
+<h4 id="joint-limit-overrun">可能原因一：关节超出运动范围限制</h4>
+<p>关节位置可能已达到或超出其机械限位。此问题在手臂关节上较为常见，可通过目视观察到关节姿态异常，同时 singorix 会输出相应报错信息。</p>
+<p><img alt="关节超限错误" src="/image/joint_limit_error.png" title="关节超限错误" /></p>
+<h5 id="joint-limit-overrun-handling">关节超限处理</h5>
+<p>建议按以下顺序处理：</p>
+<ol>
+<li>先尝试按住示教按钮，直接拖动机械臂回到关节限位范围内。</li>
+<li>如果无法拖动，先观察是哪个关节超限；二、三关节位置有隐藏抱闸按钮，可按下述方法处理。</li>
+<li>拔下活塞，按下急停按钮，然后戳下隐藏抱闸按钮并拖动机械臂回到限位内。</li>
+<li>旋开急停按钮复位，观察关节是否恢复正常。</li>
+</ol>
+<p><img alt="二三关节隐藏抱闸按钮示例" src="/image/faq_baozha.jpg" title="二三关节隐藏抱闸按钮示例" /></p>
+<p>如果超限关节没有隐藏抱闸按钮，使用方法 2：</p>
+<ol>
+<li>通过 <code>service_display</code> 进入后台：连续点击机器人胸前屏幕右下角，直到出现后台登录窗口，输入密码 <code>996996</code>。</li>
+<li>登录后进入：左臂电机或右臂电机 -&gt; 电机操作（见图示例）。</li>
+<li>在电机操作页面的第一个输入框输入对应关节序号（例如 <code>4</code> 号关节）。</li>
+<li>拍下急停按钮，再旋开急停按钮，等待 <code>10s</code>。</li>
+<li>依次点击：空闲模式 -&gt; 扩限位 -&gt; 清错 -&gt; 清错 -&gt; 清错 -&gt; 清错 -&gt; 上使能 -&gt; 电流模式（每个按钮间隔至少 <code>1s</code>）。</li>
+<li>查看机械臂对应关节是否可转动；如果仍不行，重复步骤 4 和步骤 5。</li>
+<li>处理完成后，在 XCU 执行以下命令重启 <code>launcher</code>，退出该界面并恢复常规运行状态：</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
+</span></code></pre></div>
+<p><img alt="后台电机操作示例" src="/image/faq_houtai.jpg" title="后台电机操作示例" /></p>
+<h4 id="joint-initialization-failure">可能原因二：关节初始化失败</h4>
+<p>机器人启动过程中，关节未成功释放制动器（无抱闸释放声）。singorix 会输出初始化失败的错误信息。</p>
+<p>以下截图为头部关节初始化失败的示例：</p>
+<p><img alt="关节初始化失败" src="/image/joint_init_failed.png" title="关节初始化失败" /></p>
+<p>处理建议：重启机器人并留意启动时是否有抱闸释放声。</p>
+<h4 id="mcu-failure">可能原因三：MCU 故障</h4>
+<p>微控制单元（MCU）可能出现错误或停止响应。检查以下目录下的最新日志文件，确认日志是否持续更新且无错误信息输出：</p>
+<ul>
+<li><code>/userdata/log/mp_core/</code></li>
+<li><code>/userdata/log/secure_core/</code></li>
+</ul>
+<h3 id="abnormal-mode-localization-error">机器人进入异常模式：定位服务异常</h3>
+<p>问题现象：机器人进入 <code>ABNORMAL</code>，并提示定位服务异常。<br />
+常见场景：新机器人首次使用时较常见。</p>
+<p>常见原因：未完成建图，导致定位服务无法正常运行。</p>
+<p>处理建议：</p>
+<ol>
+<li>确认当前是否已完成建图。</li>
+<li>若未建图，先完成建图与定位流程。</li>
+<li>建图完成后，在 HPU 执行以下命令重启服务：</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher.service
+</span></code></pre></div>
+<ol>
+<li>完成后再次查看工作模式，确认是否恢复为 <code>WORKING_MODE</code>。</li>
+</ol>
+<p>参考建图文档：</p>
+<ul>
+<li><a href="../routine_operations/#建图流程">建图流程</a></li>
+<li><a href="../routine_operations/#定位流程">定位流程</a></li>
+</ul>
+<h3 id="abnormal-mode-restart-services">机器人进入异常模式，重启服务</h3>
+<p>如果机器人进入异常模式，尝试重启所有服务进行恢复，可以重启 <code>launcher</code>。</p>
+<ul>
+<li>XCU 执行：</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
+</span></code></pre></div>
+<ul>
+<li>HPU 执行：</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
+</span></code></pre></div>
+<h3 id="robot-chassis-cannot-move">机器人底盘无法移动</h3>
+<p>底盘不动，先按<a href="#general-checks">通用检查项</a>确认急停和工作模式，再看服务和电量。</p>
+<p>检查底盘服务：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ps<span class="w"> </span>-ef<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>galbot_chassis_service<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>grep
+</span></code></pre></div>
+<p>再看 SOC：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>tail<span class="w"> </span>-f<span class="w"> </span>/userdata/log/galbot_chassis_service/galbot_chassis_service.INFO<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>soc
+</span></code></pre></div>
+<p>SOC 低于 25% 时，底盘会停机保护，先充电再试。</p>
+<p><img alt="检查底盘服务" src="/image/chassis_service_check.png" title="检查底盘服务" />
+<img alt="电量低警告" src="/image/low_battery_warning.png" title="电量低警告" /></p>
+<h3 id="end-effector-control-failure">末端执行器控制失败</h3>
+<p>先按<a href="#general-checks">通用检查项</a>确认急停和工作模式，再做末端专项判断：急停按下再释放，看看末端有没有最基本的响应。如果完全没有动作，先按硬件故障方向查。</p>
+<p>如果有响应但行为不对，再看配置是否一致。配置文件在：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>/data/config/SingoriX/galbot_one_golf/real/robot_config.toml
+</span></code></pre></div>
+<p>1.16 及以后版本使用 overlay，配置路径改为：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>/data/config/default/SingoriX/galbot_g1-v2.2/robot_config.toml
+</span></code></pre></div>
+<p>默认是左手夹爪、右手吸盘。请确认实物安装和配置一致（例如 <code>right_suction_cup</code> 与 <code>right_gripper</code>），修改后重启 <code>launcher</code> 生效：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
+</span></code></pre></div>
+<p><img alt="夹爪配置" src="/image/gripper_config.png" title="夹爪配置" /></p>
+<h3 id="no-sound-from-speaker-enable-galbot-vtn">机器人扬声器无声音/启用音频服务 <code>galbot_vtn</code></h3>
+<p>在 Orin/HPU 上编辑：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>/data/config/launcher.cfg
+</span></code></pre></div>
+<p>把对应 <code>enable</code> 从 <code>false</code> 改成 <code>true</code>，然后：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>systemctl<span class="w"> </span>status<span class="w"> </span>launcher
+</span></code></pre></div>
+<p><img alt="启用 galbot_vtn 配置示例" src="/image/faq_galbot_vtn_enable.png" title="启用 galbot_vtn 配置示例" /></p>
+<h3 id="python-list-attribute-append-not-working">Python 中对 SDK 对象的 list 属性 <code>.append()</code> 不生效</h3>
+<p>本问题仅出现在 Python 中。C++ 侧对成员容器调用 <code>push_back()</code> 行为正常，不受影响。</p>
+<p><strong>现象</strong>：在 Python 中构造 <code>Trajectory</code> / <code>TrajectoryPoint</code> 后提交，接口返回 <code>ControlStatus.INVALID_INPUT</code>，机器人不执行动作，且没有明确报错提示。容易被误判为“接口不支持”或“参数传错”，实际是数据没有写入。</p>
+<p><strong>原因</strong>：读取 SDK 绑定对象的 list 属性时，返回的是底层 C++ 数据的<strong>副本</strong>而非引用。对副本调用 <code>.append()</code> 后副本随即被丢弃，数据不会写回 C++ 对象，SDK 实际收到的是空列表。这一点与常规 Python 对象的 list 属性行为不同。</p>
+<p>以下写法不生效：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">traj</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">()</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">traj</span><span class="o">.</span><span class="n">joint_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;head&quot;</span><span class="p">)</span>          <span class="c1"># 不生效</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">traj</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">traj_point</span><span class="p">)</span>            <span class="c1"># 不生效</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">traj_point</span><span class="o">.</span><span class="n">joint_command_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>  <span class="c1"># 不生效</span>
+</span></code></pre></div>
+<p>正确做法是先用普通 Python list 收集，再整体赋值回属性：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">traj</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">()</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">traj</span><span class="o">.</span><span class="n">joint_groups</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;head&quot;</span><span class="p">]</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">traj</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">trajectory</span><span class="p">:</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>    <span class="n">traj_point</span> <span class="o">=</span> <span class="n">TrajectoryPoint</span><span class="p">()</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>    <span class="n">traj_point</span><span class="o">.</span><span class="n">time_from_start_second</span> <span class="o">=</span> <span class="n">target_time</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>    <span class="n">joint_command_vec</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>    <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>        <span class="n">joint_cmd</span> <span class="o">=</span> <span class="n">JointCommand</span><span class="p">()</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>        <span class="n">joint_cmd</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">joint</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>        <span class="n">joint_command_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint_cmd</span><span class="p">)</span>   <span class="c1"># 操作的是普通 Python list</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>    <span class="n">traj_point</span><span class="o">.</span><span class="n">joint_command_vec</span> <span class="o">=</span> <span class="n">joint_command_vec</span>  <span class="c1"># 整体赋值，一次性写入</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>    <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">traj_point</span><span class="p">)</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="n">traj</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">points</span>                              <span class="c1"># 整体赋值，一次性写入</span>
+</span></code></pre></div>
+<p>该规则适用于所有 SDK 绑定对象的 list 属性，不限于 <code>Trajectory</code>：<code>joint_groups</code>、<code>joint_names</code> 同样受影响，运动模块的 <code>GroupCommand.joint_commands</code>、<code>TargetGroupTrajectory.group_commands</code>、<code>TaskCommand.subtask_commands</code> 等也是一样。受影响的接口包括 <code>execute_joint_trajectory</code> 和 <code>set_joint_commands_batch</code>。</p>
+<p><code>examples/g3/python/galbot_robot/execute_joint_trajectory.py</code> 中的示例即采用上述写法，可直接参考。</p>
+<h2 id="system-and-configuration">系统与配置</h2>
+<h3 id="how-to-check-current-operating-mode">如何查看当前工作模式</h3>
+<p>可通过 XCU 上的 <code>sys_tool</code> 查询当前整机工作模式。</p>
+<p>由于新版本 XCU 不连接 Wi-Fi，无法通过 XCU 的无线 IP 直接登录。通过 Wi-Fi 远程连接时，请先登录 HPU，再从 HPU 登录 XCU。</p>
+<ol>
+<li>从 PC 登录 HPU：</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ssh<span class="w"> </span>galbot@192.168.xxx.xx
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="c1"># 密码：gb@2023</span>
+</span></code></pre></div>
+<ol>
+<li>在 HPU 上登录 XCU：</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>ssh<span class="w"> </span>root@192.168.1.66
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="c1"># 密码：12345678</span>
+</span></code></pre></div>
+<ol>
+<li>进入工具目录并启动：</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">cd</span><span class="w"> </span>/data/bin
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>./sys_tool
+</span></code></pre></div>
+<p><code>sys_tool</code> 是 XCU 系统工具，用于查询基线版本、切换/查询整机模式。工具路径：<code>/data/bin/sys_tool</code>。</p>
+<p>启动后会进入交互式命令行，常用命令：</p>
+<ul>
+<li><code>v</code>：查询基线软件版本信息（含序列号、软硬件版本）。</li>
+<li><code>q</code>：查询当前整机模式（用于判断是否处于正常工作模式）。</li>
+</ul>
+<p>模式判断：</p>
+<ul>
+<li>正常情况下应看到 <code>mode_type: WORKING_MODE</code>。</li>
+<li>若不是 <code>WORKING_MODE</code>（例如进入 <code>ABNORMAL</code>），先按<a href="#general-checks">通用检查项</a>第 3 步定位 <code>abnormal_service</code>，恢复后再继续其他排查。</li>
+</ul>
+<p>示例（<code>q</code> 查询关键字段）：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>current mode:
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>mode_type: WORKING_MODE
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>mode_switch_state {
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>  status: SUCCESS
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>}
+</span></code></pre></div>
+<p><img alt="工作模式查询示例" src="/image/faq_working_mode.png" title="工作模式查询示例" />
+<img alt="abnormal_service 日志示例" src="/image/faq_abnormal_service.jpeg" title="abnormal_service 日志示例" /></p>
+<h3 id="how-to-check-robot-system-version">如何查看机器人系统版本</h3>
+<p>推荐优先使用 SDK 命令快速查看：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>galbot_sdk<span class="w"> </span>check-version
+</span></code></pre></div>
+<p>如果机器人使用非默认 IP 地址：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--robot-ip<span class="w"> </span>&lt;机器人IP&gt;
+</span></code></pre></div>
+<p>如果当前环境没有该命令，再在 XCU 或 HPU 上执行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>cat<span class="w"> </span>/data/config/system.cfg
+</span></code></pre></div>
+<p>看 <code>CUR_VERSION</code> 字段即可。</p>
+<p><img alt="查看 CUR_VERSION 字段" src="/image/faq_cur_version.jpeg" title="查看 CUR_VERSION 字段" /></p>
+<h3 id="how-to-check-robot-sdk-version-compatibility">如何检查机器人系统版本与 SDK 兼容性</h3>
+<p>使用以下命令快速检查当前 SDK 与机器人系统版本（GBS）是否匹配：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>galbot_sdk<span class="w"> </span>check-version
+</span></code></pre></div>
+<p>常用参数：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># 指定非默认机器人 IP 地址</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--robot-ip<span class="w"> </span>&lt;机器人IP&gt;
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1"># 查看完整兼容性对照</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--list
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="c1"># 离线手工校验</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--sdk-version<span class="w"> </span><span class="m">1</span>.8.0<span class="w"> </span>--robot-version<span class="w"> </span>GBS_1.16.0
+</span></code></pre></div>
+<p>兼容性对照（参考 <code>output/check_robot_compat.py</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>SDK 版本范围</th>
+<th>对应机器人系统版本（GBS）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.5.0 ~ 1.7.99</td>
+<td>GBS_1.15.x</td>
+</tr>
+<tr>
+<td>1.8.0 ~ 1.8.99</td>
+<td>GBS_1.16.x</td>
+</tr>
+</tbody>
+</table>
+<p>如果检查结果不匹配，优先升级机器人系统版本到 SDK 要求范围；只有在必须保持当前机器人版本时，再选择降级 SDK。</p>
+<h3 id="emergency-stop-e-stop-overview">机器人紧急开关（急停按钮）说明</h3>
+<p>急停按钮位于机器人本体背部醒目位置，为红色按钮，标有 <code>EMERGENCY STOP</code> 字样。</p>
+<p><img alt="机器人急停按钮" src="/image/stop.jpg" title="机器人急停按钮" /></p>
+<p>使用方法：</p>
+<ol>
+<li>一旦发现设备异常或人身危险，立即按下急停按钮。</li>
+<li>急停触发后，机器人即刻终止全部运动；设备不断电，仅锁定运动与执行机构。</li>
+<li>急停按钮按下后会自动自锁，需顺时针旋转完成解锁释放。</li>
+<li>解锁复位后，机器人方可重新接收控制指令，恢复正常运动操作。</li>
+</ol>
+<h3 id="onboard-computing-units-hpu-xcu">机器人机载算力单元介绍（HPU + XCU）</h3>
+<p>Galbot G3 的机载计算单元采用双计算单元协同设计，由 HPU（High-Performance Unit）和 XCU（X Computing Unit）共同组成。其中 HPU 主要负责视觉感知、AI 推理、运动规划、导航等高算力任务，XCU 主要负责底层电机控制、关节执行与实时控制任务。该设计遵循高可靠性、实时性与扩展性原则，是理解通信延迟、部署架构和故障排查的基础。</p>
+<table>
+<thead>
+<tr>
+<th>计算单元</th>
+<th>全称</th>
+<th>职责</th>
+<th>典型任务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HPU</strong></td>
+<td>High-Performance Unit</td>
+<td>高算力任务</td>
+<td>视觉感知、AI 推理、运动规划、导航、SLAM</td>
+</tr>
+<tr>
+<td><strong>XCU</strong></td>
+<td>X Computing Unit</td>
+<td>实时控制任务</td>
+<td>底层电机控制、关节执行、实时控制</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>硬件配置：HPU 支持 NVIDIA Jetson AGX Orin（64GB，275 TOPS）和 NVIDIA Jetson AGX Thor（128GB，最高 2070 FP4 TFLOPS）平台，XCU 为实时控制侧处理器。</li>
+<li>系统软件：运行定制化 Linux，集成实时内核补丁，保障运动控制的确定性执行。</li>
+<li>架构注意：HPU 与 XCU 均为 <code>ARM64 (aarch64)</code> 架构，在这两个平台上运行的程序需使用 <code>aarch64</code> 工具链交叉编译。</li>
+</ul>
+<p>为什么拆成两个计算单元？</p>
+<ul>
+<li>实时性隔离：电机控制需要微秒级确定性响应，视觉推理可能一次性占用 GPU 几百毫秒；放在同一计算单元会互相抢占资源，导致关节卡顿甚至整机失控。</li>
+<li>故障隔离：HPU 侧 AI 模型异常时，XCU 仍可维持底层控制与站立姿态，避免单点故障扩散为整机失效。</li>
+<li>扩展性：后续升级算力时可优先替换 HPU 计算模块，XCU 的实时控制逻辑与固件保持稳定，降低硬件迭代成本。</li>
+</ul>
+<h3 id="how-to-access-hpu-and-xcu">如何进入 HPU 与 XCU</h3>
+<p>可通过以下方式获取登录 IP：</p>
+<ol>
+<li>在机器人 <code>Network</code> 界面查看当前无线 IP。</li>
+<li>PC 与机器人有线直连时，使用固定 IP：</li>
+<li>XCU：<code>192.168.1.66</code></li>
+<li>HPU（Orin）：<code>192.168.1.88</code></li>
+</ol>
+<p>由于新版本 XCU 不连接 Wi-Fi，无法通过 XCU 的无线 IP 直接登录。通过 Wi-Fi 远程连接时，请先从 PC 登录 HPU，再从 HPU 登录 XCU：</p>
+<ol>
+<li>从 PC 登录 HPU：</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>ssh<span class="w"> </span>galbot@192.168.xxx.xx
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="c1"># 密码：gb@2023</span>
+</span></code></pre></div>
+<ol>
+<li>在 HPU 上登录 XCU：</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>ssh<span class="w"> </span>root@192.168.1.66
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="c1"># 密码：12345678</span>
+</span></code></pre></div>
+<p>建议先验证 PC 与 HPU 的连通性，再执行 <code>ssh</code> 登录。</p>
+<h3 id="how-to-check-robot-serial-number">如何查看机器 SN 号</h3>
+<p>在 XCU 上执行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>/data/bin/sys_tool
+</span></code></pre></div>
+<p>按工具提示查看设备信息。</p>
+<h3 id="how-to-check-joint-health">如何检查关节是否正常</h3>
+<p>登录 XCU 后进入关节诊断工具，输入 <code>r</code> 看状态。<br />
+<code>No Errors</code> 一般就说明关节正常。若提示急停或关节速度过快相关错误，先复位再测。</p>
+<p><img alt="关节急停错误示例" src="/image/faq_joint_estop_error.png" title="关节急停错误示例" />
+<img alt="关节速度错误示例" src="/image/faq_joint_speed_error.jpeg" title="关节速度错误示例" /></p>
+<h3 id="how-to-enable-real-time-end-effector-control">如何启用末端实时控制指令</h3>
+<p>在 XCU 上把：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>/data/config/default/SingoriX/galbot_g1-v2.2/robot_config.toml
+</span></code></pre></div>
+<p>里的 <code>using_wbc</code> 改成 <code>true</code>，然后重启 <code>launcher</code>。</p>
+<h3 id="where-joint-limits-are-configured">关节限位在哪里配置</h3>
+<p>IK、规划和控制用的是同一套关节限位，来源是 URDF：<code>galbot_one_golf.urdf</code>。<br />
+路径如下：</p>
+<ul>
+<li>XCU：<code>/data/config/galbot_description/galbot_one_golf_description</code></li>
+<li>HPU：<code>/data/galbot/config/galbot_description/galbot_one_golf_description</code></li>
+</ul>
+<h3 id="enable-disable-a-system-service">启用/禁用某个系统服务</h3>
+<p>根据目标服务运行在 HPU 还是 XCU，登录对应平台后编辑：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>/userdata/user_config/mode_service_config_default.toml
+</span></code></pre></div>
+<p>注释或取消注释对应服务项后，在对应平台重启 <code>launcher</code>：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
+</span></code></pre></div>
+<p><img alt="启用或禁用服务配置示例" src="/image/faq_disable_service.png" title="启用或禁用服务配置示例" /></p>
+<h3 id="embosa-ip-config-reset-after-reboot">重启后 embosa IP 配置被改回去</h3>
+<p>在 XCU 和 HPU 上分别把 <code>/data/config/system.cfg</code> 里的 <code>enable_modify_embosa_cfg</code> 设为 <code>false</code>，然后分别重启 <code>launcher</code>。</p>
+<p><img alt="embosa 配置字段示例" src="/image/faq_embosa_cfg.jpeg" title="embosa 配置字段示例" /></p>
+<h2 id="camera-and-calibration-info">相机与标定信息</h2>
+<h3 id="how-to-change-camera-resolution">如何修改相机分辨率</h3>
+<p>在 Orin 上改这几个文件：</p>
+<ul>
+<li><code>/data/galbot/config/right_arm_camera.cfg</code></li>
+<li><code>/data/galbot/config/left_arm_camera.cfg</code></li>
+<li><code>/data/galbot/config/front_head_camera.cfg</code></li>
+</ul>
+<p>改完重启机器就会生效。多传感器同时开的时候，适当降分辨率会稳一些。</p>
+<p><img alt="相机分辨率配置示例 1" src="/image/faq_camera_resolution_1.jpeg" title="相机分辨率配置示例 1" />
+<img alt="相机分辨率配置示例 2" src="/image/faq_camera_resolution_2.jpeg" title="相机分辨率配置示例 2" /></p>
+<h3 id="how-to-check-camera-frame-rate">如何查看相机帧率</h3>
+<p>可以先看 <code>/data/galbot/config/xxx.cfg</code> 里的配置，再用 HPU 上 <code>/data/galbot/bin/embosa_topic_tool</code> 统计话题频率。</p>
+<p><img alt="相机帧率测试命令示例" src="/image/faq_camera_fps_cmd.jpeg" title="相机帧率测试命令示例" />
+<img alt="topic 频率统计示例" src="/image/faq_topic_rate.jpeg" title="topic 频率统计示例" /></p>
+<h3 id="how-to-check-camera-intrinsics-extrinsics-calibration">如何查看相机内外参和标定信息</h3>
+<p>XCU 上直接看文件：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>cat<span class="w"> </span>/userdata/config/robot_config/eyehand_calib.toml
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>cat<span class="w"> </span>/userdata/config/robot_config/stereo_camera_intrinsic.toml
+</span></code></pre></div>
+<p>也可以直接用 SDK 接口读，内参和外参都能拿到。例如获取左臂相机外参：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">transform</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_transform</span><span class="p">(</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>    <span class="n">target_frame</span><span class="o">=</span><span class="s2">&quot;base_link&quot;</span><span class="p">,</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>    <span class="n">source_frame</span><span class="o">=</span><span class="s2">&quot;left_arm_camera_color_optical_frame&quot;</span><span class="p">,</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>或者：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="n">transform</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_sensor_extrinsic</span><span class="p">(</span><span class="n">sensor_id</span><span class="o">=</span><span class="n">SensorType</span><span class="o">.</span><span class="n">LEFT_ARM_CAMERA</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="logs-and-debugging">日志与调试</h2>
+<h3 id="where-low-level-service-logs-are-stored">底层服务日志在哪里</h3>
+<p>底层服务按平台区分：</p>
+<ul>
+<li>HPU：定位、导航、规划、感知等服务。</li>
+<li>XCU：控制、底盘等服务。</li>
+</ul>
+<p>对应日志都在本平台的 <code>/userdata/log/&lt;服务名&gt;/</code> 下，例如：</p>
+<ul>
+<li>HPU：<code>/userdata/log/localization_server/</code>、<code>/userdata/log/service_navigation_plan/</code>、<code>/userdata/log/service_motion_plan/</code>、<code>/userdata/log/Perception_Algorithm_Service/</code></li>
+<li>XCU：<code>/userdata/log/SingoriX/</code>、<code>/userdata/log/galbot_chassis_service/</code>、<code>/userdata/log/service_display/</code>、<code>/userdata/log/mission_manager/</code></li>
+</ul>
+<p>排查时先确认服务跑在哪个平台，再去对应平台查看对应服务目录。</p>
+<h3 id="where-sdk-logs-are-stored">SDK log 在哪里</h3>
+<p>PC 或 Robot 侧运行 SDK 后，日志默认在：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>~/galbot_sdk_log/
+</span></code></pre></div>
+<p>如果在 PC 上看到 <code>get info failed</code> 或 <code>PUBLISH FAIL</code>，优先查两端的 <code>embosa_ip_config.json</code>。</p>
+<h3 id="how-to-enable-and-debug-core-dumps">如何开启 core 文件并调试</h3>
+<p>core 文件通常用来定位服务崩溃。开启 core、设置路径、重新登录 shell 之后，文件一般会落在：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>/userdata/core
+</span></code></pre></div>
+<p>例如 mps 服务可以这样看：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>gdb<span class="w"> </span>/data/galbot/bin/service_motion_plan<span class="w"> </span><span class="o">[</span>core_file<span class="o">]</span>
+</span></code></pre></div>
+<p>进 gdb 后执行 <code>bt -full</code>。</p>
+<p><img alt="core 回溯示例（bt -full）" src="/image/faq_core_bt_full.png" title="core 回溯示例（bt -full）" /></p>
+<h3 id="python-on-robot-cannot-find-module">在 Robot 上执行 Python 找不到 module</h3>
+<p>在 <code>~/.bashrc</code> 里加一行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/data/galbot/lib:<span class="nv">$PYTHONPATH</span>
+</span></code></pre></div>
+<p>重新登录后生效。</p>
+<h3 id="python-example-error-numpy-has-no-typedict">执行 Python 示例报错：<code>numpy</code> 没有 <code>typeDict</code></h3>
+<p>一般是 <code>scipy</code> 版本太低，升级一下：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>scipy
+</span></code></pre></div>
+<h2 id="installation-and-environment">安装与环境</h2>
+<h3 id="how-to-start-sdk-docker">SDK Docker 启动方式</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>gunzip<span class="w"> </span>-c<span class="w"> </span>galbot_sdk_image_1.10.0.tar.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>load
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="nb">cd</span><span class="w"> </span>output/docker
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>./run.sh
+</span></code></pre></div>
+<h3 id="how-to-use-perception-service-gbs-11516">如何使用感知服务（GBS 1.15.16+）</h3>
+<p>在 HPU 上修改：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>/data/galbot/config/galbot_perception_moduleConfig.yaml
+</span></code></pre></div>
+<p>把 <code>sensor_data_sync_max_diff_tolerance</code> 改成 <code>500000</code>（纳秒），重启 <code>launcher</code> 后再跑 <code>examples/g3/python/galbot_perception</code> 下的示例验证。</p>
+<h2 id="still-not-resolved">仍未解决？</h2>
+<p>如果你的问题没有在本文档中列出，可以在 GitHub 提交 issue：<br />
+<a href="https://github.com/GalaxyGeneralRobotics/GalbotSDK/issues">https://github.com/GalaxyGeneralRobotics/GalbotSDK/issues</a></p>
+<p>提交时请标注你的 SDK/机器人版本和具体问题现象，我们会尽快协助恢复；也可以直接联系售后技术支持人员。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023-2026 Galbot. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "toc.integrate", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/language_switch.js"></script>
+      
+        <script src="../javascripts/api_collapse.js"></script>
+      
+        <script src="../javascripts/interactive_toc.js"></script>
+      
+        <script src="../javascripts/search_focus.js"></script>
+      
+        <script src="../javascripts/installation_nav.js"></script>
+      
+    
+  </body>
+</html>

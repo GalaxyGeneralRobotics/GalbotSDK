@@ -1,0 +1,31 @@
+/* Sidebar scroll fix for API pages with many navigation items */
+
+/* Only enable scrolling - keep everything else as original */
+.md-sidebar--primary .md-sidebar__scrollwrap {
+  overflow-y: auto !important;
+  max-height: 100vh !important;
+}
+
+.md-sidebar--secondary .md-sidebar__scrollwrap {
+  overflow-y: auto !important;
+  max-height: 100vh !important;
+}
+
+/* Custom scrollbar for better look */
+.md-sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--md-default-fg-color--lightest) transparent;
+}
+
+.md-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.md-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.md-sidebar::-webkit-scrollbar-thumb {
+  background: var(--md-default-fg-color--lightest);
+  border-radius: 2px;
+}

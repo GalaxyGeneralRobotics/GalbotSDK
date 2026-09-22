@@ -39,6 +39,7 @@
 #include "galbot/aphropm_proto/common_planner_config.pb.h"
 #include "galbot/core_proto/math.pb.h"
 #include "galbot/spatial_proto/pose.pb.h"
+#include "galbot/arbitrator_proto/arbitrator.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_galbot_2faphropm_5fproto_2fmps_5fstatus_2eproto
@@ -851,11 +852,13 @@ class PlannerStatus PROTOBUF_FINAL :
     kSamplePlannerLowerLimitFieldNumber = 17,
     kTaskIdFieldNumber = 1,
     kErrorDespFieldNumber = 4,
+    kCommonStrFieldNumber = 300,
     kIkSolverConfigFieldNumber = 5,
     kMotionPlannerConfigFieldNumber = 6,
     kTrajPlannerPropFieldNumber = 7,
     kSingorixTargetFieldNumber = 9,
     kCollisionResultFieldNumber = 18,
+    kAuthorityTokenFieldNumber = 19,
     kStatusFieldNumber = 2,
     kErrorCodeFieldNumber = 3,
   };
@@ -1051,6 +1054,22 @@ class PlannerStatus PROTOBUF_FINAL :
   std::string* _internal_mutable_error_desp();
   public:
 
+  // string common_str = 300;
+  void clear_common_str();
+  const std::string& common_str() const;
+  void set_common_str(const std::string& value);
+  void set_common_str(std::string&& value);
+  void set_common_str(const char* value);
+  void set_common_str(const char* value, size_t size);
+  std::string* mutable_common_str();
+  std::string* release_common_str();
+  void set_allocated_common_str(std::string* common_str);
+  private:
+  const std::string& _internal_common_str() const;
+  void _internal_set_common_str(const std::string& value);
+  std::string* _internal_mutable_common_str();
+  public:
+
   // .galbot.aphropm_proto.IKSolverConfig ik_solver_config = 5;
   bool has_ik_solver_config() const;
   private:
@@ -1141,6 +1160,24 @@ class PlannerStatus PROTOBUF_FINAL :
       ::galbot::core_proto::Vector* collision_result);
   ::galbot::core_proto::Vector* unsafe_arena_release_collision_result();
 
+  // .galbot.arbitrator_proto.AuthorityToken authority_token = 19;
+  bool has_authority_token() const;
+  private:
+  bool _internal_has_authority_token() const;
+  public:
+  void clear_authority_token();
+  const ::galbot::arbitrator_proto::AuthorityToken& authority_token() const;
+  ::galbot::arbitrator_proto::AuthorityToken* release_authority_token();
+  ::galbot::arbitrator_proto::AuthorityToken* mutable_authority_token();
+  void set_allocated_authority_token(::galbot::arbitrator_proto::AuthorityToken* authority_token);
+  private:
+  const ::galbot::arbitrator_proto::AuthorityToken& _internal_authority_token() const;
+  ::galbot::arbitrator_proto::AuthorityToken* _internal_mutable_authority_token();
+  public:
+  void unsafe_arena_set_allocated_authority_token(
+      ::galbot::arbitrator_proto::AuthorityToken* authority_token);
+  ::galbot::arbitrator_proto::AuthorityToken* unsafe_arena_release_authority_token();
+
   // .galbot.aphropm_proto.PlannerStatus.ServiceStatus status = 2;
   void clear_status();
   ::galbot::aphropm_proto::PlannerStatus_ServiceStatus status() const;
@@ -1209,11 +1246,13 @@ class PlannerStatus PROTOBUF_FINAL :
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> sample_planner_lower_limit_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr task_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_desp_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr common_str_;
   ::galbot::aphropm_proto::IKSolverConfig* ik_solver_config_;
   ::galbot::aphropm_proto::MotionPlannerConfig* motion_planner_config_;
   ::galbot::aphropm_proto::TrajPlannerProp* traj_planner_prop_;
   ::galbot::singorix_proto::SingoriXTarget* singorix_target_;
   ::galbot::core_proto::Vector* collision_result_;
+  ::galbot::arbitrator_proto::AuthorityToken* authority_token_;
   int status_;
   ::PROTOBUF_NAMESPACE_ID::int32 error_code_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2178,6 +2217,144 @@ inline void PlannerStatus::set_allocated_collision_result(::galbot::core_proto::
   }
   collision_result_ = collision_result;
   // @@protoc_insertion_point(field_set_allocated:galbot.aphropm_proto.PlannerStatus.collision_result)
+}
+
+// .galbot.arbitrator_proto.AuthorityToken authority_token = 19;
+inline bool PlannerStatus::_internal_has_authority_token() const {
+  return this != internal_default_instance() && authority_token_ != nullptr;
+}
+inline bool PlannerStatus::has_authority_token() const {
+  return _internal_has_authority_token();
+}
+inline const ::galbot::arbitrator_proto::AuthorityToken& PlannerStatus::_internal_authority_token() const {
+  const ::galbot::arbitrator_proto::AuthorityToken* p = authority_token_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::arbitrator_proto::AuthorityToken&>(
+      ::galbot::arbitrator_proto::_AuthorityToken_default_instance_);
+}
+inline const ::galbot::arbitrator_proto::AuthorityToken& PlannerStatus::authority_token() const {
+  // @@protoc_insertion_point(field_get:galbot.aphropm_proto.PlannerStatus.authority_token)
+  return _internal_authority_token();
+}
+inline void PlannerStatus::unsafe_arena_set_allocated_authority_token(
+    ::galbot::arbitrator_proto::AuthorityToken* authority_token) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token_);
+  }
+  authority_token_ = authority_token;
+  if (authority_token) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.aphropm_proto.PlannerStatus.authority_token)
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* PlannerStatus::release_authority_token() {
+  
+  ::galbot::arbitrator_proto::AuthorityToken* temp = authority_token_;
+  authority_token_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* PlannerStatus::unsafe_arena_release_authority_token() {
+  // @@protoc_insertion_point(field_release:galbot.aphropm_proto.PlannerStatus.authority_token)
+  
+  ::galbot::arbitrator_proto::AuthorityToken* temp = authority_token_;
+  authority_token_ = nullptr;
+  return temp;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* PlannerStatus::_internal_mutable_authority_token() {
+  
+  if (authority_token_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::arbitrator_proto::AuthorityToken>(GetArena());
+    authority_token_ = p;
+  }
+  return authority_token_;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* PlannerStatus::mutable_authority_token() {
+  // @@protoc_insertion_point(field_mutable:galbot.aphropm_proto.PlannerStatus.authority_token)
+  return _internal_mutable_authority_token();
+}
+inline void PlannerStatus::set_allocated_authority_token(::galbot::arbitrator_proto::AuthorityToken* authority_token) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token_);
+  }
+  if (authority_token) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token)->GetArena();
+    if (message_arena != submessage_arena) {
+      authority_token = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, authority_token, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  authority_token_ = authority_token;
+  // @@protoc_insertion_point(field_set_allocated:galbot.aphropm_proto.PlannerStatus.authority_token)
+}
+
+// string common_str = 300;
+inline void PlannerStatus::clear_common_str() {
+  common_str_.ClearToEmpty();
+}
+inline const std::string& PlannerStatus::common_str() const {
+  // @@protoc_insertion_point(field_get:galbot.aphropm_proto.PlannerStatus.common_str)
+  return _internal_common_str();
+}
+inline void PlannerStatus::set_common_str(const std::string& value) {
+  _internal_set_common_str(value);
+  // @@protoc_insertion_point(field_set:galbot.aphropm_proto.PlannerStatus.common_str)
+}
+inline std::string* PlannerStatus::mutable_common_str() {
+  // @@protoc_insertion_point(field_mutable:galbot.aphropm_proto.PlannerStatus.common_str)
+  return _internal_mutable_common_str();
+}
+inline const std::string& PlannerStatus::_internal_common_str() const {
+  return common_str_.Get();
+}
+inline void PlannerStatus::_internal_set_common_str(const std::string& value) {
+  
+  common_str_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void PlannerStatus::set_common_str(std::string&& value) {
+  
+  common_str_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.aphropm_proto.PlannerStatus.common_str)
+}
+inline void PlannerStatus::set_common_str(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  common_str_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.aphropm_proto.PlannerStatus.common_str)
+}
+inline void PlannerStatus::set_common_str(const char* value,
+    size_t size) {
+  
+  common_str_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.aphropm_proto.PlannerStatus.common_str)
+}
+inline std::string* PlannerStatus::_internal_mutable_common_str() {
+  
+  return common_str_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* PlannerStatus::release_common_str() {
+  // @@protoc_insertion_point(field_release:galbot.aphropm_proto.PlannerStatus.common_str)
+  return common_str_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void PlannerStatus::set_allocated_common_str(std::string* common_str) {
+  if (common_str != nullptr) {
+    
+  } else {
+    
+  }
+  common_str_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), common_str,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.aphropm_proto.PlannerStatus.common_str)
 }
 
 #ifdef __GNUC__

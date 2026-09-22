@@ -48,13 +48,13 @@ int main() {
 
     std::string reference_frame = "base_link";
     std::string target_frame = "EndEffector";
-    std::string target_chain = "right_arm";
+    std::string target_chain = "left_arm";
     auto custom_param = std::make_shared<Parameter>();
 
     // --- Scenario 1: Get end-effector pose (basic version) ---
     try {
         std::cout << ">> Scenario 1: Getting the basic end-effector pose..." << std::endl;
-        std::string end_ee_link = "right_arm_end_effector_mount_link";
+        std::string end_ee_link = "left_arm_end_effector_mount_link";
 
         auto res = planner.get_end_effector_pose(end_ee_link, reference_frame);
         
@@ -92,7 +92,7 @@ int main() {
     try {
         std::cout << ">> Scenario 3: Setting end-effector pose..." << std::endl;
         
-        std::string ee_frame = "right_arm"; 
+        std::string ee_frame = "left_arm"; 
         std::vector<double> target_pose = chain_pose_baselink[ee_frame];
 
         MotionStatus status = planner.set_end_effector_pose(
@@ -117,7 +117,7 @@ int main() {
     // --- Scenario 4: Get end-effector pose again after execution ---
     try {
         std::cout << ">> Scenario 4: Getting the basic end-effector pose..." << std::endl;
-        std::string end_ee_link = "right_arm_end_effector_mount_link";
+        std::string end_ee_link = "left_arm_end_effector_mount_link";
 
         auto res = planner.get_end_effector_pose(end_ee_link, reference_frame);
         

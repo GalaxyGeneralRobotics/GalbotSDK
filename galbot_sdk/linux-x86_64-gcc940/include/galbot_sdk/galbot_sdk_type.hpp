@@ -26,11 +26,14 @@
 #pragma once
 
 #include <array>
+#include <cstddef>
 #include <cstdint>
+#include <functional>
 #include <memory>
 #include <optional>
 #include <string>
 #include <unordered_map>
+#include <variant>
 #include <vector>
 
 #include <opencv2/opencv.hpp>
@@ -144,11 +147,66 @@ struct S1JointGroup {
                                                                       `Wheel_4_direction_joint`, `Wheel_4_drive_joint`.
                                                                       Typical use: chassis state grouping; base motion
                                                                       should use base APIs. */
-  static inline constexpr Name LEFT_CAMERA = "left_camera"; /**< Camera mount group placeholder (no active body joints).
-                                                               Typical use: semantic grouping for sensor-side logic. */
-  static inline constexpr Name RIGHT_CAMERA =
-      "right_camera"; /**< Camera mount group placeholder (no active body joints).
-                         Typical use: semantic grouping for sensor-side logic. */
+};
+
+/**
+ * @brief Galbot G3 joint-group names.
+ *
+ * G3 currently mirrors G1's joint layout exactly. Kept as a separate struct so
+ * future G3-specific divergences (e.g. different camera groups) can land here
+ * without touching G1.
+ *
+ * A "joint group" is the SDK's primary control/planning unit, not a single joint:
+ * - Kinematic-consistent control: commands are validated and executed per chain/end-effector group.
+ * - Deterministic command ordering: `joint_groups` are expanded to concrete `joint_names` in group order.
+ * - Group-level behavior: each group has its own active/passive attribute and execution tolerance.
+ *
+ * Recommended usage:
+ * - Use constants in this struct when filling API parameters such as `joint_groups`.
+ * - If exact joint names are needed, query them at runtime via
+ *   `get_joint_names(true, {group_name})` instead of hard-coding.
+ * - In APIs that accept both `joint_groups` and `joint_names`, `joint_names` takes precedence.
+ */
+struct G3JointGroup {
+  using Name = const char*;
+  static inline constexpr Name HEAD = "head";           /**< Head chain. Default joints:
+                                                            `head_joint1`, `head_joint2`. Typical use: gaze/camera orientation. */
+  static inline constexpr Name LEFT_ARM = "left_arm";   /**< Left 7-DoF arm chain. Default joints:
+                                                            `left_arm_joint1` ... `left_arm_joint7`.
+                                                            Typical use: left-arm reaching/manipulation. */
+  static inline constexpr Name RIGHT_ARM = "right_arm"; /**< Right 7-DoF arm chain. Default joints:
+                                                            `right_arm_joint1` ... `right_arm_joint7`.
+                                                            Typical use: right-arm reaching/manipulation. */
+  static inline constexpr Name LEFT_GRIPPER =
+      "left_gripper"; /**< Left gripper chain. Default joint:
+                          `left_gripper_joint1`.
+                          Typical use: left gripper open/close and grasp width. */
+  static inline constexpr Name RIGHT_GRIPPER =
+      "right_gripper";                      /**< Right gripper chain. Default joint:
+                                                `right_gripper_joint1`.
+                                                Typical use: right gripper open/close and grasp width. */
+  static inline constexpr Name LEG = "leg"; /**< Leg chain. Default joints:
+                                                `leg_joint1` ... `leg_joint5`.
+                                                Typical use: lower-body posture/locomotion-related body control. */
+  static inline constexpr Name CHASSIS =
+      "chassis"; /**< Chassis mechanism group (passive in joint-position control).
+                     Default joints: `chassis_joint1` ... `chassis_joint4`.
+                     Typical use: chassis state grouping; base motion should use base APIs. */
+  static inline constexpr Name LEFT_SUCTION_CUP = "left_suction_cup"; /**< Left suction-cup end-effector group.
+                                                                          Default joint: `left_suction_cup_joint1`.
+                                                                          Typical use: vacuum pick/place on left arm. */
+  static inline constexpr Name RIGHT_SUCTION_CUP =
+      "right_suction_cup"; /**< Right suction-cup end-effector group.
+                               Default joint: `right_suction_cup_joint1`.
+                               Typical use: vacuum pick/place on right arm. */
+  static inline constexpr Name LEFT_DEXHAND =
+      "left_dexhand"; /**< Left dexterous hand group. Default joints:
+                          `left_dexhand_joint1` ... `left_dexhand_joint6`.
+                          Typical use: multi-finger dexterous manipulation (left). */
+  static inline constexpr Name RIGHT_DEXHAND =
+      "right_dexhand"; /**< Right dexterous hand group. Default joints:
+                           `right_dexhand_joint1` ... `right_dexhand_joint6`.
+                           Typical use: multi-finger dexterous manipulation (right). */
 };
 
 /// @brief Sensor type enumeration describing various sensors on the robot
@@ -156,50 +214,58 @@ struct S1JointGroup {
 /// Identifies different sensor types available on the robot for perception,
 /// localization, and manipulation tasks.
 ///
-/// @robot G1 S1
+/// @robot G1 S1 G3
 enum class SensorType {
   /// @brief Head left camera, typically RGB camera for stereo vision
-  /// @robot G1 S1
+  /// @robot G1 S1 G3
   HEAD_LEFT_CAMERA,
 
   /// @brief Head right camera, typically RGB camera for stereo vision
-  /// @robot G1 S1
+  /// @robot G1 S1 G3
   HEAD_RIGHT_CAMERA,
 
   /// @brief Left arm camera, mounted on left manipulator for visual servoing
-  /// @robot G1 S1
+  /// @robot G1 S1 G3
   LEFT_ARM_CAMERA,
 
   /// @brief Right arm camera, mounted on right manipulator for visual servoing
-  /// @robot G1 S1
+  /// @robot G1 S1 G3
   RIGHT_ARM_CAMERA,
 
-  /// @brief Left arm depth camera, provides RGB-D data for left arm workspace
+  /// @brief Left down arm camera，only used for the tobot which has two cameras on the arm
+  /// @robot G3
+  LEFT_ARM_DOWN_CAMERA,
+
+  /// @brief Right down arm camera，only used for the tobot which has two cameras on the arm
+  /// @robot G3
+  RIGHT_ARM_DOWN_CAMERA,
+
+  /// @brief Left arm depth camera, provides RGB-D data for the G1/S1 left arm workspace
   /// @robot G1 S1
   LEFT_ARM_DEPTH_CAMERA,
 
-  /// @brief Right arm depth camera, provides RGB-D data for right arm workspace
+  /// @brief Right arm depth camera, provides RGB-D data for the G1/S1 right arm workspace
   /// @robot G1 S1
   RIGHT_ARM_DEPTH_CAMERA,
 
   /// @brief Left arm infrared camera 1, provides infrared data for left arm workspace
-  /// @robot G1 S1
+  /// @robot G1 S1 G3
   LEFT_ARM_INFRA_CAMERA_1,
 
   /// @brief Left arm infrared camera 2, provides infrared data for left arm workspace
-  /// @robot G1 S1
+  /// @robot G1 S1 G3
   LEFT_ARM_INFRA_CAMERA_2,
 
   /// @brief Right arm infrared camera 1, provides infrared data for right arm workspace
-  /// @robot G1 S1
+  /// @robot G1 S1 G3
   RIGHT_ARM_INFRA_CAMERA_1,
 
   /// @brief Right arm infrared camera 2, provides infrared data for right arm workspace
-  /// @robot G1 S1
+  /// @robot G1 S1 G3
   RIGHT_ARM_INFRA_CAMERA_2,
 
-  /// @brief G1 Base LiDAR
-  /// @robot G1
+  /// @brief G1/G3 Base LiDAR
+  /// @robot G1 G3
   BASE_LIDAR,
 
   /// @brief S1 Head LiDAR (front), mounted on head for forward perception
@@ -223,45 +289,45 @@ enum class SensorType {
   BACK_IMU,
 
   /// @brief Chassis IMU (Inertial Measurement Unit)
-  /// @robot G1 S1
+  /// @robot G1 S1 G3
   CHASSIS_IMU,
 
-  /// @brief G1 Torso IMU (Inertial Measurement Unit), measures acceleration and angular velocity
-  /// @robot G1
+  /// @brief G1/G3 Torso IMU (Inertial Measurement Unit), measures acceleration and angular velocity
+  /// @robot G1 G3
   TORSO_IMU,
 
-  /// @brief G1 LiDAR IMU (Inertial Measurement Unit)
-  /// @robot G1
+  /// @brief G1/G3 LiDAR IMU (Inertial Measurement Unit)
+  /// @robot G1 G3
   LIDAR_IMU,
 
   /// @brief Base ultrasonic sensor array, for proximity detection and collision avoidance
-  /// @robot G1
+  /// @robot G1 G3
   BASE_ULTRASONIC,
 
-  /// @brief G1 left-front surround color camera
-  /// @robot G1
+  /// @brief G1/G3 left-front surround color camera
+  /// @robot G1 G3
   LEFT_FRONT_SURROUND_CAMERA,
 
-  /// @brief G1 right-front surround color camera
-  /// @robot G1
+  /// @brief G1/G3 right-front surround color camera
+  /// @robot G1 G3
   RIGHT_FRONT_SURROUND_CAMERA,
 
-  /// @brief G1 left-rear surround color camera
-  /// @robot G1
+  /// @brief G1/G3 left-rear surround color camera
+  /// @robot G1 G3
   LEFT_REAR_SURROUND_CAMERA,
 
-  /// @brief G1 right-rear surround color camera
-  /// @robot G1
+  /// @brief G1/G3 right-rear surround color camera
+  /// @robot G1 G3
   RIGHT_REAR_SURROUND_CAMERA,
 
   /// @brief Total number of sensor enumerations (for boundary checking or array sizing)
-  /// @robot G1 S1
+  /// @robot G1 S1 G3
   SENSOR_NUM
 };
 
 /**
  * @brief Chassis ultrasonic sensor probe enumeration (8 directions)
- * @robot G1
+ * @robot G1 G3
  *
  * Identifies individual ultrasonic sensors arranged around the mobile base chassis
  * for omnidirectional obstacle detection and proximity sensing.
@@ -290,24 +356,32 @@ enum class UltrasonicType {
  */
 enum class MachineType {
   G1, /**< Galbot G1 humanoid robot platform */
-  S1  /**< Galbot S1 humanoid robot platform */
+  S1, /**< Galbot S1 humanoid robot platform */
+  G3  /**< Galbot G3 humanoid robot platform */
 };
 
 /**
- * @brief Dexterous hand model type.
- *
+ * @brief Dexterous hand model type
+ * 
  * The SDK uses this enumeration to route dexhand commands and state queries to
- * the correct implementation. Inspire and BrainCo dexhands share the standard
- * joint command/state path. Sharpa dexhands use a dedicated 22-joint topic
- * interface; full state is returned in DexhandState (including force sensors).
- * Linker Hand L20 uses a dedicated 16-joint path keyed by the dexhand group;
- * like Sharpa, its joint commands and feedback are in radians.
+ * the correct implementation. Inspire-series and BrainCo dexhands share the
+ * standard joint command/state path. Sharpa dexhands use a dedicated 22-joint
+ * topic interface; full state is returned in DexhandState (including force
+ * sensors). Linker Hand L20 uses a dedicated 16-joint path keyed by the
+ * dexhand group; like Sharpa, its joint commands and feedback are in radians.
+ *
+ * INSPIRE is kept as a compatibility alias for historical callers and is
+ * treated the same as INSPIRE_RH56F2 in the current implementation.
+ *
+ * @robot G1 G3
  */
 enum class DexHandType {
-  INSPIRE,    /**< Inspire dexterous hand */
-  BRAINCO,    /**< BrainCo dexterous hand */
-  SHARPA,     /**< Sharpa dexterous hand */
-  LINKER_L20  /**< Linker Hand L20 dexterous hand */
+  INSPIRE,          /**< Compatibility alias, implemented as INSPIRE_RH56F2 */
+  INSPIRE_RH56DFX,  /**< Inspire RH56DFX dexterous hand */
+  INSPIRE_RH56F2,   /**< Inspire RH56F2 dexterous hand */
+  BRAINCO,          /**< BrainCo dexterous hand */
+  SHARPA,           /**< Sharpa dexterous hand */
+  LINKER_L20        /**< Linker Hand L20 dexterous hand */
 };
 
 /**
@@ -482,7 +556,7 @@ enum class TrajectoryControlStatus {
  * Identifies force/torque sensors mounted at the robot's wrist joints for
  * force-controlled manipulation and contact detection.
  *
- * @robot G1
+ * @robot G1 G3
  */
 enum class GalbotOneFoxtrotSensor {
   LEFT_WRIST_FORCE,  /**< Left wrist force/torque sensor, typically 6-axis (3 forces + 3 torques) */
@@ -491,51 +565,453 @@ enum class GalbotOneFoxtrotSensor {
 };
 
 /**
- * @brief String constants for G1 controller names
+ * @brief Controller-name constants for the G1 robot
  *
- * Defines the controller names supported by the G1 robot model.
+ * Pass these names to GalbotRobot controller-management APIs such as
+ * switch_controller() and acquire_controller(). A controller selects how one
+ * hardware group interprets subsequent targets; controllers registered for the
+ * same group are mutually exclusive. Switching a controller does not itself
+ * command motion.
+ *
+ * Controller availability depends on the robot model, installed end tool, and
+ * the server-side SingoriX configuration. A successful switch confirms that the
+ * selected controller is available on the connected robot.
  */
 struct G1ControllerName {
   using Name = const char*;
-  static inline constexpr Name CHASSIS_POSE_CTRL = "chassis_pose_ctrl";       /**< Chassis pose controller */
-  static inline constexpr Name CHASSIS_TWIST_CTRL = "chassis_twist_ctrl";     /**< Chassis twist controller */
-  static inline constexpr Name LEG_PVT_BYPASS_CTRL = "leg_pvt_bypass_ctrl";   /**< Leg PVT bypass controller */
-  static inline constexpr Name LEG_PVT_CTRL = "leg_pvt_ctrl";                 /**< Leg PVT controller */
-  static inline constexpr Name HEAD_PVT_BYPASS_CTRL = "head_pvt_bypass_ctrl"; /**< Head PVT bypass controller */
-  static inline constexpr Name HEAD_PVT_CTRL = "head_pvt_ctrl";               /**< Head PVT controller */
+
+  /**
+   * @brief Closed-loop chassis pose and path controller
+   *
+   * Tracks planar position/orientation targets or paths using localization or
+   * odometry feedback, generates limited chassis velocity commands, and reports
+   * goal completion. Use this controller for navigation and pose goals. Unlike
+   * CHASSIS_TWIST_CTRL, it performs pose/path tracking and arrival checks.
+   */
+  static inline constexpr Name CHASSIS_POSE_CTRL = "chassis_pose_ctrl";
+
+  /**
+   * @brief Direct chassis velocity controller
+   *
+   * Tracks planar velocity commands [vx, vy, wz] with configured filtering and
+   * velocity/acceleration limits. Use this controller for continuous velocity
+   * control such as teleoperation. It does not track a destination or determine
+   * whether a pose goal has been reached.
+   */
+  static inline constexpr Name CHASSIS_TWIST_CTRL = "chassis_twist_ctrl";
+
+  /**
+   * @brief Buffered streaming position-trajectory controller for the leg
+   *
+   * Streams leg joint-position points through the MCU trajectory queue with
+   * interpolation, lookahead, refill, and optional joint-position limiting.
+   * Use it for high-rate online or precomputed position streams. "Bypass"
+   * identifies this trajectory data path; it does not bypass controller
+   * ownership or hardware safety. Unlike LEG_PVT_CTRL, it does not publish the
+   * regular position/velocity/effort command tuple on every control cycle.
+   */
+  static inline constexpr Name LEG_PVT_BYPASS_CTRL = "leg_pvt_bypass_ctrl";
+
+  /**
+   * @brief Regular joint PVT controller for the leg
+   *
+   * Publishes sampled leg joint position, velocity, and effort commands every
+   * control cycle using the configured PID, filters, and limits. Use it for
+   * explicit leg joint targets and ordinary planned joint trajectories. Unlike
+   * LEG_HEIGHT_CTRL, its primary target is joint motion rather than body height.
+   */
+  static inline constexpr Name LEG_PVT_CTRL = "leg_pvt_ctrl";
+
+  /**
+   * @brief Task-space body-height controller using the leg mechanism
+   *
+   * Accepts a vertical height target for a configured body link, solves a
+   * coordinated posture for the first three leg joints, and generates a
+   * bounded-jerk joint trajectory. The remaining leg joints can retain
+   * independent joint targets. Use it to raise or lower the body by height;
+   * use LEG_PVT_CTRL when explicit leg joint positions are required.
+   */
+  static inline constexpr Name LEG_HEIGHT_CTRL = "leg_height_ctrl";
+
+  /**
+   * @brief Buffered streaming position-trajectory controller for the head
+   *
+   * Streams head joint-position points through the MCU trajectory queue with
+   * interpolation, lookahead, refill, and optional joint-position limiting.
+   * It is the head counterpart of LEG_PVT_BYPASS_CTRL and is intended for
+   * high-rate position streams rather than regular per-cycle PVT commands.
+   */
+  static inline constexpr Name HEAD_PVT_BYPASS_CTRL = "head_pvt_bypass_ctrl";
+
+  /**
+   * @brief Regular joint PVT controller for the head
+   *
+   * Publishes sampled head joint position, velocity, and effort commands every
+   * control cycle using configured PID, filters, and limits. Use it for normal
+   * head positioning and planned head trajectories.
+   */
+  static inline constexpr Name HEAD_PVT_CTRL = "head_pvt_ctrl";
+
+  /**
+   * @brief Buffered streaming position-trajectory controller for the left arm
+   *
+   * Streams left-arm joint-position points through the MCU trajectory queue
+   * with interpolation, lookahead, refill, and optional joint-position
+   * limiting. Use it for high-rate online or precomputed position streams; use
+   * LEFT_ARM_PVT_CTRL for regular position/velocity/effort trajectories.
+   */
   static inline constexpr Name LEFT_ARM_PVT_BYPASS_CTRL =
-      "left_arm_pvt_bypass_ctrl";                                       /**< Left arm PVT bypass controller */
-  static inline constexpr Name LEFT_ARM_PVT_CTRL = "left_arm_pvt_ctrl"; /**< Left arm PVT controller */
+      "left_arm_pvt_bypass_ctrl";
+
+  /**
+   * @brief Regular joint PVT controller for the left arm
+   *
+   * Publishes sampled left-arm joint position, velocity, and effort commands
+   * every control cycle using configured PID, filters, and limits. This is the
+   * standard controller for ordinary joint-space and planned arm motion.
+   */
+  static inline constexpr Name LEFT_ARM_PVT_CTRL = "left_arm_pvt_ctrl";
+
+  /**
+   * @brief Buffered streaming position-trajectory controller for the right arm
+   *
+   * Streams right-arm joint-position points through the MCU trajectory queue
+   * with interpolation, lookahead, refill, and optional joint-position
+   * limiting. Use it for high-rate online or precomputed position streams; use
+   * RIGHT_ARM_PVT_CTRL for regular position/velocity/effort trajectories.
+   */
   static inline constexpr Name RIGHT_ARM_PVT_BYPASS_CTRL =
-      "right_arm_pvt_bypass_ctrl";                                        /**< Right arm PVT bypass controller */
-  static inline constexpr Name RIGHT_ARM_PVT_CTRL = "right_arm_pvt_ctrl"; /**< Right arm PVT controller */
-  static inline constexpr Name LEFT_GRIPPER_CTRL = "left_gripper_ctrl";   /**< Left gripper controller */
-  static inline constexpr Name RIGHT_GRIPPER_CTRL = "right_gripper_ctrl"; /**< Right gripper controller */
-  static inline constexpr Name LEFT_DEXHAND_CTRL = "left_dexhand_ctrl";   /**< Left dexhand controller */
-  static inline constexpr Name RIGHT_DEXHAND_CTRL = "right_dexhand_ctrl"; /**< Right dexhand controller */
+      "right_arm_pvt_bypass_ctrl";
+
+  /**
+   * @brief Regular joint PVT controller for the right arm
+   *
+   * Publishes sampled right-arm joint position, velocity, and effort commands
+   * every control cycle using configured PID, filters, and limits. This is the
+   * standard controller for ordinary joint-space and planned arm motion.
+   */
+  static inline constexpr Name RIGHT_ARM_PVT_CTRL = "right_arm_pvt_ctrl";
+
+  /**
+   * @brief Left gripper opening controller
+   *
+   * Sends the left gripper position/opening command together with optional
+   * velocity and effort parameters, applying the configured hardware mode and
+   * unit conversion. It controls a gripper as one end-tool action, unlike
+   * LEFT_DEXHAND_CTRL, which controls multiple finger axes.
+   */
+  static inline constexpr Name LEFT_GRIPPER_CTRL = "left_gripper_ctrl";
+
+  /**
+   * @brief Right gripper opening controller
+   *
+   * Sends the right gripper position/opening command together with optional
+   * velocity and effort parameters, applying the configured hardware mode and
+   * unit conversion. It controls a gripper as one end-tool action, unlike
+   * RIGHT_DEXHAND_CTRL, which controls multiple finger axes.
+   */
+  static inline constexpr Name RIGHT_GRIPPER_CTRL = "right_gripper_ctrl";
+
+  /**
+   * @brief Multi-axis left dexterous-hand controller
+   *
+   * Converts logical left-hand joint positions to the installed hand's raw
+   * gesture layout and sends a multi-axis finger command. Joint count, mapping,
+   * range, and unit conversion depend on the configured dexterous-hand model.
+   * Use LEFT_GRIPPER_CTRL instead for a simple gripper opening command.
+   */
+  static inline constexpr Name LEFT_DEXHAND_CTRL = "left_dexhand_ctrl";
+
+  /**
+   * @brief Multi-axis right dexterous-hand controller
+   *
+   * Converts logical right-hand joint positions to the installed hand's raw
+   * gesture layout and sends a multi-axis finger command. Joint count, mapping,
+   * range, and unit conversion depend on the configured dexterous-hand model.
+   * Use RIGHT_GRIPPER_CTRL instead for a simple gripper opening command.
+   */
+  static inline constexpr Name RIGHT_DEXHAND_CTRL = "right_dexhand_ctrl";
+
+  /**
+   * @brief Sentinel indicating that no valid controller name is available
+   *
+   * This value may be returned when the SDK has no known active controller for
+   * a group. It is not a controller and must not be passed as a switch target.
+   */
   static inline constexpr Name CONTROLLER_NAME_NUM =
-      "CONTROLLER_NAME_NUM"; /**< Sentinel value for invalid controller name */
+      "CONTROLLER_NAME_NUM";
 };
 
 /**
- * @brief String constants for S1 controller names
+ * @brief Controller-name constants for the S1 robot
  *
- * Defines the controller names supported by the S1 robot model.
+ * Pass these names to GalbotRobot controller-management APIs such as
+ * switch_controller() and acquire_controller(). A controller selects how one
+ * hardware group interprets subsequent targets; controllers registered for the
+ * same group are mutually exclusive. Switching a controller does not itself
+ * command motion.
+ *
+ * Controller availability depends on the robot version, installed end tool,
+ * and the server-side SingoriX configuration. A successful switch confirms
+ * that the selected controller is available on the connected robot.
  */
 struct S1ControllerName {
   using Name = const char*;
+
+  /**
+   * @brief Closed-loop pose and path controller for the swerve chassis
+   *
+   * Tracks planar position/orientation targets or paths using localization or
+   * odometry feedback, converts the resulting chassis motion into steering
+   * angles and wheel speeds, and reports goal completion. Use this controller
+   * for navigation and pose goals. Unlike SWERVE_CHASSIS_TWIST_CTRL, it
+   * performs pose/path tracking and arrival checks.
+   */
   static inline constexpr Name SWERVE_CHASSIS_POSE_CTRL =
-      "swerve_chassis_pose_ctrl"; /**< Swerve chassis pose controller */
+      "swerve_chassis_pose_ctrl";
+
+  /**
+   * @brief Direct velocity controller for the swerve chassis
+   *
+   * Tracks planar velocity commands [vx, vy, wz] with configured filtering and
+   * velocity/acceleration limits, then performs swerve-drive kinematics. Use it
+   * for continuous velocity control such as teleoperation. It does not track a
+   * destination or determine whether a pose goal has been reached.
+   */
   static inline constexpr Name SWERVE_CHASSIS_TWIST_CTRL =
-      "swerve_chassis_twist_ctrl";                                        /**< Swerve chassis twist controller */
-  static inline constexpr Name ELEVATOR_CTRL = "elevator_ctrl";           /**< Elevator controller */
-  static inline constexpr Name HEAD_PVT_CTRL = "head_pvt_ctrl";           /**< Head PVT controller */
-  static inline constexpr Name LEFT_ARM_PVT_CTRL = "left_arm_pvt_ctrl";   /**< Left arm PVT controller */
-  static inline constexpr Name RIGHT_ARM_PVT_CTRL = "right_arm_pvt_ctrl"; /**< Right arm PVT controller */
-  static inline constexpr Name LEFT_GRIPPER_CTRL = "left_gripper_ctrl";   /**< Left gripper controller */
-  static inline constexpr Name RIGHT_GRIPPER_CTRL = "right_gripper_ctrl"; /**< Right gripper controller */
-  static inline constexpr Name LEFT_CAMERA_CTRL = "left_camera_ctrl";     /**< Left camera controller */
-  static inline constexpr Name RIGHT_CAMERA_CTRL = "right_camera_ctrl";   /**< Right camera controller */
+      "swerve_chassis_twist_ctrl";
+
+  /**
+   * @brief Position controller for the S1 torso elevator
+   *
+   * Reads the torso lift-joint position target, applies command filtering, and
+   * sends the resulting height command to the S1 chassis/elevator interface.
+   * Use it to raise or lower the upper body; it is not a leg or chassis-motion
+   * controller.
+   */
+  static inline constexpr Name ELEVATOR_CTRL = "elevator_ctrl";
+
+  /**
+   * @brief Regular joint PVT controller for the head
+   *
+   * Publishes sampled head joint position, velocity, and effort commands every
+   * control cycle using the configured PID, filters, and limits. Use it for
+   * normal head positioning and planned head trajectories.
+   */
+  static inline constexpr Name HEAD_PVT_CTRL = "head_pvt_ctrl";
+
+  /**
+   * @brief EtherCAT joint PVT controller for the left arm
+   *
+   * Sends sampled seven-axis left-arm position, velocity, and effort commands
+   * to the S1 EtherCAT arm interface using configured PID, filtering, dynamics,
+   * and joint limits. This is the standard controller for planned arm motion.
+   */
+  static inline constexpr Name LEFT_ARM_PVT_CTRL = "left_arm_pvt_ctrl";
+
+  /**
+   * @brief EtherCAT joint PVT controller for the right arm
+   *
+   * Sends sampled seven-axis right-arm position, velocity, and effort commands
+   * to the S1 EtherCAT arm interface using configured PID, filtering, dynamics,
+   * and joint limits. This is the standard controller for planned arm motion.
+   */
+  static inline constexpr Name RIGHT_ARM_PVT_CTRL = "right_arm_pvt_ctrl";
+
+  /**
+   * @brief Left gripper opening controller
+   *
+   * Sends the left gripper position/opening command together with velocity and
+   * effort parameters through the S1 EtherCAT interface. It controls a simple
+   * gripper as one end-tool action; other installed end tools use their own
+   * server-side controller names.
+   */
+  static inline constexpr Name LEFT_GRIPPER_CTRL = "left_gripper_ctrl";
+
+  /**
+   * @brief Right gripper opening controller
+   *
+   * Sends the right gripper position/opening command together with velocity and
+   * effort parameters through the S1 EtherCAT interface. It controls a simple
+   * gripper as one end-tool action; other installed end tools use their own
+   * server-side controller names.
+   */
+  static inline constexpr Name RIGHT_GRIPPER_CTRL = "right_gripper_ctrl";
+};
+
+/**
+ * @brief Controller-name constants for the G3 robot
+ *
+ * Pass these names to GalbotRobot controller-management APIs such as
+ * switch_controller() and acquire_controller(). A controller selects how one
+ * hardware group interprets subsequent targets; controllers registered for the
+ * same group are mutually exclusive. Switching a controller does not itself
+ * command motion.
+ *
+ * The constants are client-side compatibility names, not a guarantee that
+ * every controller is registered by every G3 server configuration. The server
+ * may also expose additional controllers. A successful switch confirms that
+ * the selected controller is available on the connected robot.
+ */
+struct G3ControllerName {
+  using Name = const char*;
+
+  /**
+   * @brief Closed-loop chassis pose and path controller
+   *
+   * Tracks planar position/orientation targets or paths using localization or
+   * odometry feedback, generates limited chassis velocity commands, and reports
+   * goal completion. Use this controller for navigation and pose goals. Unlike
+   * CHASSIS_TWIST_CTRL, it performs pose/path tracking and arrival checks.
+   */
+  static inline constexpr Name CHASSIS_POSE_CTRL = "chassis_pose_ctrl";
+
+  /**
+   * @brief Direct chassis velocity controller
+   *
+   * Tracks planar velocity commands [vx, vy, wz] with configured filtering and
+   * velocity/acceleration limits. Use this controller for continuous velocity
+   * control such as teleoperation. It does not track a destination or determine
+   * whether a pose goal has been reached.
+   */
+  static inline constexpr Name CHASSIS_TWIST_CTRL = "chassis_twist_ctrl";
+
+  /**
+   * @brief Compatibility name for buffered leg position-trajectory streaming
+   *
+   * When registered by the connected server, streams leg joint-position points
+   * through the MCU trajectory queue with interpolation, lookahead, refill, and
+   * optional joint-position limiting. "Bypass" identifies the trajectory data
+   * path; it does not bypass controller ownership or hardware safety. Check the
+   * switch result because standard G3 configurations may omit this controller.
+   */
+  static inline constexpr Name LEG_PVT_BYPASS_CTRL = "leg_pvt_bypass_ctrl";
+
+  /**
+   * @brief Regular joint PVT controller for the leg
+   *
+   * Publishes sampled leg joint position, velocity, and effort commands every
+   * control cycle using the configured PID, filters, and limits. Use it for
+   * explicit leg joint targets and ordinary planned joint trajectories.
+   */
+  static inline constexpr Name LEG_PVT_CTRL = "leg_pvt_ctrl";
+
+  /**
+   * @brief Task-space body-height controller using the leg mechanism
+   *
+   * Accepts a vertical height target for a configured body link and generates
+   * a coordinated bounded-jerk leg trajectory. Use it to raise or lower the
+   * body by height; use LEG_PVT_CTRL for explicit leg joint positions.
+   */
+  static inline constexpr Name LEG_HEIGHT_CTRL = "leg_height_ctrl";
+
+  /**
+   * @brief Compatibility name for buffered head position-trajectory streaming
+   *
+   * When registered by the connected server, streams head joint-position
+   * points through the MCU trajectory queue with interpolation, lookahead,
+   * refill, and optional joint-position limiting. Check the switch result
+   * because standard G3 configurations may omit this controller.
+   */
+  static inline constexpr Name HEAD_PVT_BYPASS_CTRL = "head_pvt_bypass_ctrl";
+
+  /**
+   * @brief Regular joint PVT controller for the head
+   *
+   * Publishes sampled head joint position, velocity, and effort commands every
+   * control cycle using configured PID, filters, and limits. Use it for normal
+   * head positioning and planned head trajectories.
+   */
+  static inline constexpr Name HEAD_PVT_CTRL = "head_pvt_ctrl";
+
+  /**
+   * @brief Compatibility name for buffered left-arm position streaming
+   *
+   * When registered by the connected server, streams left-arm joint-position
+   * points through the MCU trajectory queue with interpolation, lookahead,
+   * refill, and optional joint-position limiting. Check the switch result;
+   * standard G3 configurations may provide only LEFT_ARM_PVT_CTRL.
+   */
+  static inline constexpr Name LEFT_ARM_PVT_BYPASS_CTRL =
+      "left_arm_pvt_bypass_ctrl";
+
+  /**
+   * @brief Regular joint PVT controller for the left arm
+   *
+   * Publishes sampled left-arm joint position, velocity, and effort commands
+   * every control cycle using configured PID, filters, and limits. This is the
+   * standard controller for ordinary joint-space and planned arm motion.
+   */
+  static inline constexpr Name LEFT_ARM_PVT_CTRL = "left_arm_pvt_ctrl";
+
+  /**
+   * @brief Compatibility name for buffered right-arm position streaming
+   *
+   * When registered by the connected server, streams right-arm joint-position
+   * points through the MCU trajectory queue with interpolation, lookahead,
+   * refill, and optional joint-position limiting. Check the switch result;
+   * standard G3 configurations may provide only RIGHT_ARM_PVT_CTRL.
+   */
+  static inline constexpr Name RIGHT_ARM_PVT_BYPASS_CTRL =
+      "right_arm_pvt_bypass_ctrl";
+
+  /**
+   * @brief Regular joint PVT controller for the right arm
+   *
+   * Publishes sampled right-arm joint position, velocity, and effort commands
+   * every control cycle using configured PID, filters, and limits. This is the
+   * standard controller for ordinary joint-space and planned arm motion.
+   */
+  static inline constexpr Name RIGHT_ARM_PVT_CTRL = "right_arm_pvt_ctrl";
+
+  /**
+   * @brief Left gripper opening controller
+   *
+   * Sends the left gripper position/opening command together with optional
+   * velocity and effort parameters, applying the configured hardware mode and
+   * unit conversion. It controls a gripper as one end-tool action, unlike
+   * LEFT_DEXHAND_CTRL, which controls multiple finger axes.
+   */
+  static inline constexpr Name LEFT_GRIPPER_CTRL = "left_gripper_ctrl";
+
+  /**
+   * @brief Right gripper opening controller
+   *
+   * Sends the right gripper position/opening command together with optional
+   * velocity and effort parameters, applying the configured hardware mode and
+   * unit conversion. It controls a gripper as one end-tool action, unlike
+   * RIGHT_DEXHAND_CTRL, which controls multiple finger axes.
+   */
+  static inline constexpr Name RIGHT_GRIPPER_CTRL = "right_gripper_ctrl";
+
+  /**
+   * @brief Multi-axis left dexterous-hand controller
+   *
+   * Converts logical left-hand joint positions to the installed hand's raw
+   * gesture layout and sends a multi-axis finger command. Joint count, mapping,
+   * range, and unit conversion depend on the configured dexterous-hand model.
+   * Use LEFT_GRIPPER_CTRL instead for a simple gripper opening command.
+   */
+  static inline constexpr Name LEFT_DEXHAND_CTRL = "left_dexhand_ctrl";
+
+  /**
+   * @brief Multi-axis right dexterous-hand controller
+   *
+   * Converts logical right-hand joint positions to the installed hand's raw
+   * gesture layout and sends a multi-axis finger command. Joint count, mapping,
+   * range, and unit conversion depend on the configured dexterous-hand model.
+   * Use RIGHT_GRIPPER_CTRL instead for a simple gripper opening command.
+   */
+  static inline constexpr Name RIGHT_DEXHAND_CTRL = "right_dexhand_ctrl";
+
+  /**
+   * @brief Sentinel indicating that no valid controller name is available
+   *
+   * This value may be returned when the SDK has no known active controller for
+   * a group. It is not a controller and must not be passed as a switch target.
+   */
+  static inline constexpr Name CONTROLLER_NAME_NUM =
+      "CONTROLLER_NAME_NUM";
 };
 
 /**
@@ -553,8 +1029,44 @@ struct DeviceInfo {
 };
 
 /**
+ * @brief Service whose configuration can be modified via set_config().
+ *
+ * Configuration is scoped to the current scene. See GalbotRobot::set_config()
+ * for details.
+ */
+enum class ConfigService {
+  LEFT_ARM_CAMERA,   /**< Left arm camera capture service */
+  RIGHT_ARM_CAMERA,  /**< Right arm camera capture service */
+  FRONT_HEAD_CAMERA, /**< Front head camera capture service */
+  SURROUND_CAMERAS,  /**< Surround camera capture service; G1-only, rejected on other machine types */
+  MOTION_PLAN,       /**< Motion planning service */
+  NAVIGATION,        /**< Navigation planning service */
+  CONTROL            /**< SingoriX control service */
+};
+
+/**
+ * @brief Value carried by a single set_config() field assignment.
+ *
+ * Supports scalars, flat arrays, and (for a small number of navigation
+ * fields such as transition_poses) arrays of pose arrays.
+ */
+using ConfigValue = std::variant<bool, int64_t, double, std::string, std::vector<int64_t>, std::vector<double>,
+                                 std::vector<std::string>, std::vector<std::vector<double>>>;
+
+/**
+ * @brief One configuration field to set, addressed by an SDK-defined key within a ConfigService.
+ *
+ * See the "Set Config Reference" page in the SDK documentation for the list
+ * of supported keys, their types, and valid value ranges per service.
+ */
+struct ConfigItem {
+  std::string key;  /**< Field identifier (service-specific; see the SDK's Set Config Reference) */
+  ConfigValue value; /**< New value to assign */
+};
+
+/**
  * @brief Ultrasonic sensor data structure
- * @robot G1
+ * @robot G1 G3
  *
  * Contains a single ultrasonic distance measurement with timestamp.
  */
@@ -1102,6 +1614,8 @@ struct ForceData {
  * Contains timestamped joint feedback and, when available (e.g. Sharpa),
  * per-sensor force/torque measurements from the dexhand force topic.
  * sharpa per finger has 22-joint
+ *
+ * @robot G1 G3
  */
 struct DexhandState {
   int64_t timestamp_ns;                                         /**< State timestamp (nanoseconds since epoch) */
@@ -1137,6 +1651,17 @@ struct OdomData {
 };
 
 /**
+ * @brief Base velocity information
+ *
+ * Represents the current linear and angular velocity of the mobile base.
+ * This structure is returned by `get_base_velocity()` for customer-facing use.
+ */
+struct BaseVelocityInfo {
+  std::array<double, 3> linear_velocity{};  /**< Linear velocity [vx, vy, vz] (meters/second) */
+  std::array<double, 3> angular_velocity{}; /**< Angular velocity [ωx, ωy, ωz] (radians/second) */
+};
+
+/**
  * @brief Gripper state
  *
  * Represents the current state of a parallel-jaw gripper, including opening width,
@@ -1152,6 +1677,60 @@ struct GripperState {
   std::vector<double>
       joint_positions; /**< Gripper joint positions (radians), typically 1-2 joints for finger actuators */
 };
+
+/**
+ * @brief Number of bytes in one S1 WBCS/TIB end-tool passthrough frame.
+ * @robot S1
+ */
+inline constexpr std::size_t END_TOOL_RAW_FRAME_SIZE = 64;
+
+/**
+ * @brief Logical S1 end-tool endpoint selected by a passthrough command.
+ * @robot S1
+ */
+enum class EndToolSide : uint32_t {
+  LEFT = 0,  /**< The `left_endtool` endpoint. */
+  RIGHT = 1 /**< The `right_endtool` endpoint. */
+};
+
+/**
+ * @brief Logical feedback channel carrying an end-tool raw frame.
+ * @robot S1
+ */
+enum class EndToolRxKind : uint32_t {
+  BUFFER_1KHZ = 0, /**< The `feedback_1khz` channel. */
+  BUFFER_250HZ = 1 /**< The `feedback_250hz` channel. */
+};
+
+/**
+ * @brief One raw frame reported by the S1 WBCS end-tool passthrough path.
+ *
+ * The SDK does not interpret @ref frame. Device adapters are responsible for
+ * filtering and decoding the CAN/RS485 payload according to the installed
+ * end-tool protocol.
+ *
+ * @robot S1
+ */
+struct EndToolRawData {
+  /// Logical end-tool endpoint that produced this frame.
+  EndToolSide side = EndToolSide::LEFT;
+  /// Logical WBCS feedback channel that produced this frame.
+  EndToolRxKind kind = EndToolRxKind::BUFFER_1KHZ;
+  /// Opaque 64-byte device frame in the S1 WBCS/TIB layout.
+  std::array<uint8_t, END_TOOL_RAW_FRAME_SIZE> frame{};
+  /// Wire sequence within one side/kind stream; it may reset after WBCS restarts.
+  uint64_t generation = 0;
+};
+
+/**
+ * @brief Callback invoked for raw end-tool receive frames.
+ *
+ * Callbacks execute on middleware threads. Implementations must be thread-safe
+ * and must not retain a reference to the argument after returning.
+ *
+ * @robot S1
+ */
+using EndToolRawCallback = std::function<void(const EndToolRawData&)>;
 
 /**
  * @brief Suction cup action state enumeration
@@ -1362,27 +1941,50 @@ struct SingoriXTarget {
   std::unordered_map<std::string, TargetTaskTrajectory> target_task_trajectory_map;
 };
 
+/** Output representation requested from an RGB camera. */
+enum class RgbOutputFormat {
+  /// JPEG-encoded image data.
+  JPEG,
+  /// Raw NV12 image data.
+  NV12,
+  /// Raw BGR image data.
+  BGR,
+  /// Raw RGB image data.
+  RGB,
+};
+
 /**
- * @brief RGB/color image data structure
+ * @brief RGB/color image data structure.
  *
- * Contains compressed color image data from RGB cameras.
- * Compatible with ROS 2 sensor_msgs/CompressedImage format.
+ * `data` is always owned CPU memory. For NV12/BGR/RGB, plane metadata
+ * describes the tightly packed raw layout; no DMA-BUF fd or mapped address is
+ * exposed to SDK users.
  */
 struct RgbData {
   /**
    * @brief Message header
    *
-   * Contains acquisition timestamp and camera coordinate frame ID.
+   * Contains acquisition timestamp and camera coordinate frame.
    */
   Header header;
 
-  /**
-   * @brief Image format descriptor
-   *
-   * Specifies compression format and encoding.
-   * Examples: "jpeg", "png", "bgr8; jpeg compressed bgr8"
-   */
+  /// Encoding format string: jpeg / nv12 / bgr8 / rgb8.
   std::string format;
+
+  /// Image output encoding format.
+  RgbOutputFormat output_format{RgbOutputFormat::JPEG};
+
+  /// Image dimensions. JPEG dimensions are populated from the DMA frame header.
+  uint32_t width{0};
+  /// Image height. JPEG dimensions are populated from the DMA frame header.
+  uint32_t height{0};
+
+  /// Raw plane layout. JPEG uses one logical plane with zero stride/offset.
+  uint32_t plane_count{0};
+  /// Per-plane stride in bytes.
+  std::array<uint32_t, 2> stride_bytes{};
+  /// Per-plane byte offset from the start of `data`.
+  std::array<uint32_t, 2> plane_offset_bytes{};
 
   /**
    * @brief Compressed image data
@@ -1394,11 +1996,37 @@ struct RgbData {
   /**
    * @brief Decode compressed image data to OpenCV Mat
    *
-   * Decodes the internally stored compressed binary data using cv::imdecode.
+   * Returns a BGR cv::Mat for JPEG/NV12/BGR/RGB data.
    *
    * @return std::shared_ptr<cv::Mat> Smart pointer to decoded image on success, nullptr on failure
    */
-  std::shared_ptr<cv::Mat> convert_to_cv2_mat();
+  std::shared_ptr<cv::Mat> convert_to_cv2_mat() const;
+};
+
+/**
+ * @brief H.264 encoded video frame data
+ *
+ * Stores one complete encoded frame received from an H.264 camera topic.
+ */
+struct EncodedVideoData {
+  /**
+   * @brief Message header
+   *
+   * Contains the acquisition timestamp and camera frame ID.
+   */
+  Header header;
+
+  /**
+   * @brief Encoded format description
+   *
+   * This interface typically uses "h264".
+   */
+  std::string format;
+
+  /**
+   * @brief H.264 encoded payload for a single frame
+   */
+  std::vector<uint8_t> data;
 };
 
 /**

@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -385,6 +385,25 @@
     
   
   C++ API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../set_config_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  set_config Reference
 
       </a>
     </li>
@@ -779,6 +798,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../set_config_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set_config Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../troubleshooting/" class="md-nav__link">
         
   
@@ -912,13 +958,12 @@ It is recommended to restore the firewall immediately after debugging:
 <p class="admonition-title">Prerequisite</p>
 <p>PC, XCU, and HPU must be able to ping each other</p>
 </div>
-<p>Run the <code>configure_embosa_ip.sh</code> script in the SDK directory to configure the IP addresses (example: PC: 192.168.1.99, XCU: 192.168.1.66, HPU: 192.168.1.88):</p>
+<p>Run <code>configure_embosa_ip.sh</code> in the SDK directory, select G-series, and configure the PC IP. The XCU IP is fixed at <code>192.168.1.66</code>, and the HPU IP is fixed at <code>192.168.1.88</code>:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./configure_embosa_ip.sh
 </span></code></pre></div>
 <p>The script will interactively prompt for the following:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Enter PC IP: 192.168.1.99          # Required
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Enter XCU IP [default 192.168.1.66]:  # Press Enter to use default
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Enter HPU IP [default 192.168.1.88]:  # Press Enter to use default
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Select machine type [1] G-series (default) [2] S1: 1
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Enter PC IP [default 192.168.1.99]:
 </span></code></pre></div>
 <p>The script will automatically configure the embosa IP for PC, XCU, and HPU, then restart the launcher on each device.</p>
 <h3 id="3-install-sdk-on-pc">3. Install SDK on PC</h3>
@@ -928,7 +973,7 @@ It is recommended to restore the firewall immediately after debugging:
 </span></code></pre></div></p>
 <h3 id="4-compile-programs">4. Compile Programs</h3>
 <p>Compile on PC (x86_64)</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>examples/cpp/
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>examples/g1/cpp/
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>build
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">cd</span><span class="w"> </span>build
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>cmake<span class="w"> </span>../<span class="w"> </span>-DCMAKE_TOOLCHAIN_FILE<span class="o">=</span>../cmake/linux-x86_64-gcc940.cmake
@@ -1021,7 +1066,7 @@ It is recommended to restore the firewall immediately after debugging:
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "toc.integrate", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../javascripts/language_switch.js"></script>
       

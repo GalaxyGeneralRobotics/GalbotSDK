@@ -37,6 +37,15 @@ void print_plan_info(const std::string& label, const TrajResult& res, const std:
 }
 
 int main() {
+    std::cout << "WARNING: The robot will move to the initial joint state. "
+              << "Release the emergency stop and clear nearby obstacles." << std::endl;
+    std::cout << "Continue? (y/n): ";
+    std::string response;
+    std::getline(std::cin, response);
+    if (response != "y" && response != "Y") {
+        std::cout << "Example cancelled." << std::endl;
+        return 0;
+    }
 
     auto& planner = GalbotMotion::get_instance(MachineType::S1);
     auto& robot = GalbotRobot::get_instance(MachineType::S1);
@@ -53,16 +62,35 @@ int main() {
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
     std::unordered_map<std::string, std::vector<double>> chain_joints = {
-        {"torso",     {1.1}},
+        {"torso",     {0.65}},
         {"head",      {0.0000, -0.26}},
         {"left_arm",  {-0.47, -0.94, -0.54, -1.92, 0.2, 0.0, 0.0}},
         {"right_arm", {0.47, 0.94, 0.54, 1.92, -0.2, 0.0, 0.0}}
     };
 
+    std::vector<double> whole_body_joint;
+    std::vector<std::string> keys = {"torso", "head", "left_arm", "right_arm"};
+    for (const auto& key : keys) {
+        whole_body_joint.insert(whole_body_joint.end(), chain_joints[key].begin(), chain_joints[key].end());
+    }
+
+    const ControlStatus move_status =
+        robot.set_joint_positions(whole_body_joint, keys, {}, true, 0.1, 30.0);
+    if (move_status != ControlStatus::SUCCESS) {
+        std::cerr << "❌ Failed to move to the initial joint state." << std::endl;
+        robot.request_shutdown();
+        robot.wait_for_shutdown();
+        robot.destroy();
+        return -1;
+    }
+    std::cout << "✅ Moved to the initial whole-body joint state." << std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+
     std::unordered_map<std::string, std::vector<double>> chain_pose_baselink = {
-        {"head",      {0.0599, 0.0002, 1.4098, -0.7072, 0.0037, 0.0037, 0.7069}},
-        {"left_arm",  {0.1267, 0.2342, 0.7356, 0.0220, 0.0127, 0.0343, 0.9991}},
-        {"right_arm", {0.1267, -0.2345, 0.7358, -0.0225, 0.0126, -0.0343, 0.9991}}
+        {"torso",     {-0.0715, 0.0000, 1.2044, 0.0000, 0.0000, 0.0000, 1.0000}},
+        {"head",      {-0.0123, 0.0046, 1.4975, -0.0002, 0.1298, -0.0001, 0.9915}},
+        {"left_arm",  {0.3851, 0.4190, 1.9214, -0.3816, 0.7681, -0.1496, -0.4920}},
+        {"right_arm", {0.2819, -0.3212, 1.9315, 0.3701, 0.7731, 0.1567, -0.4907}}
     };
 
     auto params = std::make_shared<Parameter>();
@@ -81,6 +109,7 @@ int main() {
         auto target_joint = std::make_shared<JointStates>();
         target_joint->chain_name = target_chain;
         target_joint->joint_positions = chain_joints[target_chain];
+        target_joint->joint_positions[4] += 0.1; // 若设备处于home位，则target就是当前点会规划轨迹为空，故加offset
 
         auto res = planner.motion_plan(
             target_joint,   // 1. target

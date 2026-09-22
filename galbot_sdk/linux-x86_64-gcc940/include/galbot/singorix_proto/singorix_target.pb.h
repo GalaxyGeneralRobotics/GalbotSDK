@@ -37,6 +37,7 @@
 #include <google/protobuf/unknown_field_set.h>
 #include "galbot/core_proto/time.pb.h"
 #include "galbot/core_proto/header.pb.h"
+#include "galbot/arbitrator_proto/arbitrator.pb.h"
 #include "galbot/singorix_proto/singorix_command.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -165,6 +166,8 @@ enum TargetSampling : int {
   TARGET_SAMPLING_CUBIC_SPLINES = 5,
   TARGET_SAMPLING_QUINTIC_SPLINES = 6,
   TARGET_SAMPLING_B_SPLINES = 7,
+  TARGET_SAMPLING_MINIMUM_JERK = 8,
+  TARGET_SAMPLING_MINIMUM_SNAP = 9,
   TARGET_SAMPLING_CUSTOM = 15,
   TargetSampling_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   TargetSampling_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
@@ -1007,6 +1010,7 @@ class SingoriXTarget PROTOBUF_FINAL :
     kTargetGroupTrajectoryMapFieldNumber = 2,
     kTargetTaskTrajectoryMapFieldNumber = 3,
     kHeaderFieldNumber = 1,
+    kAuthorityTokenFieldNumber = 4,
   };
   // map<string, .galbot.singorix_proto.TargetGroupTrajectory> target_group_trajectory_map = 2;
   int target_group_trajectory_map_size() const;
@@ -1060,6 +1064,24 @@ class SingoriXTarget PROTOBUF_FINAL :
       ::galbot::core_proto::Header* header);
   ::galbot::core_proto::Header* unsafe_arena_release_header();
 
+  // .galbot.arbitrator_proto.AuthorityToken authority_token = 4;
+  bool has_authority_token() const;
+  private:
+  bool _internal_has_authority_token() const;
+  public:
+  void clear_authority_token();
+  const ::galbot::arbitrator_proto::AuthorityToken& authority_token() const;
+  ::galbot::arbitrator_proto::AuthorityToken* release_authority_token();
+  ::galbot::arbitrator_proto::AuthorityToken* mutable_authority_token();
+  void set_allocated_authority_token(::galbot::arbitrator_proto::AuthorityToken* authority_token);
+  private:
+  const ::galbot::arbitrator_proto::AuthorityToken& _internal_authority_token() const;
+  ::galbot::arbitrator_proto::AuthorityToken* _internal_mutable_authority_token();
+  public:
+  void unsafe_arena_set_allocated_authority_token(
+      ::galbot::arbitrator_proto::AuthorityToken* authority_token);
+  ::galbot::arbitrator_proto::AuthorityToken* unsafe_arena_release_authority_token();
+
   // @@protoc_insertion_point(class_scope:galbot.singorix_proto.SingoriXTarget)
  private:
   class _Internal;
@@ -1067,6 +1089,8 @@ class SingoriXTarget PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::MapField<
       SingoriXTarget_TargetGroupTrajectoryMapEntry_DoNotUse,
       std::string, ::galbot::singorix_proto::TargetGroupTrajectory,
@@ -1078,7 +1102,7 @@ class SingoriXTarget PROTOBUF_FINAL :
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> target_task_trajectory_map_;
   ::galbot::core_proto::Header* header_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::galbot::arbitrator_proto::AuthorityToken* authority_token_;
   friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5ftarget_2eproto;
 };
 // ===================================================================
@@ -1993,6 +2017,85 @@ inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::Targ
 SingoriXTarget::mutable_target_task_trajectory_map() {
   // @@protoc_insertion_point(field_mutable_map:galbot.singorix_proto.SingoriXTarget.target_task_trajectory_map)
   return _internal_mutable_target_task_trajectory_map();
+}
+
+// .galbot.arbitrator_proto.AuthorityToken authority_token = 4;
+inline bool SingoriXTarget::_internal_has_authority_token() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || authority_token_ != nullptr);
+  return value;
+}
+inline bool SingoriXTarget::has_authority_token() const {
+  return _internal_has_authority_token();
+}
+inline const ::galbot::arbitrator_proto::AuthorityToken& SingoriXTarget::_internal_authority_token() const {
+  const ::galbot::arbitrator_proto::AuthorityToken* p = authority_token_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::arbitrator_proto::AuthorityToken&>(
+      ::galbot::arbitrator_proto::_AuthorityToken_default_instance_);
+}
+inline const ::galbot::arbitrator_proto::AuthorityToken& SingoriXTarget::authority_token() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.SingoriXTarget.authority_token)
+  return _internal_authority_token();
+}
+inline void SingoriXTarget::unsafe_arena_set_allocated_authority_token(
+    ::galbot::arbitrator_proto::AuthorityToken* authority_token) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token_);
+  }
+  authority_token_ = authority_token;
+  if (authority_token) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.singorix_proto.SingoriXTarget.authority_token)
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* SingoriXTarget::release_authority_token() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::galbot::arbitrator_proto::AuthorityToken* temp = authority_token_;
+  authority_token_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* SingoriXTarget::unsafe_arena_release_authority_token() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.SingoriXTarget.authority_token)
+  _has_bits_[0] &= ~0x00000001u;
+  ::galbot::arbitrator_proto::AuthorityToken* temp = authority_token_;
+  authority_token_ = nullptr;
+  return temp;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* SingoriXTarget::_internal_mutable_authority_token() {
+  _has_bits_[0] |= 0x00000001u;
+  if (authority_token_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::arbitrator_proto::AuthorityToken>(GetArena());
+    authority_token_ = p;
+  }
+  return authority_token_;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* SingoriXTarget::mutable_authority_token() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.SingoriXTarget.authority_token)
+  return _internal_mutable_authority_token();
+}
+inline void SingoriXTarget::set_allocated_authority_token(::galbot::arbitrator_proto::AuthorityToken* authority_token) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token_);
+  }
+  if (authority_token) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token)->GetArena();
+    if (message_arena != submessage_arena) {
+      authority_token = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, authority_token, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  authority_token_ = authority_token;
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.SingoriXTarget.authority_token)
 }
 
 #ifdef __GNUC__

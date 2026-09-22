@@ -9,21 +9,27 @@ import numpy.typing
 import typing
 
 __all__: list[str] = [
+    "ActuateType",
     "AudioData",
     "CLOSE_TO_OBSTACLE",
     "COLLISION",
     "COMM_DISCONNECTED",
     "CYLINDER",
     "CollisionCheckOption",
+    "CollisionInfo",
+    "ConfigItem",
+    "ConfigService",
     "ControlStatus",
     "DATA_FETCH_FAILED",
     "DepthData",
     "DetectionAndSegmentationResult",
     "DetectionResult",
-    "DexHandType",
-    "DexhandState",
     "EUCLIDEAN_DISTANCE",
     "EffortInfo",
+    "EncodedVideoData",
+    "EndToolRawData",
+    "EndToolRxKind",
+    "EndToolSide",
     "Error",
     "ErrorInfo",
     "FAILED",
@@ -56,7 +62,10 @@ __all__: list[str] = [
     "LineTrajCheckPrimitive",
     "LogLevel",
     "MachineType",
+    "MotionPlanChainTarget",
     "MotionPlanConfig",
+    "MotionPlanTargetMode",
+    "MotionPlanType",
     "MotionStatus",
     "NavigationTaskSnapshot",
     "NavigationTaskStatus",
@@ -66,6 +75,8 @@ __all__: list[str] = [
     "PUBLISH_FAIL",
     "Parameter",
     "PerceptionModule",
+    "PlanRequest",
+    "PlannerConfig",
     "Point",
     "Point2d",
     "PointField",
@@ -81,6 +92,7 @@ __all__: list[str] = [
     "ROBOT_STATES",
     "RUNNING",
     "RgbData",
+    "RgbOutputFormat",
     "RobotStates",
     "RobotStatesType",
     "S1ControllerName",
@@ -91,6 +103,7 @@ __all__: list[str] = [
     "SUCTION_ACTION_STATE",
     "SamplerConfig",
     "SeedType",
+    "SensorStatus",
     "SensorType",
     "SingoriXTarget",
     "StateCheckType",
@@ -143,6 +156,49 @@ __all__: list[str] = [
     "create_pose_state",
 ]
 
+class ActuateType:
+    """
+
+    Members:
+
+    | Enum Value | Description |
+    | --- | --- |
+    | ACTUATE_WITH_CHAIN_ONLY |  |
+    | ACTUATE_WITH_TORSO |  |
+    | ACTUATE_WITH_LEG |  |
+    | ACTUATE_TYPE_NUM |  |
+    """
+
+    ACTUATE_TYPE_NUM: typing.ClassVar[
+        ActuateType
+    ]  # value = <ActuateType.ACTUATE_TYPE_NUM: 3>
+    ACTUATE_WITH_CHAIN_ONLY: typing.ClassVar[
+        ActuateType
+    ]  # value = <ActuateType.ACTUATE_WITH_CHAIN_ONLY: 0>
+    ACTUATE_WITH_LEG: typing.ClassVar[
+        ActuateType
+    ]  # value = <ActuateType.ACTUATE_WITH_LEG: 2>
+    ACTUATE_WITH_TORSO: typing.ClassVar[
+        ActuateType
+    ]  # value = <ActuateType.ACTUATE_WITH_TORSO: 1>
+    __members__: typing.ClassVar[
+        dict[str, ActuateType]
+    ]  # value = {'ACTUATE_WITH_CHAIN_ONLY': <ActuateType.ACTUATE_WITH_CHAIN_ONLY: 0>, 'ACTUATE_WITH_TORSO': <ActuateType.ACTUATE_WITH_TORSO: 1>, 'ACTUATE_WITH_LEG': <ActuateType.ACTUATE_WITH_LEG: 2>, 'ACTUATE_TYPE_NUM': <ActuateType.ACTUATE_TYPE_NUM: 3>}
+    def __eq__(self, other: typing.Any) -> bool: ...
+    def __getstate__(self) -> int: ...
+    def __hash__(self) -> int: ...
+    def __index__(self) -> int: ...
+    def __init__(self, value: typing.SupportsInt) -> None: ...
+    def __int__(self) -> int: ...
+    def __ne__(self, other: typing.Any) -> bool: ...
+    def __repr__(self) -> str: ...
+    def __setstate__(self, state: typing.SupportsInt) -> None: ...
+    def __str__(self) -> str: ...
+    @property
+    def name(self) -> str: ...
+    @property
+    def value(self) -> int: ...
+
 class AudioData:
     """
     Audio stream data from microphone input callbacks
@@ -184,6 +240,159 @@ class CollisionCheckOption:
     def print(self) -> None: ...
     def set_disable_env_collision_check(self, disable: bool) -> None: ...
     def set_disable_self_collision_check(self, disable: bool) -> None: ...
+
+class CollisionInfo:
+    """
+    Detailed collision information for a reported link pair.
+    """
+    def __init__(self) -> None: ...
+    def __repr__(self) -> str: ...
+    @property
+    def collision_type(self) -> str:
+        """
+        Raw MPS collision metadata copied from common_str. The current format includes the sample tag and a collision classification whose value is self or env.
+        """
+    @collision_type.setter
+    def collision_type(self, arg0: str) -> None: ...
+    @property
+    def distance(self) -> float:
+        """
+        Distance between the reported links, in meters.
+        """
+    @distance.setter
+    def distance(self, arg0: typing.SupportsFloat) -> None: ...
+    @property
+    def is_collision(self) -> bool:
+        """
+        Whether MPS reports a collision for this link pair.
+        """
+    @is_collision.setter
+    def is_collision(self, arg0: bool) -> None: ...
+    @property
+    def link1(self) -> str:
+        """
+        Name of the first link in the reported pair.
+        """
+    @link1.setter
+    def link1(self, arg0: str) -> None: ...
+    @property
+    def link2(self) -> str:
+        """
+        Name of the second link in the reported pair.
+        """
+    @link2.setter
+    def link2(self, arg0: str) -> None: ...
+
+class ConfigItem:
+    """
+    One TOML field to set via GalbotRobot.set_config(), addressed by an SDK-defined friendly key (see each service's field registry); the owning TOML file, section, and actual TOML key are resolved internally. Failure details for a rejected field are reported via the SDK log, not a return value.
+    """
+    @typing.overload
+    def __init__(self) -> None: ...
+    @typing.overload
+    def __init__(
+        self,
+        key: str,
+        value: bool
+        | typing.SupportsInt
+        | typing.SupportsFloat
+        | str
+        | collections.abc.Sequence[typing.SupportsInt]
+        | collections.abc.Sequence[typing.SupportsFloat]
+        | collections.abc.Sequence[str]
+        | collections.abc.Sequence[collections.abc.Sequence[typing.SupportsFloat]],
+    ) -> None:
+        """
+        Construct from (key, value). `value` may be bool, int, float, str, List[int], List[float], List[str], or List[List[float]].
+        """
+    @property
+    def key(self) -> str:
+        """
+        SDK-defined friendly field identifier (see field registry)
+        """
+    @key.setter
+    def key(self, arg0: str) -> None: ...
+    @property
+    def value(
+        self,
+    ) -> (
+        bool
+        | int
+        | float
+        | str
+        | list[int]
+        | list[float]
+        | list[str]
+        | list[list[float]]
+    ):
+        """
+        Value to assign with set_config(), or persisted value returned by get_config()
+        """
+    @value.setter
+    def value(
+        self,
+        arg0: bool
+        | typing.SupportsInt
+        | typing.SupportsFloat
+        | str
+        | collections.abc.Sequence[typing.SupportsInt]
+        | collections.abc.Sequence[typing.SupportsFloat]
+        | collections.abc.Sequence[str]
+        | collections.abc.Sequence[collections.abc.Sequence[typing.SupportsFloat]],
+    ) -> None: ...
+
+class ConfigService:
+    """
+
+    Service whose on-disk TOML configuration set_config() can modify
+
+    Members:
+
+    | Enum Value | Description |
+    | --- | --- |
+    | LEFT_ARM_CAMERA | left_arm_camera_capture |
+    | RIGHT_ARM_CAMERA | right_arm_camera_capture |
+    | FRONT_HEAD_CAMERA | front_head_camera_capture |
+    | SURROUND_CAMERAS | surround_cameras_capture; G1-only, rejected on other machine types |
+    | MOTION_PLAN | service_motion_plan |
+    | NAVIGATION | service_navigation_plan |
+    | CONTROL | SingoriX control service |
+    """
+
+    CONTROL: typing.ClassVar[ConfigService]  # value = <ConfigService.CONTROL: 6>
+    FRONT_HEAD_CAMERA: typing.ClassVar[
+        ConfigService
+    ]  # value = <ConfigService.FRONT_HEAD_CAMERA: 2>
+    LEFT_ARM_CAMERA: typing.ClassVar[
+        ConfigService
+    ]  # value = <ConfigService.LEFT_ARM_CAMERA: 0>
+    MOTION_PLAN: typing.ClassVar[
+        ConfigService
+    ]  # value = <ConfigService.MOTION_PLAN: 4>
+    NAVIGATION: typing.ClassVar[ConfigService]  # value = <ConfigService.NAVIGATION: 5>
+    RIGHT_ARM_CAMERA: typing.ClassVar[
+        ConfigService
+    ]  # value = <ConfigService.RIGHT_ARM_CAMERA: 1>
+    SURROUND_CAMERAS: typing.ClassVar[
+        ConfigService
+    ]  # value = <ConfigService.SURROUND_CAMERAS: 3>
+    __members__: typing.ClassVar[
+        dict[str, ConfigService]
+    ]  # value = {'LEFT_ARM_CAMERA': <ConfigService.LEFT_ARM_CAMERA: 0>, 'RIGHT_ARM_CAMERA': <ConfigService.RIGHT_ARM_CAMERA: 1>, 'FRONT_HEAD_CAMERA': <ConfigService.FRONT_HEAD_CAMERA: 2>, 'SURROUND_CAMERAS': <ConfigService.SURROUND_CAMERAS: 3>, 'MOTION_PLAN': <ConfigService.MOTION_PLAN: 4>, 'NAVIGATION': <ConfigService.NAVIGATION: 5>, 'CONTROL': <ConfigService.CONTROL: 6>}
+    def __eq__(self, other: typing.Any) -> bool: ...
+    def __getstate__(self) -> int: ...
+    def __hash__(self) -> int: ...
+    def __index__(self) -> int: ...
+    def __init__(self, value: typing.SupportsInt) -> None: ...
+    def __int__(self) -> int: ...
+    def __ne__(self, other: typing.Any) -> bool: ...
+    def __repr__(self) -> str: ...
+    def __setstate__(self, state: typing.SupportsInt) -> None: ...
+    def __str__(self) -> str: ...
+    @property
+    def name(self) -> str: ...
+    @property
+    def value(self) -> int: ...
 
 class ControlStatus:
     """
@@ -445,70 +654,6 @@ class DetectionResult:
     @timestamp_ns.setter
     def timestamp_ns(self, arg0: typing.SupportsInt) -> None: ...
 
-class DexHandType:
-    """
-
-    Members:
-
-    | Enum Value | Description |
-    | --- | --- |
-    | INSPIRE | Inspire dexterous hand |
-    | BRAINCO | BrainCo dexterous hand |
-    | SHARPA | Sharpa dexterous hand |
-    | LINKER_L20 | Linker Hand L20 dexterous hand (16 joints, range [0,255]) |
-    """
-
-    BRAINCO: typing.ClassVar[DexHandType]  # value = <DexHandType.BRAINCO: 1>
-    INSPIRE: typing.ClassVar[DexHandType]  # value = <DexHandType.INSPIRE: 0>
-    LINKER_L20: typing.ClassVar[DexHandType]  # value = <DexHandType.LINKER_L20: 3>
-    SHARPA: typing.ClassVar[DexHandType]  # value = <DexHandType.SHARPA: 2>
-    __members__: typing.ClassVar[
-        dict[str, DexHandType]
-    ]  # value = {'INSPIRE': <DexHandType.INSPIRE: 0>, 'BRAINCO': <DexHandType.BRAINCO: 1>, 'SHARPA': <DexHandType.SHARPA: 2>, 'LINKER_L20': <DexHandType.LINKER_L20: 3>}
-    def __eq__(self, other: typing.Any) -> bool: ...
-    def __getstate__(self) -> int: ...
-    def __hash__(self) -> int: ...
-    def __index__(self) -> int: ...
-    def __init__(self, value: typing.SupportsInt) -> None: ...
-    def __int__(self) -> int: ...
-    def __ne__(self, other: typing.Any) -> bool: ...
-    def __repr__(self) -> str: ...
-    def __setstate__(self, state: typing.SupportsInt) -> None: ...
-    def __str__(self) -> str: ...
-    @property
-    def name(self) -> str: ...
-    @property
-    def value(self) -> int: ...
-
-class DexhandState:
-    """
-    Full dexterous hand state (joint feedback and optional force sensors)
-    """
-    def __init__(self) -> None: ...
-    @property
-    def force_sensor_map(self) -> dict[str, EffortInfo]:
-        """
-        Named force sensor map: sensor_name -> EffortInfo (Sharpa; empty for Inspire/BrainCo)
-        """
-    @force_sensor_map.setter
-    def force_sensor_map(
-        self, arg0: collections.abc.Mapping[str, EffortInfo]
-    ) -> None: ...
-    @property
-    def joint_state(self) -> JointStateMessage:
-        """
-        Dexhand joint state message
-        """
-    @joint_state.setter
-    def joint_state(self, arg0: JointStateMessage) -> None: ...
-    @property
-    def timestamp_ns(self) -> int:
-        """
-        Timestamp (nanoseconds)
-        """
-    @timestamp_ns.setter
-    def timestamp_ns(self, arg0: typing.SupportsInt) -> None: ...
-
 class EffortInfo:
     """
     6D force/torque information
@@ -536,16 +681,132 @@ class EffortInfo:
     @torque.setter
     def torque(self, arg0: Vector3) -> None: ...
 
+class EncodedVideoData:
+    """
+    H.264 encoded video frame data
+    """
+    def __init__(self) -> None: ...
+    @property
+    def data(self) -> bytes:
+        """
+        Encoded video frame bytes
+        """
+    @property
+    def format(self) -> str:
+        """
+        Video format
+        """
+    @format.setter
+    def format(self, arg0: str) -> None: ...
+    @property
+    def header(self) -> Header:
+        """
+        Message header
+        """
+    @header.setter
+    def header(self, arg0: Header) -> None: ...
+
+class EndToolRawData:
+    """
+    One raw frame received from the S1 WBCS/TIB transport
+    """
+    @property
+    def frame(self) -> bytes:
+        """
+        Opaque 64-byte S1 WBCS/TIB passthrough frame
+        """
+    @property
+    def generation(self) -> int:
+        """
+        Wire sequence within one side/kind stream; may reset after WBCS restarts
+        """
+    @property
+    def kind(self) -> EndToolRxKind:
+        """
+        WBCS receive-buffer stream that produced this frame
+        """
+    @property
+    def side(self) -> EndToolSide:
+        """
+        Arm/TIB that produced this frame
+        """
+
+class EndToolRxKind:
+    """
+
+    Members:
+
+    | Enum Value | Description |
+    | --- | --- |
+    | BUFFER_1KHZ | 1 kHz receive buffer |
+    | BUFFER_250HZ | 250 Hz receive buffer |
+    """
+
+    BUFFER_1KHZ: typing.ClassVar[
+        EndToolRxKind
+    ]  # value = <EndToolRxKind.BUFFER_1KHZ: 0>
+    BUFFER_250HZ: typing.ClassVar[
+        EndToolRxKind
+    ]  # value = <EndToolRxKind.BUFFER_250HZ: 1>
+    __members__: typing.ClassVar[
+        dict[str, EndToolRxKind]
+    ]  # value = {'BUFFER_1KHZ': <EndToolRxKind.BUFFER_1KHZ: 0>, 'BUFFER_250HZ': <EndToolRxKind.BUFFER_250HZ: 1>}
+    def __eq__(self, other: typing.Any) -> bool: ...
+    def __getstate__(self) -> int: ...
+    def __hash__(self) -> int: ...
+    def __index__(self) -> int: ...
+    def __init__(self, value: typing.SupportsInt) -> None: ...
+    def __int__(self) -> int: ...
+    def __ne__(self, other: typing.Any) -> bool: ...
+    def __repr__(self) -> str: ...
+    def __setstate__(self, state: typing.SupportsInt) -> None: ...
+    def __str__(self) -> str: ...
+    @property
+    def name(self) -> str: ...
+    @property
+    def value(self) -> int: ...
+
+class EndToolSide:
+    """
+
+    Members:
+
+    | Enum Value | Description |
+    | --- | --- |
+    | LEFT | The left_endtool endpoint |
+    | RIGHT | The right_endtool endpoint |
+    """
+
+    LEFT: typing.ClassVar[EndToolSide]  # value = <EndToolSide.LEFT: 0>
+    RIGHT: typing.ClassVar[EndToolSide]  # value = <EndToolSide.RIGHT: 1>
+    __members__: typing.ClassVar[
+        dict[str, EndToolSide]
+    ]  # value = {'LEFT': <EndToolSide.LEFT: 0>, 'RIGHT': <EndToolSide.RIGHT: 1>}
+    def __eq__(self, other: typing.Any) -> bool: ...
+    def __getstate__(self) -> int: ...
+    def __hash__(self) -> int: ...
+    def __index__(self) -> int: ...
+    def __init__(self, value: typing.SupportsInt) -> None: ...
+    def __int__(self) -> int: ...
+    def __ne__(self, other: typing.Any) -> bool: ...
+    def __repr__(self) -> str: ...
+    def __setstate__(self, state: typing.SupportsInt) -> None: ...
+    def __str__(self) -> str: ...
+    @property
+    def name(self) -> str: ...
+    @property
+    def value(self) -> int: ...
+
 class Error:
     """
     Single error entry
     """
-
+    @typing.overload
     def __init__(self) -> None:
         """
         Default error entry
         """
-
+    @typing.overload
     def __init__(
         self, commpent: str, error_code: typing.SupportsInt, description: str
     ) -> None: ...
@@ -707,7 +968,12 @@ class GalbotMotion:
             safe_margin (float): Safe distance to obstacle. Collision is detected when obstacle distance is less than this value
             resolution (float): Loading precision for some obstacle types. Defaults to 0.01
 
-
+        Notes:
+            - GalbotMotion does not provide real-time obstacle perception or automatic environment updates.
+            - Obstacles added by this API are part of a collision world that callers must maintain explicitly.
+            - For obstacle_type == "point_cloud", key is typically a point-cloud file path supplied by the caller.
+            - For obstacle_type == "depth_image", key selects a depth source used to construct a collision
+              obstacle; it is not a continuous real-time perception stream for motion planning.
 
         Returns:
             MotionStatus: Result of adding the obstacle
@@ -733,11 +999,11 @@ class GalbotMotion:
          Add an obstacle to the robot's collision detection system.
 
         Notes:
-            - GalbotMotion currently does NOT provide real-time obstacle perception / automatic environment updates.
-            - Obstacle inputs here are treated as manual environment setup for collision checking.
-            - For obstacle_type == "point_cloud", `key` is typically a point cloud file path provided by the user.
-            - For obstacle_type == "depth_image", the camera type selects a depth source captured/loaded for the collision world;
-            it is not a continuous real-time perception stream for motion planning.
+            - GalbotMotion does not provide real-time obstacle perception or automatic environment updates.
+            - Attached objects are part of a collision world that callers must maintain explicitly.
+            - For obstacle_type == "point_cloud", key is typically a point-cloud file path supplied by the caller.
+            - For obstacle_type == "depth_image", key selects a depth source used to construct a collision
+              obstacle; it is not a continuous real-time perception stream for motion planning.
 
         Parameters:
             obstacle_id (str): Unique ID for the obstacle (cannot repeat)
@@ -758,15 +1024,20 @@ class GalbotMotion:
         """
     def attach_tool(self, chain: str, tool: str) -> MotionStatus:
         """
-        Attach a tool to the specified robot motion chain (left_arm / right_arm).
+        Attach a tool to the specified robot motion chain.
 
         Parameters:
-            chain (str): The robot motion chain.
-            tool (str): The tool to attach.
-            params (dict, optional): Additional parameters for the tool attachment. Defaults to default_param.
+            chain (str): The robot motion chain. Only "left_arm" and "right_arm" are supported.
+            tool (str): The tool to attach. Its name must be returned by get_supported_tool_list(), but
+                that list is only a candidate range. Select a tool compatible with the actual end-effector
+                type and configuration of the specified robot model and arm.
 
         Returns:
-            bool: True if the tool attachment is successful, False otherwise.
+            MotionStatus: Result of the tool attachment.
+
+        Notes:
+            Tool compatibility can differ by robot model, arm, and deployed robot/MPS configuration. A
+            listed tool is not guaranteed to be attachable to every supported chain.
         """
     def check_collision(
         self,
@@ -790,9 +1061,43 @@ class GalbotMotion:
         Returns:
             bool: True if there is a collision, False otherwise.
         """
+    def check_collision_detail(
+        self,
+        robot_states: collections.abc.Sequence[RobotStates],
+        is_check_once: bool = False,
+        is_log: bool = False,
+        params: Parameter = ...,
+    ) -> tuple[MotionStatus, list[CollisionInfo]]:
+        """
+        Check collision and return collision pair details.
+
+        Parameters:
+            robot_states (list[RobotStates]): Robot states to check. If empty, MPS checks the current robot state.
+            is_check_once (bool, optional): Whether to run one-shot collision checking. Defaults to False.
+            is_log (bool, optional): Whether MPS should emit collision-check logs. Defaults to False.
+            params (Parameter, optional): Additional parameters. Only timeout_second is used today.
+
+        Returns:
+            tuple[MotionStatus, list[CollisionInfo]]: Status and collision pair details.
+
+        Notes:
+            - collision_type contains the raw MPS common_str metadata, including the sample tag and
+              a collision classification whose value is self or env.
+            - A default-constructed CollisionInfo uses UNKNOWN; an empty MPS value is returned as an
+              empty string.
+        """
     def clear_obstacle(self) -> MotionStatus:
         """
         Remove all loaded obstacles
+        """
+    def combine_plan(
+        self,
+        plan_reqs: collections.abc.Sequence[PlanRequest],
+        params: PlannerConfig = ...,
+        start_state: RobotStates = None,
+    ) -> tuple[MotionStatus, dict[str, list[list[float]]]]:
+        """
+        Run combined motion planning requests.
         """
     def detach_target_object(self, obstacle_id: str) -> MotionStatus:
         """
@@ -800,14 +1105,13 @@ class GalbotMotion:
         """
     def detach_tool(self, chain: str) -> MotionStatus:
         """
-        Detach a tool from the specified robot motion chain (left_arm / right_arm).
+        Detach a tool from the specified robot motion chain.
 
         Parameters:
-            chain (str): The robot motion chain.
-            params (dict, optional): Additional parameters for the tool detachment. Defaults to default_param.
+            chain (str): The robot motion chain. Only "left_arm" and "right_arm" are supported.
 
         Returns:
-            bool: True if the tool detachment is successful, False otherwise.
+            MotionStatus: Result of the tool detachment.
         """
     def forward_kinematics(
         self,
@@ -823,7 +1127,8 @@ class GalbotMotion:
 
         Parameters:
             target_frame (str): The name of the target frame.
-            reference_frame (str, optional): The name of the reference frame. Defaults to "base_link".
+            reference_frame (str, optional): "world", "map", "base_link" (or "base"), or a link
+                name returned by get_supported_links(). Defaults to "base_link".
             joint_state (dict, optional): A dictionary mapping joint names to their positions. Defaults to an empty dictionary.
             params (dict, optional): Additional parameters for the forward kinematics. Defaults to default_param.
 
@@ -843,7 +1148,8 @@ class GalbotMotion:
         Parameters:
             target_frame (str): The name of the target frame.
             reference_robot_states (RobotStates, optional): The reference robot states. Defaults to nullptr.
-            reference_frame (str, optional): The name of the reference frame. Defaults to "base_link".
+            reference_frame (str, optional): "world", "map", "base_link" (or "base"), or a link
+                name returned by get_supported_links(). Defaults to "base_link".
             params (dict, optional): Additional parameters for the forward kinematics. Defaults to default_param.
 
         Returns:
@@ -853,9 +1159,19 @@ class GalbotMotion:
         """
         Get the list of currently loaded obstacle IDs.
         """
+    def get_chain_joint_names(self, chain_name: str) -> list[str]:
+        """
+        Get ordered joint names for a chain.
+        """
     def get_chain_joint_state(self) -> dict[str, list[float]]:
         """
         Get current joint positions per kinematic chain (map: chain name -> joint angle list).
+        """
+    def get_config_by_type(
+        self, config_type: str
+    ) -> tuple[MotionStatus, MotionPlanConfig]:
+        """
+        Get MPS configuration by type (result via MotionPlanConfig.common_str).
         """
     def get_end_effector_pose(
         self, end_effector_frame: str, reference_frame: str = "base_link"
@@ -865,7 +1181,8 @@ class GalbotMotion:
 
         Parameters:
             end_effector_frame (str): The name of the end-effector frame.
-            reference_frame (str, optional): The name of the reference frame. Defaults to "base_link".
+            reference_frame (str, optional): "world", "map", "base_link" (or "base"), or a link
+                name returned by get_supported_links(). Defaults to "base_link".
 
         Returns:
             Pose: The computed pose of the end-effector frame.
@@ -882,7 +1199,8 @@ class GalbotMotion:
         Parameters:
             chain_name (str): The name of the chain.
             frame_id (str, optional): The name of the end-effector frame. Defaults to "EndEffector".
-            reference_frame (str, optional): The name of the reference frame. Defaults to "base_link".
+            reference_frame (str, optional): "world", "map", "base_link" (or "base"), or a link
+                name returned by get_supported_links(). Defaults to "base_link".
 
         Returns:
             Pose: The computed pose of the end-effector frame on the specified chain.
@@ -912,7 +1230,7 @@ class GalbotMotion:
         Parameters:
             chain_name (str): Kinematic chain (e.g., "left_arm", "right_arm")
             target_frame (str, optional): Frame on chain. Defaults to "EndEffector".
-            reference_frame (str, optional): Reference frame. Defaults to "base_link".
+            reference_frame (str, optional): "world", "map", or "base_link". Defaults to "base_link".
             joint_state (dict, optional): Chain joint override map. Uses current complete state if empty.
             params (Parameter, optional): Planning parameters. Defaults to default_param.
 
@@ -943,7 +1261,7 @@ class GalbotMotion:
         Parameters:
             chain_name (str): Kinematic chain (e.g., "left_arm", "right_arm")
             target_frame (str, optional): Frame on chain. Defaults to "EndEffector".
-            reference_frame (str, optional): Reference frame. Defaults to "base_link".
+            reference_frame (str, optional): "world", "map", or "base_link". Defaults to "base_link".
             reference_robot_states (RobotStates, optional): Complete robot state. Uses current complete state if None.
             params (Parameter, optional): Planning parameters. Defaults to default_param.
 
@@ -1024,7 +1342,7 @@ class GalbotMotion:
             target_pose (Pose): The target pose.
             chain_names (list of str): The list of chain names to consider.
             target_frame (str, optional): The name of the target frame. Defaults to "EndEffector".
-            reference_frame (str, optional): The name of the reference frame. Defaults to "base_link".
+            reference_frame (str, optional): "world", "map", or "base_link". Defaults to "base_link".
             initial_joint_positions (dict, optional): A dictionary mapping joint names to their initial positions. Defaults to an empty dictionary.
             enable_collision_check (bool, optional): Whether to enable collision checking. Defaults to true.
             params (dict, optional): Additional parameters for the inverse kinematics. Defaults to default_param.
@@ -1049,7 +1367,7 @@ class GalbotMotion:
             target_pose (Pose): The target pose.
             chain_names (list of str): The list of chain names to consider.
             target_frame (str, optional): The name of the target frame. Defaults to "EndEffector".
-            reference_frame (str, optional): The name of the reference frame. Defaults to "base_link".
+            reference_frame (str, optional): "world", "map", or "base_link". Defaults to "base_link".
             reference_robot_states (RobotStates, optional): The reference robot states. Defaults to nullptr.
             enable_collision_check (bool, optional): Whether to enable collision checking. Defaults to true.
             params (dict, optional): Additional parameters for the inverse kinematics. Defaults to default_param.
@@ -1057,6 +1375,16 @@ class GalbotMotion:
         Returns:
             dict: A dictionary mapping joint names to their computed positions.
         """
+    def inverse_kinematics_general(
+        self,
+        target_waypoint: collections.abc.Sequence[MotionPlanChainTarget],
+        reference_robot_states: RobotStates = None,
+        params: Parameter = ...,
+    ) -> tuple[MotionStatus, dict[str, JointStates]]:
+        """
+        Compute IK with the MotionPlanWaypoint target schema.
+        """
+    @typing.overload
     def motion_plan(
         self,
         target: RobotStates,
@@ -1066,26 +1394,84 @@ class GalbotMotion:
         params: Parameter = ...,
     ) -> tuple[MotionStatus, dict[str, list[list[float]]]]:
         """
-        Plan a motion to a single waypoint.
+        Plan a time-parameterized trajectory to one Cartesian or joint-space target.
+
+        This is the high-level single-target overload. target must be a PoseState or JointStates
+        instance whose chain_name identifies the chain to plan. It dispatches to traj_plan() by default,
+        or to move_line() when params.move_line is True.
 
         Parameters:
-            target (Pose): The target pose.
-            start (RobotStates, optional): The initial robot states. Defaults to nullptr.
-            reference_robot_states (RobotStates, optional): The reference robot states. Defaults to nullptr.
-            enable_collision_check (bool, optional): Whether to enable collision checking. Defaults to true.
-            params (dict, optional): Additional parameters for the motion planning. Defaults to default_param.
+            target (RobotStates): PoseState or JointStates goal. Base RobotStates is not accepted.
+                For PoseState, frame_id selects the target frame on the chain.
+            start (JointStates, optional): Optional chain start state. If provided, it must be a
+                JointStates instance; other RobotStates types return MotionStatus.INVALID_INPUT.
+                None uses the current state.
+            reference_robot_states (RobotStates, optional): Whole-body planning context. If start is
+                provided, its chain values override the corresponding values in this state.
+            enable_collision_check (bool, optional): Require a collision-free trajectory. Defaults to True.
+            params (Parameter, optional): Planning and execution options, including direct execution,
+                timeout and Cartesian line dispatch. Defaults to default_param.
 
         Notes:
-            - GalbotMotion currently does NOT provide real-time obstacle perception / automatic environment updates.
-            - If collision checking is enabled, collisions are checked against self-collision and obstacles that you
-                manually load via add_obstacle()/attach_target_object().
-            - In contrast, the Navigation module (GalbotNavigation) may use real-time perception/avoidance depending
-                on deployment; this is not currently integrated into GalbotMotion.
+            - GalbotMotion does not automatically import real-time perception into its collision world.
+            - Collision checking uses self-collision and environment objects explicitly loaded through
+              add_obstacle() or attach_target_object().
+            - The returned trajectory respects configured velocity and acceleration limits.
+            - For the leg chain, params.move_line must be True and target must be a Cartesian PoseState
+              without assist chains.
+
+        Warnings:
+            target must be PoseState or JointStates. For direct execution, normally leave start and
+            reference_robot_states as None to avoid conflicts with the actual robot state.
 
         Returns:
-            bool: True if the motion planning is successful, False otherwise.
+            tuple[MotionStatus, dict[str, list[list[float]]]]: Status and per-chain joint trajectory.
         """
+    @typing.overload
+    def motion_plan(
+        self,
+        waypoints: collections.abc.Sequence[
+            collections.abc.Sequence[MotionPlanChainTarget]
+        ],
+        params: PlannerConfig = ...,
+        start_state: RobotStates = None,
+    ) -> tuple[MotionStatus, dict[str, list[list[float]]]]:
+        """
+        Plan a collision-aware path through MotionPlanWaypoints via the motion-planning server.
 
+        This is the low-level server-facing overload. waypoints can describe one or more coordinated
+        chains. The server performs sampling-based geometric path search and then time-parameterizes
+        the result with the configured velocity, acceleration, and jerk limits.
+
+        Parameters:
+            waypoints (MotionPlanWaypoints): Ordered waypoints; each waypoint contains one
+                MotionPlanChainTarget per chain to coordinate.
+            params (PlannerConfig, optional): Server planning options. is_direct_execute pushes the
+                result to WBC, is_check_collision validates the path, and enable_env_collision_check
+                includes explicitly loaded environment obstacles. actuate_type globally adds its assist
+                chain to every Cartesian target. Defaults to PlannerConfig().
+            start_state (RobotStates, optional): Explicit whole-body start state. None uses the current
+                robot state. Defaults to None.
+
+        Notes:
+            - GalbotMotion does not automatically import real-time perception into its collision world.
+            - Collision checking uses self-collision and environment objects explicitly loaded through
+              add_obstacle() or attach_target_object().
+            - params.actuate_type applies to all Cartesian targets and is not recommended for
+              waypoint-specific control. Set cart.assist_chains on individual targets instead.
+            - For single-target planning with a simpler API, use motion_plan(target, start, ...), which
+              dispatches to traj_plan() by default or move_line() when params.move_line is True. It does
+              not call this sampling-based overload.
+
+        Warnings:
+            The "leg" chain is not supported as chain_name or in assist_chains. For direct execution,
+            normally leave start_state as None to avoid conflicts with the actual robot state.
+
+        Returns:
+            tuple[MotionStatus, dict[str, list[list[float]]]]: Status and time-parameterized
+            per-chain joint trajectory.
+        """
+    @typing.overload
     def motion_plan_multi_waypoints(
         self,
         target: RobotStates,
@@ -1098,27 +1484,37 @@ class GalbotMotion:
         params: Parameter = ...,
     ) -> tuple[MotionStatus, dict[str, list[list[float]]]]:
         """
-        Plan a motion to multiple waypoints.
+        Plan a trajectory through multiple waypoints for one kinematic chain.
+
+        target is a PoseState or JointStates template that supplies the waypoint type and chain_name;
+        its stored state values are not used as a goal. waypoint_poses contains the actual Cartesian
+        poses or joint configurations to traverse.
 
         Parameters:
-            target (Pose): The target pose.
-            waypoint_poses (list of list of float): The waypoint poses.
-            start (RobotStates, optional): The initial robot states. Defaults to nullptr.
-            reference_robot_states (RobotStates, optional): The reference robot states. Defaults to nullptr.
-            enable_collision_check (bool, optional): Whether to enable collision checking. Defaults to true.
-            params (dict, optional): Additional parameters for the motion planning. Defaults to default_param.
+            target (RobotStates): PoseState or JointStates template with chain_name set.
+            waypoint_poses (list[list[float]]): Cartesian poses for PoseState or joint configurations
+                in radians for JointStates.
+            start (RobotStates, optional): Optional chain start state. None uses the current state.
+            reference_robot_states (RobotStates, optional): Whole-body planning context. None uses
+                the current state.
+            enable_collision_check (bool, optional): Require a collision-free trajectory. Defaults to True.
+            params (Parameter, optional): Planning and execution options. Defaults to default_param.
 
         Notes:
-            - GalbotMotion currently does NOT provide real-time obstacle perception / automatic environment updates.
-            - If collision checking is enabled, collisions are checked against self-collision and obstacles that you
-                manually load via add_obstacle()/attach_target_object().
-            - In contrast, the Navigation module (GalbotNavigation) may use real-time perception/avoidance depending
-                on deployment; this is not currently integrated into GalbotMotion.
+            - GalbotMotion does not automatically import real-time perception into its collision world.
+            - Collision checking uses self-collision and environment objects explicitly loaded through
+              add_obstacle() or attach_target_object().
+            - The planner produces C1-continuous motion, so intermediate waypoints may be blended
+              instead of reached exactly.
+
+        Warnings:
+            Use separate plans when an intermediate waypoint must be reached exactly. For direct
+            execution, normally leave start and reference_robot_states as None.
 
         Returns:
-            bool: True if the motion planning is successful, False otherwise.
+            tuple[MotionStatus, dict[str, list[list[float]]]]: Status and the chain trajectory.
         """
-
+    @typing.overload
     def motion_plan_multi_waypoints(
         self,
         targets: collections.abc.Mapping[
@@ -1131,25 +1527,52 @@ class GalbotMotion:
         params: Parameter = ...,
     ) -> tuple[MotionStatus, dict[str, list[list[float]]]]:
         """
-        Plan a motion to multiple waypoints.
+        Plan synchronized trajectories through waypoints for multiple kinematic chains.
+
+        Use this overload for coordinated motion such as bimanual manipulation. Each targets mapping
+        key is a PoseState or JointStates template identifying one chain and waypoint representation;
+        the corresponding value is that chain's waypoint sequence.
 
         Parameters:
-            targets (dict of Pose): The target poses.
-            waypoint_poses (list of list of float): The waypoint poses.
-            start (RobotStates, optional): The initial robot states. Defaults to nullptr.
-            reference_robot_states (RobotStates, optional): The reference robot states. Defaults to nullptr.
-            enable_collision_check (bool, optional): Whether to enable collision checking. Defaults to true.
-            params (dict, optional): Additional parameters for the motion planning. Defaults to default_param.
+            targets (dict[RobotStates, list[list[float]]]): State template to waypoint-sequence mapping
+                for every chain to coordinate.
+            start (list[RobotStates], optional): Optional per-chain start states. An empty list uses
+                current states. Defaults to an empty list.
+            reference_robot_states (RobotStates, optional): Whole-body planning context. None uses
+                the current state.
+            enable_collision_check (bool, optional): Require collision-free coordinated trajectories.
+                Defaults to True.
+            params (Parameter, optional): Planning and execution options shared by all chains.
+                Defaults to default_param.
 
         Notes:
-            - GalbotMotion currently does NOT provide real-time obstacle perception / automatic environment updates.
-            - If collision checking is enabled, collisions are checked against self-collision and obstacles that you
-                manually load via add_obstacle()/attach_target_object().
-            - In contrast, the Navigation module (GalbotNavigation) may use real-time perception/avoidance depending
-                on deployment; this is not currently integrated into GalbotMotion.
+            - GalbotMotion does not automatically import real-time perception into its collision world.
+            - Collision checking uses self-collision and environment objects explicitly loaded through
+              add_obstacle() or attach_target_object().
+            - All returned chain trajectories are time-synchronized.
+
+        Warnings:
+            For direct execution, normally leave start empty and reference_robot_states as None to
+            avoid conflicts with the actual robot state.
 
         Returns:
-            bool: True if the motion planning is successful, False otherwise.
+            tuple[MotionStatus, dict[str, list[list[float]]]]: Status and synchronized per-chain trajectories.
+        """
+    def move_line(
+        self,
+        waypoints: collections.abc.Sequence[
+            collections.abc.Sequence[MotionPlanChainTarget]
+        ],
+        params: PlannerConfig = ...,
+        start_state: RobotStates = None,
+    ) -> tuple[MotionStatus, dict[str, list[list[float]]]]:
+        """
+        Run Cartesian line planning with MotionPlanWaypoints.
+
+                            params.actuate_type is applied to every Cartesian target and is not recommended for
+                            waypoint-specific control. Set each target's cart.assist_chains instead.
+
+                            The leg chain is supported only as the sole Cartesian target and without assist chains.
         """
     def move_whole_body_joint_zero(
         self,
@@ -1168,6 +1591,11 @@ class GalbotMotion:
         """
         Remove an obstacle by its ID
         """
+    def set_config_by_type(self, config: MotionPlanConfig) -> MotionStatus:
+        """
+        Set MPS configuration by type (payload via MotionPlanConfig.{config_type, common_str}).
+        """
+    @typing.overload
     def set_end_effector_pose(
         self,
         target_pose: collections.abc.Sequence[typing.SupportsFloat],
@@ -1180,33 +1608,88 @@ class GalbotMotion:
         params: Parameter = ...,
     ) -> MotionStatus:
         """
-        Set the pose of a specified end-effector frame.
+        Command one end-effector chain to a target Cartesian pose.
 
-        The robot executes the motion regardless of is_blocking. When is_blocking is True,
-        this call waits until execution completes or times out. When is_blocking is False,
-        this call returns immediately after starting a background task that waits for
-        execution completion.
+        Use this overload for single-chain planning without additional assist chains.
+        end_effector_frame selects the kinematic chain, such as "left_arm" or "right_arm";
+        it does not select a semantic link on that chain.
 
         Parameters:
-            target_pose (Pose): The target pose.
-            end_effector_frame (str): The name of the end-effector frame.
-            reference_frame (str, optional): The name of the reference frame. Defaults to "base_link".
-            reference_robot_states (RobotStates, optional): The reference robot states. Defaults to nullptr.
-            enable_collision_check (bool, optional): Whether to enable collision checking. Defaults to true.
+            target_pose (Pose): Target [x, y, z, qx, qy, qz, qw] pose in reference_frame.
+            end_effector_frame (str): Kinematic chain to command, for example "left_arm".
+            reference_frame (str, optional): "world", "map", "base_link", or a chain name returned
+                by get_supported_chains(). Defaults to "base_link".
+            reference_robot_states (RobotStates, optional): Whole-body planning seed. None uses the
+                current robot state. Defaults to None.
+            enable_collision_check (bool, optional): Require a collision-free trajectory. Defaults to True.
             is_blocking (bool, optional): Whether this API waits for execution completion.
-                False still starts robot motion and returns immediately. Defaults to true.
+                False still starts robot motion and returns immediately. Defaults to True.
             timeout (float, optional): Maximum time in seconds for the SDK to wait for motion
                 completion. If negative, params.timeout_second is used. In non-blocking mode,
                 the timeout is applied inside the background task. Defaults to -1.0.
-            params (dict, optional): Additional parameters for the motion planning. Defaults to default_param.
+            params (Parameter, optional): Motion-planning and execution options. In particular,
+                is_tool_pose selects TCP versus flange targeting and move_line selects Cartesian
+                straight-line target-frame motion. Defaults to default_param.
 
-        Note:
-            Motion speed parameters are configured under
-            /data/galbot/config/default/service_motion_plan/traj_plan.
+        Notes:
+            - target_pose refers to the flange by default. After attach_tool(), set
+              params.is_tool_pose=True when the target describes the attached-tool TCP.
+            - attach_tool() updates the kinematic and collision models but does not automatically change
+              the target frame used by this API.
+        Warnings:
+            For direct execution, normally leave reference_robot_states as None to avoid conflicts with
+            the actual robot state. Non-blocking mode does not cancel or skip motion; it only returns
+            before execution completes.
 
         Returns:
-            MotionStatus: SUCCESS if execution completed in blocking mode, or if background execution
-                started in non-blocking mode; otherwise an error status.
+            MotionStatus: Planning or execution status.
+        """
+    @typing.overload
+    def set_end_effector_pose(
+        self,
+        target_pose: collections.abc.Sequence[typing.SupportsFloat],
+        end_effector_frame: str,
+        reference_frame: str,
+        assist_chains: collections.abc.Set[str],
+        reference_robot_states: RobotStates = None,
+        enable_collision_check: bool = True,
+        is_blocking: bool = True,
+        timeout: typing.SupportsFloat = -1.0,
+        params: Parameter = ...,
+    ) -> MotionStatus:
+        """
+        Command one end-effector chain to a target Cartesian pose with coordinated assist chains.
+
+        This overload coordinates the chains listed in assist_chains in addition to the primary chain.
+        end_effector_frame selects that primary kinematic chain; it is not a semantic link name.
+
+        Parameters:
+            target_pose (Pose): Target [x, y, z, qx, qy, qz, qw] pose in reference_frame.
+            end_effector_frame (str): Primary kinematic chain to command, for example "left_arm".
+            reference_frame (str): "world", "map", "base_link", or a chain name returned by
+                get_supported_chains().
+            assist_chains (set[str]): Additional chains to coordinate during planning.
+            reference_robot_states (RobotStates, optional): Whole-body planning seed. None uses the
+                current robot state. Defaults to None.
+            enable_collision_check (bool, optional): Require a collision-free trajectory. Defaults to True.
+            is_blocking (bool, optional): Whether this API waits for execution completion. False still
+                starts robot motion and returns immediately. Defaults to True.
+            timeout (float, optional): Maximum wait time in seconds. If negative, params.timeout_second
+                is used. Defaults to -1.0.
+            params (Parameter, optional): Motion-planning and execution options. Set is_tool_pose=True
+                when target_pose describes the attached-tool TCP. Defaults to default_param.
+
+        Notes:
+            - target_pose refers to the flange by default. After attach_tool(), set
+              params.is_tool_pose=True when the target describes the attached-tool TCP.
+            - attach_tool() updates the kinematic and collision models but does not automatically change
+              the target frame used by this API.
+        Warnings:
+            The "leg" chain is not supported in assist_chains. For direct execution, normally leave
+            reference_robot_states as None. Non-blocking mode still starts robot motion.
+
+        Returns:
+            MotionStatus: Planning or execution status.
         """
     def set_motion_plan_config(self, config: MotionPlanConfig) -> MotionStatus:
         """
@@ -1215,6 +1698,20 @@ class GalbotMotion:
     def status_to_string(self, status: MotionStatus) -> str:
         """
         Convert MotionStatus to a human-readable string.
+        """
+    def traj_plan(
+        self,
+        waypoints: collections.abc.Sequence[
+            collections.abc.Sequence[MotionPlanChainTarget]
+        ],
+        params: PlannerConfig = ...,
+        start_state: RobotStates = None,
+    ) -> tuple[MotionStatus, dict[str, list[list[float]]]]:
+        """
+        Run trajectory planning with MotionPlanWaypoints.
+
+                            params.actuate_type is applied to every Cartesian target and is not recommended for
+                            waypoint-specific control. Set each target's cart.assist_chains instead.
         """
 
 class GalbotNavigation:
@@ -1437,7 +1934,7 @@ class GalbotNavigation:
             enable_collision_check (bool): If True, enables dynamic obstacle detection and avoidance; default True.
             is_blocking (bool): If True, monitor navigation in the current thread; if False, start a background monitor thread and return after command acceptance; default False.
             timeout (float): SDK-side navigation monitor timeout in seconds; used by both blocking and non-blocking modes. If timeout expires before navigation stops, SDK calls stop_navigation automatically; default 8.0.
-            omni_plan (bool): If True, omnidirectional motion planning; if False, differential drive; default False.
+            omni_plan (bool): If True, omnidirectional motion planning; if False, differential drive; default False. S1 does not support omnidirectional motion planning, so keep this parameter False on S1; setting it to True returns INVALID_INPUT.
 
                 Returns:
                     tuple: (success: bool, status_string: str)
@@ -1464,7 +1961,7 @@ class GalbotNavigation:
             enable_collision_check (bool): Enable v2 collision checking fields; default True.
             is_blocking (bool): If True, blocks until goal is reached or timeout; default False.
             timeout (float): Navigation runtime timeout sent to the PNS service; negative means no motion time limit; default 5.0.
-            omni_plan (bool): If True, omnidirectional motion planning; if False, heading-based planning; default False.
+            omni_plan (bool): If True, omnidirectional motion planning; if False, heading-based planning; default False. S1 does not support omnidirectional motion planning, so keep this parameter False on S1; setting it to True returns INVALID_INPUT.
 
         Returns:
             tuple: (success: bool, status_string: str)
@@ -1543,8 +2040,8 @@ class GalbotNavigation:
 
         Parameters:
             vel_limit (array): [vx_limit, vy_limit, vyaw_limit].
-            acc_limit (array): [ax_limit, ay_limit, ayaw_limit].
-            jerk_limit (array): [jx_limit, jy_limit, jyaw_limit].
+            acc_limit (array): [ax_limit, ay_limit, ayaw_limit]. Each element must be in range [0.05, 6.0].
+            jerk_limit (array): [jx_limit, jy_limit, jyaw_limit]. Each element must be in range [0.05, 12.0].
 
         Returns:
             tuple: (success: bool, status_string: str)
@@ -1615,7 +2112,7 @@ class GalbotNavigation:
 
 class GalbotPerception:
     """
-    Perception module interface. Use get_instance(machine_type) for the platform singleton; G1 and S1 are supported.
+    Perception module interface. Use get_instance(machine_type) for the platform singleton; G1, S1, and G3 are supported.
     """
     def get_latest_result(self, module: PerceptionModule) -> tuple:
         """
@@ -1690,9 +2187,13 @@ class GalbotRobot:
         Returns:
             List[TrajectoryControlStatus]: List of trajectory execution statuses.
         """
-    def clear_end_effector_command(self) -> ControlStatus:
+    def clear_end_effector_command(self, hold: bool = False) -> ControlStatus:
         """
         Clear WBC end-effector task commands.
+
+        Args:
+            hold (bool): If True, joints hold their current pose after clear.
+                         If False (default), joints return to the reference pose.
 
         Returns:
             ControlStatus: Command publishing result.
@@ -1744,6 +2245,20 @@ class GalbotRobot:
         Returns:
             str: Active controller name for the group.
         """
+    def get_base_velocity(self) -> dict:
+        """
+        Get current base velocity information.
+
+        Parameters:
+            None
+
+        Returns:
+            dict: Dictionary containing the following keys:
+                - 'linear_velocity': Linear velocity array [vx, vy, vz] in m/s
+                - 'angular_velocity': Angular velocity array [wx, wy, wz] in rad/s
+
+            Returns empty dictionary on failure.
+        """
     def get_camera_intrinsic(self, camera_id: SensorType) -> dict:
         """
         Get camera intrinsic parameters.
@@ -1766,9 +2281,30 @@ class GalbotRobot:
                 ...
                 Returns empty dictionary on failure.
         """
+    def get_config(
+        self,
+        service: ConfigService,
+        keys: collections.abc.Sequence[str],
+        use_default: bool = False,
+    ) -> tuple:
+        """
+        Read current configuration values; an empty key list reads all registered fields.
+
+        Set use_default=True to read only the robot's built-in default values.
+
+        SUCCESS means every requested field was read. If one or more fields fail,
+        the returned status is not SUCCESS, but the returned list still contains
+        every field that was read successfully; failed fields are omitted.
+        """
     def get_depth_data(self, camera_id: SensorType) -> dict:
         """
-        Get latest depth image data from specified camera.
+        Get latest depth image data from specified arm depth camera.
+
+        Only SensorType.LEFT_ARM_DEPTH_CAMERA and SensorType.RIGHT_ARM_DEPTH_CAMERA
+        are valid for this method.
+
+        This API is available on G1 and S1 only. G3 does not provide arm-mounted
+        depth cameras.
 
         Parameters:
             camera_id (SensorType): Depth camera sensor ID to query.
@@ -1776,12 +2312,20 @@ class GalbotRobot:
         Returns:
             dict: Dictionary containing the following keys:
                 - 'header': Message header with timestamp and frame information
-                - 'format': Image format, e.g., 'depth16' or other
+                - 'format': Depth image encoding and compression format
                 - 'depth_scale': Depth scaling factor
                 - 'height': Image height in pixels
                 - 'width': Image width in pixels
-                - 'data': Compressed depth image binary data (bytes).
-            Returns empty dictionary on failure.
+                - 'data': Encoded depth image bytes
+
+            Returns empty dictionary if the sensor type is invalid, the sensor is not
+            enabled, or data retrieval fails.
+
+        Notes:
+            Decode 'data' first, then convert pixel values to meters with:
+                depth_m = pixel_value / depth_scale
+            For example, depth_scale = 1000 means 1000 counts = 1.0 m.
+            A decoded pixel value of 0 usually indicates invalid or missing depth.
         """
     def get_device_information(self) -> dict:
         """
@@ -1800,18 +2344,36 @@ class GalbotRobot:
 
             Returns empty dictionary on failure.
         """
-    def get_dexhand_state(
-        self, end_effector: str, dexhand_type: DexHandType = ...
-    ) -> typing.Any:
+    def get_force_sensor_data(
+        self,
+        sensor_type: GalbotOneFoxtrotSensor,
+        calibrated: bool = False,
+        ref_frame: str = "",
+    ) -> dict:
         """
-        Get dexhand state.
+        Get data from specified force sensor.
 
         Parameters:
-            end_effector (str): Dexhand name, e.g. "left_dexhand" or "right_dexhand".
-            dexhand_type (DexHandType): Dexhand model type (optional, default: INSPIRE).
+            sensor_type (GalbotOneFoxtrotSensor): Force sensor enum to query.
+            calibrated (bool): Whether to read the calibrated contact wrench from WBC info. Defaults to False.
+            ref_frame (str): Frame whose axes are used for the returned force and torque. An empty string keeps
+                the source-frame axes.
+                Supported non-empty frames are "base_link", "torso_base_link", and the matching
+                "left_arm_end_effector_mount_link" or "right_arm_end_effector_mount_link".
 
         Returns:
-            DexhandState | None: Dexhand state on success (use .joint_state; .force_sensor_map for Sharpa), otherwise None.
+            dict: Dictionary containing the following keys:
+                - 'timestamp_ns': Timestamp in nanoseconds
+                - 'force': Force vector dictionary with 'x', 'y', 'z' keys
+                - 'torque': Torque vector dictionary with 'x', 'y', 'z' keys
+
+            Returns empty dictionary for invalid input, unavailable data, or transform failure.
+
+        Notes:
+            Raw data uses the corresponding "left_arm_force_sensor_joint" or
+            "right_arm_force_sensor_joint" source frame. Calibrated data uses the matching
+            end-effector mount link source frame. A non-empty ref_frame rotates force and torque
+            into the requested frame axes at the measurement timestamp while retaining the sensor origin.
         """
     def get_frame_names(self) -> list[str]:
         """
@@ -1980,18 +2542,26 @@ class GalbotRobot:
 
             Returns empty dictionary on failure.
         """
-    def get_rgb_data(self, camera_id: SensorType) -> dict:
+    def get_rgb_data(
+        self, camera_id: SensorType, format: RgbOutputFormat = ..., once: bool = True
+    ) -> dict:
         """
-        Get latest RGB image data from specified camera.
+        Get one RGB image in the requested CPU-visible representation.
 
         Parameters:
             camera_id (SensorType): Camera sensor ID to query.
+            format (RgbOutputFormat): JPEG (default), NV12, BGR, or RGB.
+            once (bool): True (default) waits for one fresh frame of the requested
+                format and then removes that one-shot format request. The per-camera
+                DMA-FD subscriber is started lazily and reused. False starts or reuses
+                the persistent worker/cache and keeps the requested format active.
 
         Returns:
             dict: Dictionary containing the following keys:
-                - 'header': Message header with timestamp and frame information
-                - 'format': Image format, e.g., 'jpeg' or 'png'
-                - 'data': Compressed image binary data (bytes)
+                - 'header': Message header; DMA FD RGB frames have an empty frame_id.
+                - 'format' / 'output_format': String and RgbOutputFormat representation.
+                - 'width', 'height', 'plane_count', 'stride_bytes', 'plane_offset_bytes'.
+                - 'data': JPEG bytes, or tightly packed NV12/BGR/RGB bytes.
 
             Returns empty dictionary on failure.
         """
@@ -2016,16 +2586,23 @@ class GalbotRobot:
         """
         Get timestamp-synchronized observation as a typed SyncedObservation object.
 
+        The first camera supplies the latest anchor timestamp. Other cameras and the
+        optional joint state are selected by nearest-neighbor timestamp. RGB entries
+        are CPU-owned, tightly packed NV12 frames; they are not JPEG payloads. This is
+        software timestamp alignment and does not enforce a maximum timestamp skew.
+        Initialize the robot with enable_sync_mode=True before calling this method.
+
         Parameters:
             cameras (list[SensorType]): Cameras to synchronize. First item is anchor.
             with_joint_state (bool): Whether to include nearest-neighbor joint state.
 
         Returns:
             SyncedObservation | None:
-                - rgb_data_map: dict[SensorType, RgbData]
+                - rgb_data_map: dict[SensorType, RgbData] containing NV12 frames
                 - depth_data_map: dict[SensorType, DepthData]
                 - joint_state: JointStateMessage | None
-            Returns None on failure.
+            The call waits up to one second for an initially empty requested camera
+            history and returns None on invalid input or unavailable data.
         """
     def get_transform(
         self,
@@ -2096,6 +2673,22 @@ class GalbotRobot:
         Returns:
             ControlStatus: Local validation / publish result.
         """
+    def register_endtool_raw_callback(self, callback: typing.Callable) -> int:
+        """
+        Register a callback receiving S1 EndToolRawData from the shared raw-data topic.
+
+        Parameters:
+            callback (Callable[[EndToolRawData], None]): Function invoked for
+                every left/right and 1 kHz/250 Hz receive stream.
+
+        Returns:
+            int: Non-zero registration handle on success, or 0 when the
+                passthrough is unavailable or callback registration fails.
+
+        Notes:
+            Callbacks execute on middleware threads; protect shared state for concurrency.
+            An invocation already in progress may finish after unregistering.
+        """
     def release_controller(self, group_name: str = "all") -> ControlStatus:
         """
         Release a controller for a specific joint group.
@@ -2153,7 +2746,29 @@ class GalbotRobot:
         Returns:
             ErrorInfo | None: Error response payload or None when no valid response was received.
         """
+    def send_endtool_raw_frame(self, side: EndToolSide, frame: bytes) -> ControlStatus:
+        """
+        Publish one opaque 64-byte frame to the selected S1 arm/TIB.
 
+        Parameters:
+            side (EndToolSide): Left or right arm/TIB channel.
+            frame (bytes): Exactly 64 opaque bytes in the S1 WBCS/TIB layout.
+
+        Returns:
+            ControlStatus: SUCCESS after local DDS publication, INVALID_INPUT
+                for an invalid side, INIT_FAILED when the passthrough is not
+                initialized, or PUBLISH_FAIL when publication fails.
+
+        Raises:
+            ValueError: If frame does not contain exactly 64 bytes.
+
+        Notes:
+            This API is S1-only. On GBS 1.18.1, WBCS must start with
+            [robot_info.custom_params].endtool_raw_enabled=true. SUCCESS does not prove that WBCS,
+            the TIB, or the device accepted the frame. The raw path has no
+            server-side exclusive-writer lock.
+        """
+    @typing.overload
     def set_base_pose(
         self,
         base_pose: Pose,
@@ -2171,7 +2786,7 @@ class GalbotRobot:
         Returns:
             ControlStatus: Command sending result.
         """
-
+    @typing.overload
     def set_base_pose(
         self,
         x: typing.SupportsFloat,
@@ -2201,7 +2816,7 @@ class GalbotRobot:
         Returns:
             ControlStatus: Command sending result.
         """
-
+    @typing.overload
     def set_base_pose(
         self,
         x: typing.SupportsFloat,
@@ -2248,30 +2863,49 @@ class GalbotRobot:
         Parameters:
             linear_velocity (List[float]): Linear velocity command [vx, vy, vz] in m/s.
             angular_velocity (List[float]): Angular velocity command [wx, wy, wz] in rad/s.
-            duration_s (float): Duration in seconds before auto-stop (optional, default: 0.0).
-                                If <= 0.0, no automatic stop is performed.
-
+            duration_s (float): Velocity publishing window in seconds (optional, default: 0.0).
+                                Zero publishes once. Positive values block this calling thread,
+                                publishing immediately and then at 10 Hz until the window ends.
+                                Negative, non-finite, or unrepresentable durations are invalid.
+        Notes:
+            No stop command is sent on expiry or early exit. Actual stopping depends on the
+            underlying watchdog and braking. The window starts after the first successful publish;
+            controller switching and publishing overhead add to call latency. The GIL is released.
+            Do not issue concurrent base commands during this call; other commands do not cancel
+            this publishing loop. For caller-controlled stopping, use single-publish mode.
         Returns:
-            ControlStatus: Command sending result.
+            ControlStatus: SUCCESS when publishing completes (not confirmation of a stopped base),
+                           INVALID_INPUT for invalid input, STOPPED_UNREACHED on SDK shutdown,
+                           or the initialization/controller/communication/fault/publishing error.
         """
-    def set_dexhand_command(
-        self,
-        end_effector: str,
-        dexhand_command: collections.abc.Sequence[JointCommand],
-        dexhand_type: DexHandType = ...,
-        is_blocking: bool = True,
+    def set_config(
+        self, service: ConfigService, fields: collections.abc.Sequence[ConfigItem]
     ) -> ControlStatus:
         """
-        Set dexhand command.
+        Set one or more fields in a service's on-disk TOML configuration.
+
+        For the full list of supported keys, their types, and valid value ranges
+        per service, see the "Set Config Reference" page in the SDK documentation.
+
+        This call reports only a single aggregate status; it does not return which
+        field(s) failed or why. Check the SDK log output when this call does not
+        return SUCCESS.
+
+        A successful call only persists the configuration; it does not take effect
+        until the device is restarted and the owning service reloads it.
 
         Parameters:
-            end_effector (str): Dexhand name, e.g. "left_dexhand" or "right_dexhand".
-            dexhand_command (List[JointCommand]): Joint command list for the dexhand.
-            dexhand_type (DexHandType): Dexhand model type (optional, default: INSPIRE).
-            is_blocking (bool): Whether to block until action completes (optional, default: True).
+            service (ConfigService): Which service's configuration to edit.
+            fields (List[ConfigItem]): Fields to set, addressed by ConfigItem.key (an
+                SDK-defined friendly field identifier; see each service's field registry).
 
         Returns:
-            ControlStatus: Command execution/sending result.
+            ControlStatus:
+                - SUCCESS if every field validated and was written.
+                - INVALID_INPUT if scene resolution or field validation failed
+                  (in this case none of the fields were written).
+                - DATA_FETCH_FAILED / PUBLISH_FAIL on read/write RPC failure.
+                - FAULT for an unimplemented service.
         """
     def set_end_effector_command(
         self,
@@ -2280,7 +2914,7 @@ class GalbotRobot:
         reference_frames: collections.abc.Sequence[str] = [],
     ) -> ControlStatus:
         """
-        Set WBC end-effector pose commands.
+        Set WBC end-effector pose commands for high-frequency real-time control (task trajectory publish).
 
         Parameters:
             poses (List[List[float]]): One pose per end effector; each row is
@@ -2432,6 +3066,19 @@ class GalbotRobot:
         Returns:
             ControlStatus: Command sending result.
         """
+    def subscribe_video_data(
+        self, camera_id: SensorType, callback: typing.Callable
+    ) -> SensorStatus:
+        """
+        Subscribe H.264 encoded video data from specified camera.
+
+        Parameters:
+            camera_id (SensorType): Camera sensor ID to subscribe.
+            callback (callable): Callback function with signature: void(dict video_data).
+
+        Returns:
+                    SensorStatus: SUCCESS if callback is registered.
+        """
     def switch_controller(self, controller_name: str) -> ControlStatus:
         """
         Switch controller for a specific joint group.
@@ -2439,8 +3086,41 @@ class GalbotRobot:
         Parameters:
             controller_name (str): Controller name, for example "chassis_pose_ctrl".
 
+        Notes:
+            WBCS enforces controller priority. A higher-priority BYPASS controller
+            cannot switch directly to a lower-priority PVT controller. To return to
+            PVT, call stop_controller(group_name), release_controller(group_name),
+            acquire_controller(pvt_controller), and start_controller(group_name) in
+            that order.
+
         Returns:
-            ControlStatus: Result of the operation.
+            ControlStatus: SUCCESS if WBCS accepts the switch; INVALID_INPUT if the
+                controller name is unknown; INIT_FAILED if the WBCS client is unavailable;
+                TIMEOUT if no response is received within 5 seconds; or FAULT if the
+                response contains any controller-command error.
+        """
+    def unregister_endtool_raw_callback(self, handle: typing.SupportsInt) -> bool:
+        """
+        Unregister an S1 raw end-tool callback by handle.
+
+        Parameters:
+            handle (int): Handle returned by register_endtool_raw_callback().
+
+        Returns:
+            bool: True if the handle existed and was removed, otherwise False.
+
+        Notes:
+            An invocation already in progress may finish after this method returns.
+        """
+    def unsubscribe_video_data(self, camera_id: SensorType) -> SensorStatus:
+        """
+        Unsubscribe H.264 encoded video data callbacks from specified camera.
+
+        Parameters:
+            camera_id (SensorType): Camera sensor ID to unsubscribe.
+
+        Returns:
+            SensorStatus: SUCCESS if callbacks are cleared.
         """
     def wait_for_shutdown(self) -> None:
         """
@@ -2455,6 +3135,7 @@ class GalbotRobot:
         Returns:
             None
         """
+    @typing.overload
     def zero_whole_body_and_base(
         self,
         base_zero_pose: Pose,
@@ -2466,7 +3147,7 @@ class GalbotRobot:
         """
         One-key zero: move whole-body joints to zero and base to zero pose.
         """
-
+    @typing.overload
     def zero_whole_body_and_base(
         self,
         frame_id: str = "odom",
@@ -2728,6 +3409,10 @@ class JointStates(RobotStates):
         self, joints: collections.abc.Sequence[typing.SupportsFloat]
     ) -> None: ...
     @property
+    def joint_names(self) -> list[str]: ...
+    @joint_names.setter
+    def joint_names(self, arg0: collections.abc.Sequence[str]) -> None: ...
+    @property
     def joint_positions(self) -> list[float]: ...
     @joint_positions.setter
     def joint_positions(
@@ -2899,13 +3584,15 @@ class MachineType:
     | --- | --- |
     | G1 | G1 machine type |
     | S1 | S1 machine type |
+    | G3 | G3 machine type |
     """
 
     G1: typing.ClassVar[MachineType]  # value = <MachineType.G1: 0>
+    G3: typing.ClassVar[MachineType]  # value = <MachineType.G3: 2>
     S1: typing.ClassVar[MachineType]  # value = <MachineType.S1: 1>
     __members__: typing.ClassVar[
         dict[str, MachineType]
-    ]  # value = {'G1': <MachineType.G1: 0>, 'S1': <MachineType.S1: 1>}
+    ]  # value = {'G1': <MachineType.G1: 0>, 'S1': <MachineType.S1: 1>, 'G3': <MachineType.G3: 2>}
     def __eq__(self, other: typing.Any) -> bool: ...
     def __getstate__(self) -> int: ...
     def __hash__(self) -> int: ...
@@ -2921,7 +3608,43 @@ class MachineType:
     @property
     def value(self) -> int: ...
 
+class MotionPlanChainTarget:
+    """
+    Target for one kinematic chain at a single path waypoint.
+    """
+    def __init__(self) -> None: ...
+    @property
+    def cart(self) -> PoseState:
+        """
+        Cartesian-space target used when mode is MotionPlanTargetMode.kCartesian.
+        """
+    @cart.setter
+    def cart(self, arg0: PoseState) -> None: ...
+    @property
+    def chain_name(self) -> str:
+        """
+        Name of the kinematic chain targeted at this waypoint.
+        """
+    @chain_name.setter
+    def chain_name(self, arg0: str) -> None: ...
+    @property
+    def joint(self) -> JointStates:
+        """
+        Joint-space target used when mode is MotionPlanTargetMode.kJoint.
+        """
+    @joint.setter
+    def joint(self, arg0: JointStates) -> None: ...
+    @property
+    def mode(self) -> MotionPlanTargetMode:
+        """
+        Selects the active target representation.
+        """
+    @mode.setter
+    def mode(self, arg0: MotionPlanTargetMode) -> None: ...
+
 class MotionPlanConfig:
+    common_str: str
+    config_type: str
     def __init__(self) -> None: ...
     def create_collision_check_option(self) -> CollisionCheckOption: ...
     def create_ik_solver_config(self) -> IKSolverConfig: ...
@@ -2982,6 +3705,80 @@ class MotionPlanConfig:
     ) -> None: ...
     def set_trajectory_plan_config(self, config: TrajectoryPlanConfig) -> None: ...
     def set_update_time(self, t: typing.SupportsInt) -> None: ...
+
+class MotionPlanTargetMode:
+    """
+
+    Representation used by a single-chain motion-plan target.
+
+    Members:
+
+    | Enum Value | Description |
+    | --- | --- |
+    | kJoint | Use the joint-space target stored in MotionPlanChainTarget.joint. |
+    | kCartesian | Use the Cartesian target stored in MotionPlanChainTarget.cart. |
+    """
+
+    __members__: typing.ClassVar[
+        dict[str, MotionPlanTargetMode]
+    ]  # value = {'kJoint': <MotionPlanTargetMode.kJoint: 0>, 'kCartesian': <MotionPlanTargetMode.kCartesian: 1>}
+    kCartesian: typing.ClassVar[
+        MotionPlanTargetMode
+    ]  # value = <MotionPlanTargetMode.kCartesian: 1>
+    kJoint: typing.ClassVar[
+        MotionPlanTargetMode
+    ]  # value = <MotionPlanTargetMode.kJoint: 0>
+    def __eq__(self, other: typing.Any) -> bool: ...
+    def __getstate__(self) -> int: ...
+    def __hash__(self) -> int: ...
+    def __index__(self) -> int: ...
+    def __init__(self, value: typing.SupportsInt) -> None: ...
+    def __int__(self) -> int: ...
+    def __ne__(self, other: typing.Any) -> bool: ...
+    def __repr__(self) -> str: ...
+    def __setstate__(self, state: typing.SupportsInt) -> None: ...
+    def __str__(self) -> str: ...
+    @property
+    def name(self) -> str: ...
+    @property
+    def value(self) -> int: ...
+
+class MotionPlanType:
+    """
+
+    Planning algorithm used for a segment of a combined motion plan.
+
+    Members:
+
+    | Enum Value | Description |
+    | --- | --- |
+    | MOTION_PLAN | Sampling-based, collision-aware path planning. |
+    | TRAJ_PLAN | Direct joint-space trajectory interpolation without path search. |
+    | MOVE_LINE | Cartesian straight-line interpolation with inverse-kinematics sampling. |
+    """
+
+    MOTION_PLAN: typing.ClassVar[
+        MotionPlanType
+    ]  # value = <MotionPlanType.MOTION_PLAN: 0>
+    MOVE_LINE: typing.ClassVar[MotionPlanType]  # value = <MotionPlanType.MOVE_LINE: 2>
+    TRAJ_PLAN: typing.ClassVar[MotionPlanType]  # value = <MotionPlanType.TRAJ_PLAN: 1>
+    __members__: typing.ClassVar[
+        dict[str, MotionPlanType]
+    ]  # value = {'MOTION_PLAN': <MotionPlanType.MOTION_PLAN: 0>, 'TRAJ_PLAN': <MotionPlanType.TRAJ_PLAN: 1>, 'MOVE_LINE': <MotionPlanType.MOVE_LINE: 2>}
+    def __eq__(self, other: typing.Any) -> bool: ...
+    def __getstate__(self) -> int: ...
+    def __hash__(self) -> int: ...
+    def __index__(self) -> int: ...
+    def __init__(self, value: typing.SupportsInt) -> None: ...
+    def __int__(self) -> int: ...
+    def __ne__(self, other: typing.Any) -> bool: ...
+    def __repr__(self) -> str: ...
+    def __setstate__(self, state: typing.SupportsInt) -> None: ...
+    def __str__(self) -> str: ...
+    @property
+    def name(self) -> str: ...
+    @property
+    def value(self) -> int: ...
 
 class MotionStatus:
     """
@@ -3173,23 +3970,18 @@ class OdomData:
     @timestamp_ns.setter
     def timestamp_ns(self, arg0: typing.SupportsInt) -> None: ...
 
-class Parameter:
-    actuate_type: ...
-    is_blocking: bool
-    is_check_collision: bool
-    is_direct_execute: bool
-    is_tool_pose: bool
-    reference_frame: str
-
-    def __init__(self) -> None: ...
+class Parameter(PlannerConfig):
+    """
+    Motion-planning parameters used by high-level planning and execution APIs.
+    """
     def __init__(
         self,
-        direct_execute: bool,
-        blocking: bool,
-        timeout: typing.SupportsFloat,
-        actuate: str,
-        tool_pose: bool,
-        check_collision: bool,
+        direct_execute: bool = False,
+        blocking: bool = False,
+        timeout: typing.SupportsFloat = 20.0,
+        actuate: str = "with_chain_only",
+        tool_pose: bool = False,
+        check_collision: bool = True,
         frame: str = "base_link",
     ) -> None: ...
     def __repr__(self) -> str: ...
@@ -3219,42 +4011,97 @@ class Parameter:
         """
     def get_tool_pose(self) -> bool:
         """
-        Get whether to use tool pose for actuation.
+        Return True when Cartesian targets refer to the attached-tool TCP; False means the flange.
         """
     def set_actuate(self, actuate: str) -> None:
         """
-        Set the actuation type (only link, including torso, including legs).
+        Set participating chains: 'with_chain_only', 'with_torso', or 'with_leg'.
         """
     def set_blocking(self, blocking: bool) -> None:
         """
-        Set whether to wait synchronously for trajectory execution or planning completion.
+        Set whether a supported API waits synchronously for completion.
         """
     def set_check_collision(self, check_collision: bool) -> None:
         """
-        Set whether to perform collision detection.
+        Enable or disable planning collision checks.
         """
     def set_direct_execute(self, direct_execute: bool) -> None:
         """
-        Set whether to directly execute the trajectory after planning.
+        Set whether a supported planning API executes the planned trajectory immediately.
+        """
+    def set_enable_env_collision_check(self, enable: bool) -> None:
+        """
+        Include loaded environment obstacles in collision checking.
         """
     def set_move_line(self, move_line: bool) -> None:
         """
-        Set whether to use linear movement for planning.
+        Select Cartesian straight-line motion of the controlled target frame in APIs that dispatch according
+                            to Parameter.move_line, including set_end_effector_pose() and motion_plan(). This constrains the
+                            target-frame path, not individual joint motion. The explicit move_line(waypoints, params,
+                            start_state) API always uses line planning and does not require this
+                            flag. Enable this option only when the task requires straight-line Cartesian target-frame motion.
+                            A line request can fail at unreachable intermediate poses, singularities, joint limits, or
+                            discontinuous IK solutions.
         """
     def set_reference_frame(self, frame: str) -> None:
         """
-        Set the reference coordinate frame for planning.
+        Set the reference coordinate frame used by APIs that consume this field.
         """
     def set_timeout(self, timeout: typing.SupportsFloat) -> None:
         """
-        Set the maximum waiting time for trajectory execution or planning completion (in seconds).
+        Set the positive maximum planning or execution request wait time in seconds.
         """
     def set_tool_pose(self, tool_pose: bool) -> None:
         """
-        Set whether to use tool pose for actuation.
+        Interpret Cartesian targets as the attached-tool TCP when True, or the flange when False.
         """
     @property
-    def joint_state(self) -> dict[str, list[float]]: ...
+    def actuate_type(self) -> ActuateType:
+        """
+        Chains allowed to participate in planning.
+        """
+    @actuate_type.setter
+    def actuate_type(self, arg0: ActuateType) -> None: ...
+    @property
+    def enable_env_collision_check(self) -> bool:
+        """
+        Include loaded environment obstacles in collision checks.
+        """
+    @enable_env_collision_check.setter
+    def enable_env_collision_check(self, arg0: bool) -> None: ...
+    @property
+    def is_blocking(self) -> bool:
+        """
+        Wait for planning or execution completion.
+        """
+    @is_blocking.setter
+    def is_blocking(self, arg0: bool) -> None: ...
+    @property
+    def is_check_collision(self) -> bool:
+        """
+        Enable planning collision checks.
+        """
+    @is_check_collision.setter
+    def is_check_collision(self, arg0: bool) -> None: ...
+    @property
+    def is_direct_execute(self) -> bool:
+        """
+        Execute immediately after planning.
+        """
+    @is_direct_execute.setter
+    def is_direct_execute(self, arg0: bool) -> None: ...
+    @property
+    def is_tool_pose(self) -> bool:
+        """
+        Interpret Cartesian targets as attached-tool TCP poses instead of flange poses.
+        """
+    @is_tool_pose.setter
+    def is_tool_pose(self, arg0: bool) -> None: ...
+    @property
+    def joint_state(self) -> dict[str, list[float]]:
+        """
+        Optional planning seed by chain; an empty mapping uses the current state.
+        """
     @joint_state.setter
     def joint_state(
         self,
@@ -3263,7 +4110,24 @@ class Parameter:
         ],
     ) -> None: ...
     @property
-    def timeout_second(self) -> float: ...
+    def move_line(self) -> bool:
+        """
+        Select Cartesian straight-line target-frame motion in dispatching APIs.
+        """
+    @move_line.setter
+    def move_line(self, arg0: bool) -> None: ...
+    @property
+    def reference_frame(self) -> str:
+        """
+        Reference frame used by APIs that consume this field.
+        """
+    @reference_frame.setter
+    def reference_frame(self, arg0: str) -> None: ...
+    @property
+    def timeout_second(self) -> float:
+        """
+        Maximum planning or execution request wait time in seconds.
+        """
     @timeout_second.setter
     def timeout_second(self, arg0: typing.SupportsFloat) -> None: ...
 
@@ -3304,8 +4168,135 @@ class PerceptionModule:
     @property
     def value(self) -> int: ...
 
-class Point:
+class PlanRequest:
+    """
+    Planning request for one segment of a combined motion plan.
+    """
     def __init__(self) -> None: ...
+    @property
+    def enforce_pass(self) -> bool:
+        """
+        Allow continuation after segment issues; all request values are logically ANDed.
+        """
+    @enforce_pass.setter
+    def enforce_pass(self, arg0: bool) -> None: ...
+    @property
+    def options(self) -> PlannerConfig:
+        """
+        Per-segment planning options, reserved for future overrides in combine_plan().
+        """
+    @options.setter
+    def options(self, arg0: PlannerConfig) -> None: ...
+    @property
+    def plan_type(self) -> MotionPlanType:
+        """
+        MotionPlanType algorithm used for this segment.
+        """
+    @plan_type.setter
+    def plan_type(self, arg0: MotionPlanType) -> None: ...
+    @property
+    def target(self) -> list[list[MotionPlanChainTarget]]:
+        """
+        Ordered multi-chain target waypoints. Each outer item is one path waypoint, and each inner item targets one kinematic chain.
+        """
+    @target.setter
+    def target(
+        self,
+        arg0: collections.abc.Sequence[collections.abc.Sequence[MotionPlanChainTarget]],
+    ) -> None: ...
+
+class PlannerConfig:
+    """
+    Base motion-planning configuration.
+    """
+    def __init__(self) -> None: ...
+    @property
+    def actuate_type(self) -> ActuateType:
+        """
+        Chains allowed to participate in planning.
+        """
+    @actuate_type.setter
+    def actuate_type(self, arg0: ActuateType) -> None: ...
+    @property
+    def enable_env_collision_check(self) -> bool:
+        """
+        Include loaded environment obstacles in collision checks.
+        """
+    @enable_env_collision_check.setter
+    def enable_env_collision_check(self, arg0: bool) -> None: ...
+    @property
+    def is_blocking(self) -> bool:
+        """
+        Wait for planning or execution completion.
+        """
+    @is_blocking.setter
+    def is_blocking(self, arg0: bool) -> None: ...
+    @property
+    def is_check_collision(self) -> bool:
+        """
+        Enable planning collision checks.
+        """
+    @is_check_collision.setter
+    def is_check_collision(self, arg0: bool) -> None: ...
+    @property
+    def is_direct_execute(self) -> bool:
+        """
+        Execute immediately after planning.
+        """
+    @is_direct_execute.setter
+    def is_direct_execute(self, arg0: bool) -> None: ...
+    @property
+    def is_relative_pose(self) -> bool:
+        """
+        Interpret a target pose as a relative displacement.
+        """
+    @is_relative_pose.setter
+    def is_relative_pose(self, arg0: bool) -> None: ...
+    @property
+    def is_tool_pose(self) -> bool:
+        """
+        Interpret Cartesian targets as attached-tool TCP poses instead of flange poses.
+        """
+    @is_tool_pose.setter
+    def is_tool_pose(self, arg0: bool) -> None: ...
+    @property
+    def joint_state(self) -> dict[str, list[float]]:
+        """
+        Optional planning seed by chain; an empty mapping uses the current state.
+        """
+    @joint_state.setter
+    def joint_state(
+        self,
+        arg0: collections.abc.Mapping[
+            str, collections.abc.Sequence[typing.SupportsFloat]
+        ],
+    ) -> None: ...
+    @property
+    def move_line(self) -> bool:
+        """
+        Select Cartesian straight-line target-frame motion in dispatching APIs.
+        """
+    @move_line.setter
+    def move_line(self, arg0: bool) -> None: ...
+    @property
+    def reference_frame(self) -> str:
+        """
+        Reference frame used by APIs that consume this field.
+        """
+    @reference_frame.setter
+    def reference_frame(self, arg0: str) -> None: ...
+    @property
+    def timeout_second(self) -> float:
+        """
+        Maximum planning or execution request wait time in seconds.
+        """
+    @timeout_second.setter
+    def timeout_second(self, arg0: typing.SupportsFloat) -> None: ...
+
+class Point:
+    @typing.overload
+    def __init__(self) -> None: ...
+    @typing.overload
     def __init__(
         self,
         x: typing.SupportsFloat = 0.0,
@@ -3326,7 +4317,9 @@ class Point:
     def z(self, arg0: typing.SupportsFloat) -> None: ...
 
 class Point2d:
+    @typing.overload
     def __init__(self) -> None: ...
+    @typing.overload
     def __init__(
         self, x: typing.SupportsFloat = 0.0, y: typing.SupportsFloat = 0.0
     ) -> None: ...
@@ -3431,20 +4424,24 @@ class PointFieldDataType:
 class Pose:
     orientation: Quaternion
     position: Point
-
+    @typing.overload
     def __init__(self) -> None: ...
+    @typing.overload
     def __init__(
         self,
         pos: collections.abc.Sequence[typing.SupportsFloat],
         quat: collections.abc.Sequence[typing.SupportsFloat],
     ) -> None: ...
+    @typing.overload
     def __init__(self, vec: collections.abc.Sequence[typing.SupportsFloat]) -> None: ...
 
 class Pose2d:
     position: Point2d
-
+    @typing.overload
     def __init__(self) -> None: ...
+    @typing.overload
     def __init__(self, vec: collections.abc.Sequence[typing.SupportsFloat]) -> None: ...
+    @typing.overload
     def __init__(
         self,
         x: typing.SupportsFloat = 0.0,
@@ -3462,6 +4459,10 @@ class PoseState(RobotStates):
     reference_frame: str
     def __init__(self) -> None: ...
     def get_type(self) -> RobotStatesType: ...
+    @property
+    def assist_chains(self) -> set[str]: ...
+    @assist_chains.setter
+    def assist_chains(self, arg0: collections.abc.Set[str]) -> None: ...
 
 class PrimitiveType:
     """
@@ -3495,7 +4496,9 @@ class PrimitiveType:
     def value(self) -> int: ...
 
 class Quaternion:
+    @typing.overload
     def __init__(self) -> None: ...
+    @typing.overload
     def __init__(
         self,
         x: typing.SupportsFloat = 0.0,
@@ -3522,7 +4525,7 @@ class Quaternion:
 
 class RgbData:
     """
-    Compressed image data
+    RGB image data
     """
     def __init__(self) -> None: ...
     @property
@@ -3544,11 +4547,99 @@ class RgbData:
         """
     @header.setter
     def header(self, arg0: Header) -> None: ...
+    @property
+    def height(self) -> int:
+        """
+        Image height in pixels
+        """
+    @height.setter
+    def height(self, arg0: typing.SupportsInt) -> None: ...
+    @property
+    def output_format(self) -> RgbOutputFormat:
+        """
+        Image output encoding
+        """
+    @output_format.setter
+    def output_format(self, arg0: RgbOutputFormat) -> None: ...
+    @property
+    def plane_count(self) -> int:
+        """
+        Number of image planes
+        """
+    @plane_count.setter
+    def plane_count(self, arg0: typing.SupportsInt) -> None: ...
+    @property
+    def plane_offset_bytes(self) -> typing.Annotated[list[int], "FixedSize(2)"]:
+        """
+        Per-plane byte offset from the start of data
+        """
+    @plane_offset_bytes.setter
+    def plane_offset_bytes(
+        self,
+        arg0: typing.Annotated[
+            collections.abc.Sequence[typing.SupportsInt], "FixedSize(2)"
+        ],
+    ) -> None: ...
+    @property
+    def stride_bytes(self) -> typing.Annotated[list[int], "FixedSize(2)"]:
+        """
+        Per-plane stride in bytes
+        """
+    @stride_bytes.setter
+    def stride_bytes(
+        self,
+        arg0: typing.Annotated[
+            collections.abc.Sequence[typing.SupportsInt], "FixedSize(2)"
+        ],
+    ) -> None: ...
+    @property
+    def width(self) -> int:
+        """
+        Image width in pixels
+        """
+    @width.setter
+    def width(self, arg0: typing.SupportsInt) -> None: ...
+
+class RgbOutputFormat:
+    """
+
+    Members:
+
+    | Enum Value | Description |
+    | --- | --- |
+    | JPEG | Hardware-encoded JPEG byte stream |
+    | NV12 | CPU-owned tightly packed NV12 bytes |
+    | BGR | CPU-owned tightly packed BGR8 bytes |
+    | RGB | CPU-owned tightly packed RGB8 bytes |
+    """
+
+    BGR: typing.ClassVar[RgbOutputFormat]  # value = <RgbOutputFormat.BGR: 2>
+    JPEG: typing.ClassVar[RgbOutputFormat]  # value = <RgbOutputFormat.JPEG: 0>
+    NV12: typing.ClassVar[RgbOutputFormat]  # value = <RgbOutputFormat.NV12: 1>
+    RGB: typing.ClassVar[RgbOutputFormat]  # value = <RgbOutputFormat.RGB: 3>
+    __members__: typing.ClassVar[
+        dict[str, RgbOutputFormat]
+    ]  # value = {'JPEG': <RgbOutputFormat.JPEG: 0>, 'NV12': <RgbOutputFormat.NV12: 1>, 'BGR': <RgbOutputFormat.BGR: 2>, 'RGB': <RgbOutputFormat.RGB: 3>}
+    def __eq__(self, other: typing.Any) -> bool: ...
+    def __getstate__(self) -> int: ...
+    def __hash__(self) -> int: ...
+    def __index__(self) -> int: ...
+    def __init__(self, value: typing.SupportsInt) -> None: ...
+    def __int__(self) -> int: ...
+    def __ne__(self, other: typing.Any) -> bool: ...
+    def __repr__(self) -> str: ...
+    def __setstate__(self, state: typing.SupportsInt) -> None: ...
+    def __str__(self) -> str: ...
+    @property
+    def name(self) -> str: ...
+    @property
+    def value(self) -> int: ...
 
 class RobotStates:
     chain_name: str
-
+    @typing.overload
     def __init__(self) -> None: ...
+    @typing.overload
     def __init__(
         self,
         chain: str,
@@ -3609,13 +4700,20 @@ class RobotStatesType:
     def value(self) -> int: ...
 
 class S1ControllerName:
+    """
+    Controller-name constants for the S1 robot.
+
+    Pass these names to controller-management APIs such as switch_controller() and
+    acquire_controller(). Controllers for the same hardware group are mutually
+    exclusive, and switching a controller does not itself command motion.
+    Availability depends on the connected robot's SingoriX configuration.
+    """
+
     ELEVATOR_CTRL: typing.ClassVar[str] = "elevator_ctrl"
     HEAD_PVT_CTRL: typing.ClassVar[str] = "head_pvt_ctrl"
     LEFT_ARM_PVT_CTRL: typing.ClassVar[str] = "left_arm_pvt_ctrl"
-    LEFT_CAMERA_CTRL: typing.ClassVar[str] = "left_camera_ctrl"
     LEFT_GRIPPER_CTRL: typing.ClassVar[str] = "left_gripper_ctrl"
     RIGHT_ARM_PVT_CTRL: typing.ClassVar[str] = "right_arm_pvt_ctrl"
-    RIGHT_CAMERA_CTRL: typing.ClassVar[str] = "right_camera_ctrl"
     RIGHT_GRIPPER_CTRL: typing.ClassVar[str] = "right_gripper_ctrl"
     SWERVE_CHASSIS_POSE_CTRL: typing.ClassVar[str] = "swerve_chassis_pose_ctrl"
     SWERVE_CHASSIS_TWIST_CTRL: typing.ClassVar[str] = "swerve_chassis_twist_ctrl"
@@ -3623,10 +4721,8 @@ class S1ControllerName:
 class S1JointGroup:
     head: typing.ClassVar[str] = "head"
     left_arm: typing.ClassVar[str] = "left_arm"
-    left_camera: typing.ClassVar[str] = "left_camera"
     left_gripper: typing.ClassVar[str] = "left_gripper"
     right_arm: typing.ClassVar[str] = "right_arm"
-    right_camera: typing.ClassVar[str] = "right_camera"
     right_gripper: typing.ClassVar[str] = "right_gripper"
     swerve_chassis: typing.ClassVar[str] = "swerve_chassis"
     torso: typing.ClassVar[str] = "torso"
@@ -3735,6 +4831,63 @@ class SeedType:
     @property
     def value(self) -> int: ...
 
+class SensorStatus:
+    """
+
+    Members:
+
+    | Enum Value | Description |
+    | --- | --- |
+    | SUCCESS | Execution successful |
+    | TIMEOUT | Execution timeout |
+    | FAULT | Fault occurred, sensor cannot continue normal operation |
+    | INVALID_INPUT | Input parameters do not meet requirements |
+    | INIT_FAILED | Sensor initialization or reader creation failed |
+    | IN_PROGRESS | Sensor operation is in progress |
+    | STOPPED_UNREACHED | Stopped without completing expected operation |
+    | DATA_FETCH_FAILED | Sensor data fetch failed |
+    | PUBLISH_FAIL | Sensor data publication failed |
+    | COMM_DISCONNECTED | Sensor communication disconnected |
+    """
+
+    COMM_DISCONNECTED: typing.ClassVar[
+        SensorStatus
+    ]  # value = <SensorStatus.COMM_DISCONNECTED: 9>
+    DATA_FETCH_FAILED: typing.ClassVar[
+        SensorStatus
+    ]  # value = <SensorStatus.DATA_FETCH_FAILED: 7>
+    FAULT: typing.ClassVar[SensorStatus]  # value = <SensorStatus.FAULT: 2>
+    INIT_FAILED: typing.ClassVar[SensorStatus]  # value = <SensorStatus.INIT_FAILED: 4>
+    INVALID_INPUT: typing.ClassVar[
+        SensorStatus
+    ]  # value = <SensorStatus.INVALID_INPUT: 3>
+    IN_PROGRESS: typing.ClassVar[SensorStatus]  # value = <SensorStatus.IN_PROGRESS: 5>
+    PUBLISH_FAIL: typing.ClassVar[
+        SensorStatus
+    ]  # value = <SensorStatus.PUBLISH_FAIL: 8>
+    STOPPED_UNREACHED: typing.ClassVar[
+        SensorStatus
+    ]  # value = <SensorStatus.STOPPED_UNREACHED: 6>
+    SUCCESS: typing.ClassVar[SensorStatus]  # value = <SensorStatus.SUCCESS: 0>
+    TIMEOUT: typing.ClassVar[SensorStatus]  # value = <SensorStatus.TIMEOUT: 1>
+    __members__: typing.ClassVar[
+        dict[str, SensorStatus]
+    ]  # value = {'SUCCESS': <SensorStatus.SUCCESS: 0>, 'TIMEOUT': <SensorStatus.TIMEOUT: 1>, 'FAULT': <SensorStatus.FAULT: 2>, 'INVALID_INPUT': <SensorStatus.INVALID_INPUT: 3>, 'INIT_FAILED': <SensorStatus.INIT_FAILED: 4>, 'IN_PROGRESS': <SensorStatus.IN_PROGRESS: 5>, 'STOPPED_UNREACHED': <SensorStatus.STOPPED_UNREACHED: 6>, 'DATA_FETCH_FAILED': <SensorStatus.DATA_FETCH_FAILED: 7>, 'PUBLISH_FAIL': <SensorStatus.PUBLISH_FAIL: 8>, 'COMM_DISCONNECTED': <SensorStatus.COMM_DISCONNECTED: 9>}
+    def __eq__(self, other: typing.Any) -> bool: ...
+    def __getstate__(self) -> int: ...
+    def __hash__(self) -> int: ...
+    def __index__(self) -> int: ...
+    def __init__(self, value: typing.SupportsInt) -> None: ...
+    def __int__(self) -> int: ...
+    def __ne__(self, other: typing.Any) -> bool: ...
+    def __repr__(self) -> str: ...
+    def __setstate__(self, state: typing.SupportsInt) -> None: ...
+    def __str__(self) -> str: ...
+    @property
+    def name(self) -> str: ...
+    @property
+    def value(self) -> int: ...
+
 class SensorType:
     """
 
@@ -3746,8 +4899,8 @@ class SensorType:
     | HEAD_RIGHT_CAMERA | Head right camera |
     | LEFT_ARM_CAMERA | Left arm camera |
     | RIGHT_ARM_CAMERA | Right arm camera |
-    | LEFT_ARM_DEPTH_CAMERA | Left arm depth camera |
-    | RIGHT_ARM_DEPTH_CAMERA | Right arm depth camera |
+    | LEFT_ARM_DEPTH_CAMERA | Left arm depth camera (G1/S1 only) |
+    | RIGHT_ARM_DEPTH_CAMERA | Right arm depth camera (G1/S1 only) |
     | LEFT_ARM_INFRA_CAMERA_1 | Left arm infrared camera 1 |
     | LEFT_ARM_INFRA_CAMERA_2 | Left arm infrared camera 2 |
     | RIGHT_ARM_INFRA_CAMERA_1 | Right arm infrared camera 1 |
@@ -3760,15 +4913,15 @@ class SensorType:
     | BACK_IMU | Back LiDAR IMU |
     """
 
-    BACK_IMU: typing.ClassVar[SensorType]  # value = <SensorType.BACK_IMU: 15>
-    BACK_LIDAR: typing.ClassVar[SensorType]  # value = <SensorType.BACK_LIDAR: 12>
-    CHASSIS_IMU: typing.ClassVar[SensorType]  # value = <SensorType.CHASSIS_IMU: 16>
-    CHASSIS_LIDAR: typing.ClassVar[SensorType]  # value = <SensorType.CHASSIS_LIDAR: 13>
-    HEAD_IMU: typing.ClassVar[SensorType]  # value = <SensorType.HEAD_IMU: 14>
+    BACK_IMU: typing.ClassVar[SensorType]  # value = <SensorType.BACK_IMU: 17>
+    BACK_LIDAR: typing.ClassVar[SensorType]  # value = <SensorType.BACK_LIDAR: 14>
+    CHASSIS_IMU: typing.ClassVar[SensorType]  # value = <SensorType.CHASSIS_IMU: 18>
+    CHASSIS_LIDAR: typing.ClassVar[SensorType]  # value = <SensorType.CHASSIS_LIDAR: 15>
+    HEAD_IMU: typing.ClassVar[SensorType]  # value = <SensorType.HEAD_IMU: 16>
     HEAD_LEFT_CAMERA: typing.ClassVar[
         SensorType
     ]  # value = <SensorType.HEAD_LEFT_CAMERA: 0>
-    HEAD_LIDAR: typing.ClassVar[SensorType]  # value = <SensorType.HEAD_LIDAR: 11>
+    HEAD_LIDAR: typing.ClassVar[SensorType]  # value = <SensorType.HEAD_LIDAR: 13>
     HEAD_RIGHT_CAMERA: typing.ClassVar[
         SensorType
     ]  # value = <SensorType.HEAD_RIGHT_CAMERA: 1>
@@ -3777,28 +4930,28 @@ class SensorType:
     ]  # value = <SensorType.LEFT_ARM_CAMERA: 2>
     LEFT_ARM_DEPTH_CAMERA: typing.ClassVar[
         SensorType
-    ]  # value = <SensorType.LEFT_ARM_DEPTH_CAMERA: 4>
+    ]  # value = <SensorType.LEFT_ARM_DEPTH_CAMERA: 6>
     LEFT_ARM_INFRA_CAMERA_1: typing.ClassVar[
         SensorType
-    ]  # value = <SensorType.LEFT_ARM_INFRA_CAMERA_1: 6>
+    ]  # value = <SensorType.LEFT_ARM_INFRA_CAMERA_1: 8>
     LEFT_ARM_INFRA_CAMERA_2: typing.ClassVar[
         SensorType
-    ]  # value = <SensorType.LEFT_ARM_INFRA_CAMERA_2: 7>
+    ]  # value = <SensorType.LEFT_ARM_INFRA_CAMERA_2: 9>
     RIGHT_ARM_CAMERA: typing.ClassVar[
         SensorType
     ]  # value = <SensorType.RIGHT_ARM_CAMERA: 3>
     RIGHT_ARM_DEPTH_CAMERA: typing.ClassVar[
         SensorType
-    ]  # value = <SensorType.RIGHT_ARM_DEPTH_CAMERA: 5>
+    ]  # value = <SensorType.RIGHT_ARM_DEPTH_CAMERA: 7>
     RIGHT_ARM_INFRA_CAMERA_1: typing.ClassVar[
         SensorType
-    ]  # value = <SensorType.RIGHT_ARM_INFRA_CAMERA_1: 8>
+    ]  # value = <SensorType.RIGHT_ARM_INFRA_CAMERA_1: 10>
     RIGHT_ARM_INFRA_CAMERA_2: typing.ClassVar[
         SensorType
-    ]  # value = <SensorType.RIGHT_ARM_INFRA_CAMERA_2: 9>
+    ]  # value = <SensorType.RIGHT_ARM_INFRA_CAMERA_2: 11>
     __members__: typing.ClassVar[
         dict[str, SensorType]
-    ]  # value = {'HEAD_LEFT_CAMERA': <SensorType.HEAD_LEFT_CAMERA: 0>, 'HEAD_RIGHT_CAMERA': <SensorType.HEAD_RIGHT_CAMERA: 1>, 'LEFT_ARM_CAMERA': <SensorType.LEFT_ARM_CAMERA: 2>, 'RIGHT_ARM_CAMERA': <SensorType.RIGHT_ARM_CAMERA: 3>, 'LEFT_ARM_DEPTH_CAMERA': <SensorType.LEFT_ARM_DEPTH_CAMERA: 4>, 'RIGHT_ARM_DEPTH_CAMERA': <SensorType.RIGHT_ARM_DEPTH_CAMERA: 5>, 'LEFT_ARM_INFRA_CAMERA_1': <SensorType.LEFT_ARM_INFRA_CAMERA_1: 6>, 'LEFT_ARM_INFRA_CAMERA_2': <SensorType.LEFT_ARM_INFRA_CAMERA_2: 7>, 'RIGHT_ARM_INFRA_CAMERA_1': <SensorType.RIGHT_ARM_INFRA_CAMERA_1: 8>, 'RIGHT_ARM_INFRA_CAMERA_2': <SensorType.RIGHT_ARM_INFRA_CAMERA_2: 9>, 'BASE_ULTRASONIC': <SensorType.BASE_ULTRASONIC: 19>, 'CHASSIS_IMU': <SensorType.CHASSIS_IMU: 16>, 'BASE_LIDAR': <SensorType.BASE_LIDAR: 10>, 'TORSO_IMU': <SensorType.TORSO_IMU: 17>, 'LIDAR_IMU': <SensorType.LIDAR_IMU: 18>, 'LEFT_FRONT_SURROUND_CAMERA': <SensorType.LEFT_FRONT_SURROUND_CAMERA: 20>, 'RIGHT_FRONT_SURROUND_CAMERA': <SensorType.RIGHT_FRONT_SURROUND_CAMERA: 21>, 'LEFT_REAR_SURROUND_CAMERA': <SensorType.LEFT_REAR_SURROUND_CAMERA: 22>, 'RIGHT_REAR_SURROUND_CAMERA': <SensorType.RIGHT_REAR_SURROUND_CAMERA: 23>, 'HEAD_LIDAR': <SensorType.HEAD_LIDAR: 11>, 'BACK_LIDAR': <SensorType.BACK_LIDAR: 12>, 'CHASSIS_LIDAR': <SensorType.CHASSIS_LIDAR: 13>, 'HEAD_IMU': <SensorType.HEAD_IMU: 14>, 'BACK_IMU': <SensorType.BACK_IMU: 15>}
+    ]  # value = {'HEAD_LEFT_CAMERA': <SensorType.HEAD_LEFT_CAMERA: 0>, 'HEAD_RIGHT_CAMERA': <SensorType.HEAD_RIGHT_CAMERA: 1>, 'LEFT_ARM_CAMERA': <SensorType.LEFT_ARM_CAMERA: 2>, 'RIGHT_ARM_CAMERA': <SensorType.RIGHT_ARM_CAMERA: 3>, 'LEFT_ARM_DOWN_CAMERA': <SensorType.LEFT_ARM_DOWN_CAMERA: 4>, 'RIGHT_ARM_DOWN_CAMERA': <SensorType.RIGHT_ARM_DOWN_CAMERA: 5>, 'LEFT_ARM_DEPTH_CAMERA': <SensorType.LEFT_ARM_DEPTH_CAMERA: 6>, 'RIGHT_ARM_DEPTH_CAMERA': <SensorType.RIGHT_ARM_DEPTH_CAMERA: 7>, 'LEFT_ARM_INFRA_CAMERA_1': <SensorType.LEFT_ARM_INFRA_CAMERA_1: 8>, 'LEFT_ARM_INFRA_CAMERA_2': <SensorType.LEFT_ARM_INFRA_CAMERA_2: 9>, 'RIGHT_ARM_INFRA_CAMERA_1': <SensorType.RIGHT_ARM_INFRA_CAMERA_1: 10>, 'RIGHT_ARM_INFRA_CAMERA_2': <SensorType.RIGHT_ARM_INFRA_CAMERA_2: 11>, 'BASE_ULTRASONIC': <SensorType.BASE_ULTRASONIC: 21>, 'CHASSIS_IMU': <SensorType.CHASSIS_IMU: 18>, 'BASE_LIDAR': <SensorType.BASE_LIDAR: 12>, 'TORSO_IMU': <SensorType.TORSO_IMU: 19>, 'LIDAR_IMU': <SensorType.LIDAR_IMU: 20>, 'LEFT_FRONT_SURROUND_CAMERA': <SensorType.LEFT_FRONT_SURROUND_CAMERA: 22>, 'RIGHT_FRONT_SURROUND_CAMERA': <SensorType.RIGHT_FRONT_SURROUND_CAMERA: 23>, 'LEFT_REAR_SURROUND_CAMERA': <SensorType.LEFT_REAR_SURROUND_CAMERA: 24>, 'RIGHT_REAR_SURROUND_CAMERA': <SensorType.RIGHT_REAR_SURROUND_CAMERA: 25>, 'HEAD_LIDAR': <SensorType.HEAD_LIDAR: 13>, 'BACK_LIDAR': <SensorType.BACK_LIDAR: 14>, 'CHASSIS_LIDAR': <SensorType.CHASSIS_LIDAR: 15>, 'HEAD_IMU': <SensorType.HEAD_IMU: 16>, 'BACK_IMU': <SensorType.BACK_IMU: 17>}
     def __eq__(self, other: typing.Any) -> bool: ...
     def __getstate__(self) -> int: ...
     def __hash__(self) -> int: ...
@@ -3938,7 +5091,7 @@ class SyncedObservation:
     @property
     def rgb_data_map(self) -> dict[SensorType, RgbData]:
         """
-        Timestamp-aligned RGB frames
+        Timestamp-aligned CPU-owned NV12 RGB frames
         """
     @rgb_data_map.setter
     def rgb_data_map(
@@ -4451,32 +5604,25 @@ def create_joint_state() -> JointStates:
     """
 
 def create_parameter(
-    direct_execute: bool,
-    blocking: bool,
-    timeout: typing.SupportsFloat,
-    actuate: str,
-    tool_pose: bool,
-    check_collision: bool,
+    direct_execute: bool = False,
+    blocking: bool = False,
+    timeout: typing.SupportsFloat = 20.0,
+    actuate: str = "with_chain_only",
+    tool_pose: bool = False,
+    check_collision: bool = True,
     frame: str = "base_link",
 ) -> Parameter:
     """
     Create a Parameter instance.
 
-    Notes:
-        - GalbotMotion currently does NOT provide real-time obstacle perception / automatic environment updates.
-        - Attached objects are part of the manually-maintained collision world used by motion planning/checking.
-        - For obstacle_type == "point_cloud", `key` is typically a point cloud file path provided by the user.
-        - For obstacle_type == "depth_image", this is a manual input to construct collision obstacles; it is not a continuous
-        real-time perception stream for motion planning.
-
     Parameters:
-        direct_execute (bool): Whether to execute the motion directly.
-        blocking (bool): Whether to block the execution until completion.
-        timeout (float): Maximum time to wait for the motion to complete.
-        actuate (str): Actuation type (position/velocity/torque).
-        tool_pose (bool): Whether the motion is for a tool pose.
-        check_collision (bool): Whether to check for collisions.
-        frame (str, optional): Coordinate frame for the motion. Defaults to "base_link".
+        direct_execute (bool): Execute the planned trajectory immediately.
+        blocking (bool): Wait synchronously for completion.
+        timeout (float): Maximum planning or execution request wait time in seconds.
+        actuate (str): Participating chains: "with_chain_only", "with_torso", or "with_leg".
+        tool_pose (bool): Interpret Cartesian targets as the attached-tool TCP instead of the flange.
+        check_collision (bool): Enable planning collision checks.
+        frame (str): Reference coordinate frame for pose targets.
 
     Returns:
         Parameter: A new Parameter instance.

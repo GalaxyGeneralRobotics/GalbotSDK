@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -327,6 +327,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../endtool_raw_passthrough/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  S1 末端工具原始透传
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../examples_python/" class="md-tabs__link">
         
   
@@ -391,6 +410,25 @@
     
   
   C++ API 参考
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../set_config_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  set_config 参考
 
       </a>
     </li>
@@ -915,7 +953,7 @@
   <a href="#2_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 启动定位 (必选)
+        2. 启动定位
       
     </span>
   </a>
@@ -1107,6 +1145,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../endtool_raw_passthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 末端工具原始透传
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../examples_python/" class="md-nav__link">
         
   
@@ -1196,6 +1261,33 @@
     
   
     C++ API 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../set_config_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set_config 参考
   
 
     
@@ -1317,7 +1409,7 @@
 <h4 id="2">2. 开始建图 (必选)</h4>
 <p>启动建图程序</p>
 <ol>
-<li>拍下机器人急停按钮，使用<a href="#s1-remote-control">S1遥控器</a>控制机器人移动到建图起点（可以从任何位置开始建图）</li>
+<li>旋开机器人急停按钮，使用<a href="#s1-remote-control">S1遥控器</a>控制机器人移动到建图起点（可以从任何位置开始建图，后续定位服务若出现异常，需要在初始建图点位发送重定位）</li>
 <li>执行以下命令启动建图：</li>
 </ol>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/data/galbot/bin/mapping_server
@@ -1356,12 +1448,19 @@
 </ul>
 </div>
 <h5 id="41">4.1 擦除地图杂点 (可选)</h5>
-<p>推荐进行本步骤。地图中通常可能存在少量杂点，擦除后可以提高导航成功率。尤其当房间中存在镜面、毛玻璃等材质物体时，点云地图中更容易出现杂点，建议使用 CloudCompare 软件进行后处理。</p>
-<p>需要检查机器人活动区域内（地表至高度 2.5 米内）的杂点。地面点不影响导航，主要需要检查和擦除的是空中漂浮的杂点。</p>
+<p>推荐进行本步骤（若有导航需求，务必进行本步骤）。地图中通常可能存在少量杂点，擦除后可以提高导航成功率。尤其当房间中存在镜面、毛玻璃等材质物体时，点云地图中更容易出现杂点，建议使用 CloudCompare 软件进行后处理。</p>
 <p><strong>准备工作</strong>：下载 CloudCompare 软件</p>
 <p>下载链接：<a href="https://www.cloudcompare.org/release/index.html">https://www.cloudcompare.org/release/index.html</a></p>
 <p>如图所示：</p>
 <p><img alt="下载软件" src="/image/download.jpg" /></p>
+<p><strong>若官网下载打不开pcd文件，则进行下列命令：</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>flatpak<span class="w"> </span>gnome-software-plugin-flatpak
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>flatpak<span class="w"> </span>remote-add<span class="w"> </span>--if-not-exists<span class="w"> </span>flathub<span class="w"> </span>https://mirrors.ustc.edu.cn/flathub
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>flatpak<span class="w"> </span>install<span class="w"> </span>flathub<span class="w"> </span>org.cloudcompare.CloudCompare<span class="w"> </span>-y
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>flatpak<span class="w"> </span>run<span class="w"> </span>org.cloudcompare.CloudCompare
+</span></code></pre></div>
 <p><strong>操作步骤</strong>：</p>
 <ol>
 <li>打开 CloudCompare 软件，将点云地图 <code>global_cloud.pcd</code> 拖入软件工作区</li>
@@ -1369,40 +1468,39 @@
 <p><img alt="pcd" src="/image/source.jpg" /></p>
 <ol>
 <li>按照下图绿色箭头编号依次操作：</li>
-<li><strong>步骤 1</strong>：勾选文件</li>
-<li><strong>步骤 2</strong>：选择正视图</li>
-<li><strong>步骤 3</strong>：选择裁剪功能（图标为剪刀）</li>
-<li><strong>步骤 4</strong>：框选目标区域（地面和天花板之间的机器人活动区域）</li>
+<li><strong>步骤 1</strong>：选择正视图</li>
+<li><strong>步骤 2</strong>：选中点云</li>
+<li><strong>步骤 3</strong>：选择剪刀图标</li>
+<li><strong>步骤 4</strong>：鼠标左键选点，鼠标右键结束选点，如图绿框选中机器人的活动空间</li>
 <li><strong>步骤 5</strong>：保留内部点云</li>
 <li><strong>步骤 6</strong>：确认操作（图标为对勾）</li>
 </ol>
 <p>此时点云被分割为两部分：框选内的 <code>global_cloud.segmented</code> 和框选外的 <code>global_cloud.remaining</code>：</p>
-<p><img alt="opensource" src="/image/opensource.jpg" /></p>
+<p><img alt="opensource" src="/image/opensource.png" /></p>
 <ol>
 <li>继续以下步骤：</li>
-<li><strong>步骤 7</strong>：取消勾选 <code>global_cloud.remaining</code></li>
-<li><strong>步骤 8</strong>：勾选 <code>global_cloud.segmented</code></li>
-<li><strong>步骤 9</strong>：选择俯视图</li>
-<li><strong>步骤 10</strong>：选择裁剪功能（剪刀图标）</li>
-<li><strong>步骤 11</strong>：框选机器人活动区域（注意不要选中真实障碍物，如料垛、桌子等）</li>
-<li><strong>步骤 12</strong>：点击框外图标</li>
-<li><strong>步骤 13</strong>：确认操作</li>
+<li><strong>步骤 7</strong>：擦除杂点，杂点指机器人活动空间中，影响机器人通行的点。取消选中xxx.remaining，保留xxx.segmented</li>
+<li><strong>步骤 8</strong>：选择俯视图</li>
+<li><strong>步骤 9</strong>：选择剪刀图标</li>
+<li><strong>步骤 10</strong>：鼠标左键选取，鼠标右键结束，将想去除的杂点框中</li>
+<li><strong>步骤 11</strong>：保留框外部点</li>
+<li><strong>步骤 12</strong>：勾号完成分割</li>
 </ol>
-<p><img alt="opensource2" src="/image/opensource2.jpg" /></p>
+<p><img alt="opensource2" src="/image/opensource2.png" /></p>
 <ol>
 <li>删除杂点并合并：</li>
-<li>选中 <code>global_cloud.segmented.remaining</code>（杂点部分），右键删除</li>
-<li>按住 Ctrl 键多选 <code>global_cloud.remaining</code> 和 <code>global_cloud.segmented.remaining</code></li>
+<li><strong>步骤 13</strong>：鼠标选中xxx.segmented.remaining，然后鼠标右键选择delete删除</li>
+<li><strong>步骤 14</strong>：选中14和15箭头指向的点云（摁住ctrl可以多选）</li>
+<li><strong>步骤 16</strong>：选择edit里面的merge选项合并点云</li>
 </ol>
-<p><img alt="opensource3" src="/image/opensource3.jpg" /></p>
+<p><img alt="opensource3" src="/image/opensource3.png" /></p>
 <ol>
 <li>保存清理后的地图：</li>
-<li>选择 Edit → Merge 合并两部分点云</li>
-<li>选择 File → Save 保存点云</li>
-<li>必须命名为 <code>global_cloud_cleaned.pcd</code></li>
-<li>移动擦除后的地图 <code>global_cloud_cleaned.pcd</code> 到地图文件夹 <code>/var/maps/room1102/</code></li>
+<li><strong>步骤 17</strong>：选择file里面的save选项</li>
+<li><strong>步骤 18</strong>：在弹窗里选择格式为Point Cloud Library cloud</li>
+<li><strong>步骤 19</strong>：保存新的pcd点云地图"global_cloud_cleaned.pcd"，并上传到机器人的/var/maps/room1102/路径下</li>
 </ol>
-<p><img alt="opensource4" src="/image/opensource4.jpg" /></p>
+<p><img alt="opensource4" src="/image/opensource4.png" /></p>
 <h5 id="42-osm">4.2 编辑 OSM 文件 (可选)</h5>
 <p>通过绘制电子围栏来限制机器人的活动范围，防止机器人进入危险或非预期区域。</p>
 <div class="admonition info">
@@ -1423,7 +1521,7 @@
 </ol>
 <p><img alt="osm2" src="/image/osm2.jpg" /></p>
 <p><strong>安装 JOSM</strong>（如未安装）：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>josm
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>josm
 </span></code></pre></div>
 <p>安装完成后，终端输入 <code>josm</code> 打开软件。</p>
 <p><strong>绘制电子围栏步骤</strong>：</p>
@@ -1448,7 +1546,7 @@
 </div>
 <p>为节省计算资源，地图更新功能默认关闭。可以手动开启更新开关并由人工操作保存更新后的地图：</p>
 <p><strong>步骤 1</strong>：在定位良好的情况下（当前评分大于 0.9）打开地图更新开关</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>vim<span class="w"> </span>/data/galbot/config/mes/manager.config
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>vim<span class="w"> </span>/data/galbot/config/mes/manager.config
 </span></code></pre></div>
 <p>将 <code>manager_update_map=0</code> 改为 <code>manager_update_map=1</code></p>
 <p><strong>步骤 2</strong>：原地重启定位，在评分恢复正常后（当前评分大于 0.9），执行 <code>engine_tools</code> 选择开始更新地图</p>
@@ -1469,23 +1567,24 @@
 <p>定位程序需要启动雷达（定位程序不依赖建图程序，建图结束后即可关闭建图程序）。</p>
 <p>定位使用的地图路径是 <code>/var/maps/cur</code>，将目标地图重命名为 <code>cur</code>，例如将刚刚新建的地图 <code>room1102</code> 直接重命名为 <code>cur</code>，如图所示：</p>
 <p><img alt="cur" src="/image/cur.jpg" /></p>
-<h4 id="2_1">2. 启动定位 (必选)</h4>
-<p>启动定位服务：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>/data/galbot/bin/localization_server
+<h4 id="2_1">2. 启动定位</h4>
+<p>该步骤同雷达，机器开机后，正常情况下定位服务自启，通过top检查进程是否启动，若没正常启动，请手动启动定位服务：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>/data/galbot/bin/localization_server
 </span></code></pre></div>
+<p><img alt="start" src="/image/ldserv.jpg" /></p>
 <h4 id="3_1">3. 查看定位状态 (必选)</h4>
 <p>查看定位状态：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>tail<span class="w"> </span>-f<span class="w"> </span>/userdata/log/localization_server/localization_server.INFO
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>tail<span class="w"> </span>-f<span class="w"> </span>/userdata/log/localization_server/localization_server.INFO
 </span></code></pre></div>
 <p><img alt="state" src="/image/state.jpg" /></p>
-<p>如果分数低于 0.75 或者没有分数和位姿发布，请使用<a href="#s1-remote-control">S1遥控器</a>将机器人移动至建图起点位姿，下发一次初始位姿（使用 <code>engine_tools</code> 输入数字 2，Enter 回车发送一次初始位姿），如图所示：</p>
+<p>如果分数低于 0.8 或者没有分数和位姿发布，请使用<a href="#s1-remote-control">S1遥控器</a>将机器人移动至建图起点位姿，下发一次初始位姿（使用 <code>engine_tools</code> 输入数字 2，Enter 回车发送一次初始位姿），如图所示：</p>
 <p><img alt="state2" src="/image/state2.jpg" /></p>
 <h4 id="4_1">4. 验证定位就绪 (必选)</h4>
 <p>在开始导航前，请确认以下检查项：</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 雷达服务正在运行</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 定位服务已启动</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 定位分数大于 0.75</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 定位分数大于 0.8</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 当前位姿正常发布</li>
 </ul>
 <div class="admonition success">
@@ -1506,7 +1605,7 @@
 <ul>
 <li>遥控器工作为最高优先级，开发人员及测试人员需注意，在遥控模式下，应关闭 singorix，否则有可能出现关闭遥控后，升降异动或者底盘异动。在结束遥控后再打开，关闭命令：</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>systemctl<span class="w"> </span>stop<span class="w"> </span>launcher
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>systemctl<span class="w"> </span>stop<span class="w"> </span>launcher
 </span></code></pre></div>
 <ul>
 <li>遥控器使用完毕后，应当关闭遥控器电源。如接收器处于在线状态，观察屏幕提示（不同遥控器固件版本可能不同），通过旋钮选择选项，然后通过确认按键进行关机。</li>
@@ -1654,7 +1753,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "toc.integrate", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../javascripts/language_switch.js"></script>
       

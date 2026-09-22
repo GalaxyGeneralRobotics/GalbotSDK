@@ -9,6 +9,14 @@
       "target_platform": "linux-aarch64-gcc940"
     },
     {
+      "name": "gcc13.3-aarch64-ubuntu2404-gnu",
+      "version": "1.0.0",
+      "url": "https://github.com/GalaxyGeneralRobotics/GalbotSDKDeps/releases/download/GBS1.18/gcc13.3-aarch64-ubuntu2404-gnu.tar.gz",
+      "local_path": "deps/toolchain/releases/gcc13.3-aarch64-ubuntu2404-gnu.tar.gz",
+      "sha256": "963b8687992009537eb3d00584dbe36173bf8cef3786a29017c88de98d751dfc",
+      "target_platform": "linux-aarch64-gcc1330"
+    },
+    {
       "name": "gcc940-x86_64-ubuntu2004-gnu",
       "version": "1.0.0",
       "url": "https://github.com/GalaxyGeneralRobotics/GalbotSDKDeps/releases/download/V1.6.0/gcc940-x86_64-ubuntu2004-gnu.tar.gz",

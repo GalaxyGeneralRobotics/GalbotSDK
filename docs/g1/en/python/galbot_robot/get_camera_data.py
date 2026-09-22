@@ -1,5 +1,5 @@
 try:
-    from galbot_sdk.g1 import GalbotRobot, SensorType
+    from galbot_sdk.g1 import GalbotRobot, RgbOutputFormat, SensorType
 except ImportError:
     print("import galbot_sdk failed, please install it first or check if it is in the PYTHONPATH")
     exit(1)
@@ -32,7 +32,7 @@ def decode_compressed_image(compressed_image):
         numpy.ndarray: decoded image
     """
     image_data = compressed_image["data"]
-    if compressed_image["format"] == "rgb8":
+    if compressed_image["format"].lower() in ("jpeg", "jpg", "rgb8"):
         return decode_rgb_image(image_data)
     elif compressed_image["format"] == "16UC1":
         return decode_depth_image(compressed_image)
@@ -99,7 +99,7 @@ def main():
     # Program started, waiting for data
     time.sleep(5)
     # Get left arm RGB image
-    rgb_image_data = robot.get_rgb_data(SensorType.LEFT_ARM_CAMERA)
+    rgb_image_data = robot.get_rgb_data(SensorType.LEFT_ARM_CAMERA, RgbOutputFormat.JPEG, True)
     if not rgb_image_data:
         print("No rgb image data!")
     else:

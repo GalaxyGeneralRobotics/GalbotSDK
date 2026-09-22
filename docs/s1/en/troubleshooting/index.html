@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://docs.galbot.com/s1/troubleshooting/">
       
       
-        <link rel="prev" href="../api_cpp_reference/">
+        <link rel="prev" href="../set_config_reference/">
       
       
         <link rel="next" href="../license/">
@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -325,6 +325,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../endtool_raw_passthrough/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  S1 Raw End-Tool Passthrough
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../examples_python/" class="md-tabs__link">
         
   
@@ -389,6 +408,25 @@
     
   
   C++ API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../set_config_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  set_config Reference
 
       </a>
     </li>
@@ -771,6 +809,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../endtool_raw_passthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 Raw End-Tool Passthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../examples_python/" class="md-nav__link">
         
   
@@ -860,6 +925,33 @@
     
   
     C++ API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../set_config_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set_config Reference
   
 
     
@@ -1127,6 +1219,17 @@
     <span class="md-ellipsis">
       
         No Sound from Robot Speaker/Enable Audio Service galbot_vtn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-list-attribute-append-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Calling .append() on a List Attribute of an SDK Object Has No Effect in Python
       
     </span>
   </a>
@@ -1553,6 +1656,7 @@
 <li><a href="#robot-chassis-cannot-move">Robot Chassis Cannot Move</a></li>
 <li><a href="#end-effector-control-failure">End Effector Control Failure</a></li>
 <li><a href="#no-sound-from-robot-speakerenable-audio-service-galbot_vtn">No Sound from Robot Speaker</a></li>
+<li><a href="#python-list-attribute-append-not-working">Calling <code>.append()</code> on a List Attribute of an SDK Object Has No Effect in Python</a></li>
 </ul>
 <p>If this is a system configuration issue:</p>
 <ul>
@@ -1711,10 +1815,10 @@ Common on new robots.</p>
 <p>For version 1.16+, overlay path is:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>/data/config/default/SingoriX/galbot_s1-v2.0/robot_config.toml
 </span></code></pre></div>
-<p>Default is left gripper + right suction cup. Confirm physical installation matches config (for example <code>right_suction_cup</code> vs <code>right_gripper</code>). Restart <code>launcher</code> after modification:</p>
+<p>Default is grippers on both hands. Confirm physical installation matches config (for example <code>left_gripper</code> and <code>right_gripper</code>). Restart <code>launcher</code> after modification:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
 </span></code></pre></div>
-<p><img alt="Gripper Configuration" src="/image/gripper_config.png" title="Gripper Configuration" /></p>
+<p><img alt="Gripper Configuration" src="/image/gripper_config_s1.png" title="Gripper Configuration" /></p>
 <h3 id="no-sound-from-robot-speakerenable-audio-service-galbot_vtn">No Sound from Robot Speaker/Enable Audio Service <code>galbot_vtn</code></h3>
 <p>On Orin/HPU, edit:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>/data/config/launcher.cfg
@@ -1724,20 +1828,60 @@ Common on new robots.</p>
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>systemctl<span class="w"> </span>status<span class="w"> </span>launcher
 </span></code></pre></div>
 <p><img alt="Enable galbot_vtn Example" src="/image/faq_galbot_vtn_enable.png" title="Enable galbot_vtn Example" /></p>
+<h3 id="python-list-attribute-append-not-working">Calling <code>.append()</code> on a List Attribute of an SDK Object Has No Effect in Python</h3>
+<p>This issue only occurs in Python. Calling <code>push_back()</code> on member containers in C++ works normally and is unaffected.</p>
+<p><strong>Symptom</strong>: After building a <code>Trajectory</code> / <code>TrajectoryPoint</code> in Python and submitting it, the interface returns <code>ControlStatus.INVALID_INPUT</code>, the robot does not move, and no explicit error is reported. This is easily misdiagnosed as "the interface is unsupported" or "a wrong parameter was passed", when in fact the data was never written.</p>
+<p><strong>Cause</strong>: Reading a list attribute of an SDK-bound object returns a <strong>copy</strong> of the underlying C++ data, not a reference. Calling <code>.append()</code> on that copy modifies the copy, which is then discarded, so the data never reaches the C++ object and the SDK receives an empty list. This differs from how list attributes behave on ordinary Python objects.</p>
+<p>The following does not work:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">traj</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">()</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">traj</span><span class="o">.</span><span class="n">joint_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;head&quot;</span><span class="p">)</span>          <span class="c1"># no effect</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">traj</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">traj_point</span><span class="p">)</span>            <span class="c1"># no effect</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">traj_point</span><span class="o">.</span><span class="n">joint_command_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>  <span class="c1"># no effect</span>
+</span></code></pre></div>
+<p>Instead, collect items in a plain Python list and assign the whole list back to the attribute:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">traj</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">()</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">traj</span><span class="o">.</span><span class="n">joint_groups</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;head&quot;</span><span class="p">]</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">traj</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">trajectory</span><span class="p">:</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>    <span class="n">traj_point</span> <span class="o">=</span> <span class="n">TrajectoryPoint</span><span class="p">()</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>    <span class="n">traj_point</span><span class="o">.</span><span class="n">time_from_start_second</span> <span class="o">=</span> <span class="n">target_time</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>    <span class="n">joint_command_vec</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>    <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>        <span class="n">joint_cmd</span> <span class="o">=</span> <span class="n">JointCommand</span><span class="p">()</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>        <span class="n">joint_cmd</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">joint</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>        <span class="n">joint_command_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint_cmd</span><span class="p">)</span>   <span class="c1"># operates on a plain Python list</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>    <span class="n">traj_point</span><span class="o">.</span><span class="n">joint_command_vec</span> <span class="o">=</span> <span class="n">joint_command_vec</span>  <span class="c1"># assign the whole list at once</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>    <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">traj_point</span><span class="p">)</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="n">traj</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">points</span>                              <span class="c1"># assign the whole list at once</span>
+</span></code></pre></div>
+<p>This rule applies to every list attribute of an SDK-bound object, not just <code>Trajectory</code>: <code>joint_groups</code> and <code>joint_names</code> are affected the same way, as are <code>GroupCommand.joint_commands</code>, <code>TargetGroupTrajectory.group_commands</code>, and <code>TaskCommand.subtask_commands</code> in the motion module. Affected interfaces include <code>execute_joint_trajectory</code> and <code>set_joint_commands_batch</code>.</p>
+<p>The example in <code>examples/s1/python/galbot_robot/execute_joint_trajectory.py</code> already follows this pattern and can be used as a reference.</p>
 <h2 id="system-and-configuration">System and Configuration</h2>
 <h3 id="how-to-check-the-current-operating-mode">How to Check the Current Operating Mode</h3>
 <p>Use <code>sys_tool</code> on XCU.</p>
+<p>On newer versions, XCU does not connect to Wi-Fi and cannot be accessed directly through an XCU wireless IP. For remote access over Wi-Fi, log in to HPU first, then log in to XCU from HPU.</p>
 <ol>
-<li>Login XCU:</li>
+<li>Log in to HPU from the PC:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ssh<span class="w"> </span>root@192.168.xxx.xx
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1"># password: 12345678</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ssh<span class="w"> </span>galbot@192.168.xxx.xx
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="c1"># password: gb@2023</span>
+</span></code></pre></div>
+<ol>
+<li>Log in to XCU from HPU:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>ssh<span class="w"> </span>root@192.168.100.66
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="c1"># password: 12345678</span>
 </span></code></pre></div>
 <ol>
 <li>Start tool:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">cd</span><span class="w"> </span>/data/bin
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>./sys_tool
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">cd</span><span class="w"> </span>/data/bin
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>./sys_tool
 </span></code></pre></div>
 <p><code>sys_tool</code> is located at <code>/data/bin/sys_tool</code>. It supports baseline version query and robot mode query/switch.</p>
 <p>Common commands:</p>
@@ -1751,59 +1895,28 @@ Common on new robots.</p>
 <li>If not <code>WORKING_MODE</code> (for example <code>ABNORMAL</code>), locate <code>abnormal_service</code> first via <a href="#general-checks-do-these-first">General Checks</a>.</li>
 </ul>
 <p>Example (<code>q</code> key fields):</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>current mode:
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>mode_type: WORKING_MODE
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>mode_switch_state {
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>  status: SUCCESS
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>}
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>current mode:
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>mode_type: WORKING_MODE
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>mode_switch_state {
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>  status: SUCCESS
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>}
 </span></code></pre></div>
 <p><img alt="Operating Mode Query Example" src="/image/faq_working_mode.png" title="Operating Mode Query Example" />
 <img alt="abnormal_service Log Example" src="/image/faq_abnormal_service.jpeg" title="abnormal_service Log Example" /></p>
 <h3 id="how-to-check-the-robot-system-version">How to Check the Robot System Version</h3>
 <p>Recommended:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>galbot_sdk<span class="w"> </span>check-version
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>galbot_sdk<span class="w"> </span>check-version
 </span></code></pre></div>
 <p>If the robot uses a non-default IP address:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--robot-ip<span class="w"> </span>&lt;robot-ip&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--robot-ip<span class="w"> </span>&lt;robot-ip&gt;
 </span></code></pre></div>
 <p>If unavailable, on XCU or HPU:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>cat<span class="w"> </span>/data/config/system.cfg
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>cat<span class="w"> </span>/data/config/system.cfg
 </span></code></pre></div>
 <p>Check <code>CUR_VERSION</code>.</p>
 <p><img alt="CUR_VERSION Field Example" src="/image/faq_cur_version.jpeg" title="CUR_VERSION Field Example" /></p>
 <h3 id="how-to-check-robot-system-and-sdk-version-compatibility">How to Check Robot System and SDK Version Compatibility</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>galbot_sdk<span class="w"> </span>check-version
-</span></code></pre></div>
-<p>Common options:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Specify a non-default robot IP address</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--robot-ip<span class="w"> </span>&lt;robot-ip&gt;
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># Show full compatibility matrix</span>
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--list
-</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
-</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="c1"># Offline manual validation</span>
-</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--sdk-version<span class="w"> </span><span class="m">1</span>.8.0<span class="w"> </span>--robot-version<span class="w"> </span>GBS_1.16.0
-</span></code></pre></div>
-<p>Compatibility matrix (from <code>output/check_robot_compat.py</code>):</p>
-<table>
-<thead>
-<tr>
-<th>SDK Version Range</th>
-<th>Robot System Version (GBS)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1.5.0 ~ 1.7.99</td>
-<td>GBS_1.15.x</td>
-</tr>
-<tr>
-<td>1.8.0 ~ 1.8.99</td>
-<td>GBS_1.16.x</td>
-</tr>
-</tbody>
-</table>
-<p>If mismatch occurs, upgrade robot system version to match SDK requirement first; only downgrade SDK if robot version must remain unchanged.</p>
+<p>See <a href="../installation_version_compatibility/">Version Compatibility Check</a>.</p>
 <h3 id="emergency-switch-e-stop-overview">Emergency Switch (E-Stop) Overview</h3>
 <p>The emergency stop button is located in a prominent position on the robot body. It is a red mushroom-head button.</p>
 <p><img alt="Emergency Stop Button" src="/image/emergency_s1.jpg" title="Emergency Stop Button" /></p>
@@ -1844,7 +1957,7 @@ HPU handles high-compute tasks such as vision perception, AI inference, motion p
 </tbody>
 </table>
 <ul>
-<li>Hardware: HPU uses NVIDIA Jetson Orin (64GB, 275 TOPS); XCU is the real-time control-side processor.</li>
+<li>Hardware: HPU supports NVIDIA Jetson AGX Orin (64 GB, 275 TOPS) and NVIDIA Jetson AGX Thor (128 GB, up to 2,070 FP4 TFLOPS); XCU is the real-time control-side processor.</li>
 <li>System software: customized Linux with real-time kernel patches for deterministic motion control.</li>
 <li>Architecture note: both HPU and XCU are <code>ARM64 (aarch64)</code>; use <code>aarch64</code> toolchain for binaries running on these platforms.</li>
 </ul>
@@ -1852,33 +1965,33 @@ HPU handles high-compute tasks such as vision perception, AI inference, motion p
 <ul>
 <li>Real-time isolation: motor control needs deterministic microsecond-level response; vision inference can occupy GPU for hundreds of milliseconds.</li>
 <li>Fault isolation: if HPU-side AI crashes, XCU can still maintain low-level control and standing posture.</li>
-<li>Scalability: future compute upgrades can focus on replacing Orin while keeping XCU real-time firmware stable.</li>
+<li>Scalability: future compute upgrades can focus on replacing the HPU compute module while keeping XCU real-time firmware stable.</li>
 </ul>
 <h3 id="how-to-access-hpu-and-xcu">How to Access HPU and XCU</h3>
-<p>Get login IP by:</p>
+<p>Get the login IP by:</p>
 <ol>
 <li>Checking wireless IP on robot <code>Network</code> screen.</li>
-<li>Wired PC-robot direct connection fixed IPs:</li>
+<li>For a wired PC-robot connection, use the fixed IPs:</li>
 <li>XCU: <code>192.168.100.66</code></li>
 <li>HPU (Orin): <code>192.168.100.88</code></li>
 </ol>
-<p>Login and credentials:</p>
-<ul>
-<li>HPU (Orin):</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>ssh<span class="w"> </span>galbot@&lt;Orin_IP&gt;
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="c1"># password: gb@2023</span>
+<p>On newer versions, XCU does not connect to Wi-Fi and cannot be accessed directly through an XCU wireless IP. For remote access over Wi-Fi, log in to HPU first, then log in to XCU from HPU:</p>
+<ol>
+<li>Log in to HPU from the PC:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>ssh<span class="w"> </span>galbot@192.168.xxx.xx
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="c1"># password: gb@2023</span>
 </span></code></pre></div>
-<ul>
-<li>XCU:</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>ssh<span class="w"> </span>root@&lt;XCU_IP&gt;
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="c1"># password: 12345678</span>
+<ol>
+<li>Log in to XCU from HPU:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>ssh<span class="w"> </span>root@192.168.100.66
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="c1"># password: 12345678</span>
 </span></code></pre></div>
-<p>Run <code>ping</code> first, then <code>ssh</code>.</p>
+<p>Verify connectivity between the PC and HPU before running <code>ssh</code>.</p>
 <h3 id="how-to-check-robot-sn">How to Check Robot SN</h3>
 <p>On XCU:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>/data/bin/sys_tool
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>/data/bin/sys_tool
 </span></code></pre></div>
 <p>Follow tool prompts to view device information.</p>
 <h3 id="how-to-check-whether-joints-are-healthy">How to Check Whether Joints Are Healthy</h3>
@@ -1888,7 +2001,7 @@ HPU handles high-compute tasks such as vision perception, AI inference, motion p
 <img alt="Joint Speed Error Example" src="/image/faq_joint_speed_error.jpeg" title="Joint Speed Error Example" /></p>
 <h3 id="how-to-enable-real-time-end-effector-control-commands">How to Enable Real-Time End-Effector Control Commands</h3>
 <p>On XCU, modify:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>/data/config/default/SingoriX/galbot_s1-v2.0/robot_config.toml
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>/data/config/default/SingoriX/galbot_s1-v2.0/robot_config.toml
 </span></code></pre></div>
 <p>Set <code>using_wbc</code> to <code>true</code>, then restart <code>launcher</code>.</p>
 <h3 id="where-joint-limits-are-configured">Where Joint Limits Are Configured</h3>
@@ -1899,10 +2012,10 @@ HPU handles high-compute tasks such as vision perception, AI inference, motion p
 </ul>
 <h3 id="enabledisable-a-system-service">Enable/Disable a System Service</h3>
 <p>Determine whether the target service runs on HPU or XCU, login the corresponding platform, then edit:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>/userdata/user_config/mode_service_config_default.toml
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>/userdata/user_config/mode_service_config_default.toml
 </span></code></pre></div>
 <p>Comment/uncomment the target service item, then restart <code>launcher</code> on that same platform:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
 </span></code></pre></div>
 <p><img alt="Enable/Disable Service Config Example" src="/image/faq_disable_service.png" title="Enable/Disable Service Config Example" /></p>
 <h3 id="embosa-ip-configuration-reverted-after-reboot">embosa IP Configuration Reverted After Reboot</h3>
@@ -1925,17 +2038,17 @@ HPU handles high-compute tasks such as vision perception, AI inference, motion p
 <img alt="Topic Rate Example" src="/image/faq_topic_rate.jpeg" title="Topic Rate Example" /></p>
 <h3 id="how-to-check-camera-intrinsicsextrinsics-and-calibration-info">How to Check Camera Intrinsics/Extrinsics and Calibration Info</h3>
 <p>On XCU:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>cat<span class="w"> </span>/userdata/config/robot_config/eyehand_calib.toml
-</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>cat<span class="w"> </span>/userdata/config/robot_config/stereo_camera_intrinsic.toml
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>cat<span class="w"> </span>/userdata/config/robot_config/eyehand_calib.toml
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>cat<span class="w"> </span>/userdata/config/robot_config/stereo_camera_intrinsic.toml
 </span></code></pre></div>
 <p>You can also use SDK interfaces. Example for left-arm camera extrinsic:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">transform</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_transform</span><span class="p">(</span>
-</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>    <span class="n">target_frame</span><span class="o">=</span><span class="s2">&quot;base_link&quot;</span><span class="p">,</span>
-</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>    <span class="n">source_frame</span><span class="o">=</span><span class="s2">&quot;left_arm_camera_color_optical_frame&quot;</span><span class="p">,</span>
-</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">transform</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_transform</span><span class="p">(</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>    <span class="n">target_frame</span><span class="o">=</span><span class="s2">&quot;base_link&quot;</span><span class="p">,</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>    <span class="n">source_frame</span><span class="o">=</span><span class="s2">&quot;left_arm_camera_color_optical_frame&quot;</span><span class="p">,</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="p">)</span>
 </span></code></pre></div>
 <p>Or:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">transform</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_sensor_extrinsic</span><span class="p">(</span><span class="n">sensor_id</span><span class="o">=</span><span class="n">SensorType</span><span class="o">.</span><span class="n">LEFT_ARM_CAMERA</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">transform</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_sensor_extrinsic</span><span class="p">(</span><span class="n">sensor_id</span><span class="o">=</span><span class="n">SensorType</span><span class="o">.</span><span class="n">LEFT_ARM_CAMERA</span><span class="p">)</span>
 </span></code></pre></div>
 <h2 id="logs-and-debugging">Logs and Debugging</h2>
 <h3 id="where-low-level-service-logs-are-stored">Where Low-Level Service Logs Are Stored</h3>
@@ -1952,36 +2065,36 @@ HPU handles high-compute tasks such as vision perception, AI inference, motion p
 <p>Always identify the service platform first, then check logs on that platform.</p>
 <h3 id="where-sdk-logs-are-stored">Where SDK Logs Are Stored</h3>
 <p>SDK runtime logs (PC or Robot side) are in:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>~/galbot_sdk_log/
+<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>~/galbot_sdk_log/
 </span></code></pre></div>
 <p>If you see <code>get info failed</code> or <code>PUBLISH FAIL</code> on PC, check <code>embosa_ip_config.json</code> on both sides first.</p>
 <h3 id="how-to-enable-and-debug-core-dumps">How to Enable and Debug Core Dumps</h3>
 <p>Core dumps are used for service crash analysis. After enabling core dumps and setting path (then relogin shell), files usually appear in:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>/userdata/core
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>/userdata/core
 </span></code></pre></div>
 <p>For example with mps service:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>gdb<span class="w"> </span>/data/galbot/bin/service_motion_plan<span class="w"> </span><span class="o">[</span>core_file<span class="o">]</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>gdb<span class="w"> </span>/data/galbot/bin/service_motion_plan<span class="w"> </span><span class="o">[</span>core_file<span class="o">]</span>
 </span></code></pre></div>
 <p>Run <code>bt -full</code> in gdb.</p>
 <p><img alt="Core Backtrace Example (bt -full)" src="/image/faq_core_bt_full.png" title="Core Backtrace Example (bt -full)" /></p>
 <h3 id="python-on-robot-cannot-find-a-module">Python on Robot Cannot Find a Module</h3>
 <p>Add to <code>~/.bashrc</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/data/galbot/lib:<span class="nv">$PYTHONPATH</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/data/galbot/lib:<span class="nv">$PYTHONPATH</span>
 </span></code></pre></div>
 <p>Relogin to take effect.</p>
 <h3 id="python-example-error-numpy-has-no-typedict">Python Example Error: <code>numpy</code> Has No <code>typeDict</code></h3>
 <p>Usually caused by older <code>scipy</code>. Upgrade:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>scipy
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>scipy
 </span></code></pre></div>
 <h2 id="installation-and-environment">Installation and Environment</h2>
 <h3 id="how-to-start-sdk-docker">How to Start SDK Docker</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>gunzip<span class="w"> </span>-c<span class="w"> </span>galbot_sdk_image_1.8.0.tar.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>load
-</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="nb">cd</span><span class="w"> </span>output/docker
-</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>./run.sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>gunzip<span class="w"> </span>-c<span class="w"> </span>galbot_sdk_image_1.10.0.tar.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>load
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="nb">cd</span><span class="w"> </span>output/docker
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>./run.sh
 </span></code></pre></div>
 <h3 id="how-to-use-perception-service-gbs-11516">How to Use Perception Service (GBS 1.15.16+)</h3>
 <p>On HPU, modify:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>/data/galbot/config/galbot_perception_moduleConfig.yaml
+<div class="language-text highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>/data/galbot/config/galbot_perception_moduleConfig.yaml
 </span></code></pre></div>
 <p>Set <code>sensor_data_sync_max_diff_tolerance</code> to <code>500000</code> (ns), restart <code>launcher</code>, then validate with examples under <code>examples/g1/python/galbot_perception</code>.</p>
 <h2 id="still-not-resolved">Still Not Resolved?</h2>
@@ -2045,7 +2158,7 @@ https://github.com/GalaxyGeneralRobotics/GalbotSDK/issues</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "toc.integrate", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../javascripts/language_switch.js"></script>
       

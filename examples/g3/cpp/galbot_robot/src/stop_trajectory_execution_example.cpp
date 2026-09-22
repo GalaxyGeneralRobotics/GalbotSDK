@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+#include <chrono>
+#include <thread>
+#include <string>
+
+#include "galbot_robot.hpp"
+
+using namespace galbot::sdk;
+
+int main() {
+    // Get object instance
+    auto& robot = GalbotRobot::get_instance(MachineType::G3);
+
+    // Initialize system
+    if (robot.init()) {
+        std::cout << "System initialized successfully!" << std::endl;
+    } else {
+        std::cerr << "System initialization failed!" << std::endl;
+        return -1;
+    }
+
+    // Program started, waiting for data
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+
+    // Stop trajectory execution
+    while(true) {
+        ControlStatus joint_execution_status =
+            robot.stop_trajectory_execution();
+        
+        // Check execution results
+        if (joint_execution_status == ControlStatus::SUCCESS) {
+            std::cout << "Trajectory stop command sent successfully" << std::endl;
+            break;
+        } else {
+            std::cerr << "Failed to send trajectory stop command, retrying..." << std::endl;
+        }
+    }
+
+    // Exit system and release SDK resources
+    robot.request_shutdown();
+    robot.wait_for_shutdown();
+    robot.destroy();
+
+    return 0;
+}

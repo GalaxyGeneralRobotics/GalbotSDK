@@ -1,11 +1,28 @@
 {
+    "discovery": {
+        "remote_servers": [
+            {
+                "ip": "192.168.1.88",
+                "port": 11888
+            }
+        ],
+        "server_config": {
+            "listen_addresses": [
+                {
+                    "ip": "192.168.1.88",
+                    "port": 11888
+                }
+            ]
+        }
+    },
+    "discovery_mode": "server",
     "embosa_ip": {
+        "dsha_did": 3,
         "local_interface": [
             "192.168.1.99"
         ],
-        "peer_lists": [
-            "192.168.1.66",
-            "192.168.1.88"
+        "meta_interface": [
+            "192.168.1.99"
         ]
     }
 }

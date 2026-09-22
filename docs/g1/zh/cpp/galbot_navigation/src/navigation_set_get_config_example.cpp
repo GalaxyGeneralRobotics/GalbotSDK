@@ -53,8 +53,8 @@ int main() {
   print_status("dump_navigation_configs", navigation.dump_navigation_configs());
 
   const std::array<double, 3> vel_limit = {0.5, 0.5, 0.5};       // valid range: [0.05, 1.5]
-  const std::array<double, 3> acc_limit = {1.0, 1.0, 1.0};       // valid range: [0.05, 7.5]
-  const std::array<double, 3> jerk_limit = {5.0, 5.0, 5.0};      // valid range: [0.05, 37.5]
+  const std::array<double, 3> acc_limit = {0.5, 0.5, 0.5};       // valid range: [0.05, 6.0]
+  const std::array<double, 3> jerk_limit = {5.0, 5.0, 5.0};      // valid range: [0.05, 12.0]
   const std::array<double, 3> arrival_threshold = {0.05, 0.05, 0.05};  // valid range: [0.03, 2.0]
   const double timeout_s = 30.0;
 

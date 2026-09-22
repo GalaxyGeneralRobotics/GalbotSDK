@@ -18,7 +18,7 @@ def set_yaw_orientation(pose, yaw):
 def test1(robot):
     # Test 1: set base pose using Pose.
     pose = Pose()
-    pose.position.x = 0.5
+    pose.position.x = 0.3  # Move to x = 0.3 m in the odom frame.
     pose.position.y = 0.0
     pose.position.z = 0.0
     set_yaw_orientation(pose, 0.0)
@@ -33,7 +33,7 @@ def test1(robot):
 
 def test2(robot):
     # Test 2: set base pose using frame ids. "rel(0)" is relative to the current base pose.
-    x = 0.1
+    x = -0.3  # Move backward by 0.3 m from the current pose.
     y = 0.0
     yaw = 0.0
     frame_id = "rel(0)"
@@ -51,7 +51,7 @@ def test2(robot):
 
 def test3(robot):
     # Test 3: set base pose using explicit interpolation time.
-    x = 0.2
+    x = 0.0  # Keep the third target at zero relative displacement.
     y = 0.0
     yaw = 0.0
     # frame_id = "base_link"
@@ -87,8 +87,9 @@ if __name__ == "__main__":
     time.sleep(2)
     print("Initialization succeeded")
 
-    # test1(robot)
-    # test2(robot)
+    # Run all three API forms in sequence so every target is executed.
+    test1(robot)
+    test2(robot)
     test3(robot)
 
     robot.request_shutdown()

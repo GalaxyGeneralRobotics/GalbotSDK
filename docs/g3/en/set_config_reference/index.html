@@ -1,0 +1,3051 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.galbot.com/g3/set_config_reference/">
+      
+      
+        <link rel="prev" href="../api_cpp_reference/">
+      
+      
+        <link rel="next" href="../troubleshooting/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>set_config Reference - galbot_sdk - G3</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/nav_collapse.css">
+    
+      <link rel="stylesheet" href="../stylesheets/sidebar_scroll.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#set_config-configurable-field-reference-navigation-service-camera-services-motion-planning-service-control-service" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="galbot_sdk - G3" class="md-header__button md-logo" aria-label="galbot_sdk - G3" data-md-component="logo">
+      
+  <img src="/image/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            galbot_sdk - G3
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              set_config Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GalaxyGeneralRobotics/GalbotSDK" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GalbotSDK
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../overview/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../installation_system_requirements/" class="md-tabs__link">
+          
+  
+  
+  Installation and Configuration
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../routine_operations/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Routine Operations
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tutorials/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorials
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples_python/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python Examples
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples_cpp/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  C++ Examples
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api_python_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api_cpp_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  C++ API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  set_config Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../troubleshooting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Troubleshooting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../license/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  License
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="galbot_sdk - G3" class="md-nav__button md-logo" aria-label="galbot_sdk - G3" data-md-component="logo">
+      
+  <img src="/image/logo.png" alt="logo">
+
+    </a>
+    galbot_sdk - G3
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GalaxyGeneralRobotics/GalbotSDK" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GalbotSDK
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Configuration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation and Configuration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_system_requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_and_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_version_compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version Compatibility Check
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_terminology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terminology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routine_operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routine Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples_python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples_cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_python_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_cpp_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set_config Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set_config Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation-service-configservicenavigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigation Service (ConfigService.NAVIGATION)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Navigation Service (ConfigService.NAVIGATION)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#map-obstacle-avoidance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Map &amp; Obstacle Avoidance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replanning-timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replanning &amp; Timeout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end-effector-collision-checking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        End-Effector Collision Checking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-search-safety-margins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Path Search Safety Margins
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trajectory-optimization-safety-distance-smoothness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trajectory Optimization (Safety Distance &amp; Smoothness)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collision-checking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collision Checking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#velocity-acceleration-control-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Velocity, Acceleration &amp; Control Cycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arrival-accuracy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arrival Accuracy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#omnidirectional-short-distance-motion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Omnidirectional &amp; Short-Distance Motion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatic-transition-point-insertion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Automatic Transition-Point Insertion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#camera-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Camera Services
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Camera Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#left_arm_camera-right_arm_camera-identical-field-definitions-on-both-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LEFT_ARM_CAMERA / RIGHT_ARM_CAMERA (identical field definitions on both services)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#front_head_camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FRONT_HEAD_CAMERA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#surround_cameras-same-field-names-as-front_head_camera-different-resolution-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SURROUND_CAMERAS (same field names as FRONT_HEAD_CAMERA, different resolution values)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#camera-configuration-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Camera Configuration Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#motion-planning-service-configservicemotion_plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motion Planning Service (ConfigService.MOTION_PLAN)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Motion Planning Service (ConfigService.MOTION_PLAN)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-naming-convention-for-per-chain-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Naming Convention for Per-Chain Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-planner-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Planner Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trajectory-planner-parameters-non-per-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trajectory Planner Parameters (non per-chain)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-chain-max-velocity-acceleration-jerk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-Chain Max Velocity / Acceleration / Jerk
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ik-solver-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IK Solver Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ik-soft-limits-per-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IK Soft Limits (per chain)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-planner-limits-per-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Planner Limits (per chain)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#collision-checking-switches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Collision Checking Switches
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trajectory-validity-checking-switches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trajectory Validity Checking Switches
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#motion-planning-configuration-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Motion Planning Configuration Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#control-service-configservicecontrol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control Service (ConfigService.CONTROL)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Control Service (ConfigService.CONTROL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switching-a-groups-currently-active-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Switching a Group's Currently-Active Controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chassis-pose-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chassis Pose Controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chassis-pose-controller-high-speed-variant-some-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chassis Pose Controller (High-Speed Variant, Some Models)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chassis-twist-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chassis Twist Controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swerve-chassis-pose-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Swerve Chassis Pose Controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swerve-chassis-pose-controller-nmpc-variant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Swerve Chassis Pose Controller (NMPC Variant)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lift-height-controller-some-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lift-Height Controller (Some Models)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-service-configuration-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control Service Configuration Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="set_config-configurable-field-reference-navigation-service-camera-services-motion-planning-service-control-service">set_config Configurable Field Reference (Navigation Service / Camera Services / Motion Planning Service / Control Service)</h1>
+<p><code>GalbotRobot.set_config()</code> modifies the runtime configuration of the navigation service, camera services, motion planning service, and control service. This document lists every field currently supported by these services, along with its meaning, type, and valid range. For the signature, parameters, and return value of the interface itself, see the description of <code>GalbotRobot.set_config</code> in the <a href="../api_python_reference/">Python API Reference</a> / <a href="../api_cpp_reference/">C++ API Reference</a>.</p>
+<hr />
+<h2 id="basic-usage">Basic Usage</h2>
+<p><code>set_config()</code> takes a <code>ConfigService</code> (which service to modify) and a list of <code>ConfigItem(key, value)</code> (which fields to change and what to change them to):</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">galbot_sdk.g3</span><span class="w"> </span><span class="kn">import</span> <span class="n">GalbotRobot</span><span class="p">,</span> <span class="n">ConfigService</span><span class="p">,</span> <span class="n">ConfigItem</span><span class="p">,</span> <span class="n">ControlStatus</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">robot</span> <span class="o">=</span> <span class="n">GalbotRobot</span><span class="p">()</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">robot</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">status</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">set_config</span><span class="p">(</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">ConfigService</span><span class="o">.</span><span class="n">NAVIGATION</span><span class="p">,</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="p">[</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="n">ConfigItem</span><span class="p">(</span><span class="s2">&quot;replan_threshold&quot;</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">),</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="n">ConfigItem</span><span class="p">(</span><span class="s2">&quot;no_replan_threshold&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="p">],</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>  <span class="c1"># ControlStatus.SUCCESS / INVALID_INPUT / ...</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">robot</span><span class="o">.</span><span class="n">request_shutdown</span><span class="p">()</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">robot</span><span class="o">.</span><span class="n">wait_for_shutdown</span><span class="p">()</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="n">robot</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+</span></code></pre></div>
+<p>A few key behaviors to understand before using this API:</p>
+<ul>
+<li>Use <code>key</code> names exactly as listed in the tables below.</li>
+<li>The call returns only a single aggregate <code>ControlStatus</code>; it does not tell you which specific field caused a failure. When a call does not succeed, check the <code>ERR</code> lines in the SDK log (under <code>~/galbot_sdk_log/g3/</code>) to find the reason.</li>
+<li>A single call can set multiple fields at once. If any field is invalid (not in the tables below, or its value is out of range), the entire batch is rejected and none of it takes effect.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>A successful <code>set_config()</code> call (returning <code>ControlStatus.SUCCESS</code>) only means the configuration has been saved -- <strong>it does not take effect immediately</strong>. Please restart the device after configuration; the new settings will only be loaded and applied by the relevant service after a restart.</p>
+</div>
+<hr />
+<h2 id="navigation-service-configservicenavigation">Navigation Service (<code>ConfigService.NAVIGATION</code>)</h2>
+<p>The 52 fields supported by the navigation service are listed below, grouped by function.</p>
+<h3 id="map-obstacle-avoidance">Map &amp; Obstacle Avoidance</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>esdf_map_path</code></td>
+<td>str</td>
+<td>unrestricted</td>
+<td>ESDF map path; if the map does not exist, the service enters an error state</td>
+</tr>
+<tr>
+<td><code>forbidden_dyn_map</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to disable the dynamic map (turns dynamic obstacle avoidance on/off)</td>
+</tr>
+<tr>
+<td><code>use_static_map</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Enable static-map planning: path search runs on the static map, the dynamic map is only used for real-time collision checking; when blocked by an obstacle the robot stops instead of going around it</td>
+</tr>
+<tr>
+<td><code>evaluate_at_dyn_map</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to perform reachability estimation on the dynamic map layer (when enabled, reachability is also evaluated on the dynamic layer; when disabled, only the static layer is used)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="replanning-timeout">Replanning &amp; Timeout</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>no_replan</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to immediately report failure (without attempting to replan) when planning fails or a collision is detected during execution</td>
+</tr>
+<tr>
+<td><code>task_timeout_sec</code></td>
+<td>float</td>
+<td>seconds</td>
+<td>Global timeout for a single navigation request; if not completed within this time, the request is reported as failed. A positive value is the timeout duration; a non-positive value means no timeout (unlimited replanning is allowed)</td>
+</tr>
+<tr>
+<td><code>dyn_plan</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to enable continuous dynamic replanning (Beta): when enabled, no stop command is issued during replanning -- the last executed trajectory position is used as the starting condition so obstacle-avoidance motion stays continuous; when disabled (default), the base stops before replanning</td>
+</tr>
+<tr>
+<td><code>replan_threshold</code></td>
+<td>float</td>
+<td>&gt; 0.1, in m</td>
+<td>Replanning is skipped once the current position is closer than this threshold to the starting point; <code>replan_threshold + no_replan_threshold</code> must be less than <code>planning_horizen</code>, otherwise active replanning stops working</td>
+</tr>
+<tr>
+<td><code>no_replan_threshold</code></td>
+<td>float</td>
+<td>&gt; 0.1, in m, typically 1.0</td>
+<td>Replanning is skipped once the current position is closer than this threshold to the goal; too small a value can cause trajectory jitter from replanning near the goal</td>
+</tr>
+<tr>
+<td><code>planning_horizen</code></td>
+<td>float</td>
+<td>&gt; 0, in m</td>
+<td>Local planning horizon; only the path within this range is planned each time. Anything beyond it is truncated to this length and completed over multiple replanning segments</td>
+</tr>
+<tr>
+<td><code>search_closest_distance</code></td>
+<td>float</td>
+<td>&gt; 0, in m</td>
+<td>Distance kept from obstacles for the partial path returned when path search fails; if larger than half the width of a feasible corridor, that area is treated as unreachable</td>
+</tr>
+</tbody>
+</table>
+<h3 id="end-effector-collision-checking">End-Effector Collision Checking</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>left_arm</code></td>
+<td>int</td>
+<td>enum 0~6</td>
+<td>Left-arm end-effector tool type, used to include the end-effector in environment collision checking during navigation planning: 0=None, 1=gripper_hitbot, 2=suction_cup, 3=robotiq_gripper, 4=galbot_gripper, 5=GE103, 6=GE103v1 (default 0, collision not considered)</td>
+</tr>
+<tr>
+<td><code>right_arm</code></td>
+<td>int</td>
+<td>enum 0~6</td>
+<td>Right-arm end-effector tool type, same meaning as <code>left_arm</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="path-search-safety-margins">Path Search Safety Margins</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>point_safe_margin</code></td>
+<td>float</td>
+<td>&gt; 0, in m</td>
+<td>Distance kept between path points and obstacles (hard constraint)</td>
+</tr>
+<tr>
+<td><code>search_start_radius</code></td>
+<td>float</td>
+<td>&gt; 0, in m</td>
+<td>Specialized radius around the start point, during path search</td>
+</tr>
+<tr>
+<td><code>search_end_radius</code></td>
+<td>float</td>
+<td>&gt; 0, in m</td>
+<td>Specialized radius around the goal point, during path search</td>
+</tr>
+<tr>
+<td><code>start_safe_margin</code></td>
+<td>float</td>
+<td>&gt; 0, in m</td>
+<td>Distance to obstacles within the start-point specialized radius, for cases where the starting point is close to an obstacle</td>
+</tr>
+<tr>
+<td><code>end_safe_margin</code></td>
+<td>float</td>
+<td>&gt; 0, in m</td>
+<td>Distance to obstacles within the goal-point specialized radius, for cases where the goal is close to an obstacle</td>
+</tr>
+<tr>
+<td><code>return_closest_path</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to return the feasible partial path closest to the goal when path search fails (path blocked); use with caution when the goal is behind a shelf/wall, as it can look like the robot went to the wrong place</td>
+</tr>
+</tbody>
+</table>
+<h3 id="trajectory-optimization-safety-distance-smoothness">Trajectory Optimization (Safety Distance &amp; Smoothness)</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>safe_distance</code></td>
+<td>float</td>
+<td>&gt; 0, in m</td>
+<td>Distance kept between path control points and obstacles (soft constraint); should be greater than the search-phase safety distance, typically by 0.2~0.5m</td>
+</tr>
+<tr>
+<td><code>start_safe_distance</code></td>
+<td>float</td>
+<td>&gt; 0, in m</td>
+<td>Distance to obstacles within the start-point specialized radius</td>
+</tr>
+<tr>
+<td><code>end_safe_distance</code></td>
+<td>float</td>
+<td>&gt; 0, in m</td>
+<td>Distance to obstacles within the goal-point specialized radius</td>
+</tr>
+<tr>
+<td><code>optimize_start_radius</code></td>
+<td>float</td>
+<td>&gt; 0, in m</td>
+<td>Specialized radius around the start point, during trajectory optimization</td>
+</tr>
+<tr>
+<td><code>optimize_end_radius</code></td>
+<td>float</td>
+<td>&gt; 0, in m</td>
+<td>Specialized radius around the goal point, during trajectory optimization</td>
+</tr>
+<tr>
+<td><code>post_check_hard_safe_distance</code></td>
+<td>float</td>
+<td>&gt; 0, in m</td>
+<td>Post-optimization hard constraint: planning is judged to have failed if the final planned path's distance to an obstacle is below this value</td>
+</tr>
+<tr>
+<td><code>weight_obstacle</code></td>
+<td>float</td>
+<td>&gt; 0</td>
+<td>Obstacle-distance weight (safety weight); by default safety is prioritized, and a larger value further prioritizes obstacle avoidance</td>
+</tr>
+<tr>
+<td><code>weight_smooth</code></td>
+<td>float</td>
+<td>larger = smoother; 20.0~50.0 usually works well</td>
+<td>Trajectory smoothness weight; can be increased in open scenes that don't require hugging obstacles closely, to improve navigation smoothness</td>
+</tr>
+</tbody>
+</table>
+<h3 id="collision-checking">Collision Checking</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>check_collision_radius</code></td>
+<td>float</td>
+<td>&gt; 0, in m, recommended ≤ 5</td>
+<td>Distance ahead of the robot's current position, along the planned path, over which collisions are predicted during navigation execution; too large a value can cause frequent replanning or jerky/stuttering motion</td>
+</tr>
+<tr>
+<td><code>collision_check_plan_path</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to check the full trajectory (cylindrical envelope) for collision feasibility once planning completes, and withhold execution if infeasible; can be disabled in high dynamic-response or mapless long-range navigation scenarios in favor of runtime collision prediction + dynamic replanning</td>
+</tr>
+</tbody>
+</table>
+<h3 id="velocity-acceleration-control-cycle">Velocity, Acceleration &amp; Control Cycle</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max_velocity</code></td>
+<td>List[float]</td>
+<td>length 3, in m/s and rad/s, element range (0, 1.5)</td>
+<td>Maximum navigation planning velocity <code>[vx, vy, w]</code>; the robot's control-side velocity limit must be kept no lower than this value, otherwise the robot may fail to track the planned velocity</td>
+</tr>
+<tr>
+<td><code>max_acceleration</code></td>
+<td>List[float]</td>
+<td>length 3</td>
+<td>Maximum navigation planning acceleration <code>[ax, ay, aw]</code>; normally left unchanged</td>
+</tr>
+<tr>
+<td><code>max_jerk</code></td>
+<td>List[float]</td>
+<td>length 3</td>
+<td>Maximum navigation planning jerk <code>[jx, jy, jw]</code>; normally left unchanged</td>
+</tr>
+<tr>
+<td><code>enable_centripetal_constraint</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to enable the centripetal acceleration constraint</td>
+</tr>
+<tr>
+<td><code>max_centripetal_acc</code></td>
+<td>float</td>
+<td>&gt; 0</td>
+<td>Upper bound for the centripetal acceleration constraint</td>
+</tr>
+<tr>
+<td><code>control_cycle_time</code></td>
+<td>float</td>
+<td>normally left unchanged</td>
+<td>Time interval between planned waypoints (control cycle), determining how densely waypoints are packed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="arrival-accuracy">Arrival Accuracy</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>arrival_pos_err_x</code></td>
+<td>float</td>
+<td>&gt; 0, in m</td>
+<td>Arrival position error (X direction); the robot's control accuracy must be smaller than this arrival error, otherwise the robot may fail to reach the target; control accuracy should not be smaller than 1cm</td>
+</tr>
+<tr>
+<td><code>arrival_pos_err_y</code></td>
+<td>float</td>
+<td>&gt; 0, in m</td>
+<td>Arrival position error (Y direction)</td>
+</tr>
+<tr>
+<td><code>arrival_ori_err</code></td>
+<td>float</td>
+<td>&gt; 0, in rad</td>
+<td>Arrival orientation error</td>
+</tr>
+</tbody>
+</table>
+<h3 id="omnidirectional-short-distance-motion">Omnidirectional &amp; Short-Distance Motion</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>omni_plan</code></td>
+<td>bool</td>
+<td>G-series only</td>
+<td>Whether to enable omnidirectional planning (simultaneous translation and rotation); when disabled, standard heading-based navigation (turn first, then move straight) is used. Due to limited lidar field of view, moving omnidirectionally with an obstacle behind the robot carries a collision risk -- enable based on the scene. On S1 this returns <code>INVALID_INPUT</code></td>
+</tr>
+<tr>
+<td><code>stop_err</code></td>
+<td>float</td>
+<td>in m (G-series default 0.2, S1 default 0.5)</td>
+<td>Short-distance-move threshold: once the distance between the current position and target is below this value, the short-distance motion mode is used</td>
+</tr>
+<tr>
+<td><code>adjust_motion_type</code></td>
+<td>int</td>
+<td>enum 0~2</td>
+<td>Short-distance motion mode: 0=omnidirectional (G-series), 1=crab-walk + rotate, 2=rotate + crab-walk (recommended for S1, avoids joint collisions)</td>
+</tr>
+<tr>
+<td><code>try_omni_plan_first</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to first attempt a straight-line omnidirectional move (rotate + crab-walk on S1) to the goal, executing it if collision-free, otherwise falling back to regular planning</td>
+</tr>
+<tr>
+<td><code>try_omni_plan_min_obstacle_distance</code></td>
+<td>float</td>
+<td>&gt; 0, in m</td>
+<td>Distance kept from obstacles for the straight-line omnidirectional waypoints attempted above</td>
+</tr>
+</tbody>
+</table>
+<h3 id="automatic-transition-point-insertion">Automatic Transition-Point Insertion</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dis_with_obstacle</code></td>
+<td>float</td>
+<td>in m; ≥0 enables it (recommended 0.2), &lt;0 disables it</td>
+<td>Distance kept between the start/end positions and obstacles (the robot's or a specified link's cylindrical envelope surface) during planning; should be set together with <code>find_valid_pos_step</code></td>
+</tr>
+<tr>
+<td><code>find_valid_pos_step</code></td>
+<td>float</td>
+<td>in m; ≥0 enables it (recommended 0.05), &lt;0 disables it</td>
+<td>Step size for searching the best safe distance when the requested start/end obstacle clearance can't be achieved (narrow corridors); should be set together with <code>dis_with_obstacle</code></td>
+</tr>
+<tr>
+<td><code>find_start_valid_pos_check_link_list</code></td>
+<td>List[str]</td>
+<td>from the URDF</td>
+<td>Link list included in envelope checking when searching for a clearance point near the start</td>
+</tr>
+<tr>
+<td><code>find_end_valid_pos_check_link_list</code></td>
+<td>List[str]</td>
+<td>from the URDF</td>
+<td>Link list included in envelope checking when searching for a clearance point near the goal; a smaller link list avoids inserting redundant transition points caused by an oversized cylindrical envelope when the upper body's arm span is large</td>
+</tr>
+</tbody>
+</table>
+<h3 id="recovery-strategy">Recovery Strategy</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enable_adjustment</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to enable recovery adjustment (entering a recovery strategy when the planned path collides); when enabled, if static-map planning is also enabled, the stop-on-obstacle behavior stops working</td>
+</tr>
+<tr>
+<td><code>recovery_strategy_order</code></td>
+<td>List[int]</td>
+<td>element enum 0~3, recommended order <code>[1,2,3,0]</code></td>
+<td>Order in which recovery strategies are attempted: 0=navigate to a designated transition point, 1=go straight omnidirectionally (rotate + crab-walk on S1), 2=search for an in-place rotation point based on the collision location, 3=handle by collision-location category</td>
+</tr>
+<tr>
+<td><code>adjust_motion_types</code></td>
+<td>List[int]</td>
+<td>element enum 0~2</td>
+<td>Motion modes attempted, in configured order, to reach a transition point away from the obstacle: 0=omnidirectional (G-series), 1=crab-walk + rotate, 2=rotate + crab-walk</td>
+</tr>
+<tr>
+<td><code>transition_poses</code></td>
+<td>List[List[float]]</td>
+<td>each item length 3 or 7</td>
+<td>List of designated recovery transition-point poses, each <code>[x,y,yaw]</code> or <code>[x,y,z,rx,ry,rz,rw]</code>; when multiple are set, the fastest feasible one is chosen</td>
+</tr>
+</tbody>
+</table>
+<h3 id="other">Other</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>save_data</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to save each navigation run's process data (dynamic map, local map at time of collision, planned path), for reproducing issues and visual debugging</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="camera-services">Camera Services</h2>
+<p>Camera configuration is split into 4 independent <code>ConfigService</code> values:</p>
+<table>
+<thead>
+<tr>
+<th>ConfigService</th>
+<th>Supported Platforms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LEFT_ARM_CAMERA</code></td>
+<td>G-series / S1</td>
+</tr>
+<tr>
+<td><code>RIGHT_ARM_CAMERA</code></td>
+<td>G-series / S1</td>
+</tr>
+<tr>
+<td><code>FRONT_HEAD_CAMERA</code></td>
+<td>G-series / S1</td>
+</tr>
+<tr>
+<td><code>SURROUND_CAMERAS</code></td>
+<td>G-series only; calling on S1 returns <code>INVALID_INPUT</code></td>
+</tr>
+</tbody>
+</table>
+<p>Only the fields listed below can be set; any other field is out of scope and passing it causes the whole batch to be rejected.</p>
+<div class="admonition warning">
+<p class="admonition-title">Resolution width/height must be set as a pair</p>
+<p><code>color_width</code>/<code>color_height</code> (present on all 4 camera services) and <code>rs_color_width</code>/<code>rs_color_height</code> (<code>LEFT_ARM_CAMERA</code>/<code>RIGHT_ARM_CAMERA</code> only, RealSense-specific) must be included together in the <strong>same <code>set_config()</code> call</strong>, and their combined values must be one of the valid combinations listed in the Range column below. Passing only one of the two, or passing both with an invalid combination, causes the whole batch to be rejected. Even if you only want to change one of them, you must resend the other's target value as well.</p>
+</div>
+<h3 id="left_arm_camera-right_arm_camera-identical-field-definitions-on-both-services"><code>LEFT_ARM_CAMERA</code> / <code>RIGHT_ARM_CAMERA</code> (identical field definitions on both services)</h3>
+<p>G3 uses monocular arm cameras and does not provide arm-mounted depth cameras. <code>color_width</code>/<code>color_height</code> controls the final-output resolution. The RealSense-specific fields remain in the shared configuration schema for G1/S1 compatibility and do not enable depth-camera support on G3.</p>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>color_width</code></td>
+<td>int</td>
+<td>paired with <code>color_height</code>; valid combinations: <code>(1920,1536)</code> <code>(1280,1024)</code></td>
+<td>Final-output image width</td>
+</tr>
+<tr>
+<td><code>color_height</code></td>
+<td>int</td>
+<td>see above</td>
+<td>Final-output image height</td>
+</tr>
+<tr>
+<td><code>frame_rate</code></td>
+<td>int</td>
+<td>enum <code>30</code>, <code>15</code></td>
+<td>Final-output frame rate</td>
+</tr>
+<tr>
+<td><code>rs_color_width</code></td>
+<td>int</td>
+<td>paired with <code>rs_color_height</code>; valid combinations: <code>(1280,720)</code> <code>(848,480)</code> <code>(640,480)</code> <code>(640,360)</code> <code>(480,270)</code> <code>(424,240)</code></td>
+<td>RealSense capture image width</td>
+</tr>
+<tr>
+<td><code>rs_color_height</code></td>
+<td>int</td>
+<td>see above</td>
+<td>RealSense capture image height</td>
+</tr>
+<tr>
+<td><code>rs_frame_rate</code></td>
+<td>int</td>
+<td>enum <code>30</code>, <code>15</code>, <code>9</code>, <code>6</code></td>
+<td>RealSense camera frame rate; RealSense only supports these 4 values</td>
+</tr>
+<tr>
+<td><code>ir_enabled</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to enable infrared image publishing</td>
+</tr>
+<tr>
+<td><code>imu_enabled</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to enable IMU data publishing; currently only supported on D436</td>
+</tr>
+<tr>
+<td><code>iframe_interval</code></td>
+<td>int</td>
+<td>≥ 2</td>
+<td>I-frame interval; recommended to be a multiple of the frame rate</td>
+</tr>
+</tbody>
+</table>
+<h3 id="front_head_camera"><code>FRONT_HEAD_CAMERA</code></h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>undistort_enabled</code></td>
+<td>bool</td>
+<td>default false</td>
+<td>Whether to enable distortion correction</td>
+</tr>
+<tr>
+<td><code>color_width</code></td>
+<td>int</td>
+<td>paired with <code>color_height</code>; valid combinations: <code>(1280,992)</code> or <code>(-1,-1)</code> (full size)</td>
+<td>Image width</td>
+</tr>
+<tr>
+<td><code>color_height</code></td>
+<td>int</td>
+<td>see above</td>
+<td>Image height</td>
+</tr>
+<tr>
+<td><code>frame_rate</code></td>
+<td>int</td>
+<td>enum <code>30</code>, <code>15</code></td>
+<td>Frame rate</td>
+</tr>
+<tr>
+<td><code>iframe_interval</code></td>
+<td>int</td>
+<td>≥ 2</td>
+<td>I-frame interval; recommended to be a multiple of the frame rate</td>
+</tr>
+</tbody>
+</table>
+<h3 id="surround_cameras-same-field-names-as-front_head_camera-different-resolution-values"><code>SURROUND_CAMERAS</code> (same field names as <code>FRONT_HEAD_CAMERA</code>, different resolution values)</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>undistort_enabled</code></td>
+<td>bool</td>
+<td>default false</td>
+<td>Whether to enable distortion correction</td>
+</tr>
+<tr>
+<td><code>color_width</code></td>
+<td>int</td>
+<td>paired with <code>color_height</code>; valid combinations: <code>(1920,1536)</code> or <code>(-1,-1)</code> (full size)</td>
+<td>Image width</td>
+</tr>
+<tr>
+<td><code>color_height</code></td>
+<td>int</td>
+<td>see above</td>
+<td>Image height</td>
+</tr>
+<tr>
+<td><code>frame_rate</code></td>
+<td>int</td>
+<td>enum <code>30</code>, <code>15</code></td>
+<td>Frame rate</td>
+</tr>
+<tr>
+<td><code>iframe_interval</code></td>
+<td>int</td>
+<td>≥ 2</td>
+<td>I-frame interval; recommended to be a multiple of the frame rate</td>
+</tr>
+</tbody>
+</table>
+<h3 id="camera-configuration-example">Camera Configuration Example</h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">galbot_sdk.g3</span><span class="w"> </span><span class="kn">import</span> <span class="n">GalbotRobot</span><span class="p">,</span> <span class="n">ConfigService</span><span class="p">,</span> <span class="n">ConfigItem</span><span class="p">,</span> <span class="n">ControlStatus</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">robot</span> <span class="o">=</span> <span class="n">GalbotRobot</span><span class="p">()</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">robot</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># Front head camera: set resolution (width/height must be sent together)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">status</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">set_config</span><span class="p">(</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">ConfigService</span><span class="o">.</span><span class="n">FRONT_HEAD_CAMERA</span><span class="p">,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="p">[</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="n">ConfigItem</span><span class="p">(</span><span class="s2">&quot;color_width&quot;</span><span class="p">,</span> <span class="mi">1280</span><span class="p">),</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="n">ConfigItem</span><span class="p">(</span><span class="s2">&quot;color_height&quot;</span><span class="p">,</span> <span class="mi">992</span><span class="p">),</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="p">],</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="p">)</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">robot</span><span class="o">.</span><span class="n">request_shutdown</span><span class="p">()</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">robot</span><span class="o">.</span><span class="n">wait_for_shutdown</span><span class="p">()</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">robot</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+</span></code></pre></div>
+<hr />
+<h2 id="motion-planning-service-configservicemotion_plan">Motion Planning Service (<code>ConfigService.MOTION_PLAN</code>)</h2>
+<p>The fields supported by the motion planning service are listed below, grouped by function. Available on both G-series and S1.</p>
+<h3 id="key-naming-convention-for-per-chain-fields">Key Naming Convention for Per-Chain Fields</h3>
+<p>Some fields must be configured per body chain. The chain name can be one of 5 values: <code>head</code>, <code>left_arm</code>, <code>right_arm</code>, <code>torso</code> (waist), <code>leg</code> (lower body/lift). These fields follow the key naming pattern <code>{field_name}_{chain_name}</code>, e.g. <code>max_velocity_left_arm</code>.</p>
+<p>The array length (number of joints) for each chain differs by platform:</p>
+<table>
+<thead>
+<tr>
+<th>Chain</th>
+<th>G-series</th>
+<th>S1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>head</code></td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>left_arm</code></td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>right_arm</code></td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>torso</code></td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>leg</code></td>
+<td>5</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>The array length must exactly match the joint count of the corresponding chain on the currently connected platform, otherwise the field is rejected.</p>
+<h3 id="sample-planner-parameters">Sample Planner Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>state_check_type</code></td>
+<td>str</td>
+<td>common values <code>EUCLIDEAN_DISTANCE</code>, <code>RADIAN_DISTANCE</code> (not strictly validated)</td>
+<td>State-distance metric used</td>
+</tr>
+<tr>
+<td><code>state_check_resolution</code></td>
+<td>float</td>
+<td>&gt; 0</td>
+<td>Minimum distance threshold for two states to be considered different</td>
+</tr>
+<tr>
+<td><code>interpolate</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to interpolate between sampled points</td>
+</tr>
+<tr>
+<td><code>interpolation_cnt</code></td>
+<td>float</td>
+<td>unrestricted; ≤ 0 means automatic/keep current value</td>
+<td>Number of interpolated intermediate points</td>
+</tr>
+<tr>
+<td><code>simplify</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to simplify (shortcut) the planned path</td>
+</tr>
+<tr>
+<td><code>max_simplification_time</code></td>
+<td>float</td>
+<td>unrestricted, in s; ≤ 0 means keep current value</td>
+<td>Time budget for path simplification</td>
+</tr>
+<tr>
+<td><code>termination_condition_type</code></td>
+<td>str</td>
+<td>common value e.g. <code>TimeoutAndExactSolution</code> (not strictly validated)</td>
+<td>Planning termination condition type</td>
+</tr>
+<tr>
+<td><code>plan_timeout</code></td>
+<td>float</td>
+<td>≥ 0, in s</td>
+<td>Planning timeout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="trajectory-planner-parameters-non-per-chain">Trajectory Planner Parameters (non per-chain)</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>min_move_time</code></td>
+<td>float</td>
+<td>≥ 0, in s</td>
+<td>Minimum execution time for a single segment; 0 means execute as fast as the dynamic limits allow</td>
+</tr>
+<tr>
+<td><code>move_line_intermidiate_point</code></td>
+<td>float</td>
+<td>&gt; 0</td>
+<td>Number of interpolated intermediate points for straight-line segments (note: the field name is spelled <code>intermidiate</code>)</td>
+</tr>
+<tr>
+<td><code>way_point_plan_expected_time</code></td>
+<td>float</td>
+<td>unrestricted, recommended &gt; 0</td>
+<td>Expected total duration hint for multi-waypoint trajectories</td>
+</tr>
+</tbody>
+</table>
+<h3 id="per-chain-max-velocity-acceleration-jerk">Per-Chain Max Velocity / Acceleration / Jerk</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max_velocity_{chain}</code></td>
+<td>List[float]</td>
+<td>length equal to the chain's joint count</td>
+<td>Maximum joint velocity limit for the chain</td>
+</tr>
+<tr>
+<td><code>max_acceleration_{chain}</code></td>
+<td>List[float]</td>
+<td>length equal to the chain's joint count</td>
+<td>Maximum joint acceleration limit for the chain</td>
+</tr>
+<tr>
+<td><code>max_jerk_{chain}</code></td>
+<td>List[float]</td>
+<td>length equal to the chain's joint count</td>
+<td>Maximum joint jerk limit for the chain</td>
+</tr>
+</tbody>
+</table>
+<p><code>{chain}</code> can be <code>head</code>, <code>left_arm</code>, <code>right_arm</code>, <code>torso</code>, or <code>leg</code>, e.g. <code>max_velocity_left_arm</code>, <code>max_acceleration_leg</code>.</p>
+<h3 id="ik-solver-parameters">IK Solver Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>col_aware_ik_timeout</code></td>
+<td>float</td>
+<td>&gt; 0, in ms</td>
+<td>Total time budget for a single collision-aware IK solve</td>
+</tr>
+<tr>
+<td><code>seed_type</code></td>
+<td>str</td>
+<td>enum <code>RANDOM_SEED</code>, <code>RANDOM_PROGRESSIVE_SEED</code>, <code>USER_DEFINED_SEED</code></td>
+<td>IK seed/initial-value strategy; a value outside the enum is rejected (to prevent the entire IK configuration from failing to load)</td>
+</tr>
+<tr>
+<td><code>enable_collision_check_log</code></td>
+<td>bool</td>
+<td>default false</td>
+<td>Whether to output collision-check diagnostic logs</td>
+</tr>
+<tr>
+<td><code>translation_eps</code></td>
+<td>List[float]</td>
+<td>length 3, each component ≥ 0, in m</td>
+<td>Position convergence tolerance <code>[x, y, z]</code></td>
+</tr>
+<tr>
+<td><code>rotation_eps</code></td>
+<td>List[float]</td>
+<td>length 3, each component ≥ 0, in rad</td>
+<td>Orientation convergence tolerance <code>[roll, pitch, yaw]</code></td>
+</tr>
+<tr>
+<td><code>enable_collision_avoidance</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to enable collision avoidance during IK solving</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ik-soft-limits-per-chain">IK Soft Limits (per chain)</h3>
+<div class="admonition warning">
+<p class="admonition-title">lower / upper must be set as a pair</p>
+<p><code>ik_soft_limit_lower_{chain}</code> and <code>ik_soft_limit_upper_{chain}</code> must be included together in the <strong>same <code>set_config()</code> call</strong>; passing only one causes the whole batch to be rejected.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ik_soft_limit_lower_{chain}</code></td>
+<td>List[float]</td>
+<td>length equal to the chain's joint count</td>
+<td>Lower bound of the IK soft joint limit</td>
+</tr>
+<tr>
+<td><code>ik_soft_limit_upper_{chain}</code></td>
+<td>List[float]</td>
+<td>length equal to the chain's joint count</td>
+<td>Upper bound of the IK soft joint limit</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sample-planner-limits-per-chain">Sample Planner Limits (per chain)</h3>
+<div class="admonition warning">
+<p class="admonition-title">lower / upper must be set as a pair</p>
+<p><code>sample_planner_limit_lower_{chain}</code> and <code>sample_planner_limit_upper_{chain}</code> must be included together in the <strong>same <code>set_config()</code> call</strong>; passing only one causes the whole batch to be rejected.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sample_planner_limit_lower_{chain}</code></td>
+<td>List[float]</td>
+<td>length equal to the chain's joint count</td>
+<td>Lower bound of the sample planner joint limit</td>
+</tr>
+<tr>
+<td><code>sample_planner_limit_upper_{chain}</code></td>
+<td>List[float]</td>
+<td>length equal to the chain's joint count</td>
+<td>Upper bound of the sample planner joint limit</td>
+</tr>
+</tbody>
+</table>
+<h3 id="collision-checking-switches">Collision Checking Switches</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enable_self_collision_check</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to enable self-collision checking</td>
+</tr>
+<tr>
+<td><code>enable_env_collision_check</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to enable environment-collision checking; disabling it may result in planned trajectories that collide with the environment</td>
+</tr>
+</tbody>
+</table>
+<h3 id="trajectory-validity-checking-switches">Trajectory Validity Checking Switches</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enable_collision_check</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to perform collision checking during trajectory validation</td>
+</tr>
+<tr>
+<td><code>enable_joint_limit_check</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to perform joint-limit checking during trajectory validation</td>
+</tr>
+<tr>
+<td><code>enable_velocity_feasibility_check</code></td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to perform velocity-feasibility checking during trajectory validation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="motion-planning-configuration-example">Motion Planning Configuration Example</h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">galbot_sdk.g3</span><span class="w"> </span><span class="kn">import</span> <span class="n">GalbotRobot</span><span class="p">,</span> <span class="n">ConfigService</span><span class="p">,</span> <span class="n">ConfigItem</span><span class="p">,</span> <span class="n">ControlStatus</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">robot</span> <span class="o">=</span> <span class="n">GalbotRobot</span><span class="p">()</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">robot</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># Set plan_timeout</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">status</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">set_config</span><span class="p">(</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">ConfigService</span><span class="o">.</span><span class="n">MOTION_PLAN</span><span class="p">,</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="p">[</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="n">ConfigItem</span><span class="p">(</span><span class="s2">&quot;plan_timeout&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">),</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="p">],</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">)</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="n">robot</span><span class="o">.</span><span class="n">request_shutdown</span><span class="p">()</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="n">robot</span><span class="o">.</span><span class="n">wait_for_shutdown</span><span class="p">()</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="n">robot</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+</span></code></pre></div>
+<hr />
+<h2 id="control-service-configservicecontrol">Control Service (<code>ConfigService.CONTROL</code>)</h2>
+<p>The control service's fields are spread across several chassis/body controllers. The same field name (e.g. <code>max_vel</code>, <code>stop_acc</code>, <code>pos_threshold</code>) appears in more than one controller, so friendly keys are disambiguated with a <code>{field_name}_{controller_suffix}</code> pattern, e.g. <code>max_vel_chassis_pose</code>, <code>max_vel_chassis_pose_fast</code>. Whether a given controller is available on the currently connected robot is determined at runtime (e.g. the high-speed-tuned chassis controller only exists on some models); the field is rejected when it isn't applicable.</p>
+<p>Each table below has a "Platform" column right next to the field key so you don't have to cross-reference the section heading.</p>
+<h3 id="general-parameters">General Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Platform</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>group_lists</code></td>
+<td>G-series / S1</td>
+<td>List[str]</td>
+<td>unrestricted</td>
+<td>The set and order of groups that participate in initialization; a structural field -- changing it incorrectly may stop some subsystems from initializing, so edit with care</td>
+</tr>
+<tr>
+<td><code>report_error_skip</code></td>
+<td>G-series / S1</td>
+<td>int</td>
+<td>≥ 1</td>
+<td>How many main-loop cycles between each error report</td>
+</tr>
+<tr>
+<td><code>report_sensor_skip</code></td>
+<td>G-series / S1</td>
+<td>int</td>
+<td>≥ 1</td>
+<td>How many main-loop cycles between each sensor report</td>
+</tr>
+<tr>
+<td><code>report_wbc_info_skip</code></td>
+<td>G-series / S1</td>
+<td>int</td>
+<td>≥ 1</td>
+<td>How many main-loop cycles between each wbc_info report</td>
+</tr>
+<tr>
+<td><code>report_wbcs_info_skip</code></td>
+<td>G-series / S1</td>
+<td>int</td>
+<td>≥ 1</td>
+<td>How many main-loop cycles between each wbcs_info report</td>
+</tr>
+<tr>
+<td><code>report_fault_skip</code></td>
+<td>G-series / S1</td>
+<td>int</td>
+<td>≥ 1</td>
+<td>How many main-loop cycles between each fault heartbeat report</td>
+</tr>
+<tr>
+<td><code>target_sub_log_skip</code></td>
+<td>G-series / S1</td>
+<td>int</td>
+<td>≥ 1</td>
+<td>How many target-processing cycles between each received-target log line; log output only</td>
+</tr>
+<tr>
+<td><code>target_sampling_default</code></td>
+<td>G-series / S1</td>
+<td>str</td>
+<td>enum <code>LinearInterpolate</code>, <code>DirectPass</code></td>
+<td>Default sampling/interpolation strategy for the control target within a control cycle, when not otherwise specified</td>
+</tr>
+<tr>
+<td><code>wbc_rate</code></td>
+<td>G-series / S1</td>
+<td>float</td>
+<td>&gt; 0, in Hz</td>
+<td>Target frequency of the control main loop; restart the device after changing this and verify the actual effective frequency</td>
+</tr>
+</tbody>
+</table>
+<h3 id="switching-a-groups-currently-active-controller">Switching a Group's Currently-Active Controller</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Platform</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>group_controller_default_{group}</code></td>
+<td>G-series / S1</td>
+<td>str</td>
+<td>must be one of the controller names currently registered for <code>{group}</code> (validated at runtime, not a fixed enum); <code>{group}</code> itself must also be a group that genuinely exists on the robot, otherwise it's rejected</td>
+<td>Switches the currently-active controller for group <code>{group}</code>. For example, <code>group_controller_default_chassis</code> set to <code>"chassis_pose_ctrl_fast"</code> switches the chassis to the high-speed-tuned controller (provided that controller is already registered in the system). Common <code>{group}</code> values include <code>chassis</code>, <code>head</code>, <code>left_arm</code>, <code>right_arm</code>, etc.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">The valid range is read live, not a fixed table</p>
+<p>The valid values for <code>group_controller_default_{group}</code> depend on which controllers are currently registered on the robot, and can vary by model and by scene -- it isn't a fixed field table. Passing a group name that doesn't exist, or a controller name that isn't registered for that group, is rejected.</p>
+</div>
+<h3 id="chassis-pose-controller">Chassis Pose Controller</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Platform</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max_acc_chassis_pose</code></td>
+<td>G-series only</td>
+<td>List[float]</td>
+<td>length 3, each &gt; 0</td>
+<td>Maximum chassis acceleration <code>[x, y, yaw]</code></td>
+</tr>
+<tr>
+<td><code>max_vel_chassis_pose</code></td>
+<td>G-series only</td>
+<td>List[float]</td>
+<td>length 3, each ≥ 0</td>
+<td>Maximum chassis velocity <code>[x, y, yaw]</code></td>
+</tr>
+<tr>
+<td><code>pos_threshold_chassis_pose</code></td>
+<td>G-series only</td>
+<td>List[float]</td>
+<td>length 3, each ≥ 0</td>
+<td>Per-axis error threshold for judging a pose target as reached</td>
+</tr>
+<tr>
+<td><code>slow_stop_when_shutdown_chassis_pose</code></td>
+<td>G-series only</td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to decelerate gradually per <code>stop_acc_chassis_pose</code> when the controller shuts down</td>
+</tr>
+<tr>
+<td><code>stop_acc_chassis_pose</code></td>
+<td>G-series only</td>
+<td>List[float]</td>
+<td>length 3, each &gt; 0</td>
+<td>Per-axis deceleration during stop or shutdown slow-stop</td>
+</tr>
+</tbody>
+</table>
+<h3 id="chassis-pose-controller-high-speed-variant-some-models">Chassis Pose Controller (High-Speed Variant, Some Models)</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Platform</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max_vel_chassis_pose_fast</code></td>
+<td>G-series, some models only</td>
+<td>List[float]</td>
+<td>length 3, each ≥ 0</td>
+<td>Maximum chassis velocity <code>[x, y, yaw]</code> (high-speed-tuned variant)</td>
+</tr>
+<tr>
+<td><code>pos_threshold_chassis_pose_fast</code></td>
+<td>G-series, some models only</td>
+<td>List[float]</td>
+<td>length 3, each ≥ 0</td>
+<td>Per-axis error threshold for judging a pose target as reached</td>
+</tr>
+<tr>
+<td><code>slow_stop_when_shutdown_chassis_pose_fast</code></td>
+<td>G-series, some models only</td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to decelerate gradually per <code>stop_acc_chassis_pose_fast</code> when the controller shuts down</td>
+</tr>
+<tr>
+<td><code>stop_acc_chassis_pose_fast</code></td>
+<td>G-series, some models only</td>
+<td>List[float]</td>
+<td>length 3, each &gt; 0</td>
+<td>Per-axis deceleration during stop or shutdown slow-stop</td>
+</tr>
+</tbody>
+</table>
+<h3 id="chassis-twist-controller">Chassis Twist Controller</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Platform</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max_acc_down_chassis_twist</code></td>
+<td>G-series only</td>
+<td>List[float]</td>
+<td>length 3, each &gt; 0</td>
+<td>Per-axis deceleration cap when a velocity command decreases</td>
+</tr>
+<tr>
+<td><code>max_acc_up_chassis_twist</code></td>
+<td>G-series only</td>
+<td>List[float]</td>
+<td>length 3, each &gt; 0</td>
+<td>Per-axis acceleration cap when a velocity command increases</td>
+</tr>
+<tr>
+<td><code>max_vel_chassis_twist</code></td>
+<td>G-series only</td>
+<td>List[float]</td>
+<td>length 3, each ≥ 0</td>
+<td>Maximum chassis velocity <code>[x, y, yaw]</code></td>
+</tr>
+<tr>
+<td><code>slow_stop_when_shutdown_chassis_twist</code></td>
+<td>G-series only</td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to decelerate gradually per <code>stop_acc_chassis_twist</code> when the controller shuts down</td>
+</tr>
+<tr>
+<td><code>stop_acc_chassis_twist</code></td>
+<td>G-series only</td>
+<td>List[float]</td>
+<td>length 3, each &gt; 0</td>
+<td>Per-axis deceleration during stop or shutdown slow-stop</td>
+</tr>
+</tbody>
+</table>
+<h3 id="swerve-chassis-pose-controller">Swerve Chassis Pose Controller</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Platform</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max_acc_swerve_chassis_pose</code></td>
+<td>S1 only</td>
+<td>List[float]</td>
+<td>length 3, each &gt; 0</td>
+<td>Maximum chassis acceleration <code>[x, y, yaw]</code></td>
+</tr>
+<tr>
+<td><code>max_vel_swerve_chassis_pose</code></td>
+<td>S1 only</td>
+<td>List[float]</td>
+<td>length 3, each ≥ 0</td>
+<td>Maximum chassis velocity <code>[x, y, yaw]</code></td>
+</tr>
+<tr>
+<td><code>pos_threshold_swerve_chassis_pose</code></td>
+<td>S1 only</td>
+<td>List[float]</td>
+<td>length 3, each ≥ 0</td>
+<td>Per-axis error threshold for judging a pose target as reached</td>
+</tr>
+<tr>
+<td><code>slow_stop_when_shutdown_swerve_chassis_pose</code></td>
+<td>S1 only</td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to decelerate gradually per <code>stop_acc_swerve_chassis_pose</code> when the controller shuts down</td>
+</tr>
+<tr>
+<td><code>stop_acc_swerve_chassis_pose</code></td>
+<td>S1 only</td>
+<td>List[float]</td>
+<td>length 3, each &gt; 0</td>
+<td>Per-axis deceleration during stop or shutdown slow-stop</td>
+</tr>
+<tr>
+<td><code>final_pos_threshold_swerve_chassis_pose</code></td>
+<td>S1 only</td>
+<td>List[float]</td>
+<td>length 3, each ≥ 0</td>
+<td>Per-axis threshold for the final parking phase</td>
+</tr>
+<tr>
+<td><code>log_skip_swerve_chassis_pose</code></td>
+<td>S1 only</td>
+<td>int</td>
+<td>≥ 0</td>
+<td>How many control cycles between each log line</td>
+</tr>
+</tbody>
+</table>
+<h3 id="swerve-chassis-pose-controller-nmpc-variant">Swerve Chassis Pose Controller (NMPC Variant)</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Platform</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>log_skip_swerve_chassis_pose_nmpc</code></td>
+<td>S1 only</td>
+<td>int</td>
+<td>≥ 0</td>
+<td>How many control cycles between each log line</td>
+</tr>
+<tr>
+<td><code>max_acc_swerve_chassis_pose_nmpc</code></td>
+<td>S1 only</td>
+<td>List[float]</td>
+<td>length 3, each &gt; 0</td>
+<td>Maximum chassis acceleration <code>[x, y, yaw]</code></td>
+</tr>
+<tr>
+<td><code>max_vel_swerve_chassis_pose_nmpc</code></td>
+<td>S1 only</td>
+<td>List[float]</td>
+<td>length 3, each ≥ 0</td>
+<td>Maximum chassis velocity <code>[x, y, yaw]</code></td>
+</tr>
+<tr>
+<td><code>pos_threshold_swerve_chassis_pose_nmpc</code></td>
+<td>S1 only</td>
+<td>List[float]</td>
+<td>length 3, each ≥ 0</td>
+<td>Per-axis error threshold for judging a pose target as reached</td>
+</tr>
+<tr>
+<td><code>slow_stop_when_shutdown_swerve_chassis_pose_nmpc</code></td>
+<td>S1 only</td>
+<td>bool</td>
+<td>-</td>
+<td>Whether to decelerate gradually per <code>stop_acc_swerve_chassis_pose_nmpc</code> when the controller shuts down</td>
+</tr>
+<tr>
+<td><code>stop_acc_swerve_chassis_pose_nmpc</code></td>
+<td>S1 only</td>
+<td>List[float]</td>
+<td>length 3, each &gt; 0</td>
+<td>Per-axis deceleration during stop or shutdown slow-stop</td>
+</tr>
+</tbody>
+</table>
+<h3 id="lift-height-controller-some-models">Lift-Height Controller (Some Models)</h3>
+<table>
+<thead>
+<tr>
+<th>Field (key)</th>
+<th>Platform</th>
+<th>Type</th>
+<th>Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>target_height_leg_height</code></td>
+<td>G-series only</td>
+<td>float</td>
+<td>Range comes from the device's currently configured height bounds (read live, not a fixed constant; the typical factory range is approximately [1.14, 1.72] meters)</td>
+<td>Target body height, in m</td>
+</tr>
+</tbody>
+</table>
+<h3 id="control-service-configuration-example">Control Service Configuration Example</h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">galbot_sdk.g3</span><span class="w"> </span><span class="kn">import</span> <span class="n">GalbotRobot</span><span class="p">,</span> <span class="n">ConfigService</span><span class="p">,</span> <span class="n">ConfigItem</span><span class="p">,</span> <span class="n">ControlStatus</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">robot</span> <span class="o">=</span> <span class="n">GalbotRobot</span><span class="p">()</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">robot</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># report_error_skip is a general parameter shared by both G-series and S1</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">status</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">set_config</span><span class="p">(</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">ConfigService</span><span class="o">.</span><span class="n">CONTROL</span><span class="p">,</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="p">[</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        <span class="n">ConfigItem</span><span class="p">(</span><span class="s2">&quot;report_error_skip&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="p">],</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">)</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="n">robot</span><span class="o">.</span><span class="n">request_shutdown</span><span class="p">()</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="n">robot</span><span class="o">.</span><span class="n">wait_for_shutdown</span><span class="p">()</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="n">robot</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+</span></code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023-2026 Galbot. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "toc.integrate", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/language_switch.js"></script>
+      
+        <script src="../javascripts/api_collapse.js"></script>
+      
+        <script src="../javascripts/interactive_toc.js"></script>
+      
+        <script src="../javascripts/search_focus.js"></script>
+      
+        <script src="../javascripts/installation_nav.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1542 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.galbot.com/g3/installation_terminology/">
+      
+      
+        <link rel="prev" href="../installation_version_compatibility/">
+      
+      
+        <link rel="next" href="../routine_operations/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Terminology - galbot_sdk - G3</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/nav_collapse.css">
+    
+      <link rel="stylesheet" href="../stylesheets/sidebar_scroll.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#terminology" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="galbot_sdk - G3" class="md-header__button md-logo" aria-label="galbot_sdk - G3" data-md-component="logo">
+      
+  <img src="/image/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            galbot_sdk - G3
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Terminology
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GalaxyGeneralRobotics/GalbotSDK" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GalbotSDK
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../overview/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../installation_system_requirements/" class="md-tabs__link">
+          
+  
+  
+  Installation and Configuration
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../routine_operations/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Routine Operations
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tutorials/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorials
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples_python/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python Examples
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples_cpp/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  C++ Examples
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api_python_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api_cpp_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  C++ API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../set_config_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  set_config Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../troubleshooting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Troubleshooting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../license/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  License
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="galbot_sdk - G3" class="md-nav__button md-logo" aria-label="galbot_sdk - G3" data-md-component="logo">
+      
+  <img src="/image/logo.png" alt="logo">
+
+    </a>
+    galbot_sdk - G3
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GalaxyGeneralRobotics/GalbotSDK" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GalbotSDK
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Configuration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation and Configuration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_system_requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_and_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_version_compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version Compatibility Check
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terminology
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terminology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-robot-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Robot Hardware
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-robotics-fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Robotics Fundamentals
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-control-and-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Control and Interface
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routine_operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routine Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples_python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples_cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_python_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_cpp_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../set_config_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set_config Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../installation_system_requirements/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Installation and Configuration
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="terminology">Terminology</h1>
+<p>After completing the configuration, you can start exploring the robot's examples and APIs. Before using the SDK, if you are not familiar with robotics terminology, refer to the following sections.</p>
+<h3 id="1-robot-hardware">1. Robot Hardware</h3>
+<p>Physical components and hardware concepts of the robot.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>XCU</strong></td>
+<td>X Computing Unit. The base computing unit of the robot ("cerebellum"), responsible for low-level motor control, motion control, and other real-time tasks</td>
+</tr>
+<tr>
+<td><strong>HPU / Orin</strong></td>
+<td>High-Performance Unit / NVIDIA Jetson Orin. The high-performance computing unit ("brain"), responsible for image processing, AI inference, motion planning, and other compute-intensive tasks</td>
+</tr>
+<tr>
+<td><strong>Base</strong></td>
+<td>The robot's chassis, containing mobile wheels and power system</td>
+</tr>
+<tr>
+<td><strong>Torso</strong></td>
+<td>The main body of the robot, connecting the head, arms, and base</td>
+</tr>
+<tr>
+<td><strong>Head</strong></td>
+<td>The robot's head</td>
+</tr>
+<tr>
+<td><strong>Arm</strong></td>
+<td>The robot's arm, composed of multiple links and joints, e.g., <code>left_arm</code>, <code>right_arm</code></td>
+</tr>
+<tr>
+<td><strong>Leg</strong></td>
+<td>The robot's leg structure, used for supporting vertical body movement and waist rotation</td>
+</tr>
+<tr>
+<td><strong>Joint</strong></td>
+<td>The movable part connecting two links, driven by a motor</td>
+</tr>
+<tr>
+<td><strong>Link</strong></td>
+<td>The rigid component connecting two joints</td>
+</tr>
+<tr>
+<td><strong>Joint Group</strong></td>
+<td>A collection of related joints, e.g., <code>left_arm</code> contains all joints of the left arm, used for coordinated control</td>
+</tr>
+<tr>
+<td><strong>End-Effector</strong></td>
+<td>The tool at the end of the robotic arm, such as a <strong>Gripper</strong> or <strong>Suction Cup</strong></td>
+</tr>
+<tr>
+<td><strong>DOF</strong></td>
+<td>Degrees of Freedom. Describes the number of independently movable directions of a joint. For example, an arm has 7-DOF</td>
+</tr>
+<tr>
+<td><strong>TCP</strong></td>
+<td>Tool Center Point. The working point of the end-effector tool, such as the center of a gripper, used for precise control of the operating position</td>
+</tr>
+<tr>
+<td><strong>Sensor</strong></td>
+<td>Devices for perceiving the environment, including cameras, LiDAR, IMU, force sensors, etc.</td>
+</tr>
+<tr>
+<td><strong>RGB Camera</strong></td>
+<td>Color camera that captures visible light images</td>
+</tr>
+<tr>
+<td><strong>Depth Camera</strong></td>
+<td>Camera that outputs depth maps (distance per pixel), used for 3D perception</td>
+</tr>
+<tr>
+<td><strong>LiDAR</strong></td>
+<td>Light Detection and Ranging. Generates point cloud maps of the surrounding environment through laser ranging</td>
+</tr>
+<tr>
+<td><strong>IMU</strong></td>
+<td>Inertial Measurement Unit. Contains accelerometers and gyroscopes, measuring the robot's acceleration, angular velocity, and orientation</td>
+</tr>
+<tr>
+<td><strong>Point Cloud</strong></td>
+<td>A collection of numerous points in 3D space, each with <code>(x, y, z)</code> coordinates, generated by LiDAR or depth cameras</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-robotics-fundamentals">2. Robotics Fundamentals</h3>
+<p>Core theoretical concepts describing robot motion and spatial relationships.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Frame</strong></td>
+<td>Reference Frame. A coordinate system used to describe position and orientation. Think of it as a "ruler" fixed at a specific location in space</td>
+</tr>
+<tr>
+<td><strong>World Frame</strong></td>
+<td>The globally fixed coordinate system, typically based on the map origin or initial position</td>
+</tr>
+<tr>
+<td><strong>Base Frame</strong></td>
+<td>A coordinate system fixed to the robot's base, moving as the robot moves</td>
+</tr>
+<tr>
+<td><strong>End-Effector Frame</strong></td>
+<td>A coordinate system fixed to the end of the robotic arm, moving with the arm</td>
+</tr>
+<tr>
+<td><strong>Joint Space</strong></td>
+<td>The space defined by the angles of each joint. This is the robot's "native" control method</td>
+</tr>
+<tr>
+<td><strong>Cartesian Space</strong></td>
+<td>The 3D space described using <code>(x, y, z)</code> coordinates. A more intuitive way for humans to understand</td>
+</tr>
+<tr>
+<td><strong>Pose</strong></td>
+<td>Position + Orientation. A complete description of "where" something is + "which way" it faces</td>
+</tr>
+<tr>
+<td><strong>Position</strong></td>
+<td>The coordinates <code>(x, y, z)</code> of an object in 3D space, typically in meters (m)</td>
+</tr>
+<tr>
+<td><strong>Orientation</strong></td>
+<td>The rotational state of an object, describing which direction it faces</td>
+</tr>
+<tr>
+<td><strong>Quaternion</strong></td>
+<td>Represents rotation using 4 numbers <code>(qx, qy, qz, qw)</code>. Avoids gimbal lock issues, suitable for computer processing</td>
+</tr>
+<tr>
+<td><strong>Euler Angles</strong></td>
+<td>Represents rotation using three angles <code>(roll, pitch, yaw)</code>. More intuitive for human understanding</td>
+</tr>
+<tr>
+<td><strong>FK</strong></td>
+<td>Forward Kinematics. Given joint angles, calculate the end-effector pose ("where is the hand?") — has a unique solution</td>
+</tr>
+<tr>
+<td><strong>IK</strong></td>
+<td>Inverse Kinematics. Given a target pose, calculate the required joint angles ("how should joints rotate to reach there?") — may have multiple solutions or no solution</td>
+</tr>
+<tr>
+<td><strong>Trajectory</strong></td>
+<td>The complete motion path of the robot from start to end, including position, velocity, and acceleration at each moment</td>
+</tr>
+<tr>
+<td><strong>Waypoint</strong></td>
+<td>A key node in a trajectory. The robot passes through these points in sequence, similar to "via points" in navigation</td>
+</tr>
+<tr>
+<td><strong>Interpolation</strong></td>
+<td>Calculating smooth transitions between waypoints to generate continuous motion trajectories</td>
+</tr>
+<tr>
+<td><strong>SLAM</strong></td>
+<td>Simultaneous Localization and Mapping. The robot builds a map while moving and simultaneously determines its position within the map</td>
+</tr>
+<tr>
+<td><strong>Self-Collision</strong></td>
+<td>Collision between different parts of the robot, e.g., the left hand hitting the right hand</td>
+</tr>
+<tr>
+<td><strong>Environment Collision</strong></td>
+<td>Collision between the robot and surrounding obstacles</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-control-and-interface">3. Control and Interface</h3>
+<p>Common parameters and concepts used in the SDK.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SDK</strong></td>
+<td>Software Development Kit. A software development toolkit containing libraries, tools, and documentation</td>
+</tr>
+<tr>
+<td><strong>API</strong></td>
+<td>Application Programming Interface. Defines the rules for interaction between programs</td>
+</tr>
+<tr>
+<td><strong>SSH</strong></td>
+<td>Secure Shell. A remote login protocol for connecting from a PC to the robot</td>
+</tr>
+<tr>
+<td><strong>Cross Compilation</strong></td>
+<td>Compiling programs on a PC (x86) that can run on the robot (ARM)</td>
+</tr>
+<tr>
+<td><strong>Singleton</strong></td>
+<td>A design pattern ensuring only one robot instance exists globally, obtained via <code>get_instance()</code></td>
+</tr>
+<tr>
+<td><strong>Blocking</strong></td>
+<td><code>is_blocking=True</code>. The function call waits for the operation to complete before returning. For example: <code>navigate_to_goal(..., is_blocking=True)</code> waits for navigation to finish, during which no other operations can be performed</td>
+</tr>
+<tr>
+<td><strong>Non-blocking</strong></td>
+<td><code>is_blocking=False</code>. The function call returns immediately without waiting. For example: <code>navigate_to_goal(..., is_blocking=False)</code> returns immediately, and you can query status via functions like <code>is_localized()</code></td>
+</tr>
+<tr>
+<td><strong>base_pose</strong></td>
+<td><code>base_pose: [x, y, yaw]</code>. The robot base pose, containing <code>(x, y)</code> position (meters) and <code>yaw</code> yaw angle (radians)</td>
+</tr>
+<tr>
+<td><strong>frame_id</strong></td>
+<td>Target coordinate frame ID. Possible values: <code>"base_link"</code> (robot base), <code>"odom"</code> (odometry), <code>"map"</code> (map)</td>
+</tr>
+<tr>
+<td><strong>reference_frame_id</strong></td>
+<td>Reference coordinate frame ID, specifying which coordinate system a pose belongs to</td>
+</tr>
+<tr>
+<td><strong>goal_pose</strong></td>
+<td><code>goal_pose: [x, y, z, qx, qy, qz, qw]</code>. Target pose, containing position <code>(x, y, z)</code> (meters) and quaternion <code>(qx, qy, qz, qw)</code> for orientation</td>
+</tr>
+<tr>
+<td><strong>start_pose</strong></td>
+<td>Starting pose, same format as <code>goal_pose</code></td>
+</tr>
+<tr>
+<td><strong>init_pose</strong></td>
+<td>Initial pose estimate, used for relocalization</td>
+</tr>
+<tr>
+<td><strong>reference_frame</strong></td>
+<td>Relative coordinate frame name, e.g., <code>"base_link"</code>, <code>"world"</code>, or a kinematic chain name</td>
+</tr>
+<tr>
+<td><strong>target_frame</strong></td>
+<td>Target coordinate frame, used for coordinate transformations</td>
+</tr>
+<tr>
+<td><strong>base_link</strong></td>
+<td>The robot base coordinate frame. All arms, head, and other components reference this frame</td>
+</tr>
+<tr>
+<td><strong>odom</strong></td>
+<td>Odometry coordinate frame. Relative pose estimate based on wheel encoders</td>
+</tr>
+<tr>
+<td><strong>map</strong></td>
+<td>Map coordinate frame. The globally consistent coordinate frame established by SLAM</td>
+</tr>
+<tr>
+<td><strong>joint_groups</strong></td>
+<td>A list of joint group names, e.g., <code>["left_arm", "right_arm", "chassis"]</code></td>
+</tr>
+<tr>
+<td><strong>joint_names</strong></td>
+<td>A list of specific joint names. Takes priority over <code>joint_groups</code>, e.g., <code>["left_arm_j1", "left_arm_j2"]</code></td>
+</tr>
+<tr>
+<td><strong>joint_positions</strong></td>
+<td>An array of joint positions (radians), in the same order as returned by <code>get_joint_names()</code></td>
+</tr>
+<tr>
+<td><strong>waypoints</strong></td>
+<td>A list of trajectory waypoints, each containing a target position and arrival time</td>
+</tr>
+<tr>
+<td><strong>time_from_start_s</strong></td>
+<td>Time from the trajectory start to this waypoint (seconds), used to control motion pacing</td>
+</tr>
+<tr>
+<td><strong>timeout_s</strong></td>
+<td>Timeout duration (seconds). The maximum time to wait for an operation to complete in blocking mode</td>
+</tr>
+<tr>
+<td><strong>timestamp_ns</strong></td>
+<td>Nanosecond-level timestamp, used for data synchronization</td>
+</tr>
+<tr>
+<td><strong>safe_margin</strong></td>
+<td>Collision detection safety distance (meters). For example, <code>0.1</code> means maintaining 10cm from obstacles</td>
+</tr>
+<tr>
+<td><strong>enable_collision_check</strong></td>
+<td>Whether to enable collision detection. <code>True</code> means enabled</td>
+</tr>
+<tr>
+<td><strong>obstacle_id</strong></td>
+<td>Unique identifier for an obstacle, used when adding/removing obstacles</td>
+</tr>
+<tr>
+<td><strong>ignore_collision_link_names</strong></td>
+<td>A list of link names to ignore during collision detection</td>
+</tr>
+<tr>
+<td><strong>pose</strong></td>
+<td>Pose data, an array of length 7: <code>[x, y, z, qx, qy, qz, qw]</code></td>
+</tr>
+<tr>
+<td><strong>reference_base_pose</strong></td>
+<td>The robot base pose in the map coordinate frame</td>
+</tr>
+<tr>
+<td><strong>linear_velocity</strong></td>
+<td><code>linear_velocity: [vx, vy, vz]</code>. Linear velocity array (m/s). <code>vx</code> is forward velocity, <code>vy</code> is lateral velocity, <code>vz</code> is vertical velocity</td>
+</tr>
+<tr>
+<td><strong>angular_velocity</strong></td>
+<td><code>angular_velocity: [wx, wy, wz]</code>. Angular velocity array (rad/s). <code>wz</code> is yaw angular velocity</td>
+</tr>
+<tr>
+<td><strong>status_string</strong></td>
+<td>Status description string, e.g., <code>"SUCCESS"</code>, <code>"FAIL"</code>, <code>"TIMEOUT"</code>, <code>"MOVING"</code></td>
+</tr>
+<tr>
+<td><strong>is_localized</strong></td>
+<td><code>is_localized()</code>. A navigation status check function. Returns <code>True</code> if the robot is localized in the map</td>
+</tr>
+<tr>
+<td><strong>get_frame_names()</strong></td>
+<td><code>get_frame_names()</code>. Returns a list of all available coordinate frame names</td>
+</tr>
+<tr>
+<td><strong>quaternion</strong></td>
+<td><code>[qx, qy, qz, qw]</code>. Represents rotation as a quaternion. A unit quaternion satisfies <code>sqrt(qx²+qy²+qz²+qw²) = 1</code></td>
+</tr>
+<tr>
+<td><strong>euler</strong></td>
+<td><code>[roll, pitch, yaw]</code>. Represents rotation as Euler angles, in radians, in roll-pitch-yaw order</td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023-2026 Galbot. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "toc.integrate", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/language_switch.js"></script>
+      
+        <script src="../javascripts/api_collapse.js"></script>
+      
+        <script src="../javascripts/interactive_toc.js"></script>
+      
+        <script src="../javascripts/search_focus.js"></script>
+      
+        <script src="../javascripts/installation_nav.js"></script>
+      
+    
+  </body>
+</html>

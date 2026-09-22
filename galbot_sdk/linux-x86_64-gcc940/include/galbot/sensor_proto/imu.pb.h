@@ -30,9 +30,13 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/map.h>  // IWYU pragma: export
+#include <google/protobuf/map_entry.h>
+#include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "galbot/core_proto/header.pb.h"
 #include "galbot/core_proto/math.pb.h"
+#include "galbot/core_proto/wrapper.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_galbot_2fsensor_5fproto_2fimu_2eproto
@@ -48,7 +52,7 @@ struct TableStruct_galbot_2fsensor_5fproto_2fimu_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[1]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[2]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -60,15 +64,49 @@ namespace sensor_proto {
 class ImuSensor;
 class ImuSensorDefaultTypeInternal;
 extern ImuSensorDefaultTypeInternal _ImuSensor_default_instance_;
+class ImuSensor_CustomSensorMapEntry_DoNotUse;
+class ImuSensor_CustomSensorMapEntry_DoNotUseDefaultTypeInternal;
+extern ImuSensor_CustomSensorMapEntry_DoNotUseDefaultTypeInternal _ImuSensor_CustomSensorMapEntry_DoNotUse_default_instance_;
 }  // namespace sensor_proto
 }  // namespace galbot
 PROTOBUF_NAMESPACE_OPEN
 template<> ::galbot::sensor_proto::ImuSensor* Arena::CreateMaybeMessage<::galbot::sensor_proto::ImuSensor>(Arena*);
+template<> ::galbot::sensor_proto::ImuSensor_CustomSensorMapEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::sensor_proto::ImuSensor_CustomSensorMapEntry_DoNotUse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace galbot {
 namespace sensor_proto {
 
 // ===================================================================
+
+class ImuSensor_CustomSensorMapEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<ImuSensor_CustomSensorMapEntry_DoNotUse, 
+    std::string, ::galbot::core_proto::Value,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<ImuSensor_CustomSensorMapEntry_DoNotUse, 
+    std::string, ::galbot::core_proto::Value,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  ImuSensor_CustomSensorMapEntry_DoNotUse();
+  explicit ImuSensor_CustomSensorMapEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const ImuSensor_CustomSensorMapEntry_DoNotUse& other);
+  static const ImuSensor_CustomSensorMapEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const ImuSensor_CustomSensorMapEntry_DoNotUse*>(&_ImuSensor_CustomSensorMapEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.sensor_proto.ImuSensor.CustomSensorMapEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsensor_5fproto_2fimu_2eproto);
+    return ::descriptor_table_galbot_2fsensor_5fproto_2fimu_2eproto.file_level_metadata[0];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
 
 class ImuSensor PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.sensor_proto.ImuSensor) */ {
@@ -111,7 +149,7 @@ class ImuSensor PROTOBUF_FINAL :
                &_ImuSensor_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   friend void swap(ImuSensor& a, ImuSensor& b) {
     a.Swap(&b);
@@ -179,14 +217,33 @@ class ImuSensor PROTOBUF_FINAL :
 
   // nested types ----------------------------------------------------
 
+
   // accessors -------------------------------------------------------
 
   enum : int {
+    kCustomSensorMapFieldNumber = 5,
     kHeaderFieldNumber = 1,
     kAccelFieldNumber = 2,
     kGyroFieldNumber = 3,
     kMagnetFieldNumber = 4,
   };
+  // map<string, .galbot.core_proto.Value> custom_sensor_map = 5;
+  int custom_sensor_map_size() const;
+  private:
+  int _internal_custom_sensor_map_size() const;
+  public:
+  void clear_custom_sensor_map();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >&
+      _internal_custom_sensor_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >*
+      _internal_mutable_custom_sensor_map();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >&
+      custom_sensor_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >*
+      mutable_custom_sensor_map();
+
   // .galbot.core_proto.Header header = 1;
   bool has_header() const;
   private:
@@ -266,6 +323,11 @@ class ImuSensor PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      ImuSensor_CustomSensorMapEntry_DoNotUse,
+      std::string, ::galbot::core_proto::Value,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> custom_sensor_map_;
   ::galbot::core_proto::Header* header_;
   ::galbot::core_proto::Vector3* accel_;
   ::galbot::core_proto::Vector3* gyro_;
@@ -282,6 +344,8 @@ class ImuSensor PROTOBUF_FINAL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // ImuSensor
 
 // .galbot.core_proto.Header header = 1;
@@ -592,9 +656,37 @@ inline void ImuSensor::set_allocated_magnet(::galbot::core_proto::Vector3* magne
   // @@protoc_insertion_point(field_set_allocated:galbot.sensor_proto.ImuSensor.magnet)
 }
 
+// map<string, .galbot.core_proto.Value> custom_sensor_map = 5;
+inline int ImuSensor::_internal_custom_sensor_map_size() const {
+  return custom_sensor_map_.size();
+}
+inline int ImuSensor::custom_sensor_map_size() const {
+  return _internal_custom_sensor_map_size();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >&
+ImuSensor::_internal_custom_sensor_map() const {
+  return custom_sensor_map_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >&
+ImuSensor::custom_sensor_map() const {
+  // @@protoc_insertion_point(field_map:galbot.sensor_proto.ImuSensor.custom_sensor_map)
+  return _internal_custom_sensor_map();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >*
+ImuSensor::_internal_mutable_custom_sensor_map() {
+  return custom_sensor_map_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >*
+ImuSensor::mutable_custom_sensor_map() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.sensor_proto.ImuSensor.custom_sensor_map)
+  return _internal_mutable_custom_sensor_map();
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 

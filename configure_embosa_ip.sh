@@ -13,25 +13,28 @@ set -euo pipefail
 EMBOSA_CONFIG_PATH="/data/config/embosa_ip_config.json"
 SYSTEM_CFG_PATH="/data/config/system.cfg"
 
-XCU_INTERNAL_IP="192.168.100.66"
-HPU_INTERNAL_IP="192.168.100.88"
-
 XCU_USER="root"
-XCU_PASS="12345678"
 HPU_USER="galbot"
 HPU_PASS="gb@2023"
 
 SSH_OPTS="-o StrictHostKeyChecking=no -o ConnectTimeout=10"
 
 # -----------------------------------------------------------------------------
-# Variables (embosa config IPs, written to JSON files)
+# Runtime IPs written to JSON files. PC_IP is user-configurable, while XCU_IP
+# and HPU_IP are assigned from the selected machine profile.
 # -----------------------------------------------------------------------------
 PC_IP=""
 XCU_IP=""
 HPU_IP=""
 
-DEFAULT_XCU_IP="192.168.1.66"
-DEFAULT_HPU_IP="192.168.1.88"
+# Machine-type dependent defaults and the fixed discovery endpoint.
+# The discovery endpoint must not be changed by the user-entered device IPs.
+# Assigned in prompt_machine_type().
+MACHINE_TYPE=""
+XCU_PASS=""
+DEFAULT_PC_IP=""
+DISCOVERY_IP=""
+DISCOVERY_PORT=11888
 
 # -----------------------------------------------------------------------------
 # Help
@@ -46,15 +49,21 @@ Run on PC to deploy embosa IP config to PC (local), XCU and HPU via SSH.
 Usage / 用法:
   $(basename "$0") [-h|--help]
 
-The script will interactively prompt for all IPs.
-脚本启动后交互输入各端 IP 地址。
+The script will interactively prompt for machine type and the PC IP.
+脚本启动后交互选择机型并输入 PC IP 地址。
 
-  PC  IP: 必填 / required
-  XCU IP: 默认 ${DEFAULT_XCU_IP}，直接回车使用默认值
-  HPU IP: 默认 ${DEFAULT_HPU_IP}，直接回车使用默认值
+  机型 / Machine type: G-series (默认) / S1
+  PC  IP: 默认 G-series=192.168.1.99，S1=192.168.100.99，直接回车使用默认值
+  XCU IP: 固定 G-series=192.168.1.66，S1=192.168.100.66
+  HPU IP: 固定 G-series=192.168.1.88，S1=192.168.100.88
+
+Discovery service / 发现服务:
+  G-series: 192.168.1.88:${DISCOVERY_PORT}
+  S1:       192.168.100.88:${DISCOVERY_PORT}
+  发现服务地址按机型固定，不会被输入的设备 IP 修改。
 
 SSH credentials / SSH 凭据:
-  XCU: ${XCU_USER} / ${XCU_PASS}
+  XCU: ${XCU_USER} / 密码按机型区分（G-series=12345678，S1=123）
   HPU: ${HPU_USER} / ${HPU_PASS}
 EOF
 }
@@ -79,20 +88,41 @@ parse_args() {
     done
 }
 
-prompt_config_ips() {
+prompt_machine_type() {
+    local choice
     while true; do
-        read -r -p "请输入配置的 PC IP: " PC_IP
-        if [[ -n "$PC_IP" ]]; then
-            break
-        fi
-        echo "PC IP 不能为空，请重新输入 / PC IP cannot be empty, please try again."
+        read -r -p "请选择机型 [1] G-series (默认) [2] S1: " choice
+        choice="${choice:-1}"
+        case "$choice" in
+            1)
+                MACHINE_TYPE="G-series"
+                XCU_PASS="12345678"
+                DEFAULT_PC_IP="192.168.1.99"
+                XCU_IP="192.168.1.66"
+                HPU_IP="192.168.1.88"
+                DISCOVERY_IP="192.168.1.88"
+                break
+                ;;
+            2)
+                MACHINE_TYPE="S1"
+                XCU_PASS="123"
+                DEFAULT_PC_IP="192.168.100.99"
+                XCU_IP="192.168.100.66"
+                HPU_IP="192.168.100.88"
+                DISCOVERY_IP="192.168.100.88"
+                break
+                ;;
+            *)
+                echo "输入无效，请输入 1 或 2 / Invalid input, please enter 1 or 2."
+                ;;
+        esac
     done
+    echo "[INFO] 机型 / Machine type: ${MACHINE_TYPE}"
+}
 
-    read -r -p "请输入配置的 XCU IP [默认 ${DEFAULT_XCU_IP}]: " XCU_IP
-    XCU_IP="${XCU_IP:-$DEFAULT_XCU_IP}"
-
-    read -r -p "请输入配置的 HPU IP [默认 ${DEFAULT_HPU_IP}]: " HPU_IP
-    HPU_IP="${HPU_IP:-$DEFAULT_HPU_IP}"
+prompt_pc_ip() {
+    read -r -p "请输入配置的 PC IP [默认 ${DEFAULT_PC_IP}]: " PC_IP
+    PC_IP="${PC_IP:-$DEFAULT_PC_IP}"
 }
 
 # -----------------------------------------------------------------------------
@@ -107,58 +137,68 @@ check_sshpass() {
 }
 
 # -----------------------------------------------------------------------------
-# Build JSON configs for each device
-# XCU/HPU local_interface: include external IP only when it differs from internal
+# Determine whether local commands need sudo
+# If already root, no prefix is needed; otherwise use sudo. sudo prompts
+# interactively for the password only when a privileged command actually
+# runs, so the whole script does not need to be invoked with sudo.
 # -----------------------------------------------------------------------------
-build_pc_config() {
+check_local_sudo() {
+    if [[ "$(id -u)" -eq 0 ]]; then
+        SUDO=""
+    else
+        SUDO="sudo"
+    fi
+}
+
+# -----------------------------------------------------------------------------
+# Build the GBS 1.18 server-discovery JSON for one device.
+# dsha_did identifies the platform. PC interfaces use the user-selected IP;
+# XCU/HPU interfaces and the discovery endpoint come from the machine profile.
+# -----------------------------------------------------------------------------
+build_device_config() {
+    local dsha_did="$1"
+    local device_ip="$2"
+
     echo "{
-    \"embosa_ip\": {
-        \"local_interface\": [
-            \"${PC_IP}\"
+    \"discovery\": {
+        \"remote_servers\": [
+            {
+                \"ip\": \"${DISCOVERY_IP}\",
+                \"port\": ${DISCOVERY_PORT}
+            }
         ],
-        \"peer_lists\": [
-            \"${XCU_IP}\", \"${HPU_IP}\"
+        \"server_config\": {
+            \"listen_addresses\": [
+                {
+                    \"ip\": \"${DISCOVERY_IP}\",
+                    \"port\": ${DISCOVERY_PORT}
+                }
+            ]
+        }
+    },
+    \"discovery_mode\": \"server\",
+    \"embosa_ip\": {
+        \"dsha_did\": ${dsha_did},
+        \"local_interface\": [
+            \"${device_ip}\"
+        ],
+        \"meta_interface\": [
+            \"${device_ip}\"
         ]
     }
 }"
+}
+
+build_pc_config() {
+    build_device_config 3 "$PC_IP"
 }
 
 build_xcu_config() {
-    local local_iface
-    if [[ "$XCU_IP" == "$XCU_INTERNAL_IP" ]]; then
-        local_iface="\"${XCU_INTERNAL_IP}\""
-    else
-        local_iface="\"${XCU_INTERNAL_IP}\", \"${XCU_IP}\""
-    fi
-    echo "{
-    \"embosa_ip\": {
-        \"local_interface\": [
-            ${local_iface}
-        ],
-        \"peer_lists\": [
-            \"${HPU_INTERNAL_IP}\", \"${PC_IP}\"
-        ]
-    }
-}"
+    build_device_config 1 "$XCU_IP"
 }
 
 build_hpu_config() {
-    local local_iface
-    if [[ "$HPU_IP" == "$HPU_INTERNAL_IP" ]]; then
-        local_iface="\"${HPU_INTERNAL_IP}\""
-    else
-        local_iface="\"${HPU_INTERNAL_IP}\", \"${HPU_IP}\""
-    fi
-    echo "{
-    \"embosa_ip\": {
-        \"local_interface\": [
-            ${local_iface}
-        ],
-        \"peer_lists\": [
-            \"${XCU_INTERNAL_IP}\", \"${PC_IP}\"
-        ]
-    }
-}"
+    build_device_config 2 "$HPU_IP"
 }
 
 # -----------------------------------------------------------------------------
@@ -195,15 +235,15 @@ deploy_pc() {
     local config_dir
     config_dir="$(dirname "$EMBOSA_CONFIG_PATH")"
     if [[ ! -d "$config_dir" ]]; then
-        mkdir -p "$config_dir"
+        $SUDO mkdir -p "$config_dir"
     fi
 
     if [[ -f "$EMBOSA_CONFIG_PATH" ]]; then
-        cp "$EMBOSA_CONFIG_PATH" "${EMBOSA_CONFIG_PATH}.bak"
+        $SUDO cp "$EMBOSA_CONFIG_PATH" "${EMBOSA_CONFIG_PATH}.bak"
         echo "[INFO] Backed up: ${EMBOSA_CONFIG_PATH}.bak"
     fi
 
-    echo "$config" > "$EMBOSA_CONFIG_PATH"
+    echo "$config" | $SUDO tee "$EMBOSA_CONFIG_PATH" > /dev/null
     echo "[OK] PC embosa config written."
 }
 
@@ -263,13 +303,16 @@ deploy_hpu() {
 main() {
     parse_args "$@"
     check_sshpass
-    prompt_config_ips
+    check_local_sudo
+    prompt_machine_type
+    prompt_pc_ip
 
     echo ""
     echo "[INFO] Embosa config IPs / 配置文件 IP:"
     echo "[INFO]   PC  : ${PC_IP}"
-    echo "[INFO]   XCU : ${XCU_IP}"
-    echo "[INFO]   HPU : ${HPU_IP}"
+    echo "[INFO]   XCU (fixed / 固定): ${XCU_IP}"
+    echo "[INFO]   HPU (fixed / 固定): ${HPU_IP}"
+    echo "[INFO]   Discovery (fixed): ${DISCOVERY_IP}:${DISCOVERY_PORT}"
 
     deploy_pc
     deploy_xcu

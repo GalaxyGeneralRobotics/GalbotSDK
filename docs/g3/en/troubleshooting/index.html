@@ -1,0 +1,2158 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.galbot.com/g3/troubleshooting/">
+      
+      
+        <link rel="prev" href="../set_config_reference/">
+      
+      
+        <link rel="next" href="../license/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Troubleshooting - galbot_sdk - G3</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/nav_collapse.css">
+    
+      <link rel="stylesheet" href="../stylesheets/sidebar_scroll.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#troubleshooting" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="galbot_sdk - G3" class="md-header__button md-logo" aria-label="galbot_sdk - G3" data-md-component="logo">
+      
+  <img src="/image/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            galbot_sdk - G3
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Troubleshooting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GalaxyGeneralRobotics/GalbotSDK" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GalbotSDK
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../overview/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../installation_system_requirements/" class="md-tabs__link">
+          
+  
+  
+  Installation and Configuration
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../routine_operations/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Routine Operations
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tutorials/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorials
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples_python/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python Examples
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples_cpp/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  C++ Examples
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api_python_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api_cpp_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  C++ API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../set_config_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  set_config Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Troubleshooting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../license/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  License
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="galbot_sdk - G3" class="md-nav__button md-logo" aria-label="galbot_sdk - G3" data-md-component="logo">
+      
+  <img src="/image/logo.png" alt="logo">
+
+    </a>
+    galbot_sdk - G3
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GalaxyGeneralRobotics/GalbotSDK" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GalbotSDK
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and Configuration
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation and Configuration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_system_requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_and_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_version_compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Version Compatibility Check
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_terminology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terminology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routine_operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routine Operations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples_python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples_cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ Examples
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_python_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_cpp_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../set_config_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set_config Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Navigation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before You Start
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Before You Start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-checks-do-these-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General Checks (Do These First)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#control-and-motion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control and Motion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Control and Motion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#no-response-to-control-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No Response to Control Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdk-works-on-robot-but-fails-over-wired-pc-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SDK Works on Robot but Fails over Wired PC Connection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#robot-joint-cannot-move" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Robot Joint Cannot Move
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Robot Joint Cannot Move">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#joint-limit-overrun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Possible Cause 1: Joint Exceeds Motion Range Limit
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Possible Cause 1: Joint Exceeds Motion Range Limit">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#joint-limit-overrun-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Joint Out-of-Limit Recovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#joint-initialization-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Possible Cause 2: Joint Initialization Failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcu-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Possible Cause 3: MCU Failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#robot-enters-abnormal-mode-localization-service-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Robot Enters Abnormal Mode: Localization Service Error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#robot-enters-abnormal-mode-restart-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Robot Enters Abnormal Mode: Restart Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#robot-chassis-cannot-move" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Robot Chassis Cannot Move
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#end-effector-control-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        End Effector Control Failure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-sound-from-robot-speakerenable-audio-service-galbot_vtn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No Sound from Robot Speaker/Enable Audio Service galbot_vtn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-list-attribute-append-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Calling .append() on a List Attribute of an SDK Object Has No Effect in Python
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-and-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System and Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System and Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-check-the-current-operating-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Check the Current Operating Mode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-check-the-robot-system-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Check the Robot System Version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-check-robot-system-and-sdk-version-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Check Robot System and SDK Version Compatibility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emergency-switch-e-stop-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Emergency Switch (E-Stop) Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboard-computing-units-hpu-xcu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onboard Computing Units (HPU + XCU)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-access-hpu-and-xcu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Access HPU and XCU
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-check-robot-sn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Check Robot SN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-check-whether-joints-are-healthy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Check Whether Joints Are Healthy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-enable-real-time-end-effector-control-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Enable Real-Time End-Effector Control Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-joint-limits-are-configured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where Joint Limits Are Configured
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabledisable-a-system-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable/Disable a System Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#embosa-ip-configuration-reverted-after-reboot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        embosa IP Configuration Reverted After Reboot
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#camera-and-calibration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Camera and Calibration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Camera and Calibration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-change-camera-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Change Camera Resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-check-camera-frame-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Check Camera Frame Rate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-check-camera-intrinsicsextrinsics-and-calibration-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Check Camera Intrinsics/Extrinsics and Calibration Info
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logs-and-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logs and Debugging
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logs and Debugging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-low-level-service-logs-are-stored" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where Low-Level Service Logs Are Stored
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-sdk-logs-are-stored" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where SDK Logs Are Stored
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-enable-and-debug-core-dumps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Enable and Debug Core Dumps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-on-robot-cannot-find-a-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python on Robot Cannot Find a Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-example-error-numpy-has-no-typedict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python Example Error: numpy Has No typeDict
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-and-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation and Environment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation and Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-start-sdk-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Start SDK Docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-use-perception-service-gbs-11516" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Use Perception Service (GBS 1.15.16+)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#still-not-resolved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Still Not Resolved?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="troubleshooting">Troubleshooting</h1>
+<p>This document summarizes common SDK issues. Always complete the general checks first to ensure the robot is in a runnable state, then verify status/version information, and finally troubleshoot specific symptoms.</p>
+<h2 id="quick-navigation">Quick Navigation</h2>
+<p>If your issue is not listed below, jump to <a href="#still-not-resolved">Still Not Resolved?</a> at the end of this page.</p>
+<p>Use this unified order first:</p>
+<ol>
+<li><a href="#general-checks-do-these-first">General Checks (Do These First)</a>: confirm emergency stop is released, then confirm the robot is not in <code>ABNORMAL</code> mode. Normal operating mode is the prerequisite for all robot functions.</li>
+<li><a href="#system-and-configuration">System and Configuration</a>: after mode is normal, verify robot/SDK version alignment.</li>
+<li>Specific issue symptoms: follow the corresponding section.</li>
+</ol>
+<p>If you want to check robot status or version:</p>
+<ul>
+<li><a href="#how-to-check-the-current-operating-mode">How to Check the Current Operating Mode</a></li>
+<li><a href="#how-to-check-the-robot-system-version">How to Check the Robot System Version</a></li>
+<li><a href="#how-to-check-robot-system-and-sdk-version-compatibility">How to Check Robot System and SDK Version Compatibility</a></li>
+<li><a href="#emergency-switch-e-stop-overview">Emergency Switch (E-Stop) Overview</a></li>
+<li><a href="#onboard-computing-units-hpu--xcu">Onboard Computing Units (HPU + XCU)</a></li>
+<li><a href="#how-to-access-hpu-and-xcu">How to Access HPU and XCU</a></li>
+<li><a href="#how-to-check-robot-sn">How to Check Robot SN</a></li>
+<li><a href="#how-to-check-whether-joints-are-healthy">How to Check Whether Joints Are Healthy</a></li>
+</ul>
+<p>If the robot does not move or respond:</p>
+<ul>
+<li><a href="#no-response-to-control-commands">No Response to Control Commands</a></li>
+<li><a href="#sdk-works-on-robot-but-fails-over-wired-pc-connection">SDK Works on Robot but Fails over Wired PC Connection</a></li>
+<li><a href="#robot-joint-cannot-move">Robot Joint Cannot Move</a></li>
+<li><a href="#robot-enters-abnormal-mode-restart-services">Robot Enters Abnormal Mode: Restart Services</a></li>
+<li><a href="#robot-enters-abnormal-mode-localization-service-error">Robot Enters Abnormal Mode: Localization Service Error</a></li>
+<li><a href="#robot-chassis-cannot-move">Robot Chassis Cannot Move</a></li>
+<li><a href="#end-effector-control-failure">End Effector Control Failure</a></li>
+<li><a href="#no-sound-from-robot-speakerenable-audio-service-galbot_vtn">No Sound from Robot Speaker</a></li>
+<li><a href="#python-list-attribute-append-not-working">Calling <code>.append()</code> on a List Attribute of an SDK Object Has No Effect in Python</a></li>
+</ul>
+<p>If this is a system configuration issue:</p>
+<ul>
+<li><a href="#how-to-enable-real-time-end-effector-control-commands">How to Enable Real-Time End-Effector Control Commands</a></li>
+<li><a href="#where-joint-limits-are-configured">Where Joint Limits Are Configured</a></li>
+<li><a href="#enabledisable-a-system-service">Enable/Disable a System Service</a></li>
+<li><a href="#embosa-ip-configuration-reverted-after-reboot">embosa IP Configuration Reverted After Reboot</a></li>
+</ul>
+<p>If this is a camera-related issue:</p>
+<ul>
+<li><a href="#how-to-change-camera-resolution">How to Change Camera Resolution</a></li>
+<li><a href="#how-to-check-camera-frame-rate">How to Check Camera Frame Rate</a></li>
+<li><a href="#how-to-check-camera-intrinsicsextrinsics-and-calibration-info">How to Check Camera Intrinsics/Extrinsics and Calibration Info</a></li>
+</ul>
+<p>If this is another issue:</p>
+<ul>
+<li><a href="#where-sdk-logs-are-stored">Where SDK Logs Are Stored</a></li>
+<li><a href="#where-low-level-service-logs-are-stored">Where Low-Level Service Logs Are Stored</a></li>
+<li><a href="#how-to-enable-and-debug-core-dumps">How to Enable and Debug Core Dumps</a></li>
+<li><a href="#python-on-robot-cannot-find-a-module">Python on Robot Cannot Find a Module</a></li>
+<li><a href="#python-example-error-numpy-has-no-typedict">Python Example Error: <code>numpy</code> Has No <code>typeDict</code></a></li>
+<li><a href="#how-to-start-sdk-docker">How to Start SDK Docker</a></li>
+<li><a href="#how-to-use-perception-service-gbs-11516">How to Use Perception Service (GBS 1.15.16+)</a></li>
+</ul>
+<h2 id="before-you-start">Before You Start</h2>
+<ul>
+<li>Run log/process commands on the correct platform first:</li>
+<li>HPU: localization, navigation, planning, perception services (for example <code>localization</code>, <code>navigation</code>, <code>mps</code>, <code>perception</code>).</li>
+<li>XCU: motion-control services (for example <code>singorix</code>, end-effector control, mode management).</li>
+<li>Quick rule: if robot is connected but cannot move / motion is abnormal, check XCU first; if robot can move but map/path/obstacle/perception is abnormal, check HPU first.</li>
+<li>Paths, service names, and config keys are case-sensitive.</li>
+<li>For PC-side remote deployment, verify network and IP configuration are effective before deeper troubleshooting.</li>
+</ul>
+<h3 id="general-checks-do-these-first">General Checks (Do These First)</h3>
+<ol>
+<li>Emergency stop: confirm the red emergency stop button on the robot back is released (popped up).</li>
+<li>Operating mode: run <code>/data/bin/sys_tool</code> on XCU and confirm mode is not <code>ABNORMAL</code>.</li>
+<li>Abnormal service location: if mode is <code>ABNORMAL</code>, check <code>/userdata/log/mission_manager/mission_manager.INFO</code> and search <code>abnormal_service</code>. Recover normal mode first.</li>
+<li>Status/version check: only after mode is normal, check SN, system version, and mode details.</li>
+<li>Service status: check key services by issue type (<code>singorix</code>, <code>galbot_chassis_service</code>, etc.).</li>
+</ol>
+<h2 id="control-and-motion">Control and Motion</h2>
+<h3 id="no-response-to-control-commands">No Response to Control Commands</h3>
+<p>Complete the <a href="#general-checks-do-these-first">General Checks</a> first, then continue with the control chain.</p>
+<p>Check main log:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>tail<span class="w"> </span>-f<span class="w"> </span>/userdata/log/SingoriX/info/singorix_wbcs_main.INFO
+</span></code></pre></div>
+<p>Check <code>singorix</code> process:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ps<span class="w"> </span>-ef<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>singorix<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>grep
+</span></code></pre></div>
+<p>If <code>singorix</code> is running but control still does not respond, check chassis-related processes:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ps<span class="w"> </span>-ef<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>chassis
+</span></code></pre></div>
+<p>For PC-side deployment, configs may be reverted after reboot. Check <code>enable_modify_embosa_cfg</code> in <code>/data/config/system.cfg</code> on both HPU and XCU. If set to <code>false</code>, <code>embosa_ip_config.json</code> will not be overwritten during reboot flow.</p>
+<p><img alt="Emergency Stop Button Status" src="/image/emergency_stop_button.png" title="Emergency Stop Button Status" />
+<img alt="Check singorix Service" src="/image/singorix_service_check.png" title="Check singorix Service" />
+<img alt="Chassis Service Error" src="/image/chassis_service_error.png" title="Chassis Service Error" /></p>
+<h3 id="sdk-works-on-robot-but-fails-over-wired-pc-connection">SDK Works on Robot but Fails over Wired PC Connection</h3>
+<p>Symptom: SDK programs run correctly on the robot itself, but fail when running from a wired PC connection.<br />
+Common cause: <code>embosa_ip</code> is misconfigured, or config was reset.</p>
+<p>Recommended handling:</p>
+<ol>
+<li>Verify network configuration first, especially PC/XCU/HPU IPs and <code>embosa_ip_config.json</code>.</li>
+<li>Reference: <a href="../installation_pc_ubuntu/#2-network-configuration">PC-Side Deployment - Ubuntu / 2. Network Configuration</a></li>
+<li>If config is correct but gets reset again, use: <a href="#embosa-ip-configuration-reverted-after-reboot">embosa IP Configuration Reverted After Reboot</a></li>
+</ol>
+<h3 id="robot-joint-cannot-move">Robot Joint Cannot Move</h3>
+<p>This section applies when a joint in the head, leg, or arm becomes unresponsive.</p>
+<p>First check <code>singorix</code> log to identify the specific error:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>tail<span class="w"> </span>-f<span class="w"> </span>/userdata/log/SingoriX/info/singorix_wbcs_main.INFO
+</span></code></pre></div>
+<h4 id="joint-limit-overrun">Possible Cause 1: Joint Exceeds Motion Range Limit</h4>
+<p>The joint may have reached or exceeded its mechanical limit. This is more common in arm joints and can be visually observed through abnormal posture. SingoriX will output corresponding error messages.</p>
+<p><img alt="Joint Limit Error" src="/image/joint_limit_error.png" title="Joint Limit Error" /></p>
+<h5 id="joint-limit-overrun-handling">Joint Out-of-Limit Recovery</h5>
+<p>Recommended order:</p>
+<ol>
+<li>Hold the teach button and manually drag the arm back within joint limits.</li>
+<li>If it cannot be dragged, identify which joint is over-limit. Hidden brake-release buttons are available near joint 2 and 3.</li>
+<li>Remove the piston, press emergency stop, then press the hidden brake-release button and drag the arm back within limits.</li>
+<li>Release (twist open) emergency stop and check whether joint recovers.</li>
+</ol>
+<p><img alt="Hidden Brake-Release Button Example (Joint 2/3)" src="/image/faq_baozha.jpg" title="Hidden Brake-Release Button Example (Joint 2/3)" /></p>
+<p>If the over-limit joint has no hidden brake-release button, use Method 2:</p>
+<ol>
+<li>Enter <code>service_display</code> backend: continuously tap the lower-right corner of the chest screen until backend login appears, then enter password <code>996996</code>.</li>
+<li>After login: open Left Arm Motor or Right Arm Motor -&gt; Motor Operation.</li>
+<li>In the first input box, enter the target joint index (for example joint <code>4</code>).</li>
+<li>Press emergency stop, then release it, and wait <code>10s</code>.</li>
+<li>Click in order: Idle Mode -&gt; Limit Extension -&gt; Clear Fault -&gt; Clear Fault -&gt; Clear Fault -&gt; Clear Fault -&gt; Enable -&gt; Current Mode (interval at least <code>1s</code> between clicks).</li>
+<li>Check whether the target joint can rotate. If not, repeat Step 4 and Step 5.</li>
+<li>After handling, run on XCU to exit this interface and restore normal run state:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
+</span></code></pre></div>
+<p><img alt="Backend Motor Operation Example" src="/image/faq_houtai.jpg" title="Backend Motor Operation Example" /></p>
+<h4 id="joint-initialization-failure">Possible Cause 2: Joint Initialization Failure</h4>
+<p>The joint failed to release the brake during robot startup (no brake release sound). SingoriX will output initialization failure error messages.</p>
+<p>The following screenshot shows an example of head joint initialization failure:</p>
+<p><img alt="Joint Initialization Failed" src="/image/joint_init_failed.png" title="Joint Initialization Failed" /></p>
+<p>Recommendation: Restart the robot and listen for brake release sound during startup.</p>
+<h4 id="mcu-failure">Possible Cause 3: MCU Failure</h4>
+<p>The Microcontroller Unit (MCU) may have encountered an error or stopped responding. Check the latest log files in the following directories to verify logs are continuously updating without errors:</p>
+<ul>
+<li><code>/userdata/log/mp_core/</code></li>
+<li><code>/userdata/log/secure_core/</code></li>
+</ul>
+<h3 id="robot-enters-abnormal-mode-localization-service-error">Robot Enters Abnormal Mode: Localization Service Error</h3>
+<p>Symptom: robot enters <code>ABNORMAL</code> and reports localization service error.<br />
+Common on new robots.</p>
+<p>Common cause: mapping has not been completed, so localization cannot run correctly.</p>
+<p>Recommended handling:</p>
+<ol>
+<li>Confirm whether mapping has been completed.</li>
+<li>If not, complete mapping and localization first.</li>
+<li>After mapping, run on HPU:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher.service
+</span></code></pre></div>
+<ol>
+<li>Re-check mode and confirm recovery to <code>WORKING_MODE</code>.</li>
+</ol>
+<p>Reference:</p>
+<ul>
+<li><a href="../routine_operations/#mapping-process">Mapping Process</a></li>
+<li><a href="../routine_operations/#localization-process">Localization Process</a></li>
+</ul>
+<h3 id="robot-enters-abnormal-mode-restart-services">Robot Enters Abnormal Mode: Restart Services</h3>
+<p>If robot enters abnormal mode, a common quick recovery is restarting <code>launcher</code>.</p>
+<ul>
+<li>On XCU:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
+</span></code></pre></div>
+<ul>
+<li>On HPU:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
+</span></code></pre></div>
+<h3 id="robot-chassis-cannot-move">Robot Chassis Cannot Move</h3>
+<p>If chassis cannot move, complete <a href="#general-checks-do-these-first">General Checks</a> first, then check service status and battery.</p>
+<p>Check chassis service:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ps<span class="w"> </span>-ef<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>galbot_chassis_service<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>grep
+</span></code></pre></div>
+<p>Check SOC:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>tail<span class="w"> </span>-f<span class="w"> </span>/userdata/log/galbot_chassis_service/galbot_chassis_service.INFO<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>soc
+</span></code></pre></div>
+<p>When SOC is below 25%, chassis enters protection stop. Charge first.</p>
+<p><img alt="Check Chassis Service" src="/image/chassis_service_check.png" title="Check Chassis Service" />
+<img alt="Low Battery Warning" src="/image/low_battery_warning.png" title="Low Battery Warning" /></p>
+<h3 id="end-effector-control-failure">End Effector Control Failure</h3>
+<p>First complete <a href="#general-checks-do-these-first">General Checks</a>, then do end-effector specific checks: press and release emergency stop and observe basic response. If there is no response at all, prioritize hardware-fault investigation.</p>
+<p>If there is response but behavior is incorrect, verify configuration consistency.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>/data/config/SingoriX/galbot_one_golf/real/robot_config.toml
+</span></code></pre></div>
+<p>For version 1.16+, overlay path is:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>/data/config/default/SingoriX/galbot_g1-v2.2/robot_config.toml
+</span></code></pre></div>
+<p>Default is left gripper + right suction cup. Confirm physical installation matches config (for example <code>right_suction_cup</code> vs <code>right_gripper</code>). Restart <code>launcher</code> after modification:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
+</span></code></pre></div>
+<p><img alt="Gripper Configuration" src="/image/gripper_config.png" title="Gripper Configuration" /></p>
+<h3 id="no-sound-from-robot-speakerenable-audio-service-galbot_vtn">No Sound from Robot Speaker/Enable Audio Service <code>galbot_vtn</code></h3>
+<p>On Orin/HPU, edit:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>/data/config/launcher.cfg
+</span></code></pre></div>
+<p>Change target <code>enable</code> from <code>false</code> to <code>true</code>, then:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>systemctl<span class="w"> </span>status<span class="w"> </span>launcher
+</span></code></pre></div>
+<p><img alt="Enable galbot_vtn Example" src="/image/faq_galbot_vtn_enable.png" title="Enable galbot_vtn Example" /></p>
+<h3 id="python-list-attribute-append-not-working">Calling <code>.append()</code> on a List Attribute of an SDK Object Has No Effect in Python</h3>
+<p>This issue only occurs in Python. Calling <code>push_back()</code> on member containers in C++ works normally and is unaffected.</p>
+<p><strong>Symptom</strong>: After building a <code>Trajectory</code> / <code>TrajectoryPoint</code> in Python and submitting it, the interface returns <code>ControlStatus.INVALID_INPUT</code>, the robot does not move, and no explicit error is reported. This is easily misdiagnosed as "the interface is unsupported" or "a wrong parameter was passed", when in fact the data was never written.</p>
+<p><strong>Cause</strong>: Reading a list attribute of an SDK-bound object returns a <strong>copy</strong> of the underlying C++ data, not a reference. Calling <code>.append()</code> on that copy modifies the copy, which is then discarded, so the data never reaches the C++ object and the SDK receives an empty list. This differs from how list attributes behave on ordinary Python objects.</p>
+<p>The following does not work:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">traj</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">()</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">traj</span><span class="o">.</span><span class="n">joint_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;head&quot;</span><span class="p">)</span>          <span class="c1"># no effect</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">traj</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">traj_point</span><span class="p">)</span>            <span class="c1"># no effect</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">traj_point</span><span class="o">.</span><span class="n">joint_command_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>  <span class="c1"># no effect</span>
+</span></code></pre></div>
+<p>Instead, collect items in a plain Python list and assign the whole list back to the attribute:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">traj</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">()</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">traj</span><span class="o">.</span><span class="n">joint_groups</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;head&quot;</span><span class="p">]</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">traj</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">trajectory</span><span class="p">:</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>    <span class="n">traj_point</span> <span class="o">=</span> <span class="n">TrajectoryPoint</span><span class="p">()</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>    <span class="n">traj_point</span><span class="o">.</span><span class="n">time_from_start_second</span> <span class="o">=</span> <span class="n">target_time</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>    <span class="n">joint_command_vec</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>    <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>        <span class="n">joint_cmd</span> <span class="o">=</span> <span class="n">JointCommand</span><span class="p">()</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>        <span class="n">joint_cmd</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">joint</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>        <span class="n">joint_command_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint_cmd</span><span class="p">)</span>   <span class="c1"># operates on a plain Python list</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>    <span class="n">traj_point</span><span class="o">.</span><span class="n">joint_command_vec</span> <span class="o">=</span> <span class="n">joint_command_vec</span>  <span class="c1"># assign the whole list at once</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>    <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">traj_point</span><span class="p">)</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="n">traj</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">points</span>                              <span class="c1"># assign the whole list at once</span>
+</span></code></pre></div>
+<p>This rule applies to every list attribute of an SDK-bound object, not just <code>Trajectory</code>: <code>joint_groups</code> and <code>joint_names</code> are affected the same way, as are <code>GroupCommand.joint_commands</code>, <code>TargetGroupTrajectory.group_commands</code>, and <code>TaskCommand.subtask_commands</code> in the motion module. Affected interfaces include <code>execute_joint_trajectory</code> and <code>set_joint_commands_batch</code>.</p>
+<p>The example in <code>examples/g3/python/galbot_robot/execute_joint_trajectory.py</code> already follows this pattern and can be used as a reference.</p>
+<h2 id="system-and-configuration">System and Configuration</h2>
+<h3 id="how-to-check-the-current-operating-mode">How to Check the Current Operating Mode</h3>
+<p>Use <code>sys_tool</code> on XCU.</p>
+<p>On newer versions, XCU does not connect to Wi-Fi and cannot be accessed directly through an XCU wireless IP. For remote access over Wi-Fi, log in to HPU first, then log in to XCU from HPU.</p>
+<ol>
+<li>Log in to HPU from the PC:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ssh<span class="w"> </span>galbot@192.168.xxx.xx
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="c1"># password: gb@2023</span>
+</span></code></pre></div>
+<ol>
+<li>Log in to XCU from HPU:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>ssh<span class="w"> </span>root@192.168.1.66
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="c1"># password: 12345678</span>
+</span></code></pre></div>
+<ol>
+<li>Start tool:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">cd</span><span class="w"> </span>/data/bin
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>./sys_tool
+</span></code></pre></div>
+<p><code>sys_tool</code> path: <code>/data/bin/sys_tool</code>. It supports baseline version query and robot mode query/switch.</p>
+<p>Common commands:</p>
+<ul>
+<li><code>v</code>: query baseline version info (includes SN, software/hardware version).</li>
+<li><code>q</code>: query current robot mode.</li>
+</ul>
+<p>Mode judgment:</p>
+<ul>
+<li>Normal should show <code>mode_type: WORKING_MODE</code>.</li>
+<li>If not <code>WORKING_MODE</code> (for example <code>ABNORMAL</code>), locate <code>abnormal_service</code> first via <a href="#general-checks-do-these-first">General Checks</a>.</li>
+</ul>
+<p>Example (<code>q</code> key fields):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>current mode:
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>mode_type: WORKING_MODE
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>mode_switch_state {
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>  status: SUCCESS
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>}
+</span></code></pre></div>
+<p><img alt="Operating Mode Query Example" src="/image/faq_working_mode.png" title="Operating Mode Query Example" />
+<img alt="abnormal_service Log Example" src="/image/faq_abnormal_service.jpeg" title="abnormal_service Log Example" /></p>
+<h3 id="how-to-check-the-robot-system-version">How to Check the Robot System Version</h3>
+<p>Recommended:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>galbot_sdk<span class="w"> </span>check-version
+</span></code></pre></div>
+<p>If the robot uses a non-default IP address:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--robot-ip<span class="w"> </span>&lt;robot-ip&gt;
+</span></code></pre></div>
+<p>If unavailable, on XCU or HPU:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>cat<span class="w"> </span>/data/config/system.cfg
+</span></code></pre></div>
+<p>Check <code>CUR_VERSION</code>.</p>
+<p><img alt="CUR_VERSION Field Example" src="/image/faq_cur_version.jpeg" title="CUR_VERSION Field Example" /></p>
+<h3 id="how-to-check-robot-system-and-sdk-version-compatibility">How to Check Robot System and SDK Version Compatibility</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>galbot_sdk<span class="w"> </span>check-version
+</span></code></pre></div>
+<p>Common options:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Specify a non-default robot IP address</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--robot-ip<span class="w"> </span>&lt;robot-ip&gt;
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1"># Show full compatibility matrix</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--list
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="c1"># Offline manual validation</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--sdk-version<span class="w"> </span><span class="m">1</span>.8.0<span class="w"> </span>--robot-version<span class="w"> </span>GBS_1.16.0
+</span></code></pre></div>
+<p>Compatibility matrix (from <code>output/check_robot_compat.py</code>):</p>
+<table>
+<thead>
+<tr>
+<th>SDK Version Range</th>
+<th>Robot System Version (GBS)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.5.0 ~ 1.7.99</td>
+<td>GBS_1.15.x</td>
+</tr>
+<tr>
+<td>1.8.0 ~ 1.8.99</td>
+<td>GBS_1.16.x</td>
+</tr>
+</tbody>
+</table>
+<p>If mismatch occurs, upgrade robot system version to match SDK requirement first; only downgrade SDK if robot version must remain unchanged.</p>
+<h3 id="emergency-switch-e-stop-overview">Emergency Switch (E-Stop) Overview</h3>
+<p>The emergency stop button is on the robot back in a visible location. It is a red button labeled <code>EMERGENCY STOP</code>.</p>
+<p><img alt="Robot Emergency Stop Button" src="/image/stop.jpg" title="Robot Emergency Stop Button" /></p>
+<p>Usage:</p>
+<ol>
+<li>If equipment abnormality or personal safety risk is detected, press emergency stop immediately.</li>
+<li>After triggered, robot motion stops immediately. Power stays on; motion and actuator execution are locked.</li>
+<li>Emergency stop self-locks after pressing; rotate clockwise to release.</li>
+<li>After release/reset, robot can receive control commands again and resume normal motion.</li>
+</ol>
+<h3 id="onboard-computing-units-hpu-xcu">Onboard Computing Units (HPU + XCU)</h3>
+<p>Galbot G3 uses a dual-compute-unit architecture: HPU (High-Performance Unit) + XCU (X Computing Unit).<br />
+HPU handles high-compute tasks such as vision perception, AI inference, motion planning, and navigation. XCU handles low-level motor control, joint actuation, and real-time control.</p>
+<table>
+<thead>
+<tr>
+<th>Compute Unit</th>
+<th>Full Name</th>
+<th>Responsibility</th>
+<th>Typical Tasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HPU</strong></td>
+<td>High-Performance Unit</td>
+<td>High-compute tasks</td>
+<td>Vision perception, AI inference, motion planning, navigation, SLAM</td>
+</tr>
+<tr>
+<td><strong>XCU</strong></td>
+<td>X Computing Unit</td>
+<td>Real-time control tasks</td>
+<td>Low-level motor control, joint actuation, real-time control</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Hardware: HPU supports NVIDIA Jetson AGX Orin (64 GB, 275 TOPS) and NVIDIA Jetson AGX Thor (128 GB, up to 2,070 FP4 TFLOPS); XCU is the real-time control-side processor.</li>
+<li>System software: customized Linux with real-time kernel patches for deterministic motion control.</li>
+<li>Architecture note: both HPU and XCU are <code>ARM64 (aarch64)</code>; use <code>aarch64</code> toolchain for binaries running on these platforms.</li>
+</ul>
+<p>Why two compute units:</p>
+<ul>
+<li>Real-time isolation: motor control needs deterministic microsecond-level response; vision inference can occupy GPU for hundreds of milliseconds.</li>
+<li>Fault isolation: if HPU-side AI crashes, XCU can still maintain low-level control and standing posture.</li>
+<li>Scalability: future compute upgrades can focus on replacing the HPU compute module while keeping XCU real-time firmware stable.</li>
+</ul>
+<h3 id="how-to-access-hpu-and-xcu">How to Access HPU and XCU</h3>
+<p>Get the login IP by:</p>
+<ol>
+<li>Checking wireless IP on robot <code>Network</code> screen.</li>
+<li>For a wired PC-robot connection, use the fixed IPs:</li>
+<li>XCU: <code>192.168.1.66</code></li>
+<li>HPU (Orin): <code>192.168.1.88</code></li>
+</ol>
+<p>On newer versions, XCU does not connect to Wi-Fi and cannot be accessed directly through an XCU wireless IP. For remote access over Wi-Fi, log in to HPU first, then log in to XCU from HPU:</p>
+<ol>
+<li>Log in to HPU from the PC:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>ssh<span class="w"> </span>galbot@192.168.xxx.xx
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="c1"># password: gb@2023</span>
+</span></code></pre></div>
+<ol>
+<li>Log in to XCU from HPU:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>ssh<span class="w"> </span>root@192.168.1.66
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="c1"># password: 12345678</span>
+</span></code></pre></div>
+<p>Verify connectivity between the PC and HPU before running <code>ssh</code>.</p>
+<h3 id="how-to-check-robot-sn">How to Check Robot SN</h3>
+<p>On XCU:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>/data/bin/sys_tool
+</span></code></pre></div>
+<p>Follow tool prompts to view device information.</p>
+<h3 id="how-to-check-whether-joints-are-healthy">How to Check Whether Joints Are Healthy</h3>
+<p>Login XCU and open joint diagnostic tool, input <code>r</code> to view status.<br />
+<code>No Errors</code> generally means joints are normal. If emergency-stop or high joint-speed errors appear, reset first then retest.</p>
+<p><img alt="Joint E-Stop Error Example" src="/image/faq_joint_estop_error.png" title="Joint E-Stop Error Example" />
+<img alt="Joint Speed Error Example" src="/image/faq_joint_speed_error.jpeg" title="Joint Speed Error Example" /></p>
+<h3 id="how-to-enable-real-time-end-effector-control-commands">How to Enable Real-Time End-Effector Control Commands</h3>
+<p>On XCU, modify:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>/data/config/default/SingoriX/galbot_g1-v2.2/robot_config.toml
+</span></code></pre></div>
+<p>Set <code>using_wbc</code> to <code>true</code>, then restart <code>launcher</code>.</p>
+<h3 id="where-joint-limits-are-configured">Where Joint Limits Are Configured</h3>
+<p>IK, planning, and control all use the same joint limits from URDF: <code>galbot_one_golf.urdf</code>.</p>
+<ul>
+<li>XCU: <code>/data/config/galbot_description/galbot_one_golf_description</code></li>
+<li>HPU: <code>/data/galbot/config/galbot_description/galbot_one_golf_description</code></li>
+</ul>
+<h3 id="enabledisable-a-system-service">Enable/Disable a System Service</h3>
+<p>Determine whether target service runs on HPU or XCU, login the corresponding platform, then edit:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>/userdata/user_config/mode_service_config_default.toml
+</span></code></pre></div>
+<p>Comment/uncomment the target service item, then restart <code>launcher</code> on that same platform:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
+</span></code></pre></div>
+<p><img alt="Enable/Disable Service Config Example" src="/image/faq_disable_service.png" title="Enable/Disable Service Config Example" /></p>
+<h3 id="embosa-ip-configuration-reverted-after-reboot">embosa IP Configuration Reverted After Reboot</h3>
+<p>On both XCU and HPU, set <code>enable_modify_embosa_cfg=false</code> in <code>/data/config/system.cfg</code>, then restart <code>launcher</code> on each side.</p>
+<p><img alt="embosa Config Field Example" src="/image/faq_embosa_cfg.jpeg" title="embosa Config Field Example" /></p>
+<h2 id="camera-and-calibration">Camera and Calibration</h2>
+<h3 id="how-to-change-camera-resolution">How to Change Camera Resolution</h3>
+<p>On Orin, modify:</p>
+<ul>
+<li><code>/data/galbot/config/right_arm_camera.cfg</code></li>
+<li><code>/data/galbot/config/left_arm_camera.cfg</code></li>
+<li><code>/data/galbot/config/front_head_camera.cfg</code></li>
+</ul>
+<p>Changes take effect after robot reboot. With multiple sensors enabled simultaneously, lowering resolution can improve stability.</p>
+<p><img alt="Camera Resolution Config Example 1" src="/image/faq_camera_resolution_1.jpeg" title="Camera Resolution Config Example 1" />
+<img alt="Camera Resolution Config Example 2" src="/image/faq_camera_resolution_2.jpeg" title="Camera Resolution Config Example 2" /></p>
+<h3 id="how-to-check-camera-frame-rate">How to Check Camera Frame Rate</h3>
+<p>Check config in <code>/data/galbot/config/xxx.cfg</code>, then use <code>/data/galbot/bin/embosa_topic_tool</code> on HPU to measure topic rate.</p>
+<p><img alt="Camera FPS Command Example" src="/image/faq_camera_fps_cmd.jpeg" title="Camera FPS Command Example" />
+<img alt="Topic Rate Example" src="/image/faq_topic_rate.jpeg" title="Topic Rate Example" /></p>
+<h3 id="how-to-check-camera-intrinsicsextrinsics-and-calibration-info">How to Check Camera Intrinsics/Extrinsics and Calibration Info</h3>
+<p>On XCU:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>cat<span class="w"> </span>/userdata/config/robot_config/eyehand_calib.toml
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>cat<span class="w"> </span>/userdata/config/robot_config/stereo_camera_intrinsic.toml
+</span></code></pre></div>
+<p>You can also use SDK interfaces. Example for left-arm camera extrinsic:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">transform</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_transform</span><span class="p">(</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>    <span class="n">target_frame</span><span class="o">=</span><span class="s2">&quot;base_link&quot;</span><span class="p">,</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>    <span class="n">source_frame</span><span class="o">=</span><span class="s2">&quot;left_arm_camera_color_optical_frame&quot;</span><span class="p">,</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>Or:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="n">transform</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_sensor_extrinsic</span><span class="p">(</span><span class="n">sensor_id</span><span class="o">=</span><span class="n">SensorType</span><span class="o">.</span><span class="n">LEFT_ARM_CAMERA</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="logs-and-debugging">Logs and Debugging</h2>
+<h3 id="where-low-level-service-logs-are-stored">Where Low-Level Service Logs Are Stored</h3>
+<p>Low-level services are platform-specific:</p>
+<ul>
+<li>HPU: localization, navigation, planning, perception.</li>
+<li>XCU: control, chassis.</li>
+</ul>
+<p>Logs are under <code>/userdata/log/&lt;service_name&gt;/</code> on the corresponding platform. Examples:</p>
+<ul>
+<li>HPU: <code>/userdata/log/localization_server/</code>, <code>/userdata/log/service_navigation_plan/</code>, <code>/userdata/log/service_motion_plan/</code>, <code>/userdata/log/Perception_Algorithm_Service/</code></li>
+<li>XCU: <code>/userdata/log/SingoriX/</code>, <code>/userdata/log/galbot_chassis_service/</code>, <code>/userdata/log/service_display/</code>, <code>/userdata/log/mission_manager/</code></li>
+</ul>
+<p>Always identify the service platform first, then check logs on that platform.</p>
+<h3 id="where-sdk-logs-are-stored">Where SDK Logs Are Stored</h3>
+<p>SDK runtime logs (PC or Robot side) are in:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>~/galbot_sdk_log/
+</span></code></pre></div>
+<p>If you see <code>get info failed</code> or <code>PUBLISH FAIL</code> on PC, check <code>embosa_ip_config.json</code> on both sides first.</p>
+<h3 id="how-to-enable-and-debug-core-dumps">How to Enable and Debug Core Dumps</h3>
+<p>Core dumps are used for service crash analysis. After enabling core dumps and setting path (then relogin shell), files usually appear in:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>/userdata/core
+</span></code></pre></div>
+<p>For example with mps service:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>gdb<span class="w"> </span>/data/galbot/bin/service_motion_plan<span class="w"> </span><span class="o">[</span>core_file<span class="o">]</span>
+</span></code></pre></div>
+<p>Run <code>bt -full</code> in gdb.</p>
+<p><img alt="Core Backtrace Example (bt -full)" src="/image/faq_core_bt_full.png" title="Core Backtrace Example (bt -full)" /></p>
+<h3 id="python-on-robot-cannot-find-a-module">Python on Robot Cannot Find a Module</h3>
+<p>Add to <code>~/.bashrc</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/data/galbot/lib:<span class="nv">$PYTHONPATH</span>
+</span></code></pre></div>
+<p>Relogin to take effect.</p>
+<h3 id="python-example-error-numpy-has-no-typedict">Python Example Error: <code>numpy</code> Has No <code>typeDict</code></h3>
+<p>Usually caused by older <code>scipy</code>. Upgrade:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>scipy
+</span></code></pre></div>
+<h2 id="installation-and-environment">Installation and Environment</h2>
+<h3 id="how-to-start-sdk-docker">How to Start SDK Docker</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>gunzip<span class="w"> </span>-c<span class="w"> </span>galbot_sdk_image_1.10.0.tar.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>load
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="nb">cd</span><span class="w"> </span>output/docker
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>./run.sh
+</span></code></pre></div>
+<h3 id="how-to-use-perception-service-gbs-11516">How to Use Perception Service (GBS 1.15.16+)</h3>
+<p>On HPU, modify:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>/data/galbot/config/galbot_perception_moduleConfig.yaml
+</span></code></pre></div>
+<p>Set <code>sensor_data_sync_max_diff_tolerance</code> to <code>500000</code> (ns), restart <code>launcher</code>, then validate with examples under <code>examples/g3/python/galbot_perception</code>.</p>
+<h2 id="still-not-resolved">Still Not Resolved?</h2>
+<p>If your issue is not listed, submit an issue on GitHub:<br />
+<a href="https://github.com/GalaxyGeneralRobotics/GalbotSDK/issues">https://github.com/GalaxyGeneralRobotics/GalbotSDK/issues</a></p>
+<p>Please include SDK/robot versions and problem details. We will assist recovery as soon as possible. You may also contact after-sales technical support directly.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023-2026 Galbot. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "toc.integrate", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/language_switch.js"></script>
+      
+        <script src="../javascripts/api_collapse.js"></script>
+      
+        <script src="../javascripts/interactive_toc.js"></script>
+      
+        <script src="../javascripts/search_focus.js"></script>
+      
+        <script src="../javascripts/installation_nav.js"></script>
+      
+    
+  </body>
+</html>

@@ -39,7 +39,7 @@ def main():
 
     time.sleep(2)
 
-    ee_info = robot.get_wbc_end_effector_poses()
+    ee_info = robot.get_wbc_end_effector_poses()# Before using this function, ensure that `using_wbc` in the configuration file is set to `true`.
     print("\nCurrent WBC end-effector poses:")
     for frame, pose in ee_info.items():
         print(f"  Frame: {frame}, Pose: {pose}")
@@ -58,7 +58,8 @@ def main():
 
     time.sleep(3)
 
-    robot.clear_end_effector_command()
+    robot.clear_end_effector_command()  # clear and return to default reference joint pose
+    # robot.clear_end_effector_command(hold=True)   # clear and hold current joint pose
     
     # Send shutdown signal
     robot.request_shutdown()

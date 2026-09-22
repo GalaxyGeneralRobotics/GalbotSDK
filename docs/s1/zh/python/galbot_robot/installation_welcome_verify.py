@@ -14,7 +14,7 @@ from galbot_sdk.s1 import (
     ControlStatus,
     GalbotRobot,
     JointCommand,
-    SensorType,
+    SensorType, RgbOutputFormat,
     Trajectory,
     TrajectoryPoint,
 )
@@ -200,7 +200,7 @@ def main() -> int:
 
     body_preset_step_passed = torso_step_ok and upper_step_ok and demo_step_ok
 
-    head_rgb_data = robot.get_rgb_data(SensorType.HEAD_LEFT_CAMERA)
+    head_rgb_data = robot.get_rgb_data(SensorType.HEAD_LEFT_CAMERA, RgbOutputFormat.JPEG, True)
     if not head_rgb_data:
         print("[FAIL] get_rgb_data returned null", file=sys.stderr)
         head_camera_capture_ok = False

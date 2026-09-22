@@ -35,6 +35,7 @@
 #include "galbot/core_proto/time.pb.h"
 #include "galbot/core_proto/header.pb.h"
 #include "galbot/aphropm_proto/aphropm_common.pb.h"
+#include "galbot/arbitrator_proto/arbitrator.pb.h"
 #include <google/protobuf/wrappers.pb.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -1815,6 +1816,7 @@ class NavigationPlanRequest PROTOBUF_FINAL :
     kTaskIdFieldNumber = 2,
     kCommonStrFieldNumber = 3,
     kHeaderFieldNumber = 1,
+    kAuthorityTokenFieldNumber = 4,
     kTimeoutSecFieldNumber = 100,
     kNaviTaskRequestFieldNumber = 201,
   };
@@ -1868,6 +1870,24 @@ class NavigationPlanRequest PROTOBUF_FINAL :
       ::galbot::core_proto::Header* header);
   ::galbot::core_proto::Header* unsafe_arena_release_header();
 
+  // .galbot.arbitrator_proto.AuthorityToken authority_token = 4;
+  bool has_authority_token() const;
+  private:
+  bool _internal_has_authority_token() const;
+  public:
+  void clear_authority_token();
+  const ::galbot::arbitrator_proto::AuthorityToken& authority_token() const;
+  ::galbot::arbitrator_proto::AuthorityToken* release_authority_token();
+  ::galbot::arbitrator_proto::AuthorityToken* mutable_authority_token();
+  void set_allocated_authority_token(::galbot::arbitrator_proto::AuthorityToken* authority_token);
+  private:
+  const ::galbot::arbitrator_proto::AuthorityToken& _internal_authority_token() const;
+  ::galbot::arbitrator_proto::AuthorityToken* _internal_mutable_authority_token();
+  public:
+  void unsafe_arena_set_allocated_authority_token(
+      ::galbot::arbitrator_proto::AuthorityToken* authority_token);
+  ::galbot::arbitrator_proto::AuthorityToken* unsafe_arena_release_authority_token();
+
   // .google.protobuf.DoubleValue timeout_sec = 100;
   bool has_timeout_sec() const;
   private:
@@ -1917,15 +1937,17 @@ class NavigationPlanRequest PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr task_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr common_str_;
   ::galbot::core_proto::Header* header_;
+  ::galbot::arbitrator_proto::AuthorityToken* authority_token_;
   PROTOBUF_NAMESPACE_ID::DoubleValue* timeout_sec_;
   union RequestTypeUnion {
     RequestTypeUnion() {}
     ::galbot::aphropm_proto::NavigationTaskRequest* navi_task_request_;
   } request_type_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::uint32 _oneof_case_[1];
 
   friend struct ::TableStruct_galbot_2faphropm_5fproto_2faphropm_5fpns_5finterface_2eproto;
@@ -5675,6 +5697,85 @@ inline void NavigationPlanRequest::set_allocated_common_str(std::string* common_
   common_str_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), common_str,
       GetArena());
   // @@protoc_insertion_point(field_set_allocated:galbot.aphropm_proto.NavigationPlanRequest.common_str)
+}
+
+// .galbot.arbitrator_proto.AuthorityToken authority_token = 4;
+inline bool NavigationPlanRequest::_internal_has_authority_token() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || authority_token_ != nullptr);
+  return value;
+}
+inline bool NavigationPlanRequest::has_authority_token() const {
+  return _internal_has_authority_token();
+}
+inline const ::galbot::arbitrator_proto::AuthorityToken& NavigationPlanRequest::_internal_authority_token() const {
+  const ::galbot::arbitrator_proto::AuthorityToken* p = authority_token_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::arbitrator_proto::AuthorityToken&>(
+      ::galbot::arbitrator_proto::_AuthorityToken_default_instance_);
+}
+inline const ::galbot::arbitrator_proto::AuthorityToken& NavigationPlanRequest::authority_token() const {
+  // @@protoc_insertion_point(field_get:galbot.aphropm_proto.NavigationPlanRequest.authority_token)
+  return _internal_authority_token();
+}
+inline void NavigationPlanRequest::unsafe_arena_set_allocated_authority_token(
+    ::galbot::arbitrator_proto::AuthorityToken* authority_token) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token_);
+  }
+  authority_token_ = authority_token;
+  if (authority_token) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.aphropm_proto.NavigationPlanRequest.authority_token)
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* NavigationPlanRequest::release_authority_token() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::galbot::arbitrator_proto::AuthorityToken* temp = authority_token_;
+  authority_token_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* NavigationPlanRequest::unsafe_arena_release_authority_token() {
+  // @@protoc_insertion_point(field_release:galbot.aphropm_proto.NavigationPlanRequest.authority_token)
+  _has_bits_[0] &= ~0x00000001u;
+  ::galbot::arbitrator_proto::AuthorityToken* temp = authority_token_;
+  authority_token_ = nullptr;
+  return temp;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* NavigationPlanRequest::_internal_mutable_authority_token() {
+  _has_bits_[0] |= 0x00000001u;
+  if (authority_token_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::arbitrator_proto::AuthorityToken>(GetArena());
+    authority_token_ = p;
+  }
+  return authority_token_;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* NavigationPlanRequest::mutable_authority_token() {
+  // @@protoc_insertion_point(field_mutable:galbot.aphropm_proto.NavigationPlanRequest.authority_token)
+  return _internal_mutable_authority_token();
+}
+inline void NavigationPlanRequest::set_allocated_authority_token(::galbot::arbitrator_proto::AuthorityToken* authority_token) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token_);
+  }
+  if (authority_token) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token)->GetArena();
+    if (message_arena != submessage_arena) {
+      authority_token = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, authority_token, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  authority_token_ = authority_token;
+  // @@protoc_insertion_point(field_set_allocated:galbot.aphropm_proto.NavigationPlanRequest.authority_token)
 }
 
 // .google.protobuf.DoubleValue timeout_sec = 100;

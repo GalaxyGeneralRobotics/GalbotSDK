@@ -41,115 +41,50 @@ else:
 time.sleep(1)
 
 chain_joints = {
-    "leg": [0.4992,1.4991,1.0005,0.0000,-0.0004],
-    "head": [0.0000,0.0],
-    "left_arm": [1.9999,-1.6000,-0.5999,-1.6999,0.0000,-0.7999,0.0000],
-    "right_arm": [-2.0000,1.6001,0.6001,1.7000,0.0000,0.8000,0.0000]
+    "leg": [0.4992, 1.4991, 1.0005, 0.0000, -0.0004],
+    "head": [0.0000, 0.0],
+    "left_arm": [1.9999, -1.6000, -0.5999, -1.6999, 0.0000, -0.7999, 0.0000],
+    "right_arm": [-2.0000, 1.6001, 0.6001, 1.7000, 0.0000, 0.8000, 0.0000],
 }
-chain_pose_baselink = {
-    "leg": [0.0596,-0.0000,1.0327,0.5000,0.5003,0.4997,0.5000],
-    "head": [0.0599,0.0002,1.4098,-0.7072,0.0037,0.0037,0.7069],
-    "left_arm": [0.1267,0.2342,0.7356,0.0220,0.0127,0.0343,0.9991],
-    "right_arm": [0.1267,-0.2345,0.7358,-0.0225,0.0126,-0.0343,0.9991]
-}
-whole_body_joint = [
-    num for key in ["leg", "head", "left_arm", "right_arm"] 
-    for num in chain_joints[key]
-]
-base_state = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
-custom_param = gm.Parameter()
+end_link = "left_arm_end_effector_mount_link"
 reference_frame = "base_link"
-target_frame = "EndEffector"
-target_chain = "left_arm"
-one_chain = [target_chain]
-chain_with_torso = [target_chain, "torso"]
-error_chains = [target_chain, "torso", "head"]
-# Scenario 1: Single-chain inverse kinematics
+
+# Scenario 1: Forward kinematics using the current robot state
 try:
-    status, joint_map = motion.inverse_kinematics(
-        target_pose=chain_pose_baselink[target_chain],
-        chain_names=one_chain,
-        target_frame=target_frame,
-        reference_frame=reference_frame,
-        enable_collision_check=False  # Disable collision checking for accelerated testing
-    )
+    status, pose = motion.forward_kinematics(end_link, reference_frame)
     printStatus(status)
-    assert status == gm.MotionStatus.SUCCESS, "Inverse kinematics calculation failed"
-    print(f"✅ Basic version forward kinematics successful: joint angles={joint_map}")
+    assert status == gm.MotionStatus.SUCCESS, "Forward kinematics calculation failed"
+    print(f"✅ Basic forward kinematics successful: pose={pose}")
     time.sleep(0.8)
 except Exception as e:
-    print(f"❌ Basic version forward kinematics exception: {e}")
+    print(f"❌ Basic forward kinematics exception: {e}")
 
-# Scenario 2: Arm chain + torso inverse kinematics
+# Scenario 2: Forward kinematics with custom arm joints
 try:
-    status, joint_map = motion.inverse_kinematics(
-        target_pose=chain_pose_baselink[target_chain],
-        chain_names=chain_with_torso,
-        target_frame=target_frame,
-        reference_frame=reference_frame,
-        enable_collision_check=False  # Disable collision checking for accelerated testing
+    status, pose = motion.forward_kinematics(
+        end_link, reference_frame, {"left_arm": chain_joints["left_arm"]}, gm.Parameter()
     )
     printStatus(status)
-    assert status == gm.MotionStatus.SUCCESS, "Inverse kinematics calculation failed"
-    print(f"✅ Custom initial joint forward kinematics successful: joint angles={joint_map}")
+    assert status == gm.MotionStatus.SUCCESS, "Forward kinematics calculation failed"
+    print(f"✅ Custom-joint forward kinematics successful: pose={pose}")
     time.sleep(0.8)
 except Exception as e:
-    print(f"❌ Custom initial joint forward kinematics exception: {e}")
+    print(f"❌ Custom-joint forward kinematics exception: {e}")
 
-# Scenario 3: invalid chain combination
+# Scenario 3: Forward kinematics based on RobotStates
 try:
-    status, joint_map = motion.inverse_kinematics(
-        target_pose=chain_pose_baselink[target_chain],
-        chain_names=error_chains,
-        target_frame=target_frame,
-        reference_frame=reference_frame,
-        enable_collision_check=False  # Disable collision checking for accelerated testing
-    )
-    printStatus(status)
-    assert status == gm.MotionStatus.INVALID_INPUT, "Inverse kinematics calculation failed"
-    print(f"✅ Invalid chain-combination input check passed")
-    time.sleep(0.8)
+    current_state = motion.get_robot_states()
+    if not current_state.whole_body_joint:
+        print("❌ RobotStates-based FK: robot state is empty; ensure sensors/WBC are ready")
+    else:
+        status, pose = motion.forward_kinematics_by_state(
+            end_link, current_state, reference_frame, gm.Parameter()
+        )
+        printStatus(status)
+        assert status == gm.MotionStatus.SUCCESS, "Forward kinematics calculation failed"
+        print(f"✅ RobotStates-based forward kinematics successful: pose={pose}")
 except Exception as e:
-    print(f"❌ Custom initial joint forward kinematics exception: {e}")
-
-# Scenario 4: Use reference joints
-try:
-    # initial_joint_positions can specify chain joints as IK reference, unspecified chain joints use whole-body joints
-    status, joint_map = motion.inverse_kinematics(
-        target_pose=chain_pose_baselink[target_chain],
-        chain_names=one_chain,
-        target_frame=target_frame,
-        reference_frame=reference_frame,
-        initial_joint_positions=chain_joints,
-        enable_collision_check=False  # Disable collision checking for accelerated testing
-    )
-    printStatus(status)
-    assert status == gm.MotionStatus.SUCCESS, "Inverse kinematics calculation failed"
-    print(f"✅ Custom initial joint forward kinematics successful: joint angles={joint_map}")
-    time.sleep(0.8)
-except Exception as e:
-    print(f"❌ Custom initial joint forward kinematics exception: {e}")
-
-# Scenario 5: Use RobotStates
-try:
-    ref_robot_state = gm.RobotStates()
-    ref_robot_state.chain_name = target_chain
-    ref_robot_state.whole_body_joint = whole_body_joint
-    ref_robot_state.base_state = base_state
-    target_frame = "EndEffector"
-    reference_frame = "base_link"
-    status, joint_map = motion.inverse_kinematics_by_state(
-        target_pose=chain_pose_baselink[target_chain],
-        chain_names=one_chain,
-        target_frame=target_frame,
-        reference_frame=reference_frame,
-        reference_robot_states=ref_robot_state
-    )
-    printStatus(status)
-    assert status == gm.MotionStatus.SUCCESS, "Inverse kinematics calculation failed"
-    print(f"✅ Based on RobotStates forward kinematics successful: joint angles={joint_map}")
-except Exception as e:
-    print(f"❌ Based on RobotStatesforward kinematics exception: {e}")
+    print(f"❌ RobotStates-based forward kinematics exception: {e}")
 
 robot.request_shutdown()
 robot.wait_for_shutdown()

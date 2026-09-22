@@ -48,7 +48,8 @@ def main():
         robot.destroy()
         return
 
-    # 4) Read synced RGB frames from typed field: obs.rgb_data_map
+    # 4) Read synced RGB frames from typed field: obs.rgb_data_map.
+    #    Sync-mode RGB payloads are tightly packed CPU-owned NV12, not JPEG.
     print("[Synced RGB]")
     rgb_map: dict[SensorType, RgbData] = obs.rgb_data_map
     anchor_camera = cameras[0]
@@ -61,12 +62,16 @@ def main():
     for cam in cameras:
         frame: RgbData | None = rgb_map.get(cam, None)
         cam_ts_ns = frame.header.timestamp_ns if frame is not None else None
+        frame_format = frame.format if frame is not None else "N/A"
+        dimensions = f"{frame.width}x{frame.height}" if frame is not None else "N/A"
+        payload_bytes = len(frame.data) if frame is not None else 0
         delta_ms_str = "N/A"
         if anchor_ts_ns is not None and cam_ts_ns is not None:
             delta_ms_str = f"{(cam_ts_ns - anchor_ts_ns) * NS_TO_MS:.3f}"
         print(
             f"camera={cam}, timestamp_ns={cam_ts_ns if cam_ts_ns is not None else 'N/A'}, "
-            f"delta_to_anchor_ms={delta_ms_str}"
+            f"delta_to_anchor_ms={delta_ms_str}, format={frame_format}, "
+            f"dimensions={dimensions}, bytes={payload_bytes}"
         )
 
     # 5) Read optional joint snapshot from typed field: obs.joint_state

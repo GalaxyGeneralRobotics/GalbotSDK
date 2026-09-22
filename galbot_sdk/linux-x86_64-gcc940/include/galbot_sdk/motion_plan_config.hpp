@@ -484,6 +484,13 @@ struct IKSolverConfig {
    */
   void set_enable_collision_check_log(bool enable) { enable_collision_check_log_ = enable; }
 
+  /**
+   * @brief Enable or disable collision avoidance
+   * @param enable true to enable collision avoidance, false to disable
+   * @note If collision avoidance is enabled, the IK solver will try to avoid collisions with obstacles
+   */
+  void set_enable_collision_avoidance(bool enable) { enable_collision_avoidance_ = enable; }
+
   // Getter methods
   /**
    * @brief Get collision-aware IK solver timeout
@@ -521,6 +528,7 @@ struct IKSolverConfig {
    */
   bool get_enable_collision_check_log() const { return enable_collision_check_log_; }
 
+  bool get_enable_collision_avoidance() const { return enable_collision_avoidance_; }
   /**
    * @brief Print IK solver configuration to standard output
    *
@@ -535,6 +543,7 @@ struct IKSolverConfig {
   std::array<double, 3> translation_eps_ = {0.0, 0.0, 0.0};  /**< Position error tolerance (m) */
   std::array<double, 3> rotation_eps_ = {0.0, 0.0, 0.0};     /**< Orientation error tolerance (rad) */
   bool enable_collision_check_log_ = false;              /**< Enable collision detection diagnostic logging */
+  bool enable_collision_avoidance_ = false;              /**< Enable collision avoidance */
 };
 
 /**
@@ -1192,6 +1201,9 @@ class MotionPlanConfig {
    * Useful for debugging, logging, and verification of configuration state.
    */
   void print() const;
+
+  std::string config_type;
+  std::string common_str;
 
  private:
   int64_t update_nsec_ = 0;  /**< Configuration last update timestamp (ns, typically CLOCK_MONOTONIC) */

@@ -38,6 +38,16 @@ void print_multi_plan_result(const std::string& label, const TrajResult& res, co
 }
 
 int main() {
+    std::cout << "WARNING: The robot will move to the initial joint state. "
+              << "Release the emergency stop and clear nearby obstacles." << std::endl;
+    std::cout << "Continue? (y/n): ";
+    std::string response;
+    std::getline(std::cin, response);
+    if (response != "y" && response != "Y") {
+        std::cout << "Example cancelled." << std::endl;
+        return 0;
+    }
+
     auto& planner = GalbotMotion::get_instance(MachineType::G1);
     auto& robot = GalbotRobot::get_instance(MachineType::G1);
 
@@ -53,10 +63,10 @@ int main() {
     std::this_thread::sleep_for(std::chrono::seconds(2));
 
     std::unordered_map<std::string, std::vector<double>> chain_joints = {
-        {"leg",       {0.4992, 1.4991, 1.0005, 0.0000, -0.0004}},
-        {"head",      {0.0000, 0.0}},
-        {"left_arm",  {1.9999, -1.6000, -0.5999, -1.6999, 0.0000, -0.7999, 0.0000}},
-        {"right_arm", {-2.0000, 1.6001, 0.6001, 1.7000, 0.0000, 0.8000, 0.0000}}
+        {"leg",       {0.5, 1.5, 1.0, 0.0, 0.0}},
+        {"head",      {0.0, 0.0}},
+        {"left_arm",  {2.0, -1.5, -0.6, -1.7, 0.0, -0.8, 0.0}},
+        {"right_arm", {-2.0, 1.5, 0.6, 1.7, 0.0, 0.8, 0.0}}
     };
 
     std::vector<double> whole_body_joint;
@@ -65,8 +75,27 @@ int main() {
         whole_body_joint.insert(whole_body_joint.end(), chain_joints[key].begin(), chain_joints[key].end());
     }
 
+    const ControlStatus move_status =
+        robot.set_joint_positions(whole_body_joint, keys, {}, true, 0.1, 30.0);
+    if (move_status != ControlStatus::SUCCESS) {
+        std::cerr << "❌ Failed to move to the initial joint state." << std::endl;
+        robot.request_shutdown();
+        robot.wait_for_shutdown();
+        robot.destroy();
+        return -1;
+    }
+    std::cout << "✅ Moved to the initial whole-body joint state." << std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+
     auto params = std::make_shared<Parameter>();
     std::string target_chain = "left_arm";
+
+    // NOTE: The two scenarios express the same physical waypoints as Cartesian
+    // poses and joint positions, so their planning results are consistent. Calling
+    // params->set_move_line(true) applies Cartesian-space line planning to both.
+    // 注意：以下两个场景分别使用笛卡尔位姿和关节位置表达相同的物理路点，
+    // 因此规划结果一致。调用 params->set_move_line(true) 后，二者均按
+    // 笛卡尔空间直线方式规划。
 
     // --- Scenario 1: Multi-waypoint planning in Cartesian space (PoseState target) ---
     try {
@@ -77,10 +106,10 @@ int main() {
 
         // Construct waypoints (3 intermediate poses)
         std::vector<std::vector<double>> waypoint_poses = {
-            {0.1267, 0.2342, 0.7356, 0.0220, 0.0127, 0.0343, 0.9991},
-            {0.2267, 0.2342, 0.7356, 0.0220, 0.0127, 0.0343, 0.9991},
-            {0.3267, 0.2342, 0.7356, 0.0220, 0.0127, 0.0343, 0.9991},
-            {0.4267, 0.2342, 0.7356, 0.0220, 0.0127, 0.0343, 0.9991}
+            {0.1297, 0.2608, 0.7417, 0.0734, 0.0209, -0.0233, 0.9968},
+            {0.2297, 0.2608, 0.7417, 0.0734, 0.0209, -0.0233, 0.9968},
+            {0.3297, 0.2608, 0.7417, 0.0734, 0.0209, -0.0233, 0.9968},
+            {0.3297, 0.2608, 0.8417, 0.0734, 0.0209, -0.0233, 0.9968}
         };
 
         auto res = planner.motion_plan_multi_waypoints(
@@ -105,10 +134,10 @@ int main() {
 
         // Construct waypoints (3 intermediate poses)
         std::vector<std::vector<double>> waypoints = {
-            {0.1267, 0.2342, 0.7356, 0.0220, 0.0127, 0.0343, 0.9991},
-            {0.2267, 0.4342, 0.7356, 0.0220, 0.0127, 0.0343, 0.9991},
-            {0.3267, 0.6342, 0.7356, 0.0220, 0.0127, 0.0343, 0.9991},
-            {0.4267, 0.8342, 0.7356, 0.0220, 0.0127, 0.0343, 0.9991}
+            {2.0000, -1.5001, -0.6001, -1.7000, 0.0001, -0.7999, 0.0000},
+            {1.7805, -1.4841, -0.5856, -1.6857, -0.0083, -0.5952, 0.0090},
+            {1.5313, -1.4746, -0.5672, -1.5923, -0.0109, -0.4406, 0.0185},
+            {1.6264, -1.4551, -0.5976, -1.9286, -0.0427, -0.1972, 0.0289}
         };
 
         auto res = planner.motion_plan_multi_waypoints(

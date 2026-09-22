@@ -57,10 +57,22 @@ int main() {
     auto left_force_data = robot.get_force_sensor_data(GalbotOneFoxtrotSensor::LEFT_WRIST_FORCE);
     print_force_data(GalbotOneFoxtrotSensor::LEFT_WRIST_FORCE, left_force_data);
 
+    // Get calibrated left-arm wrench expressed in base_link
+    std::cout << "\n===== Get calibrated left wrist force data in base_link =====" << std::endl;
+    auto calibrated_left_force_data =
+        robot.get_force_sensor_data(GalbotOneFoxtrotSensor::LEFT_WRIST_FORCE, true, "base_link");
+    print_force_data(GalbotOneFoxtrotSensor::LEFT_WRIST_FORCE, calibrated_left_force_data);
+
     // Get right wrist force sensor data
     std::cout << "\n===== Get right wrist force sensor data =====" << std::endl;
     auto right_force_data = robot.get_force_sensor_data(GalbotOneFoxtrotSensor::RIGHT_WRIST_FORCE);
     print_force_data(GalbotOneFoxtrotSensor::RIGHT_WRIST_FORCE, right_force_data);
+
+    // Keep calibrated right-arm wrench in its native end-effector mount frame
+    std::cout << "\n===== Get calibrated right wrist force data in mount frame =====" << std::endl;
+    auto calibrated_right_force_data = robot.get_force_sensor_data(
+        GalbotOneFoxtrotSensor::RIGHT_WRIST_FORCE, true, "right_arm_end_effector_mount_link");
+    print_force_data(GalbotOneFoxtrotSensor::RIGHT_WRIST_FORCE, calibrated_right_force_data);
 
     // Iterate and get all force sensor data
     std::cout << "\n===== Get all force sensor data =====" << std::endl;

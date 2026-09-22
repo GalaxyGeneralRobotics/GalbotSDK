@@ -111,11 +111,12 @@ SDK_CONNECTION_TIMEOUT = 20
 # 格式: (SDK 最小版本, SDK 最大版本, [兼容的 GBS 版本列表])
 # 示例: ("1.8.0", "1.8.99", ["GBS_1.16.x", "GBS_1.17.x"]) 表示 SDK 1.8.x 兼容 GBS 1.16.x 和 1.17.x
 VERSION_COMPATIBILITY_MAP = [
-    ("1.5.0", "1.7.99", ["GBS_1.15.x"]),
+    ("1.5.0", "1.5.99", ["GBS_1.13.x"]),
+    ("1.6.0", "1.7.99", ["GBS_1.15.x"]),
     ("1.8.0", "1.8.99", ["GBS_1.16.x"]),
     ("1.9.0", "1.9.99", ["GBS_1.17.x"]),
+    ("1.10.0", "1.10.99", ["GBS_1.18.x"]),
 ]
-
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -266,7 +267,7 @@ def format_version_list():
 def get_robot_version_from_sdk():
     robot = None
     last_error = None
-    for module in ("galbot_sdk.g1", "galbot_sdk.s1"):
+    for module in ("galbot_sdk.g1", "galbot_sdk.s1", "galbot_sdk.g3"):
         try:
             mod = __import__(module, fromlist=["GalbotRobot"])
             robot_cls = getattr(mod, "GalbotRobot")

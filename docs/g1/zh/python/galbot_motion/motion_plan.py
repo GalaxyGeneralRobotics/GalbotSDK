@@ -1,148 +1,219 @@
+"""G1 motion_plan example aligned with motion_plan_example.cpp."""
+
 import time
 
 import galbot_sdk.g1 as gm
 from galbot_sdk.g1 import GalbotMotion, GalbotRobot
 
-# NOTE:
-# - GalbotMotion currently does NOT provide real-time obstacle perception / automatic environment updates.
-# - Motion collision checking uses self-collision + a collision world built from objects you load manually via
-#   add_obstacle()/attach_target_object() (including point clouds if you load them explicitly).
+def initialize_interfaces():
+    motion = GalbotMotion()
+    print("GalbotMotion::get_instance() status: no return status; call completed.")
+    robot = GalbotRobot()
+    print("GalbotRobot::get_instance() status: no return status; call completed.")
+    if not motion.init():
+        print("GalbotMotion::init() status: FAILED")
+        return None, None
+    print("GalbotMotion::init() status: SUCCESS")
+    if not robot.init():
+        print("GalbotRobot::init() status: FAILED")
+        return None, None
+    print("GalbotRobot::init() status: SUCCESS")
+    time.sleep(1.0)
+    return motion, robot
 
-motion = GalbotMotion()
-robot = GalbotRobot()
 
-def printStatus(status):
-        if(status == gm.MotionStatus.SUCCESS):
-            print("Result: SUCCESS")
-        elif(status == gm.MotionStatus.TIMEOUT):
-            print("Result: TIMEOUT")
-        elif(status == gm.MotionStatus.FAULT):
-            print("Result: FAULT")
-        elif(status == gm.MotionStatus.INVALID_INPUT):
-            print("Result: INVALID_INPUT")
-        elif(status == gm.MotionStatus.INIT_FAILED):
-            print("Result: INIT_FAILED")
-        elif(status == gm.MotionStatus.IN_PROGRESS):
-            print("Result: IN_PROGRESS")
-        elif(status == gm.MotionStatus.STOPPED_UNREACHED):
-            print("Result: STOPPED_UNREACHED")
-        elif(status == gm.MotionStatus.DATA_FETCH_FAILED):
-            print("Result: DATA_FETCH_FAILED")
-        elif(status == gm.MotionStatus.PUBLISH_FAIL):
-            print("Result: PUBLISH_FAIL")
-        elif(status == gm.MotionStatus.COMM_DISCONNECTED):
-            print("Result: COMM_DISCONNECTED")
+def shutdown_robot(robot):
+    robot.request_shutdown()
+    print("request_shutdown() status: no return status; call completed.")
+    robot.wait_for_shutdown()
+    print("wait_for_shutdown() status: no return status; call completed.")
+    robot.destroy()
+    print("destroy() status: no return status; call completed.")
 
-if motion.init():
-    print("GalbotMotion init OK")
-else:
-    print("GalbotMotion init FAILED")
-if robot.init():
-    print("GalbotRobot init OK")
-else:
-    print("GalbotRobot init FAILED")
 
-# Wait for data to be ready.
-time.sleep(1)
+def print_control_status(api_name, status):
+    result = "SUCCESS" if status == gm.ControlStatus.SUCCESS else "FAILED"
+    print(f"{api_name} status: {str(status).rsplit('.', 1)[-1]} ({result})")
 
-chain_joints = {
-    "leg": [0.4992,1.4991,1.0005,0.0000,-0.0004],
-    "head": [0.0000,0.0],
-    "left_arm": [1.9999,-1.6000,-0.5999,-1.6999,0.0000,-0.7999,0.0000],
-    "right_arm": [-2.0000,1.6001,0.6001,1.7000,0.0000,0.8000,0.0000]
-}
-chain_pose_baselink = {
-    "leg": [0.0596,-0.0000,1.0327,0.5000,0.5003,0.4997,0.5000],
-    "head": [0.0599,0.0002,1.4098,-0.7072,0.0037,0.0037,0.7069],
-    "left_arm": [0.1267,0.2342,0.7356,0.0220,0.0127,0.0343,0.9991],
-    "right_arm": [0.1267,-0.2345,0.7358,-0.0225,0.0126,-0.0343,0.9991]
-}
-whole_body_joint = [
-    num for key in ["leg", "head", "left_arm", "right_arm"] 
-    for num in chain_joints[key]
-]
-base_state = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
-custom_param = gm.Parameter()
 
-# Scenario 1: joint-space planning, target type = joint state
-try:
-    # Construct target joint state
-
-    target_joint = gm.JointStates()
-    target_joint.chain_name = "left_arm"
-    target_joint.joint_positions = chain_joints[target_joint.chain_name]
-
-    status, traj = motion.motion_plan(
-        target=target_joint,
-        # When enable_collision_check=True, collision is checked against Motion-side explicitly loaded obstacles
-        # (add_obstacle/attach_target_object) and self-collision.
-        enable_collision_check=False,
-        params=custom_param
+def move_robot_to_home_position(robot):
+    print("Move robot to the G1 home position.")
+    status = robot.set_joint_positions(
+        [
+            0.5, 1.5, 1.0, 0.0, 0.0,
+            0.0, 0.0,
+            2.0, -1.5, -0.6, -1.7, 0.0, -0.8, 0.0,
+            -2.0, 1.5, 0.6, 1.7, 0.0, 0.8, 0.0,
+        ],
+        ["leg", "head", "left_arm", "right_arm"],
+        [],
+        True,
+        0.1,
+        30.0,
     )
-    printStatus(status)
-    assert status == gm.MotionStatus.SUCCESS, "Planning failed"
-    if traj != {}:
-        print(f"✅ Joint-space planning + joint-target single-chain single-point planning succeeded: trajectory points={len(traj[target_joint.chain_name])}")
-        time.sleep(0.8)
-    else:
-        print(f"⚠️ Return status is SUCCESS, but trajectory is empty; possibly already reached, check whether the target matches current state or is within tolerance")
+    print_control_status("GalbotRobot::set_joint_positions(home)", status)
+    return status == gm.ControlStatus.SUCCESS
 
-except Exception as e:
-    print(f"ERROR: joint-space single-point planning exception: {e}")
 
-# Scenario 2: joint-space planning, target type = end-effector pose (Cartesian)
-try:
-    # Construct target pose state
-    target_pose_state = gm.PoseState()
-    target_pose_state.chain_name = "left_arm"
-    target_pose_state.frame_id = "EndEffector"
-    target_pose_state.reference_frame = "base_link"
-    target_pose_state.pose = gm.Pose(chain_pose_baselink[target_pose_state.chain_name])
-    # target_pose_state.pose.position.x += 0.2
+def capture_current_pose(motion, robot, chain, current):
+    joint_names = list(motion.get_chain_joint_names(chain))
+    print(f"get_chain_joint_names({chain}) status: {'SUCCESS' if joint_names else 'FAILED'}")
+    if not joint_names:
+        return False
+    joints = list(robot.get_joint_positions([], joint_names))
+    success = len(joints) == len(joint_names)
+    print(f"GalbotRobot::get_joint_positions({chain}) status: {'SUCCESS' if success else 'FAILED'}")
+    if not success:
+        return False
+    current["joint_names"][chain] = joint_names
+    current["joints"][chain] = joints
+    print(f"Current {chain} joints: {joints}")
 
-    status, traj = motion.motion_plan(
-        target=target_pose_state,
-        enable_collision_check=False
-    )
-    printStatus(status)
-    assert status == gm.MotionStatus.SUCCESS, "Planning failed"
-    if traj != {}:
-        print(f"✅ Joint-space planning + end-effector-pose-target single-chain single-point planning succeeded: trajectory length={len(traj[target_pose_state.chain_name])}")
-        time.sleep(0.8)
-    else:
-        print(f"⚠️ Return status is SUCCESS, but trajectory is empty; possibly already reached, check whether the target matches current state or is within tolerance")
+    status, pose = motion.get_end_effector_pose_on_chain(chain, "EndEffector", "base_link")
+    result = "SUCCESS" if status == gm.MotionStatus.SUCCESS else "FAILED"
+    print(f"get_end_effector_pose_on_chain({chain}) status: {motion.status_to_string(status)} ({result})")
+    pose = list(pose)
+    if status != gm.MotionStatus.SUCCESS or len(pose) != 7:
+        return False
+    current["poses"][chain] = pose
+    print(f"Current {chain} pose [x, y, z, qx, qy, qz, qw]: {pose}")
+    return True
 
-except Exception as e:
-    print(f"ERROR: Cartesian single-point planning exception: {e}")
 
-# Scenario 3: joint-space planning with an explicit start state
-try:
-    # Construct target joint state
+def make_joint_target(chain, joint_positions, joint_names=None):
+    target = gm.MotionPlanChainTarget()
+    target.chain_name = chain
+    target.mode = gm.MotionPlanTargetMode.kJoint
+    target.joint.chain_name = chain
+    target.joint.joint_positions = list(joint_positions)
+    target.joint.joint_names = list(joint_names or [])
+    return target
 
-    target_joint = gm.JointStates()
-    target_joint.chain_name = "left_arm"
-    target_joint.joint_positions = chain_joints[target_joint.chain_name]
 
-    start_joint = gm.JointStates()
-    start_joint.chain_name = "left_arm"
-    start_joint.joint_positions = [0] * 7
+def make_cartesian_target(chain, pose, assist_chains=None):
+    target = gm.MotionPlanChainTarget()
+    target.chain_name = chain
+    target.mode = gm.MotionPlanTargetMode.kCartesian
+    target.cart.chain_name = chain
+    target.cart.frame_id = "EndEffector"
+    target.cart.reference_frame = "base_link"
+    target.cart.pose = gm.Pose(list(pose))
+    target.cart.assist_chains = set(assist_chains or [])
+    return target
 
-    status, traj = motion.motion_plan(
-        target=target_joint,
-        start=start_joint,
-        enable_collision_check=False,
-        params=custom_param
-    )
-    printStatus(status)
-    assert status == gm.MotionStatus.SUCCESS, "Planning failed"
-    if traj != {}:
-        print(f"✅ Joint-space planning + joint-target single-chain single-point planning succeeded: trajectory points={len(traj[target_joint.chain_name])}")
-    else:
-        print(f"⚠️ Return status is SUCCESS, but trajectory is empty; possibly already reached, check whether the target matches current state or is within tolerance")
 
-except Exception as e:
-    print(f"ERROR: joint-space single-point planning exception: {e}")
+def make_planner_config(check_collision):
+    params = gm.Parameter()
+    params.set_direct_execute(True)
+    params.set_blocking(True)
+    params.set_timeout(120.0)
+    params.set_check_collision(check_collision)
+    params.set_reference_frame("base_link")
+    params.set_actuate("with_torso")
+    return params
 
-robot.request_shutdown()
-robot.wait_for_shutdown()
-robot.destroy()
+
+def print_waypoints(label, waypoints):
+    print(f"{label} waypoints: {len(waypoints)}")
+    for index, waypoint in enumerate(waypoints):
+        print(f"  waypoint[{index}] targets: {len(waypoint)}")
+        for target in waypoint:
+            if target.mode == gm.MotionPlanTargetMode.kJoint:
+                print(f"    {target.chain_name} JOINT q={list(target.joint.joint_positions)}")
+            else:
+                print(f"    {target.chain_name} CART frame_id={target.cart.frame_id} reference_frame={target.cart.reference_frame}")
+
+
+def print_traj_result(label, status, traj, motion):
+    result = "SUCCESS" if status == gm.MotionStatus.SUCCESS else "FAILED"
+    print(f"{label} status: {motion.status_to_string(status)} ({result})")
+    if status == gm.MotionStatus.SUCCESS:
+        if not traj:
+            print("Trajectory map is empty.")
+        for chain, points in traj.items():
+            print(f"  {chain} trajectory points: {len(points)}")
+
+
+def make_example_inputs(current):
+    left_names = current["joint_names"]["left_arm"]
+    right_names = current["joint_names"]["right_arm"]
+    torso = lambda: make_joint_target("torso", [0.0], ["leg_joint4"])
+    cart = lambda chain, pose: make_cartesian_target(chain, pose, ["torso"])
+
+    waypoints = [
+        [
+            make_joint_target(
+                "left_arm",
+                [1.99995, -1.4004, -0.599905, -1.69994, 0.0, -0.799924, 0.0],
+                left_names,
+            ),
+            make_joint_target(
+                "right_arm",
+                [-1.99995, 1.4004, 0.599905, 1.69994, 0.0, 0.799924, 0.0],
+                right_names,
+            ),
+            torso(),
+        ],
+        [
+            make_joint_target(
+                "left_arm",
+                [1.7995, -1.6004, -0.599905, -1.69994, 0.0, -0.799924, 0.0],
+                left_names,
+            ),
+            torso(),
+        ],
+        [
+            cart("left_arm", [0.32666, 0.33435, 1.03569, 0.0, 0.0, 0.0, 1.0]),
+            cart("right_arm", [0.32666, -0.33435, 1.03569, 0.0, 0.0, 0.0, 1.0]),
+        ],
+        [
+            cart("left_arm", [0.32666, 0.43435, 1.03569, 0.0, 0.0, 0.0, 1.0]),
+            cart("right_arm", [0.32666, -0.43435, 1.03569, 0.0, 0.0, 0.0, 1.0]),
+        ],
+        [
+            make_joint_target(
+                "left_arm",
+                [1.99995, -1.4004, -0.599905, -1.69994, 0.0, -0.799924, 0.0],
+                left_names,
+            ),
+            make_joint_target(
+                "right_arm",
+                [-1.99995, 1.4004, 0.599905, 1.69994, 0.0, 0.799924, 0.0],
+                right_names,
+            ),
+        ],
+    ]
+    return waypoints, make_planner_config(check_collision=False)
+
+
+def run_example():
+    motion, robot = initialize_interfaces()
+    if motion is None or robot is None:
+        return 1
+
+    try:
+        if not move_robot_to_home_position(robot):
+            return 1
+        time.sleep(0.5)
+
+        current = {"joint_names": {}, "joints": {}, "poses": {}}
+        if not capture_current_pose(motion, robot, "left_arm", current):
+            return 1
+        if not capture_current_pose(motion, robot, "right_arm", current):
+            return 1
+
+        waypoints, params = make_example_inputs(current)
+        print_waypoints("motion_plan", waypoints)
+        print(
+            "Immediate execution is enabled; waypoints are loaded from "
+            "motion_plan_targets.json reference values."
+        )
+        status, traj = motion.motion_plan(waypoints, params)
+        print_traj_result("motion_plan", status, traj, motion)
+        return 0 if status == gm.MotionStatus.SUCCESS else 1
+    finally:
+        shutdown_robot(robot)
+
+
+if __name__ == "__main__":
+    raise SystemExit(run_example())

@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -327,6 +327,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../endtool_raw_passthrough/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  S1 Raw End-Tool Passthrough
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../examples_python/" class="md-tabs__link">
         
   
@@ -391,6 +410,25 @@
     
   
   C++ API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../set_config_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  set_config Reference
 
       </a>
     </li>
@@ -912,10 +950,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-start-localization-required" class="md-nav__link">
+  <a href="#2-start-localization" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Start Localization (Required)
+        2. Start Localization
       
     </span>
   </a>
@@ -1107,6 +1145,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../endtool_raw_passthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 Raw End-Tool Passthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../examples_python/" class="md-nav__link">
         
   
@@ -1196,6 +1261,33 @@
     
   
     C++ API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../set_config_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set_config Reference
   
 
     
@@ -1305,7 +1397,7 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>top
 </span></code></pre></div>
 <p>If the LiDAR has been automatically started, you can see a process named <code>service_lidar_capture</code> in the process list, as shown below:</p>
-<p><img alt="LiDAR Service" src="/image/ldserv.jpg" /></p>
+<p><img alt="LiDAR Service" src="/image/ldserv.png" /></p>
 <p>If the LiDAR is not running, use the following command to start it (do not start it repeatedly):</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/data/galbot/bin/service_lidar_capture
 </span></code></pre></div>
@@ -1317,7 +1409,7 @@
 <h4 id="2-start-mapping-required">2. Start Mapping (Required)</h4>
 <p>Start the mapping program</p>
 <ol>
-<li>Press the robot's emergency stop button and use the <a href="#s1-remote-control">Remote Controller</a> to move the robot to the mapping start point (mapping can begin from any location)</li>
+<li>Release the robot's emergency stop button and use the <a href="#s1-remote-control">Remote Controller</a> to move the robot to the mapping start point (mapping can begin from any location. If the localization service becomes abnormal later, send relocalization at the initial mapping point)</li>
 <li>Execute the following command to start mapping:</li>
 </ol>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/data/galbot/bin/mapping_server
@@ -1356,12 +1448,19 @@
 </ul>
 </div>
 <h5 id="41-remove-map-noise-optional">4.1 Remove Map Noise (Optional)</h5>
-<p>This step is recommended. The map may usually contain some noise points, and removing them can improve the navigation success rate. In particular, rooms with mirrors, frosted glass, or similar materials are more likely to produce noise points in the point cloud map, so CloudCompare post-processing is recommended.</p>
-<p>You need to check for noise points within the robot's operating area (from ground level up to 2.5 meters in height). Ground points do not affect navigation; the main focus is on checking and removing airborne floating noise points.</p>
+<p>This step is recommended (if navigation is required, this step must be performed). The map may usually contain some noise points, and removing them can improve the navigation success rate. In particular, rooms with mirrors, frosted glass, or similar materials are more likely to produce noise points in the point cloud map, so CloudCompare post-processing is recommended.</p>
 <p><strong>Preparation</strong>: Download CloudCompare software</p>
 <p>Download link: <a href="https://www.cloudcompare.org/release/index.html">https://www.cloudcompare.org/release/index.html</a></p>
 <p>As shown below:</p>
 <p><img alt="Download Software" src="/image/download.jpg" /></p>
+<p><strong>If the official website version cannot open PCD files, use the following commands:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>flatpak<span class="w"> </span>gnome-software-plugin-flatpak
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>flatpak<span class="w"> </span>remote-add<span class="w"> </span>--if-not-exists<span class="w"> </span>flathub<span class="w"> </span>https://mirrors.ustc.edu.cn/flathub
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>flatpak<span class="w"> </span>install<span class="w"> </span>flathub<span class="w"> </span>org.cloudcompare.CloudCompare<span class="w"> </span>-y
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>flatpak<span class="w"> </span>run<span class="w"> </span>org.cloudcompare.CloudCompare
+</span></code></pre></div>
 <p><strong>Steps</strong>:</p>
 <ol>
 <li>Open CloudCompare and drag the point cloud map <code>global_cloud.pcd</code> into the workspace</li>
@@ -1369,40 +1468,39 @@
 <p><img alt="pcd" src="/image/source.jpg" /></p>
 <ol>
 <li>Follow the numbered green arrows in the image below:</li>
-<li><strong>Step 1</strong>: Check the file</li>
-<li><strong>Step 2</strong>: Select the front view</li>
-<li><strong>Step 3</strong>: Select the crop tool (scissors icon)</li>
-<li><strong>Step 4</strong>: Box-select the target area (between floor and ceiling in the robot's operating area)</li>
+<li><strong>Step 1</strong>: Select the front view</li>
+<li><strong>Step 2</strong>: Select the point cloud</li>
+<li><strong>Step 3</strong>: Select the scissors icon</li>
+<li><strong>Step 4</strong>: Left-click to select points and right-click to finish selecting points. Select the robot operating space as shown by the green box</li>
 <li><strong>Step 5</strong>: Keep the points inside the selection</li>
 <li><strong>Step 6</strong>: Confirm the operation (checkmark icon)</li>
 </ol>
 <p>The point cloud is now split into two parts: <code>global_cloud.segmented</code> inside the selection and <code>global_cloud.remaining</code> outside:</p>
-<p><img alt="opensource" src="/image/opensource.jpg" /></p>
+<p><img alt="opensource" src="/image/opensource.png" /></p>
 <ol>
 <li>Continue with the following steps:</li>
-<li><strong>Step 7</strong>: Uncheck <code>global_cloud.remaining</code></li>
-<li><strong>Step 8</strong>: Check <code>global_cloud.segmented</code></li>
-<li><strong>Step 9</strong>: Select the top view</li>
-<li><strong>Step 10</strong>: Select the crop tool (scissors icon)</li>
-<li><strong>Step 11</strong>: Box-select the robot's operating area (do not select real obstacles such as stacks or tables)</li>
-<li><strong>Step 12</strong>: Click the icon outside the box</li>
-<li><strong>Step 13</strong>: Confirm the operation</li>
+<li><strong>Step 7</strong>: Remove noise points. Noise points refer to points in the robot operating space that affect robot passage. Unselect <code>xxx.remaining</code> and keep <code>xxx.segmented</code></li>
+<li><strong>Step 8</strong>: Select the top view</li>
+<li><strong>Step 9</strong>: Select the scissors icon</li>
+<li><strong>Step 10</strong>: Left-click to select points and right-click to finish. Select the noise points you want to remove</li>
+<li><strong>Step 11</strong>: Keep the points outside the selection</li>
+<li><strong>Step 12</strong>: Click the checkmark to complete the segmentation</li>
 </ol>
-<p><img alt="opensource2" src="/image/opensource2.jpg" /></p>
+<p><img alt="opensource2" src="/image/opensource2.png" /></p>
 <ol>
 <li>Delete noise and merge:</li>
-<li>Select <code>global_cloud.segmented.remaining</code> (noise portion), right-click and delete</li>
-<li>Hold Ctrl and multi-select <code>global_cloud.remaining</code> and <code>global_cloud.segmented.remaining</code></li>
+<li><strong>Step 13</strong>: Select <code>xxx.segmented.remaining</code>, then right-click and choose Delete</li>
+<li><strong>Step 14</strong>: Select the point clouds indicated by arrows 14 and 15 (hold Ctrl to multi-select)</li>
+<li><strong>Step 16</strong>: Select Edit → Merge to merge the point clouds</li>
 </ol>
-<p><img alt="opensource3" src="/image/opensource3.jpg" /></p>
+<p><img alt="opensource3" src="/image/opensource3.png" /></p>
 <ol>
 <li>Save the cleaned map:</li>
-<li>Select Edit → Merge to merge the two point clouds</li>
-<li>Select File → Save to save the point cloud</li>
-<li>It must be named <code>global_cloud_cleaned.pcd</code></li>
-<li>Move the cleaned map <code>global_cloud_cleaned.pcd</code> to the map folder <code>/var/maps/room1102/</code></li>
+<li><strong>Step 17</strong>: Select File → Save</li>
+<li><strong>Step 18</strong>: In the dialog, choose the format <code>Point Cloud Library cloud</code></li>
+<li><strong>Step 19</strong>: Save the new PCD point cloud map as <code>global_cloud_cleaned.pcd</code>, and upload it to <code>/var/maps/room1102/</code> on the robot</li>
 </ol>
-<p><img alt="opensource4" src="/image/opensource4.jpg" /></p>
+<p><img alt="opensource4" src="/image/opensource4.png" /></p>
 <h5 id="42-edit-osm-file-optional">4.2 Edit OSM File (Optional)</h5>
 <p>Draw geofences to restrict the robot's operating range, preventing it from entering dangerous or unintended areas.</p>
 <div class="admonition info">
@@ -1423,7 +1521,7 @@
 </ol>
 <p><img alt="osm2" src="/image/osm2.jpg" /></p>
 <p><strong>Install JOSM</strong> (if not installed):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>josm
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>josm
 </span></code></pre></div>
 <p>After installation, enter <code>josm</code> in the terminal to open the software.</p>
 <p><strong>Steps to draw geofences</strong>:</p>
@@ -1448,7 +1546,7 @@
 </div>
 <p>To save computing resources, the map update feature is disabled by default. You can manually enable the update switch and save the updated map:</p>
 <p><strong>Step 1</strong>: When localization is stable (current score &gt; 0.9), enable the map update switch</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>vim<span class="w"> </span>/data/galbot/config/mes/manager.config
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>vim<span class="w"> </span>/data/galbot/config/mes/manager.config
 </span></code></pre></div>
 <p>Change <code>manager_update_map=0</code> to <code>manager_update_map=1</code></p>
 <p><strong>Step 2</strong>: Restart localization in place. Once the score returns to normal (current score &gt; 0.9), run <code>engine_tools</code> and choose Start Map Update</p>
@@ -1469,23 +1567,24 @@
 <p>The localization program requires the LiDAR to be running (it does not depend on the mapping program, so you can close the mapping program after it finishes).</p>
 <p>Localization uses the map path <code>/var/maps/cur</code>. Rename the target map to <code>cur</code> (for example, rename the newly created map <code>room1102</code> to <code>cur</code>), as shown below:</p>
 <p><img alt="cur" src="/image/cur.jpg" /></p>
-<h4 id="2-start-localization-required">2. Start Localization (Required)</h4>
-<p>Start the localization service:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>/data/galbot/bin/localization_server
+<h4 id="2-start-localization">2. Start Localization</h4>
+<p>This step is the same as the LiDAR service. After the robot is powered on, the localization service normally starts automatically. Use <code>top</code> to check whether the process has started. If it has not started properly, manually start the localization service:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>/data/galbot/bin/localization_server
 </span></code></pre></div>
+<p><img alt="start" src="/image/ldserv.png" /></p>
 <h4 id="3-check-localization-status-required">3. Check Localization Status (Required)</h4>
 <p>Check localization status:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>tail<span class="w"> </span>-f<span class="w"> </span>/userdata/log/localization_server/localization_server.INFO
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>tail<span class="w"> </span>-f<span class="w"> </span>/userdata/log/localization_server/localization_server.INFO
 </span></code></pre></div>
 <p><img alt="state" src="/image/state.jpg" /></p>
-<p>If the score is below 0.75 or no score/pose is published, use the <a href="#s1-remote-control">Remote Controller</a> to move the robot to the mapping start pose and send an initial pose once (use <code>engine_tools</code>, enter <code>2</code>, and press Enter), as shown below:</p>
+<p>If the score is below 0.8 or no score/pose is published, use the <a href="#s1-remote-control">Remote Controller</a> to move the robot to the mapping start pose and send an initial pose once (use <code>engine_tools</code>, enter <code>2</code>, and press Enter), as shown below:</p>
 <p><img alt="state2" src="/image/state2.jpg" /></p>
 <h4 id="4-verify-localization-ready-required">4. Verify Localization Ready (Required)</h4>
 <p>Before starting navigation, please confirm the following checklist items:</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> LiDAR service is running</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Localization service has been started</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Localization score is greater than 0.75</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Localization score is greater than 0.8</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Current pose is being published normally</li>
 </ul>
 <div class="admonition success">
@@ -1507,7 +1606,7 @@
 <ul>
 <li>The remote controller has the highest priority. When in remote control mode, developers and testers should close singorix to avoid unexpected lift or chassis movement after disconnecting the controller. Re-enable it after finishing remote control. Use the following command:</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>systemctl<span class="w"> </span>stop<span class="w"> </span>launcher
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>systemctl<span class="w"> </span>stop<span class="w"> </span>launcher
 </span></code></pre></div>
 <ul>
 <li>After using the remote controller, turn off its power. If the receiver is online, check the screen prompt (varies by controller firmware version), select an option using the dial, and confirm to shut down.</li>
@@ -1656,7 +1755,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "toc.integrate", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../javascripts/language_switch.js"></script>
       

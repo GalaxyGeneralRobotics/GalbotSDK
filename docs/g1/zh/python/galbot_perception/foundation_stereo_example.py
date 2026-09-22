@@ -6,10 +6,9 @@ import cv2
 import numpy as np
 
 try:
-    from galbot_sdk import (
+    from galbot_sdk.g1 import (
         GalbotPerception,
         GalbotRobot,
-        MachineType,
         PerceptionModule,
     )
 except ImportError:
@@ -20,14 +19,14 @@ OUTPUT_IMAGE_PATH = "foundation_stereo_depth.png"
 
 
 def main():
-    robot = GalbotRobot.get_instance(MachineType.G1)
+    robot = GalbotRobot()
     try:
         if not robot.init():
             print("Robot init failed")
             return
         print("Robot init OK")
 
-        perception = GalbotPerception.get_instance(MachineType.G1)
+        perception = GalbotPerception()
         if not perception.init({PerceptionModule.FOUNDATION_STEREO, PerceptionModule.LIGHT_STEREO}):
             print("Perception init failed")
             return

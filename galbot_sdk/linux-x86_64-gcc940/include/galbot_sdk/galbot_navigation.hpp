@@ -198,6 +198,8 @@ class GalbotNavigation {
    *                  - true: Enables omnidirectional motion planning (holonomic drive),
    *                    allowing the robot to move in any direction and rotate independently.
    *                  - false: Uses differential drive planning with kinematic constraints.
+   *                  S1 does not support omnidirectional motion planning. For S1, keep this
+   *                  parameter false; setting it to true returns NavigationStatus::INVALID_INPUT.
    *
    * @return NavigationStatus indicating the result:
    *         - In non-blocking mode: Command acceptance status
@@ -316,6 +318,8 @@ class GalbotNavigation {
    * @param omni_plan Motion planning mode flag. Default: false.
    *                  - true: Enables omnidirectional motion planning.
    *                  - false: Uses heading-based planning.
+   *                  S1 does not support omnidirectional motion planning. For S1, keep this
+   *                  parameter false; setting it to true returns NavigationStatus::INVALID_INPUT.
    *
    * @return NavigationStatus indicating the result:
    *         - In non-blocking mode: Command acceptance status
@@ -582,11 +586,11 @@ class GalbotNavigation {
    *                  yaw velocity is in radians per second. Values below 0.05 may be too
    *                  small to drive the base reliably.
    * @param acc_limit Maximum acceleration limit [ax, ay, ayaw]. Each element must be in
-   *                  range [0.05, 7.5]. Linear acceleration components are in meters per
+   *                  range [0.05, 6.0]. Linear acceleration components are in meters per
    *                  second squared and yaw acceleration is in radians per second squared.
    *                  Values below 0.05 may be too small to drive the base reliably.
    * @param jerk_limit Maximum jerk limit [jx, jy, jyaw]. Each element must be in range
-   *                   [0.05, 37.5]. Linear jerk components are in meters per second cubed
+   *                   [0.05, 12.0]. Linear jerk components are in meters per second cubed
    *                   and yaw jerk is in radians per second cubed. Values below 0.05 may be
    *                   too small to drive the base reliably.
    *

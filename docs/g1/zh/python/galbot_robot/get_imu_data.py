@@ -41,13 +41,13 @@ robot = GalbotRobot()
 # - SensorType::TORSO_IMU: torso IMU
 # - SensorType::LIDAR_IMU: lidar IMU
 # - SensorType::CHASSIS_IMU: Chassis lidar IMU
-robot.init({SensorType.TORSO_IMU})
+robot.init({SensorType.CHASSIS_IMU})
 
 # Program started, waiting for data
 time.sleep(1)
 print("Initialization succeeded")
 
-imu_data = robot.get_imu_data(SensorType.TORSO_IMU)
+imu_data = robot.get_imu_data(SensorType.CHASSIS_IMU)
 if not imu_data:
     print("No imu data!")
 else:

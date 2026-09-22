@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://docs.galbot.com/g1/troubleshooting/">
       
       
-        <link rel="prev" href="../api_cpp_reference/">
+        <link rel="prev" href="../set_config_reference/">
       
       
         <link rel="next" href="../license/">
@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -389,6 +389,25 @@
     
   
   C++ API 参考
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../set_config_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  set_config 参考
 
       </a>
     </li>
@@ -876,6 +895,33 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../set_config_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set_config 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -1127,6 +1173,17 @@
     <span class="md-ellipsis">
       
         机器人扬声器无声音/启用音频服务 galbot_vtn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-list-attribute-append-not-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python 中对 SDK 对象的 list 属性 .append() 不生效
       
     </span>
   </a>
@@ -1553,6 +1610,7 @@
 <li><a href="#robot-chassis-cannot-move">机器人底盘无法移动</a></li>
 <li><a href="#end-effector-control-failure">末端执行器控制失败</a></li>
 <li><a href="#no-sound-from-speaker-enable-galbot-vtn">机器人扬声器无声音</a></li>
+<li><a href="#python-list-attribute-append-not-working">Python 中对 SDK 对象的 list 属性 <code>.append()</code> 不生效</a></li>
 </ul>
 <p>如果你是“系统配置相关”，看这里：</p>
 <ul>
@@ -1725,20 +1783,60 @@
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>systemctl<span class="w"> </span>status<span class="w"> </span>launcher
 </span></code></pre></div>
 <p><img alt="启用 galbot_vtn 配置示例" src="/image/faq_galbot_vtn_enable.png" title="启用 galbot_vtn 配置示例" /></p>
+<h3 id="python-list-attribute-append-not-working">Python 中对 SDK 对象的 list 属性 <code>.append()</code> 不生效</h3>
+<p>本问题仅出现在 Python 中。C++ 侧对成员容器调用 <code>push_back()</code> 行为正常，不受影响。</p>
+<p><strong>现象</strong>：在 Python 中构造 <code>Trajectory</code> / <code>TrajectoryPoint</code> 后提交，接口返回 <code>ControlStatus.INVALID_INPUT</code>，机器人不执行动作，且没有明确报错提示。容易被误判为“接口不支持”或“参数传错”，实际是数据没有写入。</p>
+<p><strong>原因</strong>：读取 SDK 绑定对象的 list 属性时，返回的是底层 C++ 数据的<strong>副本</strong>而非引用。对副本调用 <code>.append()</code> 后副本随即被丢弃，数据不会写回 C++ 对象，SDK 实际收到的是空列表。这一点与常规 Python 对象的 list 属性行为不同。</p>
+<p>以下写法不生效：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">traj</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">()</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">traj</span><span class="o">.</span><span class="n">joint_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;head&quot;</span><span class="p">)</span>          <span class="c1"># 不生效</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="n">traj</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">traj_point</span><span class="p">)</span>            <span class="c1"># 不生效</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="n">traj_point</span><span class="o">.</span><span class="n">joint_command_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>  <span class="c1"># 不生效</span>
+</span></code></pre></div>
+<p>正确做法是先用普通 Python list 收集，再整体赋值回属性：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">traj</span> <span class="o">=</span> <span class="n">Trajectory</span><span class="p">()</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">traj</span><span class="o">.</span><span class="n">joint_groups</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;head&quot;</span><span class="p">]</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">traj</span><span class="o">.</span><span class="n">joint_names</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">trajectory</span><span class="p">:</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>    <span class="n">traj_point</span> <span class="o">=</span> <span class="n">TrajectoryPoint</span><span class="p">()</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>    <span class="n">traj_point</span><span class="o">.</span><span class="n">time_from_start_second</span> <span class="o">=</span> <span class="n">target_time</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>    <span class="n">joint_command_vec</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>    <span class="k">for</span> <span class="n">joint</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>        <span class="n">joint_cmd</span> <span class="o">=</span> <span class="n">JointCommand</span><span class="p">()</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>        <span class="n">joint_cmd</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">joint</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>        <span class="n">joint_command_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">joint_cmd</span><span class="p">)</span>   <span class="c1"># 操作的是普通 Python list</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>    <span class="n">traj_point</span><span class="o">.</span><span class="n">joint_command_vec</span> <span class="o">=</span> <span class="n">joint_command_vec</span>  <span class="c1"># 整体赋值，一次性写入</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>    <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">traj_point</span><span class="p">)</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="n">traj</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">points</span>                              <span class="c1"># 整体赋值，一次性写入</span>
+</span></code></pre></div>
+<p>该规则适用于所有 SDK 绑定对象的 list 属性，不限于 <code>Trajectory</code>：<code>joint_groups</code>、<code>joint_names</code> 同样受影响，运动模块的 <code>GroupCommand.joint_commands</code>、<code>TargetGroupTrajectory.group_commands</code>、<code>TaskCommand.subtask_commands</code> 等也是一样。受影响的接口包括 <code>execute_joint_trajectory</code> 和 <code>set_joint_commands_batch</code>。</p>
+<p><code>examples/g1/python/galbot_robot/execute_joint_trajectory.py</code> 中的示例即采用上述写法，可直接参考。</p>
 <h2 id="system-and-configuration">系统与配置</h2>
 <h3 id="how-to-check-current-operating-mode">如何查看当前工作模式</h3>
 <p>可通过 XCU 上的 <code>sys_tool</code> 查询当前整机工作模式。</p>
+<p>由于新版本 XCU 不连接 Wi-Fi，无法通过 XCU 的无线 IP 直接登录。通过 Wi-Fi 远程连接时，请先登录 HPU，再从 HPU 登录 XCU。</p>
 <ol>
-<li>登录 XCU：</li>
+<li>从 PC 登录 HPU：</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ssh<span class="w"> </span>root@192.168.xxx.xx
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1"># password: 12345678</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ssh<span class="w"> </span>galbot@192.168.xxx.xx
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="c1"># 密码：gb@2023</span>
+</span></code></pre></div>
+<ol>
+<li>在 HPU 上登录 XCU：</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>ssh<span class="w"> </span>root@192.168.1.66
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="c1"># 密码：12345678</span>
 </span></code></pre></div>
 <ol>
 <li>进入工具目录并启动：</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">cd</span><span class="w"> </span>/data/bin
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>./sys_tool
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">cd</span><span class="w"> </span>/data/bin
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>./sys_tool
 </span></code></pre></div>
 <p><code>sys_tool</code> 是 XCU 系统工具，用于查询基线版本、切换/查询整机模式。工具路径：<code>/data/bin/sys_tool</code>。</p>
 <p>启动后会进入交互式命令行，常用命令：</p>
@@ -1752,60 +1850,28 @@
 <li>若不是 <code>WORKING_MODE</code>（例如进入 <code>ABNORMAL</code>），先按<a href="#general-checks">通用检查项</a>第 3 步定位 <code>abnormal_service</code>，恢复后再继续其他排查。</li>
 </ul>
 <p>示例（<code>q</code> 查询关键字段）：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>current mode:
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>mode_type: WORKING_MODE
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>mode_switch_state {
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>  status: SUCCESS
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>}
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>current mode:
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>mode_type: WORKING_MODE
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>mode_switch_state {
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>  status: SUCCESS
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>}
 </span></code></pre></div>
 <p><img alt="工作模式查询示例" src="/image/faq_working_mode.png" title="工作模式查询示例" />
 <img alt="abnormal_service 日志示例" src="/image/faq_abnormal_service.jpeg" title="abnormal_service 日志示例" /></p>
 <h3 id="how-to-check-robot-system-version">如何查看机器人系统版本</h3>
 <p>推荐优先使用 SDK 命令快速查看：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>galbot_sdk<span class="w"> </span>check-version
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>galbot_sdk<span class="w"> </span>check-version
 </span></code></pre></div>
 <p>如果机器人使用非默认 IP 地址：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--robot-ip<span class="w"> </span>&lt;机器人IP&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--robot-ip<span class="w"> </span>&lt;机器人IP&gt;
 </span></code></pre></div>
 <p>如果当前环境没有该命令，再在 XCU 或 HPU 上执行：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>cat<span class="w"> </span>/data/config/system.cfg
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>cat<span class="w"> </span>/data/config/system.cfg
 </span></code></pre></div>
 <p>看 <code>CUR_VERSION</code> 字段即可。</p>
 <p><img alt="查看 CUR_VERSION 字段" src="/image/faq_cur_version.jpeg" title="查看 CUR_VERSION 字段" /></p>
 <h3 id="how-to-check-robot-sdk-version-compatibility">如何检查机器人系统版本与 SDK 兼容性</h3>
-<p>使用以下命令快速检查当前 SDK 与机器人系统版本（GBS）是否匹配：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>galbot_sdk<span class="w"> </span>check-version
-</span></code></pre></div>
-<p>常用参数：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># 指定非默认机器人 IP 地址</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--robot-ip<span class="w"> </span>&lt;机器人IP&gt;
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># 查看完整兼容性对照</span>
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--list
-</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
-</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="c1"># 离线手工校验</span>
-</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>galbot_sdk<span class="w"> </span>check-version<span class="w"> </span>--sdk-version<span class="w"> </span><span class="m">1</span>.8.0<span class="w"> </span>--robot-version<span class="w"> </span>GBS_1.16.0
-</span></code></pre></div>
-<p>兼容性对照（参考 <code>output/check_robot_compat.py</code>）：</p>
-<table>
-<thead>
-<tr>
-<th>SDK 版本范围</th>
-<th>对应机器人系统版本（GBS）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1.5.0 ~ 1.7.99</td>
-<td>GBS_1.15.x</td>
-</tr>
-<tr>
-<td>1.8.0 ~ 1.8.99</td>
-<td>GBS_1.16.x</td>
-</tr>
-</tbody>
-</table>
-<p>如果检查结果不匹配，优先升级机器人系统版本到 SDK 要求范围；只有在必须保持当前机器人版本时，再选择降级 SDK。</p>
+<p>详见<a href="../installation_version_compatibility/">版本兼容性检查</a>。</p>
 <h3 id="emergency-stop-e-stop-overview">机器人紧急开关（急停按钮）说明</h3>
 <p>急停按钮位于机器人本体背部醒目位置，为红色按钮，标有 <code>EMERGENCY STOP</code> 字样。</p>
 <p><img alt="机器人急停按钮" src="/image/stop.jpg" title="机器人急停按钮" /></p>
@@ -1843,7 +1909,7 @@
 </tbody>
 </table>
 <ul>
-<li>硬件配置：HPU 搭载 NVIDIA Jetson Orin 平台（64GB，275 TOPS），XCU 为实时控制侧处理器。</li>
+<li>硬件配置：HPU 支持 NVIDIA Jetson AGX Orin（64GB，275 TOPS）和 NVIDIA Jetson AGX Thor（128GB，最高 2070 FP4 TFLOPS）平台，XCU 为实时控制侧处理器。</li>
 <li>系统软件：运行定制化 Linux，集成实时内核补丁，保障运动控制的确定性执行。</li>
 <li>架构注意：HPU 与 XCU 均为 <code>ARM64 (aarch64)</code> 架构，在这两个平台上运行的程序需使用 <code>aarch64</code> 工具链交叉编译。</li>
 </ul>
@@ -1851,7 +1917,7 @@
 <ul>
 <li>实时性隔离：电机控制需要微秒级确定性响应，视觉推理可能一次性占用 GPU 几百毫秒；放在同一计算单元会互相抢占资源，导致关节卡顿甚至整机失控。</li>
 <li>故障隔离：HPU 侧 AI 模型异常时，XCU 仍可维持底层控制与站立姿态，避免单点故障扩散为整机失效。</li>
-<li>扩展性：后续升级算力时可优先替换 Orin 模块，XCU 的实时控制逻辑与固件保持稳定，降低硬件迭代成本。</li>
+<li>扩展性：后续升级算力时可优先替换 HPU 计算模块，XCU 的实时控制逻辑与固件保持稳定，降低硬件迭代成本。</li>
 </ul>
 <h3 id="how-to-access-hpu-and-xcu">如何进入 HPU 与 XCU</h3>
 <p>可通过以下方式获取登录 IP：</p>
@@ -1861,23 +1927,23 @@
 <li>XCU：<code>192.168.1.66</code></li>
 <li>HPU（Orin）：<code>192.168.1.88</code></li>
 </ol>
-<p>登录方式与账号密码如下：</p>
-<ul>
-<li>登录 HPU（Orin）：</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>ssh<span class="w"> </span>galbot@&lt;Orin_IP&gt;
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="c1"># 密码：gb@2023</span>
+<p>由于新版本 XCU 不连接 Wi-Fi，无法通过 XCU 的无线 IP 直接登录。通过 Wi-Fi 远程连接时，请先从 PC 登录 HPU，再从 HPU 登录 XCU：</p>
+<ol>
+<li>从 PC 登录 HPU：</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>ssh<span class="w"> </span>galbot@192.168.xxx.xx
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="c1"># 密码：gb@2023</span>
 </span></code></pre></div>
-<ul>
-<li>登录 XCU：</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>ssh<span class="w"> </span>root@&lt;XCU_IP&gt;
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="c1"># 密码：12345678</span>
+<ol>
+<li>在 HPU 上登录 XCU：</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>ssh<span class="w"> </span>root@192.168.1.66
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="c1"># 密码：12345678</span>
 </span></code></pre></div>
-<p>建议先 <code>ping</code> 验证连通性，再执行 <code>ssh</code> 登录。</p>
+<p>建议先验证 PC 与 HPU 的连通性，再执行 <code>ssh</code> 登录。</p>
 <h3 id="how-to-check-robot-serial-number">如何查看机器 SN 号</h3>
 <p>在 XCU 上执行：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>/data/bin/sys_tool
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>/data/bin/sys_tool
 </span></code></pre></div>
 <p>按工具提示查看设备信息。</p>
 <h3 id="how-to-check-joint-health">如何检查关节是否正常</h3>
@@ -1887,7 +1953,7 @@
 <img alt="关节速度错误示例" src="/image/faq_joint_speed_error.jpeg" title="关节速度错误示例" /></p>
 <h3 id="how-to-enable-real-time-end-effector-control">如何启用末端实时控制指令</h3>
 <p>在 XCU 上把：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>/data/config/default/SingoriX/galbot_g1-v2.2/robot_config.toml
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>/data/config/default/SingoriX/galbot_g1-v2.2/robot_config.toml
 </span></code></pre></div>
 <p>里的 <code>using_wbc</code> 改成 <code>true</code>，然后重启 <code>launcher</code>。</p>
 <h3 id="where-joint-limits-are-configured">关节限位在哪里配置</h3>
@@ -1899,10 +1965,10 @@
 </ul>
 <h3 id="enable-disable-a-system-service">启用/禁用某个系统服务</h3>
 <p>根据目标服务运行在 HPU 还是 XCU，登录对应平台后编辑：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>/userdata/user_config/mode_service_config_default.toml
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>/userdata/user_config/mode_service_config_default.toml
 </span></code></pre></div>
 <p>注释或取消注释对应服务项后，在对应平台重启 <code>launcher</code>：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>systemctl<span class="w"> </span>restart<span class="w"> </span>launcher
 </span></code></pre></div>
 <p><img alt="启用或禁用服务配置示例" src="/image/faq_disable_service.png" title="启用或禁用服务配置示例" /></p>
 <h3 id="embosa-ip-config-reset-after-reboot">重启后 embosa IP 配置被改回去</h3>
@@ -1912,9 +1978,10 @@
 <h3 id="how-to-change-camera-resolution">如何修改相机分辨率</h3>
 <p>在 Orin 上改这几个文件：</p>
 <ul>
-<li><code>/data/galbot/config/right_arm_camera.cfg</code></li>
-<li><code>/data/galbot/config/left_arm_camera.cfg</code></li>
-<li><code>/data/galbot/config/front_head_camera.cfg</code></li>
+<li><code>/data/galbot/config/right_arm_camera_capture.cfg</code></li>
+<li><code>/data/galbot/config/left_arm_camera_capture.cfg</code></li>
+<li><code>/data/galbot/config/front_head_camera_capture.cfg</code></li>
+<li><code>/data/galbot/config/surround_cameras_capture.cfg</code></li>
 </ul>
 <p>改完重启机器就会生效。多传感器同时开的时候，适当降分辨率会稳一些。</p>
 <p><img alt="相机分辨率配置示例 1" src="/image/faq_camera_resolution_1.jpeg" title="相机分辨率配置示例 1" />
@@ -1925,17 +1992,17 @@
 <img alt="topic 频率统计示例" src="/image/faq_topic_rate.jpeg" title="topic 频率统计示例" /></p>
 <h3 id="how-to-check-camera-intrinsics-extrinsics-calibration">如何查看相机内外参和标定信息</h3>
 <p>XCU 上直接看文件：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>cat<span class="w"> </span>/userdata/config/robot_config/eyehand_calib.toml
-</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>cat<span class="w"> </span>/userdata/config/robot_config/stereo_camera_intrinsic.toml
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>cat<span class="w"> </span>/userdata/config/robot_config/eyehand_calib.toml
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>cat<span class="w"> </span>/userdata/config/robot_config/stereo_camera_intrinsic.toml
 </span></code></pre></div>
 <p>也可以直接用 SDK 接口读，内参和外参都能拿到。例如获取左臂相机外参：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">transform</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_transform</span><span class="p">(</span>
-</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>    <span class="n">target_frame</span><span class="o">=</span><span class="s2">&quot;base_link&quot;</span><span class="p">,</span>
-</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>    <span class="n">source_frame</span><span class="o">=</span><span class="s2">&quot;left_arm_camera_color_optical_frame&quot;</span><span class="p">,</span>
-</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">transform</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_transform</span><span class="p">(</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>    <span class="n">target_frame</span><span class="o">=</span><span class="s2">&quot;base_link&quot;</span><span class="p">,</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>    <span class="n">source_frame</span><span class="o">=</span><span class="s2">&quot;left_arm_camera_color_optical_frame&quot;</span><span class="p">,</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="p">)</span>
 </span></code></pre></div>
 <p>或者：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">transform</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_sensor_extrinsic</span><span class="p">(</span><span class="n">sensor_id</span><span class="o">=</span><span class="n">SensorType</span><span class="o">.</span><span class="n">LEFT_ARM_CAMERA</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">transform</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_sensor_extrinsic</span><span class="p">(</span><span class="n">sensor_id</span><span class="o">=</span><span class="n">SensorType</span><span class="o">.</span><span class="n">LEFT_ARM_CAMERA</span><span class="p">)</span>
 </span></code></pre></div>
 <h2 id="logs-and-debugging">日志与调试</h2>
 <h3 id="where-low-level-service-logs-are-stored">底层服务日志在哪里</h3>
@@ -1952,36 +2019,36 @@
 <p>排查时先确认服务跑在哪个平台，再去对应平台查看对应服务目录。</p>
 <h3 id="where-sdk-logs-are-stored">SDK log 在哪里</h3>
 <p>PC 或 Robot 侧运行 SDK 后，日志默认在：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>~/galbot_sdk_log/
+<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>~/galbot_sdk_log/
 </span></code></pre></div>
 <p>如果在 PC 上看到 <code>get info failed</code> 或 <code>PUBLISH FAIL</code>，优先查两端的 <code>embosa_ip_config.json</code>。</p>
 <h3 id="how-to-enable-and-debug-core-dumps">如何开启 core 文件并调试</h3>
 <p>core 文件通常用来定位服务崩溃。开启 core、设置路径、重新登录 shell 之后，文件一般会落在：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>/userdata/core
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>/userdata/core
 </span></code></pre></div>
 <p>例如 mps 服务可以这样看：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>gdb<span class="w"> </span>/data/galbot/bin/service_motion_plan<span class="w"> </span><span class="o">[</span>core_file<span class="o">]</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>gdb<span class="w"> </span>/data/galbot/bin/service_motion_plan<span class="w"> </span><span class="o">[</span>core_file<span class="o">]</span>
 </span></code></pre></div>
 <p>进 gdb 后执行 <code>bt -full</code>。</p>
 <p><img alt="core 回溯示例（bt -full）" src="/image/faq_core_bt_full.png" title="core 回溯示例（bt -full）" /></p>
 <h3 id="python-on-robot-cannot-find-module">在 Robot 上执行 Python 找不到 module</h3>
 <p>在 <code>~/.bashrc</code> 里加一行：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/data/galbot/lib:<span class="nv">$PYTHONPATH</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/data/galbot/lib:<span class="nv">$PYTHONPATH</span>
 </span></code></pre></div>
 <p>重新登录后生效。</p>
 <h3 id="python-example-error-numpy-has-no-typedict">执行 Python 示例报错：<code>numpy</code> 没有 <code>typeDict</code></h3>
 <p>一般是 <code>scipy</code> 版本太低，升级一下：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>scipy
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>scipy
 </span></code></pre></div>
 <h2 id="installation-and-environment">安装与环境</h2>
 <h3 id="how-to-start-sdk-docker">SDK Docker 启动方式</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>gunzip<span class="w"> </span>-c<span class="w"> </span>galbot_sdk_image_1.8.0.tar.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>load
-</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="nb">cd</span><span class="w"> </span>output/docker
-</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>./run.sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>gunzip<span class="w"> </span>-c<span class="w"> </span>galbot_sdk_image_1.10.0.tar.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>docker<span class="w"> </span>load
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="nb">cd</span><span class="w"> </span>output/docker
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>./run.sh
 </span></code></pre></div>
 <h3 id="how-to-use-perception-service-gbs-11516">如何使用感知服务（GBS 1.15.16+）</h3>
 <p>在 HPU 上修改：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>/data/galbot/config/galbot_perception_moduleConfig.yaml
+<div class="language-text highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>/data/galbot/config/galbot_perception_moduleConfig.yaml
 </span></code></pre></div>
 <p>把 <code>sensor_data_sync_max_diff_tolerance</code> 改成 <code>500000</code>（纳秒），重启 <code>launcher</code> 后再跑 <code>examples/g1/python/galbot_perception</code> 下的示例验证。</p>
 <h2 id="still-not-resolved">仍未解决？</h2>
@@ -2045,7 +2112,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "toc.integrate", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../javascripts/language_switch.js"></script>
       

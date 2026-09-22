@@ -31,8 +31,10 @@
 
 #include <array>
 #include <memory>
+#include <set>
 #include <string>
 #include <tuple>
+#include <unordered_map>
 #include <vector>
 
 #include "motion_plan_config.hpp"
@@ -108,13 +110,24 @@ static std::unordered_map<MotionStatus, std::string> status_string_map_ = {
     {MotionStatus::COMM_DISCONNECTED, "COMM_DISCONNECTED: Connection failed"},
     {MotionStatus::STATUS_NUM, "STATUS_NUM: Total number of status enumerations"},
     {MotionStatus::UNSUPPORTED_FUNCRION, "UNSUPPORTED_FUNCRION: Function not supported yet"}};
+
+/**
+ * @enum MotionPlanType
+ * @brief Planning algorithm used for a segment of a combined motion plan.
+ */
+enum class MotionPlanType {
+  MOTION_PLAN = 0,  ///< Sampling-based, collision-aware path planning.
+  TRAJ_PLAN = 1,    ///< Direct joint-space trajectory interpolation without path search.
+  MOVE_LINE = 2     ///< Cartesian straight-line interpolation with inverse-kinematics sampling.
+};
+
 /**
  * @class Parameter
  * @brief Motion planning parameter configuration class.
  *
- * This class extends PlannerConfig to provide comprehensive configuration options for
- * whole-body motion planning and execution. It encapsulates execution mode, actuation type,
- * tool frame handling, collision checking, and coordinate frame specifications.
+ * Parameter derives from PlannerConfig and does not add configuration fields. Use Parameter with high-level APIs
+ * whose signature accepts std::shared_ptr<Parameter>; it supplies convenience constructors and setter/getter methods.
+ * Use PlannerConfig directly with waypoint/server-facing APIs whose signature accepts const PlannerConfig&.
  *
  * @note All angular parameters are expected in radians, linear parameters in meters (SI units).
  */
@@ -139,8 +152,8 @@ class Parameter : public PlannerConfig {
    * @param check_collision If true, enables collision checking during planning; if false, skips collision detection
    * @param frame           Reference frame for pose specifications, defaults to "base_link" (robot base frame)
    *
-   * @note timeout is only relevant when blocking is true.
-   * @note Invalid actuate strings will cause undefined behavior; ensure key exists in g_actuate_type_map.
+   * @note The supplied frame initializes reference_frame.
+   * @throws std::out_of_range if actuate is not a key in g_actuate_type_map.
    */
   Parameter(bool direct_execute, bool blocking, double timeout, std::string actuate, bool tool_pose,
             bool check_collision, const std::string& frame = "base_link") {
@@ -150,6 +163,7 @@ class Parameter : public PlannerConfig {
     actuate_type = g_actuate_type_map.at(actuate);
     is_tool_pose = tool_pose;
     is_check_collision = check_collision;
+    reference_frame = frame;
   }
 
   // ---------- Setter methods ----------
@@ -173,9 +187,9 @@ class Parameter : public PlannerConfig {
   /**
    * @brief Set motion execution timeout.
    *
-   * @param timeout Maximum allowed time for motion execution (in seconds, must be positive)
+   * @param timeout Maximum planning or execution request wait time in seconds (must be positive)
    *
-   * @note Only applies when blocking mode is enabled.
+   * @note In APIs that launch a background execution task, this timeout can still be applied by that task.
    */
   void set_timeout(double timeout) { timeout_second = timeout; }
 
@@ -185,10 +199,9 @@ class Parameter : public PlannerConfig {
    * @param actuate Actuation type string key: "with_chain_only" (arms only),
    *                "with_torso" (arms + torso), or "with_leg" (arms + legs)
    *
-   * @warning Must be a valid key in g_actuate_type_map, otherwise behavior is undefined.
+   * @note Invalid keys are ignored and leave the current actuation type unchanged.
    */
-  void set_actuate(const std::string& actuate) 
-  {
+  void set_actuate(const std::string& actuate) {
     if (g_actuate_type_map.find(actuate) == g_actuate_type_map.end()) {
       return;
     }
@@ -225,12 +238,34 @@ class Parameter : public PlannerConfig {
   /**
    * @brief Set Cartesian linear motion mode.
    *
-   * @param flag If true, uses linear (straight-line) Cartesian motion;
-   *             if false, uses joint-space interpolation (may result in curved end-effector paths)
+   * Selects the Cartesian line planner in APIs that dispatch according to Parameter::move_line, including
+   * set_end_effector_pose() and motion_plan(). The controlled target frame is interpolated from its current pose to
+   * the requested pose in Cartesian space. This constrains the target-frame path, not individual joint motion.
    *
-   * @note Linear motion provides predictable Cartesian paths but may have joint velocity discontinuities.
-   */
+   * @param flag If true, require straight-line Cartesian motion of the controlled target frame. If false,
+   *             use the normal trajectory-planning path, whose end-effector path is not guaranteed to be straight.
+   *
+   * @note Enable this mode only when the task requires straight-line Cartesian motion of the target frame. A line
+   *       request can fail if an intermediate pose is unreachable, crosses a singularity, violates joint limits,
+   *       or has no continuous IK solution.
+   * @note GalbotMotion::move_line always selects Cartesian line planning for its MotionPlanWaypoints input and does
+   *       not require Parameter::move_line to be true.
+  */
   void set_move_line(bool flag) { move_line = flag; }
+
+  /**
+   * @brief Enable or disable collision checks against loaded environment obstacles.
+   *
+   * @param enable If true, include environment obstacles registered with the motion service. If false,
+   *               environment-obstacle checks are disabled.
+   *
+   * @note This flag is used only by planning APIs that forward environment-collision configuration to the motion
+   *       service. Environment obstacles must first be registered through add_obstacle() or attach_target_object(),
+   *       and callers must explicitly update those collision objects as the environment changes. GalbotMotion does
+   *       not provide real-time obstacle perception, automatic environment updates, or dynamic-environment obstacle
+   *       avoidance.
+   */
+  void set_enable_env_collision_check(bool enable) { enable_env_collision_check = enable; }
 
   // ---------- Getter methods ----------
 
@@ -297,9 +332,16 @@ class Parameter : public PlannerConfig {
   /**
    * @brief Check if Cartesian linear motion mode is enabled.
    *
-   * @return true if using linear Cartesian interpolation, false if using joint-space interpolation
+   * @return true if using Cartesian straight-line interpolation; false if using the normal trajectory planner
    */
   bool is_move_line() { return move_line; }
+
+  /**
+   * @brief Get environment-obstacle collision-check status.
+   *
+   * @return true if loaded environment obstacles are included in collision checking; false otherwise
+   */
+  bool get_enable_env_collision_check() const { return enable_env_collision_check; }
 };
 
 /**
@@ -414,9 +456,11 @@ class PoseState : public RobotStates {
    */
   Type get_type() const override { return Type::POSE; }
 
-  std::string frame_id = "EndEffector";  ///< Target frame on the kinematic chain (e.g., "EndEffector", "Camera", "TCP")
+  /// Chain frame type for user targets: "EndEffector", "Camera", or "TCP".
+  /// In MotionPlanChainTarget.cart filled by SDK, frame_id is the resolved URDF body link name.
+  std::string frame_id = "EndEffector";
   std::string reference_frame = "base_link";  ///< Reference coordinate frame (e.g., "base_link", "world", "odom")
-
+  std::set<std::string> assist_chains;
   Pose pose;  ///< Target Cartesian pose: position (meters) + orientation (unit quaternion)
 
   // Pose start_pose;  ///< [Unused] Starting pose for single-point planning
@@ -445,6 +489,8 @@ class JointStates : public RobotStates {
   Type get_type() const override { return Type::JOINT; }
 
   std::vector<double> joint_positions;  ///< Target joint configuration for the chain (radians), ordered by joint index
+  /// Optional parallel joint names (e.g. from IK); when empty, motion-plan conversion uses chain_joint_names_.
+  std::vector<std::string> joint_names;
 
   // std::vector<double> start_joint_positions;  ///< [Unused] Starting joint configuration for single-point planning
 
@@ -474,6 +520,79 @@ class JointStates : public RobotStates {
 };
 
 /**
+ * @enum MotionPlanTargetMode
+ * @brief Representation used by a single-chain motion-plan target.
+ */
+enum class MotionPlanTargetMode {
+  kJoint,     ///< Use the joint-space target stored in MotionPlanChainTarget::joint.
+  kCartesian  ///< Use the Cartesian target stored in MotionPlanChainTarget::cart.
+};
+
+/**
+ * @struct MotionPlanChainTarget
+ * @brief Target for one kinematic chain at a single path waypoint.
+ *
+ * Selects either a joint-space or Cartesian-space target for the named chain.
+ * Multiple MotionPlanChainTarget objects can be grouped into one
+ * MotionPlanWaypoint to coordinate several chains at the same path waypoint.
+ */
+struct MotionPlanChainTarget {
+  std::string chain_name;  ///< Name of the kinematic chain targeted at this waypoint.
+  MotionPlanTargetMode mode = MotionPlanTargetMode::kJoint;  ///< Selects the active target representation.
+  JointStates joint;  ///< Joint-space target used when mode is MotionPlanTargetMode::kJoint.
+  PoseState cart;     ///< Cartesian-space target used when mode is MotionPlanTargetMode::kCartesian.
+};
+
+/**
+ * @brief Coordinated targets for multiple kinematic chains at one path waypoint.
+ */
+using MotionPlanWaypoint = std::vector<MotionPlanChainTarget>;
+
+/**
+ * @brief Ordered path containing multiple waypoints for multiple kinematic chains.
+ */
+using MotionPlanWaypoints = std::vector<MotionPlanWaypoint>;
+
+/**
+ * @struct PlanRequest
+ * @brief Planning request for one segment of a combined motion plan.
+ *
+ * Defines the planning algorithm, pass-through behavior, reserved segment-specific
+ * options, and ordered target waypoints used by GalbotMotion::combine_plan(). Each
+ * waypoint may contain coordinated targets for one or more kinematic chains. The
+ * SDK sends the logical AND of enforce_pass across all requests to MPS. Therefore,
+ * MPS is asked to continue after segment-level issues only when every request sets
+ * enforce_pass to true; any false value requests that the combined plan abort.
+ */
+struct PlanRequest {
+  MotionPlanType plan_type = MotionPlanType::MOTION_PLAN;  ///< MotionPlanType algorithm used for this segment.
+  bool enforce_pass = true;  ///< Allow continuation after segment issues; all request values are logically ANDed.
+  PlannerConfig options;     ///< Per-segment planning options, reserved for future overrides in combine_plan().
+  std::vector<MotionPlanWaypoint> target;  ///< Ordered multi-chain target waypoints for this segment.
+};
+
+/**
+ * @struct CollisionInfo
+ * @brief Detailed collision information for a reported link pair.
+ *
+ * Contains the collision state, involved robot or environment links, distance,
+ * and collision metadata returned by the MPS kinematic collision service.
+ *
+ * @note collision_type contains the raw MPS collision metadata copied from the
+ *       response common_str. The current format includes the sample tag and a
+ *       collision classification whose value is "self" or "env". The default
+ *       value is "UNKNOWN" for a default-constructed CollisionInfo; an empty
+ *       service value is returned as an empty string.
+ */
+struct CollisionInfo {
+  bool is_collision = false;                ///< Whether MPS reports a collision for this link pair.
+  std::string link1;                        ///< Name of the first link in the reported pair.
+  std::string link2;                        ///< Name of the second link in the reported pair.
+  double distance = 0.0;                    ///< Distance between the reported links, in meters.
+  std::string collision_type = "UNKNOWN";  ///< Raw MPS metadata with sample tag and self/environment classification.
+};
+
+/**
  * @class GalbotMotion
  * @brief Unified motion planning and control interface for Galbot robots.
  *
@@ -484,7 +603,7 @@ class JointStates : public RobotStates {
  * - Tool and obstacle management
  * - Whole-body coordinated motion planning
  *
- * Use GalbotMotion::get_instance(MachineType) to obtain a reference for a specific platform (G1/S1).
+ * Use GalbotMotion::get_instance(MachineType) to obtain a reference for a specific platform (G1/S1/G3).
  *
  * @note All angular units are radians, linear units are meters (SI standard).
  * @note Quaternions must be unit-normalized: sqrt(x² + y² + z² + w²) = 1.
@@ -495,7 +614,7 @@ class GalbotMotion {
 
   /**
    * @brief Runtime factory for selecting a concrete motion planning singleton.
-   * @param m Machine type identifier (e.g. MachineType::G1, MachineType::S1).
+   * @param m Machine type identifier (e.g. MachineType::G1, MachineType::S1, MachineType::G3).
    * @return Reference to the singleton motion interface for the specified machine type.
    */
   static GalbotMotion& get_instance(MachineType m);
@@ -532,7 +651,9 @@ class GalbotMotion {
    * computing intermediate link poses.
    *
    * @param target_frame     Name of the link whose pose is to be computed (e.g., "left_ee_link", "camera_link")
-   * @param reference_frame  Coordinate frame for pose expression (default: "base_link")
+   * @param reference_frame  Coordinate frame for pose expression. Valid values are "world", "map",
+   *                         "base_link" (or its alias "base"), or a link name returned by
+   *                         get_support_links(). Default: "base_link".
    * @param joint_state      Joint configurations by chain: {chain_name -> joint_angles}.
    *                         Empty map uses current robot joint state.
    * @param params           Planning parameters (collision checking, timeout, etc.)
@@ -557,7 +678,9 @@ class GalbotMotion {
    *
    * @param target_frame            Link name for pose computation
    * @param reference_robot_states  Complete robot state; nullptr uses current robot state
-   * @param reference_frame         Coordinate frame for pose expression (default: "base_link")
+   * @param reference_frame         Coordinate frame for pose expression. Valid values are "world", "map",
+   *                                "base_link" (or its alias "base"), or a link name returned by
+   *                                get_support_links(). Default: "base_link".
    * @param params                  Planning parameters
    *
    * @return Tuple of (status, pose_vector):
@@ -578,8 +701,9 @@ class GalbotMotion {
    *
    * @param target_pose              Target Cartesian pose: [x, y, z, qx, qy, qz, qw] (meters, quaternion)
    * @param chain_names              Kinematic chains to coordinate (e.g., {"left_arm"}, {"right_arm", "torso"})
-   * @param target_frame             Frame on chain for pose target (e.g., "EndEffector", "Tool")
-   * @param reference_frame          Coordinate frame for pose specification (default: "base_link")
+   * @param target_frame             Frame on chain: "EndEffector", "Camera", or "TCP"
+   * @param reference_frame          Coordinate frame for pose specification. Valid values are "world", "map",
+   *                                 and "base_link". Default: "base_link".
    * @param initial_joint_positions  Seed configurations by chain: {chain_name -> joint_angles}.
    *                                 Empty map uses current robot state as seed.
    * @param enable_collision_check   If true, only returns collision-free solutions
@@ -606,8 +730,9 @@ class GalbotMotion {
    *
    * @param target_pose              Target Cartesian pose: [x, y, z, qx, qy, qz, qw] (meters, quaternion)
    * @param chain_names              Kinematic chains to coordinate
-   * @param target_frame             Frame on chain for pose target (e.g., "EndEffector", "Tool")
-   * @param reference_frame          Coordinate frame for pose specification (default: "base_link")
+   * @param target_frame             Frame on chain: "EndEffector", "Camera", or "TCP"
+   * @param reference_frame          Coordinate frame for pose specification. Valid values are "world", "map",
+   *                                 and "base_link". Default: "base_link".
    * @param reference_robot_states   Complete robot state as IK seed; nullptr uses current state
    * @param enable_collision_check   If true, only returns collision-free solutions
    * @param params                   Planning parameters
@@ -651,8 +776,8 @@ class GalbotMotion {
  *                         "Tool" (TCP) is NOT supported: the kinematic service computes
  *                         the Jacobian by link name only and has no tool-pose capability,
  *                         so passing "Tool" returns MotionStatus::UNSUPPORTED_FUNCRION.
- * @param reference_frame  Reference coordinate frame: "base_link" (robot-base frame)
- *                         or "world" (world-fixed frame). Default: "base_link"
+ * @param reference_frame  Reference coordinate frame. Valid values are "world", "map",
+ *                         and "base_link". Default: "base_link".
  * @param joint_state      Chain joint override map: {chain_name -> joint_angles}.
  *                         Empty map uses current complete robot state.
  * @param params           Planning parameters (timeout, etc.)
@@ -693,7 +818,8 @@ virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian(
  *                                or any valid URDF link name from get_support_links().
  *                                "Tool" (TCP) is NOT supported and returns
  *                                MotionStatus::UNSUPPORTED_FUNCRION (see get_jacobian()).
- * @param reference_frame         Reference coordinate frame. Default: "base_link"
+ * @param reference_frame         Reference coordinate frame. Valid values are "world", "map",
+ *                                and "base_link". Default: "base_link".
  * @param reference_robot_states  Complete robot state; nullptr uses current complete robot state
  * @param params                  Planning parameters (timeout, etc.)
  *
@@ -713,22 +839,43 @@ virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian_
 
 
   /**
+   * @brief Compute inverse kinematics using generalized multi-chain target description.
+   *
+   * Uses the newer MotionPlanTarget schema (`inverse_kinematic_general_req`) to support
+   * mixed chain targets and assist-chain settings in a single request.
+   *
+   * @param target_waypoint         A single waypoint containing one or more chain targets
+   * @param reference_robot_states  Optional explicit IK seed robot state
+   * @param params           Planning parameters
+   *
+   * @return Tuple of (status, solution_map):
+   *         - status: MotionStatus::SUCCESS if solvable, error code otherwise
+   *         - solution_map: {chain_name -> joint_angles} (radians), empty on failure
+   */
+  virtual std::tuple<MotionStatus, std::unordered_map<std::string, JointStates>> inverse_kinematics_general(
+      const MotionPlanWaypoint& target_waypoint, const std::shared_ptr<RobotStates>& reference_robot_states = nullptr,
+      std::shared_ptr<Parameter> params = default_param) = 0;
+
+  /**
    * @brief Get current end-effector pose from robot state.
    *
-   * Queries the TF (Transform) tree to retrieve the current Cartesian pose of a
-   * specified end-effector link. Requires the link to be defined in the robot's URDF model.
+   * Computes the current Cartesian pose via MPS forward kinematics using the
+   * robot's live joint state. Requires the link to be defined in the robot's URDF model.
    *
    * @param end_effector_frame  Name of end-effector link (must exist in URDF, e.g., "left_ee_link")
-   * @param reference_frame     Coordinate frame for pose expression (default: "base_link")
+   * @param reference_frame     Coordinate frame for pose expression. Valid values are "world", "map",
+   *                            "base_link" (or its alias "base"), or a link name returned by
+   *                            get_support_links(). Default: "base_link".
    *
    * @return Tuple of (status, pose_vector):
    *         - status: MotionStatus::SUCCESS on success, error codes:
-   *                   - DATA_FETCH_FAILED: TF lookup failed
+   *                   - DATA_FETCH_FAILED: joint state fetch failed
    *                   - INVALID_INPUT: Invalid frame names
    *         - pose_vector: [x, y, z, qx, qy, qz, qw] (meters, quaternion) or empty on failure
    *
    * @note Reflects the current actual robot state (not planned state).
-   * @warning Requires TF tree to be properly published and up-to-date.
+   * @note Use this method when the exact URDF link name is already known. For chain-relative semantic frames such
+   *       as the flange, camera, or attached-tool TCP, use get_end_effector_pose_on_chain() instead.
    */
   virtual std::tuple<MotionStatus, std::vector<double>> get_end_effector_pose(const std::string& end_effector_frame,
                                                                               const std::string& reference_frame = "base_link") = 0;
@@ -739,18 +886,25 @@ virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian_
    * without needing to know the exact link name in URDF.
    *
    * @param chain_name       Kinematic chain identifier (e.g., "left_arm", "right_arm")
-   * @param frame_id         End-effector frame type: "EndEffector" (flange), "Camera", etc.
-   * @param reference_frame  Coordinate frame for pose expression (default: "base_link")
+   * @param frame_id         Chain frame type: "EndEffector", "Camera", or "TCP"
+   * @param reference_frame  Coordinate frame for pose expression. Valid values are "world", "map",
+   *                         "base_link" (or its alias "base"), or a link name returned by
+   *                         get_support_links(). Default: "base_link".
    *
    * @return Tuple of (status, pose_vector):
    *         - status: MotionStatus::SUCCESS on success, error code otherwise
    *         - pose_vector: [x, y, z, qx, qy, qz, qw] (meters, quaternion) or empty on failure
    *
    * @note Internally maps chain_name + frame_id to actual URDF link name.
+   * @note Use this method when you want a semantic frame without knowing the URDF link name. Supported frame types
+   *       include "EndEffector" (the chain flange), "Camera", and "TCP"/"ToolPose" (the attached tool TCP).
+   *       A TCP query requires a tool to be attached first; otherwise the call returns MotionStatus::INVALID_INPUT.
+   * @note The resolved frame is ultimately queried through the same forward-kinematics path as
+   *       get_end_effector_pose(). The difference is that this overload resolves chain_name + frame_id first.
    */
   virtual std::tuple<MotionStatus, std::vector<double>> get_end_effector_pose_on_chain(
       const std::string& chain_name,
-      const std::string frame_id = "EndEffector",  // "EndEffector", "Camera"
+      const std::string frame_id = "EndEffector",  // "EndEffector", "Camera", "TCP"
       const std::string& reference_frame = "base_link") = 0;
 
   /**
@@ -761,8 +915,12 @@ virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian_
    * completion or returns after starting a background execution task.
    *
    * @param target_pose              Target Cartesian pose: [x, y, z, qx, qy, qz, qw] (meters, quaternion)
-   * @param end_effector_frame       Kinematic chain identifier (e.g., "left_arm", "right_arm")
-   * @param reference_frame          Coordinate frame for pose specification (default: "base_link")
+   * @param end_effector_frame       Kinematic chain identifier (e.g., "left_arm", "right_arm"). This parameter
+   *                                 selects the arm, not the target link on that arm. The target frame is selected
+   *                                 by params->is_tool_pose; see the notes below for flange and tool-TCP behavior.
+   * @param reference_frame          Coordinate frame for pose specification. Valid values are "world", "map",
+   *                                 "base_link", or a chain name returned by get_support_chains().
+   *                                 Default: "base_link".
    * @param reference_robot_states   Planning seed state; nullptr uses current state.
    *                                 **Warning:** For direct execution, typically leave as nullptr to avoid
    *                                 conflicts between seed and actual robot state.
@@ -782,7 +940,10 @@ virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian_
    *         - FAULT: Planning or execution failure
    *
    * @note Motion type (linear/joint-space) controlled by params->move_line flag.
-   * @note Motion speed parameters are configured under `/data/galbot/config/default/service_motion_plan/traj_plan`.
+   * @note end_effector_frame only selects the kinematic chain, such as "left_arm" or "right_arm"; it does not
+   *       select a semantic frame such as "EndEffector", "Camera", or "TCP". attach_tool() updates the kinematic
+   *       and collision models but does not change this API's target frame. For attached-tool-TCP targeting, set
+   *       params->is_tool_pose=true; the default value false targets the flange.
    * @note For direct execution (params->is_direct_execute=true), avoid passing reference_robot_states.
    * @warning Non-blocking mode does not cancel or skip robot motion; it only makes this API return immediately.
    */
@@ -790,7 +951,36 @@ virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian_
                                              const std::string& reference_frame = "base_link",
                                              std::shared_ptr<RobotStates> reference_robot_states = nullptr,
                                              const bool& enable_collision_check = true, const bool& is_blocking = true,
-                                             const double& timeout = -1.0, std::shared_ptr<Parameter> params = default_param) = 0;
+                                             const double& timeout = -1.0,
+                                             std::shared_ptr<Parameter> params = default_param) = 0;
+
+  /**
+   * @overload
+   * @brief Command end-effector to move to target Cartesian pose with assist chains.
+   *
+   * Same as set_end_effector_pose(target_pose, end_effector_frame, reference_frame, ...), with
+   * @p assist_chains placed after @p reference_frame for coordinated multi-chain planning.
+   *
+   * @param target_pose              Target Cartesian pose: [x, y, z, qx, qy, qz, qw].
+   * @param end_effector_frame       Primary kinematic chain identifier, such as "left_arm" or "right_arm".
+   * @param reference_frame          Coordinate frame for pose specification. Valid values are "world", "map",
+   *                                 "base_link", or a chain name returned by get_support_chains().
+   * @param assist_chains            Additional chains to coordinate (e.g. {"torso"}). "leg" is not supported.
+   * @param reference_robot_states   Optional whole-body planning seed; nullptr uses the current state.
+   * @param enable_collision_check   If true, require a collision-free trajectory.
+   * @param is_blocking              If true, wait for completion; if false, return after starting background execution.
+   * @param timeout                  Maximum wait time in seconds; a negative value uses params->timeout_second.
+   * @param params                   Motion-planning and execution parameters.
+   *
+   * @return MotionStatus describing planning or execution status.
+   */
+  virtual MotionStatus set_end_effector_pose(const std::vector<double>& target_pose, const std::string& end_effector_frame,
+                                             const std::string& reference_frame,
+                                             const std::set<std::string>& assist_chains,
+                                             std::shared_ptr<RobotStates> reference_robot_states = nullptr,
+                                             const bool& enable_collision_check = true, const bool& is_blocking = true,
+                                             const double& timeout = -1.0,
+                                             std::shared_ptr<Parameter> params = default_param) = 0;
 
   /**
    * @brief Plan trajectory for a single kinematic chain.
@@ -803,8 +993,9 @@ virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian_
    *
    * @param target                   Target state (must be PoseState or JointStates, not base RobotStates).
    *                                 Specifies the goal configuration for planning.
-   * @param start                    Optional start state (typically JointStates).
-   *                                 nullptr uses current robot state as start.
+   * @param start                    Optional start state. If provided, it must be a JointStates instance;
+   *                                 otherwise, the method returns MotionStatus::INVALID_INPUT.
+   *                                 nullptr uses the current robot state as start.
    *                                 **Warning:** For direct execution, leave as nullptr to avoid conflicts.
    * @param reference_robot_states   Whole-body reference state for planning context.
    *                                 nullptr uses current robot state. If start is provided, its joint values
@@ -820,6 +1011,8 @@ virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian_
    *
    * @note Trajectory is time-parameterized with velocity/acceleration limits respected.
    * @note For direct execution (params->is_direct_execute=true), trajectory is automatically sent to robot.
+   * @note For the leg chain, params->move_line must be true and target must be a Cartesian PoseState without
+   *       assist chains.
    * @warning target must be PoseState or JointStates; passing base RobotStates will cause INVALID_INPUT error.
    */
   virtual std::tuple<MotionStatus, std::unordered_map<std::string, std::vector<std::vector<double>>>> motion_plan(
@@ -827,6 +1020,217 @@ virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian_
       std::shared_ptr<RobotStates> reference_robot_states = nullptr, bool enable_collision_check = true,
       std::shared_ptr<Parameter> params = default_param) = 0;
 
+  /**
+   * @brief Plan a collision-aware path through multiple waypoints via the motion planning server.
+   *
+   * Sends a MotionPlanReq to the server, which invokes the sampling-based planner
+   * (default: EITstar/RRT variant) to find a collision-free geometric
+   * path, then passes it through the trajectory planner for time parameterization with
+   * velocity/acceleration/jerk profiles.
+   *
+   * Server-side flow:
+   * 1. Converts waypoints to internal RobotStates and PlannerConfig.
+   * 2. For single chain: calls singleChainMotionPlan(); for multi-chain: calls multiChainMotionPlan().
+   * 3. The geometric path is always time-parameterized before execution.
+   * 4. If is_check_collision=true (default), validates for collision/joint limits/velocity.
+   * 5. If is_direct_execute=true, the trajectory is pushed to the WBC queue for execution.
+   *
+   * @note Collision semantics: collision checking is performed against self-collision and
+   * user-loaded environment obstacles via `add_obstacle()` / `attach_target_object()`.
+   * Real-time perception (e.g., navigation point-cloud map) is NOT automatically integrated.
+   *
+   * @param waypoints      Sequence of waypoints; each waypoint is a vector of MotionPlanChainTarget
+   *                       (one target per chain to coordinate). Supports multi-chain coordination.
+   *                       **Warning:** "leg" chain is NOT currently supported as a chain_name or
+   *                       in assist_chains; will return INVALID_INPUT.
+   * @param params         PlannerConfig controlling execution and planning behavior:
+   *                       - is_direct_execute: if true, push trajectory to WBC after planning
+   *                       - is_check_collision: if true, validate trajectory before execution (default: true)
+   *                       - enable_env_collision_check: enable environment obstacle collision checking
+   *                       - actuate_type: globally adds the selected assist chain to every Cartesian target
+   *                       Also controls reference frame, tool pose, etc.
+   * @param start_state    Optional explicit start state; nullptr uses current robot state.
+   *                       **Warning:** For direct execution (is_direct_execute=true), leave as nullptr
+   *                       to avoid conflicts between seed and actual robot state.
+   *
+   * @return Tuple of (status, trajectory_map):
+   *         - status: MotionStatus::SUCCESS if planning succeeds, error code otherwise
+   *         - trajectory_map: {chain_name -> trajectory}, where trajectory is a sequence of
+   *                           joint configurations (radians) along the time-parameterized path
+   *
+   * @note This is the low-level sampling-based, server-facing form. For single-target planning with a simpler API,
+   *       use the `motion_plan(target, start, ...)` overload above, which dispatches to `traj_plan()` by default or
+   *       `move_line()` when `params->move_line` is true; it does not call this overload.
+   * @note `params.actuate_type` is a global convenience setting applied to every Cartesian target in `waypoints`.
+   *       It is not recommended when waypoint-specific assistance is required. Prefer setting
+   *       `MotionPlanChainTarget::cart.assist_chains` while constructing individual waypoints when only selected
+   *       targets should use an assist chain. Existing per-target assist chains are preserved.
+   */
+  virtual std::tuple<MotionStatus, std::unordered_map<std::string, std::vector<std::vector<double>>>> motion_plan(
+      const MotionPlanWaypoints& waypoints, const PlannerConfig& params = {},
+      const std::shared_ptr<RobotStates>& start_state = nullptr) = 0;
+
+  /**
+   * @brief Generate a time-parameterized joint trajectory through waypoints WITHOUT path search.
+   *
+   * Sends a TrajPlanReq to the server (mps_core.cpp:handle_sig_point_traj_plan_req or
+   * handle_mul_point_traj_plan_req), which performs direct joint-space interpolation with
+   * time parameterization. Unlike `motion_plan()`, this does NOT run the sampling-based
+   * path search -- it connects waypoints directly in joint space.
+   *
+   * Server-side flow:
+   * - Single-point target: calls moveJointPlan() -- direct start-to-target interpolation.
+   * - Multi-point targets: calls moveWaypointJointPlan() -- smooth multi-waypoint interpolation.
+   * - is_direct_connect_try=true and is_path_search=false by default for this path.
+   * - is_check_collision still applies (default: true), so joint limits and velocity
+   *   are validated after interpolation.
+   *
+   * Typical use cases:
+   * - Quick repositioning in known-free space where sampling-based planning is unnecessary
+   * - Generating smooth trajectories through teach-points or recorded joint configurations
+   * - Internal use by higher-level planning functions that have already validated the path
+   *
+   * @param waypoints      Sequence of waypoints; each waypoint is a vector of MotionPlanChainTarget
+   *                       (one target per chain to coordinate). Targets should be JointStates
+   *                       (joint configuration) for this call type.
+   *                       **Warning:** "leg" chain is NOT currently supported as a chain_name or
+   *                       in assist_chains; will return INVALID_INPUT.
+   * @param params         PlannerConfig (see `motion_plan()` waypoint overload). Its `actuate_type` is applied
+   *                       globally to every Cartesian target and is not recommended for waypoint-specific control;
+   *                       prefer each target's `cart.assist_chains` when only selected waypoints need assistance.
+   * @param start_state    Optional explicit start state; nullptr uses current robot state.
+   *                       **Warning:** For direct execution (is_direct_execute=true), leave as nullptr.
+   *
+   * @return Tuple of (status, trajectory_map):
+   *         - status: MotionStatus::SUCCESS if planning succeeds, error code otherwise
+   *         - trajectory_map: {chain_name -> trajectory}, time-parameterized joint trajectory
+   *
+   * @note Faster than `motion_plan()` since it skips the sampling-based path search phase.
+   * @warning Does NOT search for collision-free paths; if any waypoint or the direct
+   *          interpolation passes through obstacles, the planner will not detect it.
+   *          is_check_collision (default: true) still validates joint limits and
+   *          velocity feasibility, but not collision.
+   */
+  virtual std::tuple<MotionStatus, std::unordered_map<std::string, std::vector<std::vector<double>>>> traj_plan(
+      const MotionPlanWaypoints& waypoints, const PlannerConfig& params = {},
+      const std::shared_ptr<RobotStates>& start_state = nullptr) = 0;
+
+  /**
+   * @brief Generate straight-line Cartesian motion through waypoints.
+   *
+   * Sends a MoveLineReq to the server , which plans
+   * a straight-line path in Cartesian (task) space for the end-effector, then converts it
+   * to a joint-space trajectory via IK at intermediate sampling points.
+   *
+   * Server-side flow:
+   * - For single chain: calls singleChainMoveLine().
+   * - For multi-chain: calls multiChainMoveLine().
+   * - The planner samples intermediate points along the Cartesian line using the
+   *   `move_line_intermidiate_point` count configured in TrajPlanner.
+   * - At each sample point, IK is solved to find the corresponding joint configuration.
+   * - The resulting joint sequence is time-parameterized and validated.
+   *
+   * Compared to other plan types:
+   * - `motion_plan()`: joint-space sampling with collision avoidance; end-effector path shape
+   *   is planner-determined (not guaranteed straight).
+   * - `traj_plan()`: direct joint-space interpolation; end-effector path is unpredictable.
+   * - `move_line()`: Cartesian-space linear interpolation; end-effector path is a straight line.
+   *
+   * Typical use cases:
+   * - Precise linear approach/retract motions (e.g., peg-in-hole insertion, suction pick)
+   * - Surface-following tasks (painting, welding, gluing)
+   * - Any operation requiring a predictable straight-line end-effector trajectory
+   *
+   * @note Collision semantics: collision checking (if enabled in params) is performed
+   * against self-collision and user-loaded environment obstacles. The server validates
+   * intermediate IK-sampled points for collision.
+   *
+   * @param waypoints      Sequence of waypoints; each waypoint must specify Cartesian targets
+   *                       (MotionPlanChainTarget with PoseState). Joint-space targets will be
+   *                       ignored or cause planning failure.
+   *                       The "leg" chain is supported only when it is the sole chain, every target is Cartesian,
+   *                       and no assist chain is specified; other leg combinations return INVALID_INPUT.
+   * @param params         PlannerConfig (see `motion_plan()` waypoint overload). Its `actuate_type` is applied
+   *                       globally to every Cartesian target and is not recommended for waypoint-specific control;
+   *                       prefer each target's `cart.assist_chains` when only selected waypoints need assistance.
+   * @param start_state    Optional explicit start state; nullptr uses current robot state.
+   *                       **Warning:** For direct execution (is_direct_execute=true), leave as nullptr.
+   *
+   * @return Tuple of (status, trajectory_map):
+   *         - status: MotionStatus::SUCCESS if planning succeeds, error code otherwise
+   *         - trajectory_map: {chain_name -> trajectory}, time-parameterized joint trajectory
+   *                           that produces straight-line Cartesian end-effector motion
+   *
+   * @note The number of intermediate IK samples is controlled by `move_line_intermidiate_point`
+   *       in the server's TrajPlanner config. More samples = smoother path but slower planning.
+   * @warning Cartesian linear motion may encounter joint velocity/acceleration limits,
+   *          singularities, or unreachable configurations along the path, causing planning failure.
+   * @warning Ensure all waypoints are within the chain's reachable workspace.
+   */
+  virtual std::tuple<MotionStatus, std::unordered_map<std::string, std::vector<std::vector<double>>>> move_line(
+      const MotionPlanWaypoints& waypoints, const PlannerConfig& params = {},
+      const std::shared_ptr<RobotStates>& start_state = nullptr) = 0;
+
+  /**
+   * @brief Combine multiple heterogeneous plan requests into a single coordinated trajectory.
+   *
+   * Accepts a sequence of PlanRequest objects, each specifying its own plan type
+   * (MOTION_PLAN / TRAJ_PLAN / MOVE_LINE), target waypoints, and per-segment options.
+   * The server composes these into a single continuous trajectory that transitions
+   * smoothly between segments, with each segment using its own planning algorithm.
+   *
+   * Server-side flow:
+   * - The SDK sends a CombinePlanReq (proto field: combine_plan_req) containing a
+   *   sequence of SigPlanReq sub-requests, each with its own plan_type, target states,
+   *   and PlannerConfig options.
+   * - The `enforce_pass` flag sent to the server is the logical AND of all segment
+   *   enforce_pass values. When true, the server attempts to continue planning even
+   *   if individual segments encounter issues; when false, any segment failure aborts
+   *   the entire combined plan.
+   * - Per-segment options override the top-level server_options where explicitly set.
+   * - The server concatenates resulting trajectories into a single RobotTrajectoryVec
+   *   with C1 continuity (smooth velocity transition) at segment boundaries.
+   * - If is_direct_execute=true, the combined trajectory is pushed to the WBC queue.
+   *
+   * Typical use cases:
+   * - Pick-and-place: approach (move_line) -> grasp (motion_plan with collision) -> retreat (move_line)
+   * - Mixing collision-checked path segments with fast trajectory-only segments
+   * - Multi-stage operations where different phases need different planning strategies
+   * - Recovery sequences: move away from obstacle (motion_plan) -> return to task (traj_plan)
+   *
+   * @param plan_reqs      Vector of plan requests, one per segment. Each PlanRequest contains:
+   *                       - plan_type: MOTION_PLAN (sampling-based collision-aware path planning),
+   *                         TRAJ_PLAN (direct joint-space interpolation, no path search),
+   *                         or MOVE_LINE (Cartesian linear interpolation + IK sampling)
+   *                       - enforce_pass: if true, all segments in this request contribute to
+   *                         the overall enforce_pass (AND logic). Controls whether the server
+   *                         continues on segment-level issues vs. aborting immediately.
+   *                       - options: per-segment PlannerConfig (reserved for future per-segment overrides).
+   *                       - target: waypoint sequence for this segment.
+   *                         **Warning:** "leg" chain is NOT currently supported as a chain_name
+   *                         or in assist_chains; will return INVALID_INPUT.
+   * @param params         PlannerConfig applied to the combined plan. Per-segment fields in
+   *                       plan_reqs.options override the corresponding top-level fields.
+   * @param start_state    Optional explicit start state for the first segment; nullptr uses
+   *                       current robot state. Subsequent segments start where the previous
+   *                       segment ends automatically.
+   *                       **Warning:** For direct execution (is_direct_execute=true), leave as
+   *                       nullptr to avoid conflicts between seed and actual robot state.
+   *
+   * @return Tuple of (status, trajectory_map):
+   *         - status: MotionStatus::SUCCESS if the combined plan succeeds, error code otherwise
+   *         - trajectory_map: {chain_name -> trajectory}, continuous trajectory covering all segments
+   *
+   * @note The server ensures C1 continuity (smooth velocity transition) at segment boundaries.
+   * @note All segments share the same trajectory timeline; chains are time-synchronized.
+   * @warning The server-side CombinePlanReq handler must be implemented in the MPS server
+   *          (proto field: combine_plan_req = 17). If the server version does not support
+   *          this handler, the request will fail.
+   * @warning For direct execution (is_direct_execute=true), avoid passing start_state.
+   */
+  virtual std::tuple<MotionStatus, std::unordered_map<std::string, std::vector<std::vector<double>>>> combine_plan(
+      const std::vector<PlanRequest>& plan_reqs, const PlannerConfig& params = {},
+      const std::shared_ptr<RobotStates>& start_state = nullptr) = 0;
   /**
    * @brief Plan trajectory through multiple waypoints for a single chain.
    *
@@ -956,14 +1360,37 @@ virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian_
   virtual std::tuple<MotionStatus, std::vector<bool>> check_collision(const std::vector<std::shared_ptr<RobotStates>>& start,
                                                                       bool enable_collision_check = true,
                                                                       std::shared_ptr<Parameter> params = default_param) = 0;
+
+  /**
+   * @brief Check robot states for detailed collision pairs.
+   *
+   * Queries the kinematic collision service and returns the collision pair details currently provided by MPS.
+   *
+   * @param robot_states   Vector of robot states to check. If empty, MPS checks the current robot state.
+   * @param is_check_once  Whether MPS should run a one-shot check for each state.
+   * @param is_log         Whether MPS should emit collision-check logs for each state.
+   * @param params         Optional parameters. Only timeout_second is used by this API today.
+   *
+   * @return Tuple of (status, collision_infos):
+   *         - status: MotionStatus::SUCCESS if the kinematic collision request completes
+   *         - collision_infos: Collision pair details. collision_type contains
+   *                            the raw MPS common_str metadata, including the sample
+   *                            tag and self/environment classification.
+   */
+  virtual std::tuple<MotionStatus, std::vector<CollisionInfo>> check_collision_detail(
+      const std::vector<std::shared_ptr<RobotStates>>& robot_states, bool is_check_once = false, bool is_log = false,
+      std::shared_ptr<Parameter> params = default_param) = 0;
+
   /**
    * @brief Attach a tool to an end-effector.
    *
    * Loads a tool (gripper, camera, custom end-effector) onto a kinematic chain.
    * Updates the kinematic model and collision geometry to include the tool.
    *
-   * @param chain  Kinematic chain for tool attachment (e.g., "left_arm", "right_arm")
-   * @param tool   Tool identifier (must be predefined in tool library, see get_support_tool_list())
+   * @param chain  Kinematic chain for tool attachment. Only "left_arm" and "right_arm" are supported.
+   * @param tool   Tool identifier. The name must be present in get_support_tool_list(), but that list is only the
+   *               candidate range known to the current service. Select the tool according to the actual end-effector
+   *               type and configuration of the specified robot model and arm.
    *
    * @return MotionStatus:
    *         - SUCCESS: Tool attached successfully
@@ -971,7 +1398,13 @@ virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian_
    *         - FAULT: Tool attachment failed
    *
    * @note Tool transform and collision geometry must be pre-configured in robot description.
+   * @note Tool compatibility can differ by robot model, arm, and deployed robot/MPS configuration. A tool returned by
+   *       get_support_tool_list() is therefore not guaranteed to be attachable to every supported chain.
    * @note Attaching a new tool automatically detaches any previously attached tool on that chain.
+   * @note For set_end_effector_pose(), the target remains the flange by default. Set
+   *       Parameter::is_tool_pose=true (or call Parameter::set_tool_pose(true)) when target_pose is the tool TCP.
+   * @note get_support_tool_list() returns attachable tool names. get_support_ee_frame() returns frame types accepted
+   *       by APIs with frame_id/target_frame (for example "EndEffector", "Camera", and "TCP").
    * @warning Kinematics and collision checking will reflect the attached tool; update plans accordingly.
    */
   virtual MotionStatus attach_tool(const std::string& chain, const std::string& tool) = 0;
@@ -981,7 +1414,7 @@ virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian_
    * Removes the attached tool from a kinematic chain, reverting to the base end-effector.
    * Updates kinematic model and collision geometry accordingly.
    *
-   * @param chain  Kinematic chain to detach tool from (e.g., "left_arm", "right_arm")
+   * @param chain  Kinematic chain to detach tool from. Only "left_arm" and "right_arm" are supported.
    *
    * @return MotionStatus:
    *         - SUCCESS: Tool detached successfully
@@ -1161,6 +1594,19 @@ virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian_
    * @note Useful for inspecting current limits or saving/restoring configurations.
    */
   virtual std::tuple<MotionStatus, MotionPlanConfig> get_motion_plan_config() = 0;
+
+  /**
+   * @brief Set/Get MPS configuration by type (GetSet channel).
+   *
+   * This is a thin wrapper over MPS Get/Set MotionPlanConfig RPC:
+   * - `config.config_type` selects the target subsystem (e.g. "sampler", "ik_solver", "trajectory_planner").
+   * - For `set_config_by_type`, the request payload is encoded in `config.common_str` (type-dependent).
+   * - For `get_config_by_type`, the response payload is returned in `out.common_str` (type-dependent).
+   *
+   * The goal is to avoid exposing many narrow, type-specific configuration APIs.
+   */
+  virtual MotionStatus set_config_by_type(const MotionPlanConfig& config) = 0;
+  virtual std::tuple<MotionStatus, MotionPlanConfig> get_config_by_type(const std::string& config_type) = 0;
 
   /**
    * @brief Get robot link names from kinematic model.
@@ -1439,6 +1885,18 @@ virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian_
   virtual int get_robot_dof() = 0;
 
   /**
+   * @brief Get joint names for a specific kinematic chain.
+   *
+   * Returns the ordered list of joint names belonging to the specified chain,
+   * as configured in the robot model.
+   *
+   * @param chain_name  Chain identifier (e.g., "left_arm", "right_arm", "torso")
+   *
+   * @return Vector of joint names for the chain, empty if chain not found
+   */
+  virtual std::vector<std::string> get_chain_joint_names(const std::string& chain_name) = 0;
+
+  /**
    * @brief Get current complete robot state.
    *
    * Retrieves the current whole-body joint configuration and mobile base pose.
@@ -1535,6 +1993,8 @@ virtual std::tuple<MotionStatus, std::vector<std::vector<double>>> get_jacobian_
    * @note Uses status_string_map_ for lookup; returns "UNKNOWN" if status not found.
    */
   virtual std::string status_to_string(MotionStatus status) = 0;
+
+  std::string common_str;
 };
 
 }  // namespace sdk

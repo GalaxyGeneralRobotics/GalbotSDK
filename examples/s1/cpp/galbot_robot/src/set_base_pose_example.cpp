@@ -37,7 +37,7 @@ int main() {
     std::cout << "\n[Test 1] Set chassis pose using Pose struct..." << std::endl;
     {
         Pose pose;
-        pose.position.x = 0.5;    // Target x coordinate
+        pose.position.x = 0.3;    // Move to x = 0.3 m in the odom frame
         pose.position.y = 0.0;    // Target y coordinate
         pose.position.z = 0.0;    // z coordinate (chassis ignored)
         set_yaw_orientation(pose, 0.0);  // Oriented to 0 radians
@@ -55,7 +55,7 @@ int main() {
     // ========== Test Version 2: Simplified coordinate version (default 1s motion time) ==========
     std::cout << "\n[Test 2] Use simplified coordinate version (default 1s motion time)..." << std::endl;
     {
-        double x = 1.0;           // Target x coordinate
+        double x = -0.3;          // Move backward by 0.3 m from the current pose
         double y = 0.0;           // Target y coordinate
         double yaw = 0.0;         // Target orientation
         // std::string frame_id = "base_link";

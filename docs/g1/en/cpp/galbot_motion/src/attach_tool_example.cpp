@@ -37,6 +37,16 @@ int main() {
 
         if (status == MotionStatus::SUCCESS) {
             std::cout << "✅ Tool attached successfully: " << tool_name << std::endl;
+
+            // Clean up the attached tool model to avoid affecting subsequent examples.
+            status = planner.detach_tool(chain_name);
+            std::cout << "Cleanup status feedback: " << planner.status_to_string(status) << std::endl;
+
+            if (status == MotionStatus::SUCCESS) {
+                std::cout << "✅ Tool detached successfully." << std::endl;
+            } else {
+                std::cerr << "❌ Tool cleanup failed." << std::endl;
+            }
         } else {
             std::cerr << "❌ Tool attachment failed. Please check whether the tool name is defined in the configuration file." << std::endl;
         }

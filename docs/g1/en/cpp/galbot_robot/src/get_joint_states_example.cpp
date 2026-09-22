@@ -40,12 +40,20 @@ int main() {
     // Get joint states by joint group names; returns all joints if empty
     std::vector<std::string> joint_groups = {"left_arm"};
     auto ret_states = robot.get_joint_states(joint_groups, {});
-    print_joint_states(ret_states);
+    if (ret_states.empty()) {
+        std::cout << "No joint states returned for the specified joint groups" << std::endl;
+    } else {
+        print_joint_states(ret_states);
+    }
 
     // Get specified joint states; if provided, overrides joint group input
     std::vector<std::string> joint_names = {"left_arm_joint1", "left_arm_joint2"};
     ret_states = robot.get_joint_states(joint_groups, joint_names);
-    print_joint_states(ret_states);
+    if (ret_states.empty()) {
+        std::cout << "No joint states returned for the specified joint names" << std::endl;
+    } else {
+        print_joint_states(ret_states);
+    }
 
     // Exit system and release SDK resources
     robot.request_shutdown();

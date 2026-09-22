@@ -30,8 +30,12 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/map.h>  // IWYU pragma: export
+#include <google/protobuf/map_entry.h>
+#include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "galbot/core_proto/header.pb.h"
+#include "galbot/core_proto/wrapper.pb.h"
 #include "galbot/spatial_proto/pose.pb.h"
 #include "galbot/spatial_proto/twist.pb.h"
 // @@protoc_insertion_point(includes)
@@ -49,7 +53,7 @@ struct TableStruct_galbot_2fnavigation_5fproto_2fodometry_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[1]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[2]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -61,15 +65,49 @@ namespace navigation_proto {
 class Odometry;
 class OdometryDefaultTypeInternal;
 extern OdometryDefaultTypeInternal _Odometry_default_instance_;
+class Odometry_CustomOdmMapEntry_DoNotUse;
+class Odometry_CustomOdmMapEntry_DoNotUseDefaultTypeInternal;
+extern Odometry_CustomOdmMapEntry_DoNotUseDefaultTypeInternal _Odometry_CustomOdmMapEntry_DoNotUse_default_instance_;
 }  // namespace navigation_proto
 }  // namespace galbot
 PROTOBUF_NAMESPACE_OPEN
 template<> ::galbot::navigation_proto::Odometry* Arena::CreateMaybeMessage<::galbot::navigation_proto::Odometry>(Arena*);
+template<> ::galbot::navigation_proto::Odometry_CustomOdmMapEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::navigation_proto::Odometry_CustomOdmMapEntry_DoNotUse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace galbot {
 namespace navigation_proto {
 
 // ===================================================================
+
+class Odometry_CustomOdmMapEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<Odometry_CustomOdmMapEntry_DoNotUse, 
+    std::string, ::galbot::core_proto::Value,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<Odometry_CustomOdmMapEntry_DoNotUse, 
+    std::string, ::galbot::core_proto::Value,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  Odometry_CustomOdmMapEntry_DoNotUse();
+  explicit Odometry_CustomOdmMapEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const Odometry_CustomOdmMapEntry_DoNotUse& other);
+  static const Odometry_CustomOdmMapEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const Odometry_CustomOdmMapEntry_DoNotUse*>(&_Odometry_CustomOdmMapEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.navigation_proto.Odometry.CustomOdmMapEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fnavigation_5fproto_2fodometry_2eproto);
+    return ::descriptor_table_galbot_2fnavigation_5fproto_2fodometry_2eproto.file_level_metadata[0];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
 
 class Odometry PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.navigation_proto.Odometry) */ {
@@ -112,7 +150,7 @@ class Odometry PROTOBUF_FINAL :
                &_Odometry_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   friend void swap(Odometry& a, Odometry& b) {
     a.Swap(&b);
@@ -180,14 +218,33 @@ class Odometry PROTOBUF_FINAL :
 
   // nested types ----------------------------------------------------
 
+
   // accessors -------------------------------------------------------
 
   enum : int {
+    kCustomOdmMapFieldNumber = 5,
     kChildFrameIdFieldNumber = 2,
     kHeaderFieldNumber = 1,
     kPoseFieldNumber = 3,
     kTwistFieldNumber = 4,
   };
+  // map<string, .galbot.core_proto.Value> custom_odm_map = 5;
+  int custom_odm_map_size() const;
+  private:
+  int _internal_custom_odm_map_size() const;
+  public:
+  void clear_custom_odm_map();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >&
+      _internal_custom_odm_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >*
+      _internal_mutable_custom_odm_map();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >&
+      custom_odm_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >*
+      mutable_custom_odm_map();
+
   // string child_frame_id = 2;
   void clear_child_frame_id();
   const std::string& child_frame_id() const;
@@ -265,6 +322,11 @@ class Odometry PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      Odometry_CustomOdmMapEntry_DoNotUse,
+      std::string, ::galbot::core_proto::Value,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> custom_odm_map_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr child_frame_id_;
   ::galbot::core_proto::Header* header_;
   ::galbot::spatial_proto::PoseMsg* pose_;
@@ -281,6 +343,8 @@ class Odometry PROTOBUF_FINAL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // Odometry
 
 // .galbot.core_proto.Header header = 1;
@@ -575,9 +639,37 @@ inline void Odometry::set_allocated_twist(::galbot::spatial_proto::TwistMsg* twi
   // @@protoc_insertion_point(field_set_allocated:galbot.navigation_proto.Odometry.twist)
 }
 
+// map<string, .galbot.core_proto.Value> custom_odm_map = 5;
+inline int Odometry::_internal_custom_odm_map_size() const {
+  return custom_odm_map_.size();
+}
+inline int Odometry::custom_odm_map_size() const {
+  return _internal_custom_odm_map_size();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >&
+Odometry::_internal_custom_odm_map() const {
+  return custom_odm_map_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >&
+Odometry::custom_odm_map() const {
+  // @@protoc_insertion_point(field_map:galbot.navigation_proto.Odometry.custom_odm_map)
+  return _internal_custom_odm_map();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >*
+Odometry::_internal_mutable_custom_odm_map() {
+  return custom_odm_map_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >*
+Odometry::mutable_custom_odm_map() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.navigation_proto.Odometry.custom_odm_map)
+  return _internal_mutable_custom_odm_map();
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 

@@ -1,0 +1,1593 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.galbot.com/g3/routine_operations/">
+      
+      
+        <link rel="prev" href="../installation_terminology/">
+      
+      
+        <link rel="next" href="../tutorials/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>常规操作 - galbot_sdk - G3</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/nav_collapse.css">
+    
+      <link rel="stylesheet" href="../stylesheets/sidebar_scroll.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="galbot_sdk - G3" class="md-header__button md-logo" aria-label="galbot_sdk - G3" data-md-component="logo">
+      
+  <img src="/image/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            galbot_sdk - G3
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              常规操作
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GalaxyGeneralRobotics/GalbotSDK" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GalbotSDK
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../overview/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概览
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../installation_system_requirements/" class="md-tabs__link">
+          
+  
+  
+  安装与配置
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  常规操作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tutorials/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  入门教程
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples_python/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python 示例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples_cpp/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  C++ 示例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api_python_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python API 参考
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api_cpp_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  C++ API 参考
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../set_config_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  set_config 参考
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../troubleshooting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  故障排除
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../license/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  许可证
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="galbot_sdk - G3" class="md-nav__button md-logo" aria-label="galbot_sdk - G3" data-md-component="logo">
+      
+  <img src="/image/logo.png" alt="logo">
+
+    </a>
+    galbot_sdk - G3
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GalaxyGeneralRobotics/GalbotSDK" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GalbotSDK
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安装与配置
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    安装与配置
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_system_requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统要求
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_and_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    环境部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_version_compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本兼容性检查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_terminology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    术语说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常规操作
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常规操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        地图引擎 - 建图与定位
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="地图引擎 - 建图与定位">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        建图流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="建图流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 前置条件检查 (必选)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 登录建图平台 (必选)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 开始建图 (必选)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 完成建图 (必选)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 应用地图 (必选)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 编辑地图 (必选)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 编辑地图 (必选)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 擦除噪点 (必选)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 点位标注 (可选)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 区域标注 (可选)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-v118" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 物体标注 (可选，v1.18 及以上版本)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 地图管理 (可选)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 地图管理 (可选)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 地图导出
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 地图导入
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定位流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="定位流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 自动校准流程 (必选)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 手动恢复定位 (可选，定位分为 -1 或持续低分时执行)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 验证定位就绪 (必选)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    入门教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples_python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples_cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ 示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_python_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python API 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_cpp_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ API 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../set_config_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set_config 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    故障排除
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    许可证
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="_1">常规操作</h1>
+<p>本文档介绍运行 Galbot 机器人过程中可能进行的一些常规操作，确保各项功能正常运行。</p>
+<hr />
+<h2 id="-">地图引擎 - 建图与定位</h2>
+<p>地图引擎是导航功能的核心基础。地图引擎不是可选附加功能，<strong>而是导航功能的前置必须步骤</strong>。在使用导航功能前，必须完成建图并确保定位正常运行。未正确完成建图和定位将导致导航功能无法正常工作。</p>
+<p>当机器人开启定位导航服务时（机器人工作模式可能默认开启导航服务），必须先完成建图。新的机器人首次使用前需要进行建图操作，否则定位服务无法正常启动，机器人可能进入异常模式。</p>
+<hr />
+<h3 id="_2">建图流程</h3>
+<p>建图是导航的前提条件。在开始使用导航功能前，必须先完成环境地图的构建。</p>
+<h4 id="1">1. 前置条件检查 (必选)</h4>
+<p>检查雷达服务是否已启动</p>
+<p>建图需要雷达服务处于运行状态。在 HPU 终端输入以下命令查看雷达进程：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>top
+</span></code></pre></div>
+<p>如果雷达已被自动拉起，可以在进程列表中看到名为 <code>service_lidar_capture</code> 的进程，如下图所示：</p>
+<p><img alt="雷达服务" src="/image/ldserv.jpg" /></p>
+<p>如果雷达未启动，使用以下命令启动雷达（注意：不要重复启动）：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/data/galbot/bin/service_lidar_capture
+</span></code></pre></div>
+<h4 id="2">2. 登录建图平台 (必选)</h4>
+<p><strong>登录建图平台</strong></p>
+<ol>
+<li>打开浏览器，访问 <code>http://&lt;HPU IP&gt;:8000</code>（例如：<code>http://192.168.38.184:8000</code>），会自动跳转到登录页</li>
+<li>输入用户名 <code>admin</code>，密码 <code>galbot</code></li>
+<li>点击<strong>登录</strong> 按钮进入平台</li>
+</ol>
+<p><img alt="登陆" src="/image/new_map_login.png" /></p>
+<p>登录成功后，界面主要分为以下几个区域：</p>
+<table>
+<thead>
+<tr>
+<th>区域</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左侧地图列表</td>
+<td>展示当前连接机器人存储的所有地图，支持编辑、导出、加载、应用等操作</td>
+</tr>
+<tr>
+<td>中间可视化区域</td>
+<td>显示选中地图的 3D 点云视图，点击地图的加载按钮后在此处渲染</td>
+</tr>
+<tr>
+<td>右侧工具栏</td>
+<td>视角切换（俯视/前视/侧视）、显示范围、点云密度、点云大小等参数调整</td>
+</tr>
+<tr>
+<td>左上角</td>
+<td>导入地图</td>
+</tr>
+<tr>
+<td>右上角</td>
+<td>切换当前连接的机器人设备和模式</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="主界面" src="/image/new_map_main.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">使用建图平台的注意事项</p>
+<ol>
+<li>导入的地图压缩包，zip 包的名字必须和里面的文件夹名字保持一致，否则会提示无法导入</li>
+<li>不能删除当前应用的地图</li>
+<li>所有地图必须已经在上位机上存在时，才会显示编辑、导出、应用地图等按钮</li>
+<li>应用地图成功后，必须手动再切换到工作模式才能让地图真正应用成功</li>
+<li><strong>如果出现无法完成或一直加载的情况，请刷新页面重新尝试</strong></li>
+</ol>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">急停（E-Stop）与模式切换</p>
+<ul>
+<li>机器人的工作模式分为<strong>工作模式（Working）</strong>和<strong>部署模式（Deployment）</strong>，平台右上角可查看/切换。<strong>切换模式（无论哪个方向）都要求先解除急停</strong>，否则会提示 <code>Cannot switch mode while emergency stop is active</code>，无法切换。</li>
+<li>点击<strong>新建地图</strong>时会重启部署模式，平台会提示"请解除急停以重启部署模式，进入建图页面后再重新按下急停"。解除急停意味着电机短暂上电，<strong>必须确认机器人周围安全、有人在旁看护后再操作</strong>，进入建图页面看到点云正常显示后应立即重新按下急停，再手动推动机器人建图。</li>
+<li>建图/编辑完成后如需把模式切回工作模式，同样需要先短暂解除急停，切换成功后再重新按下。</li>
+</ul>
+</div>
+<h4 id="3">3. 开始建图 (必选)</h4>
+<ol>
+<li>确保机器人已连接，点击地图列表下方的<strong>新建地图</strong> 按钮</li>
+<li>首次点击会弹出提示框，提醒需要解除急停才能重启部署模式；按上方注意事项解除急停后再次点击<strong>新建地图</strong>，平台会切换到部署模式并自动进入建图页面
+<img alt="建图" src="/image/new_map_create.png" /></li>
+</ol>
+<p>进入建图页面后：</p>
+<ul>
+<li>由于模式切换导致的服务重启，可能需要等待数秒到十几秒</li>
+<li>等到地图上出现少数点云后，说明点云推送服务已开始，此时可以开始推动机器人进行建图</li>
+<li>建图频率大约为 1-1.5 秒推送一次数据，个别时刻数据可能相同，导致短时间内点云看起来没有变化</li>
+<li>机器人如果不推动，点云数据不会发生改变；开始推动后，点云数据大约每 5 秒更新一次</li>
+</ul>
+<p><img alt="雷达扫描" src="/image/new_map_lidar.png" /></p>
+<ol>
+<li>推动机器人遍历环境一周以构建完整地图。推动时应避免过大的加速度和角速度（接近人行走速度即可）</li>
+</ol>
+<h4 id="4">4. 完成建图 (必选)</h4>
+<ol>
+<li>点击建图页面左上角的<strong>保存</strong>图标（磁盘图标）保存地图</li>
+<li>如果不想保存地图，直接点击左上角的首页图标退出建图</li>
+</ol>
+<h4 id="5">5. 应用地图 (必选)</h4>
+<p>地图创建完成后，需要将其应用到机器人才能用于导航和作业。</p>
+<div class="admonition info">
+<p class="admonition-title">建议顺序</p>
+<p>一般建议先完成擦除噪点等编辑操作后再应用地图，避免噪点清除后需要重新应用地图。</p>
+</div>
+<ol>
+<li>在左侧地图列表中找到需要使用的地图</li>
+<li>如果该地图是新建地图，或者还没有加载到上位机上，需先点击<strong>加载</strong>按钮加载地图（根据地图大小和网络情况耗时几秒到 20 秒不等）</li>
+<li>加载地图时如果长时间没有响应，请刷新页面重试</li>
+<li>地图加载完成后，点击<strong>应用地图</strong> 按钮（需在部署模式下操作，操作后再切换到工作模式使其生效）</li>
+<li>等待地图下发至机器人，下发成功后会提示应用成功，此时切换模式到工作模式（<strong>很重要</strong>）</li>
+<li>应用成功后，机器人将自动加载该地图并尝试定位</li>
+</ol>
+<h4 id="6">6. 编辑地图 (必选)</h4>
+<p>本步骤用于优化地图质量，提高导航精度和安全性，均在建图平台的地图编辑页面完成。</p>
+<div class="admonition info">
+<p class="admonition-title">不做的影响</p>
+<ul>
+<li><strong>擦除噪点</strong>：地图中的杂散点云可能导致导航系统误判障碍物，影响路径规划精度</li>
+<li><strong>点位/区域标注</strong>：没有标注关键点位和功能区域，机器人无法在导航中使用这些预设位置和区域限制</li>
+</ul>
+</div>
+<h5 id="61">6.1 擦除噪点 (必选)</h5>
+<p>建图过程中可能会采集到不必要的点云数据（如行人、临时障碍物等），需要进行清理。</p>
+<p><strong>进入编辑模式</strong></p>
+<ol>
+<li>在地图列表中点击目标地图的<strong>加载</strong> 按钮，可视化地图</li>
+<li>点击<strong>编辑</strong> 按钮进入地图编辑页面</li>
+</ol>
+<p><img alt="编辑" src="/image/new_map_edit.png" /></p>
+<p><strong>使用噪点清除工具</strong></p>
+<ol>
+<li>在编辑页面上方工具栏选择<strong>噪点清除</strong> 功能，并配置清除参数：</li>
+<li><strong>选择工具</strong>：多边形 / 矩形 / 圆形</li>
+<li><strong>清除方式</strong>：范围内（删除选中区域）/ 范围外（保留选中区域，删除其他）</li>
+<li><strong>高度范围</strong>：与当前可视化范围一致，或自定义（指定 min/max 高度值）；勾选"与当前显示高度范围一致"时切割深度范围不可编辑，会自动使用右侧视图控制中设置的显示范围，取消勾选后可自定义切割深度范围</li>
+<li>举例：清除方式选择"范围内"，切割深度范围为 "0-2" 表示清除选中区域内、高度在 0-2 米之间的点云</li>
+</ol>
+<p><strong>预览与确认</strong></p>
+<ol>
+<li>使用选中工具在地图上框选需要清除的区域</li>
+<li>可切换至<strong>3D视图</strong> 视角预览切割范围，确保不误删有效数据</li>
+<li>确认无误后点击<strong>完成</strong> 保存修改</li>
+</ol>
+<p><img alt="噪点清除" src="/image/new_map_noise.png" /></p>
+<h5 id="62">6.2 点位标注 (可选)</h5>
+<p>点位标注用于标记机器人作业的关键位置，如取货点、放置点、充电点等。</p>
+<p>支持两种标注方式：</p>
+<ul>
+<li><strong>精准创建点位</strong>：将机器人移动到目标位置后，以机器人当前定位为目标记录坐标，支持点位二次编辑</li>
+<li><strong>模糊创建点位</strong>：直接在地图视图上手动选择位置进行创建，支持点位二次编辑</li>
+</ul>
+<p><strong>标注步骤</strong>：</p>
+<ol>
+<li>进入编辑页面，点击上方<strong>点位标注</strong> 按钮</li>
+<li>选择标注方式：</li>
+<li>若使用<strong>机器人当前定位</strong>：必须先应用本地图，否则无法获取实时位置</li>
+<li>若使用<strong>手动点击</strong>：直接在地图上点击目标位置</li>
+<li>在弹出窗口中填写点位信息：</li>
+<li><strong>名称</strong>：点位标识（如：<code>取货点-A01</code>）</li>
+<li><strong>属性</strong>：选择点位类型</li>
+<li><strong>Z 轴朝向</strong>：调整机器人的朝向角度（-180° ~ 180°）</li>
+<li>点击<strong>确认</strong> 保存点位，点击<strong>完成</strong> 结束标注模式</li>
+</ol>
+<p><img alt="标注" src="/image/new_map_point.png" /></p>
+<h5 id="63">6.3 区域标注 (可选)</h5>
+<p>区域标注用于划分特定功能区域，如禁行区、限速区、作业区等。</p>
+<ol>
+<li>进入编辑页面，点击上方<strong>区域标注</strong> 按钮</li>
+<li>左侧弹出工具栏，选择绘图工具（多边形/矩形/圆形）</li>
+<li>在俯视图上绘制封闭区域</li>
+<li>填写区域信息：</li>
+<li><strong>属性</strong>：区域类型</li>
+<li>点击<strong>完成</strong> 保存区域</li>
+</ol>
+<p><img alt="区域" src="/image/new_map_area.png" /></p>
+<h5 id="64-v118">6.4 物体标注 (可选，v1.18 及以上版本)</h5>
+<p>物体标注用于标记环境中的固定障碍物或设备，帮助机器人更好地理解环境。</p>
+<div class="admonition warning">
+<p class="admonition-title">编辑页面注意事项</p>
+<ol>
+<li>编辑或移动标注后，需要点击左侧弹窗的<strong>完成</strong>才能对刚才的操作进行暂存，否则被修改的标注会返回修改前的状态（用于防止误触）</li>
+<li>保存地图时，由于需要将地图打包后上传到上位机、再由上位机上传到机器人，耗时可能较长，请耐心等待</li>
+<li>如果长时间没有响应，请刷新页面重试</li>
+<li>每次保存都会以当前页面状态生成一份新地图，如需应用该地图，还需返回首页的地图列表进行应用地图操作</li>
+</ol>
+</div>
+<h4 id="7">7. 地图管理 (可选)</h4>
+<h5 id="71">7.1 地图导出</h5>
+<ol>
+<li>在地图列表中找到目标地图</li>
+<li>点击<strong>导出</strong> 按钮</li>
+<li>通过网页端下载</li>
+</ol>
+<h5 id="72">7.2 地图导入</h5>
+<ol>
+<li>点击地图列表上方的<strong>导入</strong> 按钮</li>
+<li>选择本地地图文件</li>
+<li>点击<strong>上传</strong>，等待导入完成</li>
+</ol>
+<hr />
+<h3 id="_3">定位流程</h3>
+<p>定位是使用导航功能的前提。在开始导航前，必须确保定位服务正常运行且定位状态良好。当机器人出现<strong>抓取不准、移动偏差、定位丢失</strong>等问题时，需要通过校准定位功能恢复精度。</p>
+<h4 id="1_1">1. 自动校准流程 (必选)</h4>
+<ol>
+<li>点击地图列表上方的<strong>校准定位</strong> 按钮</li>
+<li>系统进入当前应用地图的校准页面</li>
+<li>页面显示<strong>实时定位分</strong>（正常范围：0.9-1.0），系统会自动尝试恢复定位</li>
+</ol>
+<p><img alt="定位" src="/image/new_map_location.png" /></p>
+<h4 id="2-1">2. 手动恢复定位 (可选，定位分为 -1 或持续低分时执行)</h4>
+<p>当定位分为 <strong>-1</strong> 或持续低分时，需要手动干预：</p>
+<ol>
+<li>进入校准定位页面后，如果在进入之前进行了模式切换，需要等待几秒到十几秒的时间，等待机器人数据返回</li>
+<li>当有数据返回后，如果定位分与 1.0 差距较大，需要点击<strong>手动恢复定位</strong> 按钮</li>
+<li>黄色点代表机器人返回的 base 位置，绿色点表示需要校准的位置，点击黄色位置，让绿色点的位置与方向跟黄色点重合即可</li>
+<li>使用左下角角度调节器调整机器人朝向</li>
+<li>点击<strong>以该姿态恢复定位</strong> 按钮提交</li>
+<li>等待 5-10 秒，观察定位分变化</li>
+</ol>
+<p><img alt="手动定位" src="/image/new_map_manual_location.png" /></p>
+<h4 id="3_1">3. 验证定位就绪 (必选)</h4>
+<p>在开始导航前，请确认以下检查项：</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 雷达服务正在运行</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 定位服务已启动</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 定位分数大于 0.75</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 当前位姿正常发布</li>
+</ul>
+<div class="admonition success">
+<p class="admonition-title">准备就绪</p>
+<p>完成以上所有必选步骤后，您可以开始使用机器人导航功能。详情请参考 <a href="../tutorials/">入门教程 - Example 3. 机器人导航</a>。</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023-2026 Galbot. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "toc.integrate", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/language_switch.js"></script>
+      
+        <script src="../javascripts/api_collapse.js"></script>
+      
+        <script src="../javascripts/interactive_toc.js"></script>
+      
+        <script src="../javascripts/search_focus.js"></script>
+      
+        <script src="../javascripts/installation_nav.js"></script>
+      
+    
+  </body>
+</html>

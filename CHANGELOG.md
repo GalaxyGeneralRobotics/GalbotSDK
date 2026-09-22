@@ -8,6 +8,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.10.0] - 2026-09-22
+
+### Added / 新增
+- Added software emergency stop and recovery APIs (`emergency_stop`, `resume_from_emergency_stop`). / 新增软件紧急停止与恢复接口（`emergency_stop`、`resume_from_emergency_stop`）
+- Added obtain the chassis speed API (`get_base_velocity`). / 新增获取底盘速度接口（`get_base_velocity`）
+- Added and enhanced motion planning APIs (`motion_plan`, `traj_plan`, `move_line`, `combine_plan`, `motion_plan_multi_waypoints`). / 新增并优化运动规划接口（`motion_plan`、`traj_plan`、`move_line`、`combine_plan`、`motion_plan_multi_waypoints`）
+- Added the G1 leg height setting API (`set_leg_height`). / 新增 G1 腿部高度设置接口（`set_leg_height`）
+- Added commonly used configuration items APIs (`set_config`, `get_config`). / 新增常用配置项接口（`set_config`、`get_config`）
+- Added s1_end_tool_raw_passthrough API for S1. / 新增 S1 透传传感器数据接口（`s1_end_tool_raw_passthrough`）
+- Added G3 model. / 新增G3机型
+- Added support for the NVIDIA Jetson AGX Thor platform. / 新增 NVIDIA Jetson AGX Thor 平台支持
+- Added video stream subscription APIs (`subscribe_video_data`, `unsubscribe_video_data`). / 新增视频流订阅与取消订阅接口（`subscribe_video_data`、`unsubscribe_video_data`）
+
+### Changed / 更改
+- Improved documentation descriptions. / 完善部分文档说明
+- Modify the mapping method for G series models. / 修改G系列机型建图方式
+- Adapted more dexterous hand models and updated `DexHandType`. / 适配多款灵巧手并更新 `DexHandType` 枚举
+- Changed the `get_rgb_data` image retrieval API and its parameter definitions. / 更改图像获取接口 `get_rgb_data` 及其参数定义
+
+### Fixed / 修复
+- Fixed several bugs. / 修复若干 bug
+
 ## [1.9.1] - 2026-06-26
 
 ### Added / 新增
@@ -19,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed / 更改
 - Improved documentation descriptions. / 完善部分文档说明
 - PC deployment add one-click configuration of embosa IP. / PC端部署增加一键配置Embosa IP
+- Extended `get_force_sensor_data` with calibrated wrench retrieval and optional rotation of force/torque components into supported frame axes while retaining the sensor origin. / 扩展 `get_force_sensor_data`，支持获取校准后的 wrench，并可保持传感器原点不变，将力和力矩分量旋转到受支持坐标系的坐标轴
 
 ### Fixed / 修复
 - Fixed issues caused by an incorrect torso zero position. / 修复 torso 零位不正确引起的相关问题

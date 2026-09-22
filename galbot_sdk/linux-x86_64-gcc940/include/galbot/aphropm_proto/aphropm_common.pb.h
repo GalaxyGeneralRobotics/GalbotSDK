@@ -56,7 +56,7 @@ struct TableStruct_galbot_2faphropm_5fproto_2faphropm_5fcommon_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[12]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[14]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -101,6 +101,12 @@ extern RobotStatesMsgDefaultTypeInternal _RobotStatesMsg_default_instance_;
 class RobotTargetMsg;
 class RobotTargetMsgDefaultTypeInternal;
 extern RobotTargetMsgDefaultTypeInternal _RobotTargetMsg_default_instance_;
+class RobotTrajectoryMsg;
+class RobotTrajectoryMsgDefaultTypeInternal;
+extern RobotTrajectoryMsgDefaultTypeInternal _RobotTrajectoryMsg_default_instance_;
+class RobotTrajectoryVecMsg;
+class RobotTrajectoryVecMsgDefaultTypeInternal;
+extern RobotTrajectoryVecMsgDefaultTypeInternal _RobotTrajectoryVecMsg_default_instance_;
 }  // namespace aphropm_proto
 }  // namespace galbot
 PROTOBUF_NAMESPACE_OPEN
@@ -116,6 +122,8 @@ template<> ::galbot::aphropm_proto::MotionPlanConfigResponse* Arena::CreateMaybe
 template<> ::galbot::aphropm_proto::PoseTargetMsg* Arena::CreateMaybeMessage<::galbot::aphropm_proto::PoseTargetMsg>(Arena*);
 template<> ::galbot::aphropm_proto::RobotStatesMsg* Arena::CreateMaybeMessage<::galbot::aphropm_proto::RobotStatesMsg>(Arena*);
 template<> ::galbot::aphropm_proto::RobotTargetMsg* Arena::CreateMaybeMessage<::galbot::aphropm_proto::RobotTargetMsg>(Arena*);
+template<> ::galbot::aphropm_proto::RobotTrajectoryMsg* Arena::CreateMaybeMessage<::galbot::aphropm_proto::RobotTrajectoryMsg>(Arena*);
+template<> ::galbot::aphropm_proto::RobotTrajectoryVecMsg* Arena::CreateMaybeMessage<::galbot::aphropm_proto::RobotTrajectoryVecMsg>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace galbot {
 namespace aphropm_proto {
@@ -1378,6 +1386,435 @@ class RobotTargetMsg PROTOBUF_FINAL :
 };
 // -------------------------------------------------------------------
 
+class RobotTrajectoryMsg PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.aphropm_proto.RobotTrajectoryMsg) */ {
+ public:
+  inline RobotTrajectoryMsg() : RobotTrajectoryMsg(nullptr) {}
+  virtual ~RobotTrajectoryMsg();
+
+  RobotTrajectoryMsg(const RobotTrajectoryMsg& from);
+  RobotTrajectoryMsg(RobotTrajectoryMsg&& from) noexcept
+    : RobotTrajectoryMsg() {
+    *this = ::std::move(from);
+  }
+
+  inline RobotTrajectoryMsg& operator=(const RobotTrajectoryMsg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RobotTrajectoryMsg& operator=(RobotTrajectoryMsg&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const RobotTrajectoryMsg& default_instance();
+
+  static inline const RobotTrajectoryMsg* internal_default_instance() {
+    return reinterpret_cast<const RobotTrajectoryMsg*>(
+               &_RobotTrajectoryMsg_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(RobotTrajectoryMsg& a, RobotTrajectoryMsg& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RobotTrajectoryMsg* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RobotTrajectoryMsg* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RobotTrajectoryMsg* New() const final {
+    return CreateMaybeMessage<RobotTrajectoryMsg>(nullptr);
+  }
+
+  RobotTrajectoryMsg* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<RobotTrajectoryMsg>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const RobotTrajectoryMsg& from);
+  void MergeFrom(const RobotTrajectoryMsg& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RobotTrajectoryMsg* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "galbot.aphropm_proto.RobotTrajectoryMsg";
+  }
+  protected:
+  explicit RobotTrajectoryMsg(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2faphropm_5fproto_2faphropm_5fcommon_2eproto);
+    return ::descriptor_table_galbot_2faphropm_5fproto_2faphropm_5fcommon_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kJointsFieldNumber = 3,
+    kBaseStatesFieldNumber = 4,
+    kTimesFieldNumber = 5,
+    kChainNameFieldNumber = 2,
+    kCommonStrFieldNumber = 100,
+    kHeaderFieldNumber = 1,
+  };
+  // repeated .galbot.aphropm_proto.JointStatesMsg joints = 3;
+  int joints_size() const;
+  private:
+  int _internal_joints_size() const;
+  public:
+  void clear_joints();
+  ::galbot::aphropm_proto::JointStatesMsg* mutable_joints(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::aphropm_proto::JointStatesMsg >*
+      mutable_joints();
+  private:
+  const ::galbot::aphropm_proto::JointStatesMsg& _internal_joints(int index) const;
+  ::galbot::aphropm_proto::JointStatesMsg* _internal_add_joints();
+  public:
+  const ::galbot::aphropm_proto::JointStatesMsg& joints(int index) const;
+  ::galbot::aphropm_proto::JointStatesMsg* add_joints();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::aphropm_proto::JointStatesMsg >&
+      joints() const;
+
+  // repeated .galbot.spatial_proto.FrameTriad base_states = 4;
+  int base_states_size() const;
+  private:
+  int _internal_base_states_size() const;
+  public:
+  void clear_base_states();
+  ::galbot::spatial_proto::FrameTriad* mutable_base_states(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::spatial_proto::FrameTriad >*
+      mutable_base_states();
+  private:
+  const ::galbot::spatial_proto::FrameTriad& _internal_base_states(int index) const;
+  ::galbot::spatial_proto::FrameTriad* _internal_add_base_states();
+  public:
+  const ::galbot::spatial_proto::FrameTriad& base_states(int index) const;
+  ::galbot::spatial_proto::FrameTriad* add_base_states();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::spatial_proto::FrameTriad >&
+      base_states() const;
+
+  // repeated double times = 5;
+  int times_size() const;
+  private:
+  int _internal_times_size() const;
+  public:
+  void clear_times();
+  private:
+  double _internal_times(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      _internal_times() const;
+  void _internal_add_times(double value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      _internal_mutable_times();
+  public:
+  double times(int index) const;
+  void set_times(int index, double value);
+  void add_times(double value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      times() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      mutable_times();
+
+  // string chain_name = 2;
+  void clear_chain_name();
+  const std::string& chain_name() const;
+  void set_chain_name(const std::string& value);
+  void set_chain_name(std::string&& value);
+  void set_chain_name(const char* value);
+  void set_chain_name(const char* value, size_t size);
+  std::string* mutable_chain_name();
+  std::string* release_chain_name();
+  void set_allocated_chain_name(std::string* chain_name);
+  private:
+  const std::string& _internal_chain_name() const;
+  void _internal_set_chain_name(const std::string& value);
+  std::string* _internal_mutable_chain_name();
+  public:
+
+  // string common_str = 100;
+  void clear_common_str();
+  const std::string& common_str() const;
+  void set_common_str(const std::string& value);
+  void set_common_str(std::string&& value);
+  void set_common_str(const char* value);
+  void set_common_str(const char* value, size_t size);
+  std::string* mutable_common_str();
+  std::string* release_common_str();
+  void set_allocated_common_str(std::string* common_str);
+  private:
+  const std::string& _internal_common_str() const;
+  void _internal_set_common_str(const std::string& value);
+  std::string* _internal_mutable_common_str();
+  public:
+
+  // .galbot.core_proto.Header header = 1;
+  bool has_header() const;
+  private:
+  bool _internal_has_header() const;
+  public:
+  void clear_header();
+  const ::galbot::core_proto::Header& header() const;
+  ::galbot::core_proto::Header* release_header();
+  ::galbot::core_proto::Header* mutable_header();
+  void set_allocated_header(::galbot::core_proto::Header* header);
+  private:
+  const ::galbot::core_proto::Header& _internal_header() const;
+  ::galbot::core_proto::Header* _internal_mutable_header();
+  public:
+  void unsafe_arena_set_allocated_header(
+      ::galbot::core_proto::Header* header);
+  ::galbot::core_proto::Header* unsafe_arena_release_header();
+
+  // @@protoc_insertion_point(class_scope:galbot.aphropm_proto.RobotTrajectoryMsg)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::aphropm_proto::JointStatesMsg > joints_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::spatial_proto::FrameTriad > base_states_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > times_;
+  mutable std::atomic<int> _times_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr chain_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr common_str_;
+  ::galbot::core_proto::Header* header_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_galbot_2faphropm_5fproto_2faphropm_5fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RobotTrajectoryVecMsg PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.aphropm_proto.RobotTrajectoryVecMsg) */ {
+ public:
+  inline RobotTrajectoryVecMsg() : RobotTrajectoryVecMsg(nullptr) {}
+  virtual ~RobotTrajectoryVecMsg();
+
+  RobotTrajectoryVecMsg(const RobotTrajectoryVecMsg& from);
+  RobotTrajectoryVecMsg(RobotTrajectoryVecMsg&& from) noexcept
+    : RobotTrajectoryVecMsg() {
+    *this = ::std::move(from);
+  }
+
+  inline RobotTrajectoryVecMsg& operator=(const RobotTrajectoryVecMsg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RobotTrajectoryVecMsg& operator=(RobotTrajectoryVecMsg&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const RobotTrajectoryVecMsg& default_instance();
+
+  static inline const RobotTrajectoryVecMsg* internal_default_instance() {
+    return reinterpret_cast<const RobotTrajectoryVecMsg*>(
+               &_RobotTrajectoryVecMsg_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(RobotTrajectoryVecMsg& a, RobotTrajectoryVecMsg& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RobotTrajectoryVecMsg* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RobotTrajectoryVecMsg* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RobotTrajectoryVecMsg* New() const final {
+    return CreateMaybeMessage<RobotTrajectoryVecMsg>(nullptr);
+  }
+
+  RobotTrajectoryVecMsg* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<RobotTrajectoryVecMsg>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const RobotTrajectoryVecMsg& from);
+  void MergeFrom(const RobotTrajectoryVecMsg& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RobotTrajectoryVecMsg* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "galbot.aphropm_proto.RobotTrajectoryVecMsg";
+  }
+  protected:
+  explicit RobotTrajectoryVecMsg(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2faphropm_5fproto_2faphropm_5fcommon_2eproto);
+    return ::descriptor_table_galbot_2faphropm_5fproto_2faphropm_5fcommon_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTrajectoriesFieldNumber = 2,
+    kCommonStrFieldNumber = 100,
+    kHeaderFieldNumber = 1,
+  };
+  // repeated .galbot.aphropm_proto.RobotTrajectoryMsg trajectories = 2;
+  int trajectories_size() const;
+  private:
+  int _internal_trajectories_size() const;
+  public:
+  void clear_trajectories();
+  ::galbot::aphropm_proto::RobotTrajectoryMsg* mutable_trajectories(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::aphropm_proto::RobotTrajectoryMsg >*
+      mutable_trajectories();
+  private:
+  const ::galbot::aphropm_proto::RobotTrajectoryMsg& _internal_trajectories(int index) const;
+  ::galbot::aphropm_proto::RobotTrajectoryMsg* _internal_add_trajectories();
+  public:
+  const ::galbot::aphropm_proto::RobotTrajectoryMsg& trajectories(int index) const;
+  ::galbot::aphropm_proto::RobotTrajectoryMsg* add_trajectories();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::aphropm_proto::RobotTrajectoryMsg >&
+      trajectories() const;
+
+  // string common_str = 100;
+  void clear_common_str();
+  const std::string& common_str() const;
+  void set_common_str(const std::string& value);
+  void set_common_str(std::string&& value);
+  void set_common_str(const char* value);
+  void set_common_str(const char* value, size_t size);
+  std::string* mutable_common_str();
+  std::string* release_common_str();
+  void set_allocated_common_str(std::string* common_str);
+  private:
+  const std::string& _internal_common_str() const;
+  void _internal_set_common_str(const std::string& value);
+  std::string* _internal_mutable_common_str();
+  public:
+
+  // .galbot.core_proto.Header header = 1;
+  bool has_header() const;
+  private:
+  bool _internal_has_header() const;
+  public:
+  void clear_header();
+  const ::galbot::core_proto::Header& header() const;
+  ::galbot::core_proto::Header* release_header();
+  ::galbot::core_proto::Header* mutable_header();
+  void set_allocated_header(::galbot::core_proto::Header* header);
+  private:
+  const ::galbot::core_proto::Header& _internal_header() const;
+  ::galbot::core_proto::Header* _internal_mutable_header();
+  public:
+  void unsafe_arena_set_allocated_header(
+      ::galbot::core_proto::Header* header);
+  ::galbot::core_proto::Header* unsafe_arena_release_header();
+
+  // @@protoc_insertion_point(class_scope:galbot.aphropm_proto.RobotTrajectoryVecMsg)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::aphropm_proto::RobotTrajectoryMsg > trajectories_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr common_str_;
+  ::galbot::core_proto::Header* header_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_galbot_2faphropm_5fproto_2faphropm_5fcommon_2eproto;
+};
+// -------------------------------------------------------------------
+
 class KinematicsBoundary PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.aphropm_proto.KinematicsBoundary) */ {
  public:
@@ -1419,7 +1856,7 @@ class KinematicsBoundary PROTOBUF_FINAL :
                &_KinematicsBoundary_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    9;
 
   friend void swap(KinematicsBoundary& a, KinematicsBoundary& b) {
     a.Swap(&b);
@@ -1742,7 +2179,7 @@ class KinematicsScales PROTOBUF_FINAL :
                &_KinematicsScales_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(KinematicsScales& a, KinematicsScales& b) {
     a.Swap(&b);
@@ -1953,7 +2390,7 @@ class MotionPlanConfig PROTOBUF_FINAL :
                &_MotionPlanConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(MotionPlanConfig& a, MotionPlanConfig& b) {
     a.Swap(&b);
@@ -2187,7 +2624,7 @@ class GetSetMotionPlanConfigRequest PROTOBUF_FINAL :
                &_GetSetMotionPlanConfigRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    12;
 
   friend void swap(GetSetMotionPlanConfigRequest& a, GetSetMotionPlanConfigRequest& b) {
     a.Swap(&b);
@@ -2399,7 +2836,7 @@ class MotionPlanConfigResponse PROTOBUF_FINAL :
                &_MotionPlanConfigResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    13;
 
   friend void swap(MotionPlanConfigResponse& a, MotionPlanConfigResponse& b) {
     a.Swap(&b);
@@ -3936,6 +4373,512 @@ inline void RobotTargetMsg::clear_has_target() {
 inline RobotTargetMsg::TargetCase RobotTargetMsg::target_case() const {
   return RobotTargetMsg::TargetCase(_oneof_case_[0]);
 }
+// -------------------------------------------------------------------
+
+// RobotTrajectoryMsg
+
+// .galbot.core_proto.Header header = 1;
+inline bool RobotTrajectoryMsg::_internal_has_header() const {
+  return this != internal_default_instance() && header_ != nullptr;
+}
+inline bool RobotTrajectoryMsg::has_header() const {
+  return _internal_has_header();
+}
+inline const ::galbot::core_proto::Header& RobotTrajectoryMsg::_internal_header() const {
+  const ::galbot::core_proto::Header* p = header_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::core_proto::Header&>(
+      ::galbot::core_proto::_Header_default_instance_);
+}
+inline const ::galbot::core_proto::Header& RobotTrajectoryMsg::header() const {
+  // @@protoc_insertion_point(field_get:galbot.aphropm_proto.RobotTrajectoryMsg.header)
+  return _internal_header();
+}
+inline void RobotTrajectoryMsg::unsafe_arena_set_allocated_header(
+    ::galbot::core_proto::Header* header) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(header_);
+  }
+  header_ = header;
+  if (header) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.aphropm_proto.RobotTrajectoryMsg.header)
+}
+inline ::galbot::core_proto::Header* RobotTrajectoryMsg::release_header() {
+  
+  ::galbot::core_proto::Header* temp = header_;
+  header_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::core_proto::Header* RobotTrajectoryMsg::unsafe_arena_release_header() {
+  // @@protoc_insertion_point(field_release:galbot.aphropm_proto.RobotTrajectoryMsg.header)
+  
+  ::galbot::core_proto::Header* temp = header_;
+  header_ = nullptr;
+  return temp;
+}
+inline ::galbot::core_proto::Header* RobotTrajectoryMsg::_internal_mutable_header() {
+  
+  if (header_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::core_proto::Header>(GetArena());
+    header_ = p;
+  }
+  return header_;
+}
+inline ::galbot::core_proto::Header* RobotTrajectoryMsg::mutable_header() {
+  // @@protoc_insertion_point(field_mutable:galbot.aphropm_proto.RobotTrajectoryMsg.header)
+  return _internal_mutable_header();
+}
+inline void RobotTrajectoryMsg::set_allocated_header(::galbot::core_proto::Header* header) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(header_);
+  }
+  if (header) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(header)->GetArena();
+    if (message_arena != submessage_arena) {
+      header = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, header, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  header_ = header;
+  // @@protoc_insertion_point(field_set_allocated:galbot.aphropm_proto.RobotTrajectoryMsg.header)
+}
+
+// string chain_name = 2;
+inline void RobotTrajectoryMsg::clear_chain_name() {
+  chain_name_.ClearToEmpty();
+}
+inline const std::string& RobotTrajectoryMsg::chain_name() const {
+  // @@protoc_insertion_point(field_get:galbot.aphropm_proto.RobotTrajectoryMsg.chain_name)
+  return _internal_chain_name();
+}
+inline void RobotTrajectoryMsg::set_chain_name(const std::string& value) {
+  _internal_set_chain_name(value);
+  // @@protoc_insertion_point(field_set:galbot.aphropm_proto.RobotTrajectoryMsg.chain_name)
+}
+inline std::string* RobotTrajectoryMsg::mutable_chain_name() {
+  // @@protoc_insertion_point(field_mutable:galbot.aphropm_proto.RobotTrajectoryMsg.chain_name)
+  return _internal_mutable_chain_name();
+}
+inline const std::string& RobotTrajectoryMsg::_internal_chain_name() const {
+  return chain_name_.Get();
+}
+inline void RobotTrajectoryMsg::_internal_set_chain_name(const std::string& value) {
+  
+  chain_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void RobotTrajectoryMsg::set_chain_name(std::string&& value) {
+  
+  chain_name_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.aphropm_proto.RobotTrajectoryMsg.chain_name)
+}
+inline void RobotTrajectoryMsg::set_chain_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  chain_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.aphropm_proto.RobotTrajectoryMsg.chain_name)
+}
+inline void RobotTrajectoryMsg::set_chain_name(const char* value,
+    size_t size) {
+  
+  chain_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.aphropm_proto.RobotTrajectoryMsg.chain_name)
+}
+inline std::string* RobotTrajectoryMsg::_internal_mutable_chain_name() {
+  
+  return chain_name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* RobotTrajectoryMsg::release_chain_name() {
+  // @@protoc_insertion_point(field_release:galbot.aphropm_proto.RobotTrajectoryMsg.chain_name)
+  return chain_name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void RobotTrajectoryMsg::set_allocated_chain_name(std::string* chain_name) {
+  if (chain_name != nullptr) {
+    
+  } else {
+    
+  }
+  chain_name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), chain_name,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.aphropm_proto.RobotTrajectoryMsg.chain_name)
+}
+
+// repeated .galbot.aphropm_proto.JointStatesMsg joints = 3;
+inline int RobotTrajectoryMsg::_internal_joints_size() const {
+  return joints_.size();
+}
+inline int RobotTrajectoryMsg::joints_size() const {
+  return _internal_joints_size();
+}
+inline void RobotTrajectoryMsg::clear_joints() {
+  joints_.Clear();
+}
+inline ::galbot::aphropm_proto::JointStatesMsg* RobotTrajectoryMsg::mutable_joints(int index) {
+  // @@protoc_insertion_point(field_mutable:galbot.aphropm_proto.RobotTrajectoryMsg.joints)
+  return joints_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::aphropm_proto::JointStatesMsg >*
+RobotTrajectoryMsg::mutable_joints() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.aphropm_proto.RobotTrajectoryMsg.joints)
+  return &joints_;
+}
+inline const ::galbot::aphropm_proto::JointStatesMsg& RobotTrajectoryMsg::_internal_joints(int index) const {
+  return joints_.Get(index);
+}
+inline const ::galbot::aphropm_proto::JointStatesMsg& RobotTrajectoryMsg::joints(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.aphropm_proto.RobotTrajectoryMsg.joints)
+  return _internal_joints(index);
+}
+inline ::galbot::aphropm_proto::JointStatesMsg* RobotTrajectoryMsg::_internal_add_joints() {
+  return joints_.Add();
+}
+inline ::galbot::aphropm_proto::JointStatesMsg* RobotTrajectoryMsg::add_joints() {
+  // @@protoc_insertion_point(field_add:galbot.aphropm_proto.RobotTrajectoryMsg.joints)
+  return _internal_add_joints();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::aphropm_proto::JointStatesMsg >&
+RobotTrajectoryMsg::joints() const {
+  // @@protoc_insertion_point(field_list:galbot.aphropm_proto.RobotTrajectoryMsg.joints)
+  return joints_;
+}
+
+// repeated .galbot.spatial_proto.FrameTriad base_states = 4;
+inline int RobotTrajectoryMsg::_internal_base_states_size() const {
+  return base_states_.size();
+}
+inline int RobotTrajectoryMsg::base_states_size() const {
+  return _internal_base_states_size();
+}
+inline ::galbot::spatial_proto::FrameTriad* RobotTrajectoryMsg::mutable_base_states(int index) {
+  // @@protoc_insertion_point(field_mutable:galbot.aphropm_proto.RobotTrajectoryMsg.base_states)
+  return base_states_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::spatial_proto::FrameTriad >*
+RobotTrajectoryMsg::mutable_base_states() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.aphropm_proto.RobotTrajectoryMsg.base_states)
+  return &base_states_;
+}
+inline const ::galbot::spatial_proto::FrameTriad& RobotTrajectoryMsg::_internal_base_states(int index) const {
+  return base_states_.Get(index);
+}
+inline const ::galbot::spatial_proto::FrameTriad& RobotTrajectoryMsg::base_states(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.aphropm_proto.RobotTrajectoryMsg.base_states)
+  return _internal_base_states(index);
+}
+inline ::galbot::spatial_proto::FrameTriad* RobotTrajectoryMsg::_internal_add_base_states() {
+  return base_states_.Add();
+}
+inline ::galbot::spatial_proto::FrameTriad* RobotTrajectoryMsg::add_base_states() {
+  // @@protoc_insertion_point(field_add:galbot.aphropm_proto.RobotTrajectoryMsg.base_states)
+  return _internal_add_base_states();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::spatial_proto::FrameTriad >&
+RobotTrajectoryMsg::base_states() const {
+  // @@protoc_insertion_point(field_list:galbot.aphropm_proto.RobotTrajectoryMsg.base_states)
+  return base_states_;
+}
+
+// repeated double times = 5;
+inline int RobotTrajectoryMsg::_internal_times_size() const {
+  return times_.size();
+}
+inline int RobotTrajectoryMsg::times_size() const {
+  return _internal_times_size();
+}
+inline void RobotTrajectoryMsg::clear_times() {
+  times_.Clear();
+}
+inline double RobotTrajectoryMsg::_internal_times(int index) const {
+  return times_.Get(index);
+}
+inline double RobotTrajectoryMsg::times(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.aphropm_proto.RobotTrajectoryMsg.times)
+  return _internal_times(index);
+}
+inline void RobotTrajectoryMsg::set_times(int index, double value) {
+  times_.Set(index, value);
+  // @@protoc_insertion_point(field_set:galbot.aphropm_proto.RobotTrajectoryMsg.times)
+}
+inline void RobotTrajectoryMsg::_internal_add_times(double value) {
+  times_.Add(value);
+}
+inline void RobotTrajectoryMsg::add_times(double value) {
+  _internal_add_times(value);
+  // @@protoc_insertion_point(field_add:galbot.aphropm_proto.RobotTrajectoryMsg.times)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+RobotTrajectoryMsg::_internal_times() const {
+  return times_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+RobotTrajectoryMsg::times() const {
+  // @@protoc_insertion_point(field_list:galbot.aphropm_proto.RobotTrajectoryMsg.times)
+  return _internal_times();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+RobotTrajectoryMsg::_internal_mutable_times() {
+  return &times_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+RobotTrajectoryMsg::mutable_times() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.aphropm_proto.RobotTrajectoryMsg.times)
+  return _internal_mutable_times();
+}
+
+// string common_str = 100;
+inline void RobotTrajectoryMsg::clear_common_str() {
+  common_str_.ClearToEmpty();
+}
+inline const std::string& RobotTrajectoryMsg::common_str() const {
+  // @@protoc_insertion_point(field_get:galbot.aphropm_proto.RobotTrajectoryMsg.common_str)
+  return _internal_common_str();
+}
+inline void RobotTrajectoryMsg::set_common_str(const std::string& value) {
+  _internal_set_common_str(value);
+  // @@protoc_insertion_point(field_set:galbot.aphropm_proto.RobotTrajectoryMsg.common_str)
+}
+inline std::string* RobotTrajectoryMsg::mutable_common_str() {
+  // @@protoc_insertion_point(field_mutable:galbot.aphropm_proto.RobotTrajectoryMsg.common_str)
+  return _internal_mutable_common_str();
+}
+inline const std::string& RobotTrajectoryMsg::_internal_common_str() const {
+  return common_str_.Get();
+}
+inline void RobotTrajectoryMsg::_internal_set_common_str(const std::string& value) {
+  
+  common_str_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void RobotTrajectoryMsg::set_common_str(std::string&& value) {
+  
+  common_str_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.aphropm_proto.RobotTrajectoryMsg.common_str)
+}
+inline void RobotTrajectoryMsg::set_common_str(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  common_str_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.aphropm_proto.RobotTrajectoryMsg.common_str)
+}
+inline void RobotTrajectoryMsg::set_common_str(const char* value,
+    size_t size) {
+  
+  common_str_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.aphropm_proto.RobotTrajectoryMsg.common_str)
+}
+inline std::string* RobotTrajectoryMsg::_internal_mutable_common_str() {
+  
+  return common_str_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* RobotTrajectoryMsg::release_common_str() {
+  // @@protoc_insertion_point(field_release:galbot.aphropm_proto.RobotTrajectoryMsg.common_str)
+  return common_str_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void RobotTrajectoryMsg::set_allocated_common_str(std::string* common_str) {
+  if (common_str != nullptr) {
+    
+  } else {
+    
+  }
+  common_str_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), common_str,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.aphropm_proto.RobotTrajectoryMsg.common_str)
+}
+
+// -------------------------------------------------------------------
+
+// RobotTrajectoryVecMsg
+
+// .galbot.core_proto.Header header = 1;
+inline bool RobotTrajectoryVecMsg::_internal_has_header() const {
+  return this != internal_default_instance() && header_ != nullptr;
+}
+inline bool RobotTrajectoryVecMsg::has_header() const {
+  return _internal_has_header();
+}
+inline const ::galbot::core_proto::Header& RobotTrajectoryVecMsg::_internal_header() const {
+  const ::galbot::core_proto::Header* p = header_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::core_proto::Header&>(
+      ::galbot::core_proto::_Header_default_instance_);
+}
+inline const ::galbot::core_proto::Header& RobotTrajectoryVecMsg::header() const {
+  // @@protoc_insertion_point(field_get:galbot.aphropm_proto.RobotTrajectoryVecMsg.header)
+  return _internal_header();
+}
+inline void RobotTrajectoryVecMsg::unsafe_arena_set_allocated_header(
+    ::galbot::core_proto::Header* header) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(header_);
+  }
+  header_ = header;
+  if (header) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.aphropm_proto.RobotTrajectoryVecMsg.header)
+}
+inline ::galbot::core_proto::Header* RobotTrajectoryVecMsg::release_header() {
+  
+  ::galbot::core_proto::Header* temp = header_;
+  header_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::core_proto::Header* RobotTrajectoryVecMsg::unsafe_arena_release_header() {
+  // @@protoc_insertion_point(field_release:galbot.aphropm_proto.RobotTrajectoryVecMsg.header)
+  
+  ::galbot::core_proto::Header* temp = header_;
+  header_ = nullptr;
+  return temp;
+}
+inline ::galbot::core_proto::Header* RobotTrajectoryVecMsg::_internal_mutable_header() {
+  
+  if (header_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::core_proto::Header>(GetArena());
+    header_ = p;
+  }
+  return header_;
+}
+inline ::galbot::core_proto::Header* RobotTrajectoryVecMsg::mutable_header() {
+  // @@protoc_insertion_point(field_mutable:galbot.aphropm_proto.RobotTrajectoryVecMsg.header)
+  return _internal_mutable_header();
+}
+inline void RobotTrajectoryVecMsg::set_allocated_header(::galbot::core_proto::Header* header) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(header_);
+  }
+  if (header) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(header)->GetArena();
+    if (message_arena != submessage_arena) {
+      header = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, header, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  header_ = header;
+  // @@protoc_insertion_point(field_set_allocated:galbot.aphropm_proto.RobotTrajectoryVecMsg.header)
+}
+
+// repeated .galbot.aphropm_proto.RobotTrajectoryMsg trajectories = 2;
+inline int RobotTrajectoryVecMsg::_internal_trajectories_size() const {
+  return trajectories_.size();
+}
+inline int RobotTrajectoryVecMsg::trajectories_size() const {
+  return _internal_trajectories_size();
+}
+inline void RobotTrajectoryVecMsg::clear_trajectories() {
+  trajectories_.Clear();
+}
+inline ::galbot::aphropm_proto::RobotTrajectoryMsg* RobotTrajectoryVecMsg::mutable_trajectories(int index) {
+  // @@protoc_insertion_point(field_mutable:galbot.aphropm_proto.RobotTrajectoryVecMsg.trajectories)
+  return trajectories_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::aphropm_proto::RobotTrajectoryMsg >*
+RobotTrajectoryVecMsg::mutable_trajectories() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.aphropm_proto.RobotTrajectoryVecMsg.trajectories)
+  return &trajectories_;
+}
+inline const ::galbot::aphropm_proto::RobotTrajectoryMsg& RobotTrajectoryVecMsg::_internal_trajectories(int index) const {
+  return trajectories_.Get(index);
+}
+inline const ::galbot::aphropm_proto::RobotTrajectoryMsg& RobotTrajectoryVecMsg::trajectories(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.aphropm_proto.RobotTrajectoryVecMsg.trajectories)
+  return _internal_trajectories(index);
+}
+inline ::galbot::aphropm_proto::RobotTrajectoryMsg* RobotTrajectoryVecMsg::_internal_add_trajectories() {
+  return trajectories_.Add();
+}
+inline ::galbot::aphropm_proto::RobotTrajectoryMsg* RobotTrajectoryVecMsg::add_trajectories() {
+  // @@protoc_insertion_point(field_add:galbot.aphropm_proto.RobotTrajectoryVecMsg.trajectories)
+  return _internal_add_trajectories();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::aphropm_proto::RobotTrajectoryMsg >&
+RobotTrajectoryVecMsg::trajectories() const {
+  // @@protoc_insertion_point(field_list:galbot.aphropm_proto.RobotTrajectoryVecMsg.trajectories)
+  return trajectories_;
+}
+
+// string common_str = 100;
+inline void RobotTrajectoryVecMsg::clear_common_str() {
+  common_str_.ClearToEmpty();
+}
+inline const std::string& RobotTrajectoryVecMsg::common_str() const {
+  // @@protoc_insertion_point(field_get:galbot.aphropm_proto.RobotTrajectoryVecMsg.common_str)
+  return _internal_common_str();
+}
+inline void RobotTrajectoryVecMsg::set_common_str(const std::string& value) {
+  _internal_set_common_str(value);
+  // @@protoc_insertion_point(field_set:galbot.aphropm_proto.RobotTrajectoryVecMsg.common_str)
+}
+inline std::string* RobotTrajectoryVecMsg::mutable_common_str() {
+  // @@protoc_insertion_point(field_mutable:galbot.aphropm_proto.RobotTrajectoryVecMsg.common_str)
+  return _internal_mutable_common_str();
+}
+inline const std::string& RobotTrajectoryVecMsg::_internal_common_str() const {
+  return common_str_.Get();
+}
+inline void RobotTrajectoryVecMsg::_internal_set_common_str(const std::string& value) {
+  
+  common_str_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void RobotTrajectoryVecMsg::set_common_str(std::string&& value) {
+  
+  common_str_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.aphropm_proto.RobotTrajectoryVecMsg.common_str)
+}
+inline void RobotTrajectoryVecMsg::set_common_str(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  common_str_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.aphropm_proto.RobotTrajectoryVecMsg.common_str)
+}
+inline void RobotTrajectoryVecMsg::set_common_str(const char* value,
+    size_t size) {
+  
+  common_str_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.aphropm_proto.RobotTrajectoryVecMsg.common_str)
+}
+inline std::string* RobotTrajectoryVecMsg::_internal_mutable_common_str() {
+  
+  return common_str_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* RobotTrajectoryVecMsg::release_common_str() {
+  // @@protoc_insertion_point(field_release:galbot.aphropm_proto.RobotTrajectoryVecMsg.common_str)
+  return common_str_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void RobotTrajectoryVecMsg::set_allocated_common_str(std::string* common_str) {
+  if (common_str != nullptr) {
+    
+  } else {
+    
+  }
+  common_str_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), common_str,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.aphropm_proto.RobotTrajectoryVecMsg.common_str)
+}
+
 // -------------------------------------------------------------------
 
 // KinematicsBoundary
@@ -6066,6 +7009,10 @@ inline void MotionPlanConfigResponse::set_allocated_common_str(std::string* comm
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

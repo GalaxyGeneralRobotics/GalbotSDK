@@ -7,7 +7,7 @@
 # 2. 通过校验缓存压缩包的 SHA256 判断哪些依赖需要更新
 # 3. 下载/复制并安装需要更新的依赖（保存到 .cache/ 目录）
 # 4. 安装 SDK 核心库
-# 5. 可选择运行 G1/S1欢迎自检程序
+# 5. 可选择运行 G1/S1/G3欢迎自检程序
 # 6. 可选择下载Python example三方库依赖、和部署SDK到机器人
 
 # 缓存机制：
@@ -19,7 +19,7 @@
 #   ./install.sh [选项]
 #
 # 选项：
-#   --platform <platform>   指定目标平台（如 linux-aarch64-gcc940）
+#   --platform <platform>   指定目标平台（如 linux-aarch64-gcc940 或 linux-aarch64-gcc1330）
 #   --install-dir <path>    安装目录（默认 /opt/galbot）
 #   --check                 仅校验版本，不下载或安装
 #   --force                 强制重新下载所有依赖
@@ -80,7 +80,8 @@ NON_INTERACTIVE=false
 USE_SUDO=true
 
 # 所有支持的平台
-SUPPORTED_PLATFORMS=("linux-aarch64-gcc940" "linux-x86_64-gcc940")
+# 说明：aarch64 覆盖 Ubuntu20.04 与 Ubuntu24.04，两条 x86_64 仅保留 Ubuntu20.04 工具链。
+SUPPORTED_PLATFORMS=("linux-aarch64-gcc940" "linux-aarch64-gcc1330" "linux-x86_64-gcc940")
 
 # 颜色输出
 RED='\033[0;31m'
@@ -130,7 +131,7 @@ GALBOT_SDK 安装程序 v${SDK_VERSION}
 
 选项:
   --platform <platform>   指定单个目标平台（覆盖默认的所有平台安装）
-                          可选值: linux-aarch64-gcc940, linux-x86_64-gcc940
+                          可选值: linux-aarch64-gcc940, linux-aarch64-gcc1330, linux-x86_64-gcc940
   --single-platform       只安装当前检测到的平台（覆盖默认的所有平台安装）
   --all-platforms         安装所有平台（默认行为，用于交叉编译）
   --install-dir <path>    安装目录（默认: $DEFAULT_INSTALL_DIR）
@@ -150,6 +151,7 @@ GALBOT_SDK 安装程序 v${SDK_VERSION}
   ./install.sh -y                                 # 使用默认值安装（所有平台）
   ./install.sh --single-platform                 # 只安装当前检测到的平台
   ./install.sh --platform linux-x86_64-gcc940    # 只安装指定平台
+  ./install.sh --platform linux-aarch64-gcc1330  # 只安装 Thor 平台
   ./install.sh --install-dir /home/user/galbot   # 指定安装目录
   ./install.sh --check                            # 仅检查版本
   ./install.sh --sdk-source /path/to/sdk_source  # 本地测试，使用本地依赖
@@ -222,7 +224,21 @@ detect_platform() {
             echo "linux-x86_64-gcc940"
             ;;
         aarch64|arm64)
-            echo "linux-aarch64-gcc940"
+            # 通过 Ubuntu 版本区分 Orin 与 Thor：
+            # 20.04 -> gcc940 工具链，24.04 -> gcc1330 工具链。
+            if [ -f /etc/os-release ]; then
+                . /etc/os-release
+                case "${VERSION_ID:-}" in
+                    24*|25*)
+                        echo "linux-aarch64-gcc1330"
+                        ;;
+                    *)
+                        echo "linux-aarch64-gcc940"
+                        ;;
+                esac
+            else
+                echo "linux-aarch64-gcc940"
+            fi
             ;;
         *)
             log_error "不支持的架构: $arch"
@@ -238,6 +254,9 @@ get_toolchain_name() {
         linux-aarch64-gcc940)
             echo "gcc940-aarch64-ubuntu2004-gnu"
             ;;
+        linux-aarch64-gcc1330)
+            echo "gcc13.3-aarch64-ubuntu2404-gnu"
+            ;;
         linux-x86_64-gcc940)
             echo "gcc940-x86_64-ubuntu2004-gnu"
             ;;
@@ -246,6 +265,18 @@ get_toolchain_name() {
             exit 1
             ;;
     esac
+}
+
+# 获取可用的 aarch64 安装目录，优先选择 Thor，再回退到 Orin。
+find_aarch_platform() {
+    local candidate
+    for candidate in "linux-aarch64-gcc1330" "linux-aarch64-gcc940"; do
+        if [ -d "$INSTALL_DIR/galbot_sdk/$candidate/lib" ]; then
+            echo "$candidate"
+            return 0
+        fi
+    done
+    return 1
 }
 
 # 下载或复制文件
@@ -526,10 +557,14 @@ import json
 data = json.load(open('$thirdparty_json'))
 for pkg in data.get('packages', []):
     name = pkg.get('name', '')
-    version = pkg.get('version', '')
+    legacy_version = pkg.get('version', '')
     pattern = pkg.get('pattern', '')
     platform_info = pkg.get('platforms', {}).get('$platform', {})
     if platform_info:
+        # 平台版本优先；回退顶层版本以兼容旧版依赖清单。
+        version = platform_info.get('version', legacy_version)
+        if not version:
+            raise RuntimeError(f'依赖 {name} ($platform) 缺少版本信息')
         url = platform_info.get('url', '')
         local_path = platform_info.get('local_path', '')
         sha256 = platform_info.get('sha256', '')
@@ -625,6 +660,121 @@ install_thirdparty() {
         done
     else
         install_thirdparty_for_platform "$TARGET_PLATFORM"
+    fi
+}
+
+install_jetson_mmapi_for_platform() {
+    local platform="$1"
+    local mmapi_name vendor_dir
+    case "$platform" in
+        linux-aarch64-gcc940)
+            mmapi_name="jetson-mmapi-orin"
+            vendor_dir="tegra"
+            ;;
+        linux-aarch64-gcc1330)
+            mmapi_name="jetson-mmapi-thor"
+            vendor_dir="nvidia"
+            ;;
+        *) return 0 ;;
+    esac
+
+    local mmapi_root="${SCRIPT_DIR}/deps/${mmapi_name}"
+    local archive="${mmapi_root}.tar.gz"
+    local dst_dir="${INSTALL_DIR}/deps/${mmapi_name}"
+    local stage staged_root required broken_links
+
+    # 新包优先使用归档；旧包仍兼容展开的 MMAPI 目录。
+    if [ -f "$archive" ]; then
+        if ! gzip -t "$archive" || ! tar -tzf "$archive" > /dev/null; then
+            log_error "MMAPI 压缩包损坏: $archive"
+            return 1
+        fi
+    elif [ ! -d "$mmapi_root" ]; then
+        log_warn "未找到 ${archive} 或 ${mmapi_root}，跳过 Jetson MMAPI 库安装"
+        return 0
+    fi
+    if [ "$CHECK_ONLY" = true ]; then
+        log_success "Jetson MMAPI 安装源就绪: ${mmapi_name}"
+        return 0
+    fi
+    # 离线演练只报告动作，不创建临时目录或展开下载目录。
+    if [ "${DRY_RUN:-false}" = true ]; then
+        log_info "[DRY-RUN] 安装 ${mmapi_name} 到 ${dst_dir}（归档会先解压并检查）"
+        return 0
+    fi
+
+    run_cmd mkdir -p "${INSTALL_DIR}/deps" || return 1
+    stage=$(run_cmd mktemp -d "${INSTALL_DIR}/deps/.${mmapi_name}.XXXXXX") || return 1
+    staged_root="${stage}/${mmapi_name}"
+    # 在目标文件系统暂存，失败时不破坏已有安装，也不改动客户下载目录。
+    if [ -f "$archive" ]; then
+        if ! run_cmd tar --no-same-owner -xzf "$archive" -C "$stage"; then
+            run_cmd rm -rf "$stage"
+            log_error "MMAPI 解压失败: $archive"
+            return 1
+        fi
+    elif ! run_cmd cp -a "$mmapi_root" "$stage/"; then
+        run_cmd rm -rf "$stage"
+        log_error "MMAPI 复制失败: $mmapi_root"
+        return 1
+    fi
+
+    # 两个平台均需要 NvBufSurface 和 EGL；Thor 还需要完整 CUDA 驱动链接。
+    local required_files=(
+        "usr/src/jetson_multimedia_api/include/NvBufSurface.h"
+        "usr/lib/aarch64-linux-gnu/${vendor_dir}/libnvbufsurface.so"
+        "usr/lib/aarch64-linux-gnu/libEGL.so.1"
+    )
+    if [ "$vendor_dir" = nvidia ]; then
+        required_files+=(
+            "usr/lib/aarch64-linux-gnu/nvidia/libcuda.so"
+            "usr/lib/aarch64-linux-gnu/nvidia/libcuda.so.1"
+            "usr/lib/aarch64-linux-gnu/nvidia/libcuda.so.1.1"
+        )
+    fi
+    for required in "${required_files[@]}"; do
+        if ! run_cmd test -s "${staged_root}/${required}"; then
+            log_error "MMAPI 缺少有效文件: ${required}"
+            run_cmd rm -rf "$stage"
+            return 1
+        fi
+    done
+    if ! broken_links=$(run_cmd find -L "$staged_root" -type l -print) || [ -n "$broken_links" ]; then
+        log_error "MMAPI 存在失效软链接或目录无法读取: ${mmapi_name}"
+        run_cmd rm -rf "$stage"
+        return 1
+    fi
+
+    # 检查完成才替换旧目录；最终移动失败时恢复备份。
+    if run_cmd test -e "$dst_dir" || run_cmd test -L "$dst_dir"; then
+        if ! run_cmd mv "$dst_dir" "${stage}/previous"; then
+            run_cmd rm -rf "$stage"
+            return 1
+        fi
+    fi
+    if ! run_cmd mv "$staged_root" "$dst_dir"; then
+        if run_cmd test -e "${stage}/previous" || run_cmd test -L "${stage}/previous"; then
+            if ! run_cmd mv "${stage}/previous" "$dst_dir"; then
+                log_error "MMAPI 恢复失败，旧安装保留在 ${stage}/previous"
+                return 1
+            fi
+        fi
+        run_cmd rm -rf "$stage"
+        return 1
+    fi
+    run_cmd rm -rf "$stage" || return 1
+    log_success "Jetson MMAPI 安装完成: ${dst_dir}"
+}
+
+install_jetson_mmapi() {
+    if [ "$ALL_PLATFORMS" = true ]; then
+        log_info "安装所有平台的 Jetson MMAPI 库..."
+        for platform in "${SUPPORTED_PLATFORMS[@]}"; do
+            install_jetson_mmapi_for_platform "$platform" || return 1
+            echo
+        done
+    else
+        install_jetson_mmapi_for_platform "$TARGET_PLATFORM" || return 1
     fi
 }
 
@@ -803,9 +953,10 @@ update_example_paths() {
     local cmake_locations=(
         "$INSTALL_DIR/examples/g1/cpp/cmake"
         "$INSTALL_DIR/examples/s1/cpp/cmake"
+        "$INSTALL_DIR/examples/g3/cpp/cmake"
     )
     for dir in "${cmake_locations[@]}"; do
-        for f in "$dir/linux-aarch64-gcc940.cmake" "$dir/linux-x86_64-gcc940.cmake"; do
+        for f in "$dir/linux-aarch64-gcc940.cmake" "$dir/linux-aarch64-gcc1330.cmake" "$dir/linux-x86_64-gcc940.cmake"; do
             if [ -f "$f" ]; then
                 run_cmd sed -i "7c\\$new_line" "$f"
             fi
@@ -814,7 +965,8 @@ update_example_paths() {
 
     # 更新 CMakeLists.txt 中的 SDK 路径（g1/s1 各自 cpp 目录）
     for cmake_file in "$INSTALL_DIR/examples/g1/cpp/CMakeLists.txt" \
-                      "$INSTALL_DIR/examples/s1/cpp/CMakeLists.txt"; do
+                      "$INSTALL_DIR/examples/s1/cpp/CMakeLists.txt" \
+                      "$INSTALL_DIR/examples/g3/cpp/CMakeLists.txt"; do
         if [ -f "$cmake_file" ]; then
             run_cmd sed -i "7c\\$sdk_line" "$cmake_file"
         fi
@@ -888,23 +1040,25 @@ welcome_verify_cpp_executable() {
     echo "$INSTALL_DIR/galbot_sdk/$plat/bin/$model/galbot_robot/galbot_robot_installation_welcome_verify"
 }
 
-run_welcome_verify_g1() {
+run_welcome_verify_g1_or_g3() {
+    local model=$1
+    local model_upper=${model^^}
     local run_plat
     run_plat=$(detect_platform)
     local setup_sh="$INSTALL_DIR/galbot_sdk/$run_plat/setup.sh"
     local cpp_bin
-    cpp_bin="$(welcome_verify_cpp_executable g1 "$run_plat")"
+    cpp_bin="$(welcome_verify_cpp_executable "$model" "$run_plat")"
     log_info "本机平台: $run_plat（setup.sh 与可执行文件均来自 galbot_sdk/$run_plat/）"
     if [ ! -f "$setup_sh" ]; then
         log_error "未找到环境脚本（用于 LD_LIBRARY_PATH）: $setup_sh"
         return 1
     fi
     if [ ! -f "$cpp_bin" ] || [ ! -x "$cpp_bin" ]; then
-        log_error "未找到 G1 欢迎自检可执行文件: $cpp_bin"
+        log_error "未找到 ${model_upper} 欢迎自检可执行文件: $cpp_bin"
         return 1
     fi
 
-    local pcm_default="$INSTALL_DIR/examples/g1/assets/audio/welcome_16k_mono.pcm"
+    local pcm_default="$INSTALL_DIR/examples/$model/assets/audio/welcome_16k_mono.pcm"
     local pcm_path=""
     if [ -f "$pcm_default" ]; then
         pcm_path="$pcm_default"
@@ -915,7 +1069,7 @@ run_welcome_verify_g1() {
         pcm_path="${pcm_path#"${pcm_path%%[![:space:]]*}"}"
         pcm_path="${pcm_path%"${pcm_path##*[![:space:]]}"}"
         if [ -z "$pcm_path" ] || [ ! -f "$pcm_path" ]; then
-            log_error "PCM 路径无效或文件不存在；G1 自检需要环境变量 GALBOT_WELCOME_PCM。"
+            log_error "PCM 路径无效或文件不存在；${model_upper} 自检需要环境变量 GALBOT_WELCOME_PCM。"
             return 1
         fi
     fi
@@ -923,7 +1077,7 @@ run_welcome_verify_g1() {
     export GALBOT_WELCOME_PCM="$pcm_path"
     log_info "已导出 GALBOT_WELCOME_PCM=$GALBOT_WELCOME_PCM"
 
-    log_info "执行 G1 安装欢迎自检: $cpp_bin"
+    log_info "执行 ${model_upper} 安装欢迎自检: $cpp_bin"
     set +e
     (
         source "$setup_sh"
@@ -933,6 +1087,14 @@ run_welcome_verify_g1() {
     set -e
 
     return 0
+}
+
+run_welcome_verify_g1() {
+    run_welcome_verify_g1_or_g3 g1
+}
+
+run_welcome_verify_g3() {
+    run_welcome_verify_g1_or_g3 g3
 }
 
 run_welcome_verify_s1() {
@@ -1060,10 +1222,11 @@ prompt_run_installation_welcome_verify() {
     esac
 
     local model_choice=""
-    read -r -p "请选择机型  [1] G1  [2] S1 : " model_choice
+    read -r -p "请选择机型  [1] G1  [2] S1  [3] G3 : " model_choice
     case "$model_choice" in
         1) run_welcome_verify_g1 ;;
         2) run_welcome_verify_s1 ;;
+        3) run_welcome_verify_g3 ;;
         *)
             log_error "无效选择，已跳过自检程序。"
             return 0
@@ -1104,14 +1267,20 @@ post_install_optional_steps() {
     log_info "========== 可选：安装后配置（每步可单独选择） =========="
 
     # ---------- 部署到机器人 ----------
-    local aarch_lib="$INSTALL_DIR/galbot_sdk/linux-aarch64-gcc940/lib"
     if prompt_yes_no "是否将 SDK 库部署到机器人（若只在PC中运行SDK程序或已在机器人中安装完成可跳过）" n; then
-        if [ ! -d "$aarch_lib" ]; then
-            log_error "未找到机器人SDK库目录: $aarch_lib"
-            log_info "请先完成带 linux-aarch64-gcc940 的安装后，再进行部署"
+        local deploy_platform=""
+        if [ -n "$TARGET_PLATFORM" ] && [[ "$TARGET_PLATFORM" == linux-aarch64-* ]]; then
+            deploy_platform="$TARGET_PLATFORM"
+        else
+            deploy_platform="$(find_aarch_platform || true)"
+        fi
+
+        if [ -z "$deploy_platform" ]; then
+            log_error "未找到可部署的机器人 SDK 库目录"
+            log_info "请先完成带 linux-aarch64-gcc940 或 linux-aarch64-gcc1330 的安装后，再进行部署"
             log_info "手动部署：cd \"$INSTALL_DIR\" && bash \"$SCRIPT_DIR/deploy_to_robot.sh\""
         else
-            log_info "即将在目录 \"$INSTALL_DIR\" 下运行部署脚本（相对路径 galbot_sdk/linux-aarch64-gcc940/lib）。"
+            log_info "即将在目录 \"$INSTALL_DIR\" 下运行部署脚本（优先使用 $deploy_platform 的库目录）。"
             set +e
             (
                 cd "$INSTALL_DIR" && bash "$SCRIPT_DIR/deploy_to_robot.sh"
@@ -1202,6 +1371,10 @@ main() {
     
     # 安装三方库
     install_thirdparty
+    echo
+
+    # 安装 Jetson MMAPI staging roots
+    install_jetson_mmapi || return 1
     echo
     
     if [ "$CHECK_ONLY" = true ]; then

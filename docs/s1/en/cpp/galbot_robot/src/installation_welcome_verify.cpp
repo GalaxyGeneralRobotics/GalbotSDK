@@ -1,18 +1,20 @@
 #include <chrono>
+#include <condition_variable>
 #include <iostream>
 #include <memory>
+#include <mutex>
 #include <string>
 #include <thread>
 #include <unordered_set>
 #include <vector>
 
 #include "galbot_robot.hpp"
-#include "opencv2/opencv.hpp"
 
 using namespace galbot::sdk;
 
 constexpr double kSpeedRadS = 0.12;
 constexpr double kTimeoutS = 35.0;
+constexpr auto kVideoStreamTimeout = std::chrono::seconds(10);
 
 constexpr double kHeadArmsDemoDtS = 0.06;
 constexpr int kHeadArmsDemoSeg1 = 28;
@@ -110,9 +112,72 @@ void print_summary(const std::string& step_description, bool step_passed) {
   std::cout << (step_passed ? "[PASS] " : "[FAIL] ") << step_description << std::endl;
 }
 
+// Verify that the head camera publishes a non-empty H.264 frame without writing
+// installation-test data to disk. Shared state keeps callback data valid even if
+// the SDK dispatch thread finishes the callback while unsubscription is running.
+bool verify_head_h264_stream(GalbotRobot& robot) {
+  struct VideoCheckState {
+    std::mutex mutex;
+    std::condition_variable frame_received;
+    bool has_valid_frame{false};
+    std::string format;
+    std::size_t frame_size_bytes{0};
+  };
+
+  const auto state = std::make_shared<VideoCheckState>();
+  const SensorStatus subscribe_status = robot.subscribe_video_data(
+      SensorType::HEAD_LEFT_CAMERA, [state](const std::shared_ptr<EncodedVideoData>& video_data) {
+        // Accept both the documented lowercase spelling and the uppercase middleware payload.
+        if (video_data == nullptr || video_data->data.empty() ||
+            (video_data->format != "h264" && video_data->format != "H264")) {
+          return;
+        }
+
+        {
+          std::lock_guard<std::mutex> lock(state->mutex);
+          state->has_valid_frame = true;
+          state->format = video_data->format;
+          state->frame_size_bytes = video_data->data.size();
+        }
+        state->frame_received.notify_one();
+      });
+  if (subscribe_status != SensorStatus::SUCCESS) {
+    std::cerr << "[FAIL] subscribe_video_data failed, status=" << static_cast<int>(subscribe_status) << std::endl;
+    return false;
+  }
+
+  bool received_valid_frame = false;
+  std::string received_format;
+  std::size_t received_frame_size_bytes = 0;
+  {
+    std::unique_lock<std::mutex> lock(state->mutex);
+    received_valid_frame =
+        state->frame_received.wait_for(lock, kVideoStreamTimeout, [&state]() { return state->has_valid_frame; });
+    if (received_valid_frame) {
+      received_format = state->format;
+      received_frame_size_bytes = state->frame_size_bytes;
+    }
+  }
+
+  // Always unsubscribe after a successful subscription, including timeout paths.
+  const SensorStatus unsubscribe_status = robot.unsubscribe_video_data(SensorType::HEAD_LEFT_CAMERA);
+  if (unsubscribe_status != SensorStatus::SUCCESS) {
+    std::cerr << "[FAIL] unsubscribe_video_data failed, status=" << static_cast<int>(unsubscribe_status) << std::endl;
+    return false;
+  }
+  if (!received_valid_frame) {
+    std::cerr << "[FAIL] Timed out waiting for a non-empty H.264 frame" << std::endl;
+    return false;
+  }
+
+  std::cout << "Head camera H.264 frame: " << received_frame_size_bytes << " bytes format=" << received_format
+            << std::endl;
+  return true;
+}
+
 int main() {
   bool body_preset_step_passed = false;
-  bool head_camera_capture_ok = false;
+  bool head_video_stream_ok = false;
 
   auto& robot = GalbotRobot::get_instance(MachineType::S1);
 
@@ -174,29 +239,14 @@ int main() {
 
   body_preset_step_passed = torso_step_ok && upper_step_ok && demo_step_ok;
 
-  const std::shared_ptr<RgbData> head_rgb_data = robot.get_rgb_data(SensorType::HEAD_LEFT_CAMERA);
-  if (!head_rgb_data) {
-    std::cerr << "[FAIL] get_rgb_data returned null" << std::endl;
-    head_camera_capture_ok = false;
-  } else if (head_rgb_data->data.empty()) {
-    std::cerr << "[FAIL] head camera data missing or empty" << std::endl;
-    head_camera_capture_ok = false;
-  } else {
-    head_camera_capture_ok = true;
-    std::cout << "Head camera: " << head_rgb_data->data.size() << " bytes format=" << head_rgb_data->format
-              << std::endl;
-    const std::shared_ptr<cv::Mat> head_image_mat = head_rgb_data->convert_to_cv2_mat();
-    if (head_image_mat && !head_image_mat->empty()) {
-      std::cout << "  decoded size " << head_image_mat->cols << "x" << head_image_mat->rows << std::endl;
-    }
-  }
-  print_summary("Head camera data", head_camera_capture_ok);
+  head_video_stream_ok = verify_head_h264_stream(robot);
+  print_summary("Head camera H.264 video stream", head_video_stream_ok);
 
   std::cout << "\n======== Summary ========" << std::endl;
   print_summary("Motion verify (blocking)", body_preset_step_passed);
-  print_summary("Head camera", head_camera_capture_ok);
+  print_summary("Head camera H.264 video stream", head_video_stream_ok);
 
-  const bool installation_all_checks_passed = body_preset_step_passed && head_camera_capture_ok;
+  const bool installation_all_checks_passed = body_preset_step_passed && head_video_stream_ok;
   std::cout << (installation_all_checks_passed ? "\nOverall: PASS\n" : "\nOverall: FAIL\n");
 
   robot.request_shutdown();

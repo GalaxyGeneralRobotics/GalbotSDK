@@ -125,7 +125,6 @@ echo ""
 [ -z "$SSHPASS" ] && { print_error "Password cannot be empty"; exit 1; }
 
 REMOTE_DIR="/data/galbot/lib"
-LIB_DIR="./galbot_sdk/linux-aarch64-gcc940/lib"
 REMOTE_BIN_DIR="${REMOTE_DIR}/galbot_sdk/bin"
 
 # -----------------------------------------------------------------------------
@@ -141,10 +140,43 @@ SSH_OPTS="-o StrictHostKeyChecking=no \
 # -----------------------------------------------------------------------------
 print_step 2 "Pre-deployment Validation" "部署前验证"
 
-[ ! -d "$LIB_DIR" ] && { print_error "Local library directory not found"; exit 1; }
+# 根据目标机器架构和 Ubuntu 版本选择对应的 aarch64 SDK。
+REMOTE_ARCH=$(sshpass -p "$SSHPASS" \
+ssh $SSH_OPTS "$ROBOT_USER@$ROBOT_IP" "uname -m" 2>/dev/null | tr -d '\r')
+
+REMOTE_UBUNTU_VERSION=$(sshpass -p "$SSHPASS" \
+ssh $SSH_OPTS "$ROBOT_USER@$ROBOT_IP" "source /etc/os-release && echo \$VERSION_ID" 2>/dev/null | tr -d '\r')
+
+if [ -z "$REMOTE_ARCH" ] || [ -z "$REMOTE_UBUNTU_VERSION" ]; then
+    print_error "Failed to detect remote robot platform"
+    exit 1
+fi
+
+TARGET_PLATFORM=""
+if [ "$REMOTE_ARCH" = "aarch64" ]; then
+    if [ "$REMOTE_UBUNTU_VERSION" = "18.04" ] || [ "$REMOTE_UBUNTU_VERSION" = "20.04" ]; then
+        TARGET_PLATFORM="linux-aarch64-gcc940"
+    elif [[ "$REMOTE_UBUNTU_VERSION" == 24.* ]] || [[ "$REMOTE_UBUNTU_VERSION" == 25.* ]]; then
+        TARGET_PLATFORM="linux-aarch64-gcc1330"
+    else
+        print_error "Unsupported Ubuntu version on robot: $REMOTE_UBUNTU_VERSION"
+        exit 1
+    fi
+else
+    print_error "Unsupported robot architecture: $REMOTE_ARCH"
+    exit 1
+fi
+
+LIB_DIR="./galbot_sdk/${TARGET_PLATFORM}/lib"
+
+[ ! -d "$LIB_DIR" ] && { print_error "Local library directory not found: $LIB_DIR"; exit 1; }
 CPP_LIB_COUNT=$(find "$LIB_DIR" -name "libgalbot_sdk.*" | wc -l)
 
 print_success "Local directory OK"
+print_info "Remote architecture: $REMOTE_ARCH"
+print_info "Remote Ubuntu version: $REMOTE_UBUNTU_VERSION"
+print_info "Selected target platform: $TARGET_PLATFORM"
+print_info "Using local library directory: $LIB_DIR"
 print_info "C++ libraries: $CPP_LIB_COUNT"
 
 # -----------------------------------------------------------------------------

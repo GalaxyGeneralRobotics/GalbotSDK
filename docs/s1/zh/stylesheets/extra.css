@@ -152,3 +152,20 @@ figcaption {
 .md-header__title .md-header__topic[data-md-component="header-topic"] {
   display: none !important;
 }
+
+/* Top nav tabs (navigation.tabs) don't wrap or scroll by default in
+   Material, so once there are enough top-level nav items to exceed the
+   viewport width, the trailing tabs get silently clipped instead of
+   staying reachable. Make the tab list horizontally scrollable so every
+   tab (including the last ones like Troubleshooting/License) stays
+   accessible via mouse wheel/trackpad/touch, without changing the nav
+   structure itself. */
+.md-tabs__list {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  scrollbar-width: thin;
+}
+
+.md-tabs__item {
+  flex-shrink: 0;
+}

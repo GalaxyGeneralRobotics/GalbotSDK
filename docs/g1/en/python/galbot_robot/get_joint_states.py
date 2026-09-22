@@ -20,12 +20,18 @@ print("Initialization succeeded")
 # Get joint states by joint group names; returns all joints if empty
 joint_group_names = ["left_arm"]
 ret = robot.get_joint_states(joint_group_names, [])
-print_joint_states(ret)
+if not ret:
+    print(f"No joint states returned for joint groups {joint_group_names}")
+else:
+    print_joint_states(ret)
 
 # Get specified joint states; if provided, overrides joint group input
 joint_names = ["left_arm_joint1", "left_arm_joint2"]
 state_ret = robot.get_joint_states([], joint_names)
-print_joint_states(state_ret)
+if not state_ret:
+    print(f"No joint states returned for joint names {joint_names}")
+else:
+    print_joint_states(state_ret)
 
 # send SIGINT shutdown signal
 robot.request_shutdown()

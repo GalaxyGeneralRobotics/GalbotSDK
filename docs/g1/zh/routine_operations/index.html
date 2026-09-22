@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -391,6 +391,25 @@
     
   
   C++ API 参考
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../set_config_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  set_config 参考
 
       </a>
     </li>
@@ -815,7 +834,7 @@
   <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 开始建图 (必选)
+        2. 登录建图平台 (必选)
       
     </span>
   </a>
@@ -826,7 +845,7 @@
   <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. 保存地图 (必选)
+        3. 开始建图 (必选)
       
     </span>
   </a>
@@ -837,19 +856,7 @@
   <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 编辑地图 (可选)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. 编辑地图 (可选)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4.1 擦除地图杂点 (可选)
+        4. 完成建图 (必选)
       
     </span>
   </a>
@@ -857,10 +864,66 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#42-osm" class="md-nav__link">
+  <a href="#5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.2 编辑 OSM 文件 (可选)
+        5. 应用地图 (必选)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 编辑地图 (必选)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 编辑地图 (必选)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 擦除噪点 (必选)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 点位标注 (可选)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 区域标注 (可选)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-v118" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 物体标注 (可选，v1.18 及以上版本)
       
     </span>
   </a>
@@ -873,13 +936,41 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
+  <a href="#7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 地图更新 (可选)
+        7. 地图管理 (可选)
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="7. 地图管理 (可选)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 地图导出
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 地图导入
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -904,7 +995,7 @@
   <a href="#1_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 准备地图 (必选)
+        1. 自动校准流程 (必选)
       
     </span>
   </a>
@@ -912,10 +1003,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2_1" class="md-nav__link">
+  <a href="#2-1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. 启动定位 (必选)
+        2. 手动恢复定位 (可选，定位分为 -1 或持续低分时执行)
       
     </span>
   </a>
@@ -926,18 +1017,7 @@
   <a href="#3_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. 查看定位状态 (必选)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. 验证定位就绪 (必选)
+        3. 验证定位就绪 (必选)
       
     </span>
   </a>
@@ -1104,6 +1184,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../set_config_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set_config 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../troubleshooting/" class="md-nav__link">
         
   
@@ -1198,182 +1305,215 @@
 <p>如果雷达未启动，使用以下命令启动雷达（注意：不要重复启动）：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/data/galbot/bin/service_lidar_capture
 </span></code></pre></div>
-<p>确保地图路径具有可写权限</p>
-<p>默认地图路径存放在 <code>/var/maps/</code> 目录下。如果该路径不存在或没有写入权限，请创建路径并赋予可写权限：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/maps/
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>-R<span class="w"> </span>/var/maps/
-</span></code></pre></div>
-<h4 id="2">2. 开始建图 (必选)</h4>
-<p>启动建图程序</p>
+<h4 id="2">2. 登录建图平台 (必选)</h4>
+<p><strong>登录建图平台</strong></p>
 <ol>
-<li>拍下机器人急停按钮，将机器人推至建图起点（可以从任何位置开始建图）</li>
-<li>执行以下命令启动建图：</li>
+<li>打开浏览器，访问 <code>http://&lt;HPU IP&gt;:8000</code>（例如：<code>http://192.168.38.184:8000</code>），会自动跳转到登录页</li>
+<li>输入用户名 <code>admin</code>，密码 <code>galbot</code></li>
+<li>点击<strong>登录</strong> 按钮进入平台</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/data/galbot/bin/mapping_server
-</span></code></pre></div>
-<p>正常建图时会显示以下信息：
-- 关键帧数量（keyframe num）
-- 位姿延时（time delay）
-- 当前机器人位姿（x y z qx qy qz qw）</p>
-<p>关键帧数量会随着机器人移动而增加，机器人静止时关键帧数量保持不变，如下图所示：</p>
-<p><img alt="建图过程" src="/image/jt.jpg" /></p>
+<p><img alt="登陆" src="/image/new_map_login.png" /></p>
+<p>登录成功后，界面主要分为以下几个区域：</p>
+<table>
+<thead>
+<tr>
+<th>区域</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左侧地图列表</td>
+<td>展示当前连接机器人存储的所有地图，支持编辑、导出、加载、应用等操作</td>
+</tr>
+<tr>
+<td>中间可视化区域</td>
+<td>显示选中地图的 3D 点云视图，点击地图的加载按钮后在此处渲染</td>
+</tr>
+<tr>
+<td>右侧工具栏</td>
+<td>视角切换（俯视/前视/侧视）、显示范围、点云密度、点云大小等参数调整</td>
+</tr>
+<tr>
+<td>左上角</td>
+<td>导入地图</td>
+</tr>
+<tr>
+<td>右上角</td>
+<td>切换当前连接的机器人设备和模式</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="主界面" src="/image/new_map_main.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">使用建图平台的注意事项</p>
+<ol>
+<li>导入的地图压缩包，zip 包的名字必须和里面的文件夹名字保持一致，否则会提示无法导入</li>
+<li>不能删除当前应用的地图</li>
+<li>所有地图必须已经在上位机上存在时，才会显示编辑、导出、应用地图等按钮</li>
+<li>应用地图成功后，必须手动再切换到工作模式才能让地图真正应用成功</li>
+<li><strong>如果出现无法完成或一直加载的情况，请刷新页面重新尝试</strong></li>
+</ol>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">急停（E-Stop）与模式切换</p>
+<ul>
+<li>机器人的工作模式分为<strong>工作模式（Working）</strong>和<strong>部署模式（Deployment）</strong>，平台右上角可查看/切换。<strong>切换模式（无论哪个方向）都要求先解除急停</strong>，否则会提示 <code>Cannot switch mode while emergency stop is active</code>，无法切换。</li>
+<li>点击<strong>新建地图</strong>时会重启部署模式，平台会提示"请解除急停以重启部署模式，进入建图页面后再重新按下急停"。解除急停意味着电机短暂上电，<strong>必须确认机器人周围安全、有人在旁看护后再操作</strong>，进入建图页面看到点云正常显示后应立即重新按下急停，再手动推动机器人建图。</li>
+<li>建图/编辑完成后如需把模式切回工作模式，同样需要先短暂解除急停，切换成功后再重新按下。</li>
+</ul>
+</div>
+<h4 id="3">3. 开始建图 (必选)</h4>
+<ol>
+<li>确保机器人已连接，点击地图列表下方的<strong>新建地图</strong> 按钮</li>
+<li>首次点击会弹出提示框，提醒需要解除急停才能重启部署模式；按上方注意事项解除急停后再次点击<strong>新建地图</strong>，平台会切换到部署模式并自动进入建图页面
+<img alt="建图" src="/image/new_map_create.png" /></li>
+</ol>
+<p>进入建图页面后：</p>
+<ul>
+<li>由于模式切换导致的服务重启，可能需要等待数秒到十几秒</li>
+<li>等到地图上出现少数点云后，说明点云推送服务已开始，此时可以开始推动机器人进行建图</li>
+<li>建图频率大约为 1-1.5 秒推送一次数据，个别时刻数据可能相同，导致短时间内点云看起来没有变化</li>
+<li>机器人如果不推动，点云数据不会发生改变；开始推动后，点云数据大约每 5 秒更新一次</li>
+</ul>
+<p><img alt="雷达扫描" src="/image/new_map_lidar.png" /></p>
 <ol>
 <li>推动机器人遍历环境一周以构建完整地图。推动时应避免过大的加速度和角速度（接近人行走速度即可）</li>
 </ol>
-<h4 id="3">3. 保存地图 (必选)</h4>
-<p>保存构建好的地图</p>
-<p>直接结束建图程序不会自动保存地图。如需保存地图，请先执行保存操作，然后再关闭建图程序。</p>
-<p>执行保存地图工具：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>/data/galbot/bin/engine_tools
-</span></code></pre></div>
-<p>启动工具后，输入数字 <code>1</code>，然后按 Enter 回车选择保存地图功能。地图默认保存路径为 <code>/var/maps/room1102</code>，如下图所示：</p>
-<p><img alt="保存地图" src="/image/savepic.jpg" /></p>
-<p>保存地图后，地图目录下必须存在 <code>global_cloud_cleaned.pcd</code>，供后续定位使用。</p>
-<ul>
-<li>如果已经完成点云后处理，请确保清理后的地图文件命名为 <code>global_cloud_cleaned.pcd</code></li>
-<li>如果暂时不做杂点擦除，请在地图目录下执行以下命令：</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cp<span class="w"> </span>global_cloud.pcd<span class="w"> </span>global_cloud_cleaned.pcd
-</span></code></pre></div>
-<h4 id="4">4. 编辑地图 (可选)</h4>
-<p>本步骤用于优化地图质量，提高导航精度和安全性。</p>
+<h4 id="4">4. 完成建图 (必选)</h4>
+<ol>
+<li>点击建图页面左上角的<strong>保存</strong>图标（磁盘图标）保存地图</li>
+<li>如果不想保存地图，直接点击左上角的首页图标退出建图</li>
+</ol>
+<h4 id="5">5. 应用地图 (必选)</h4>
+<p>地图创建完成后，需要将其应用到机器人才能用于导航和作业。</p>
+<div class="admonition info">
+<p class="admonition-title">建议顺序</p>
+<p>一般建议先完成擦除噪点等编辑操作后再应用地图，避免噪点清除后需要重新应用地图。</p>
+</div>
+<ol>
+<li>在左侧地图列表中找到需要使用的地图</li>
+<li>如果该地图是新建地图，或者还没有加载到上位机上，需先点击<strong>加载</strong>按钮加载地图（根据地图大小和网络情况耗时几秒到 20 秒不等）</li>
+<li>加载地图时如果长时间没有响应，请刷新页面重试</li>
+<li>地图加载完成后，点击<strong>应用地图</strong> 按钮（需在部署模式下操作，操作后再切换到工作模式使其生效）</li>
+<li>等待地图下发至机器人，下发成功后会提示应用成功，此时切换模式到工作模式（<strong>很重要</strong>）</li>
+<li>应用成功后，机器人将自动加载该地图并尝试定位</li>
+</ol>
+<h4 id="6">6. 编辑地图 (必选)</h4>
+<p>本步骤用于优化地图质量，提高导航精度和安全性，均在建图平台的地图编辑页面完成。</p>
 <div class="admonition info">
 <p class="admonition-title">不做的影响</p>
 <ul>
-<li><strong>擦除地图杂点</strong>：地图中的空中杂点可能导致导航系统误判障碍物，影响路径规划精度</li>
-<li><strong>绘制电子围栏</strong>：没有电子围栏限制，机器人可能会进入非预期或危险区域</li>
+<li><strong>擦除噪点</strong>：地图中的杂散点云可能导致导航系统误判障碍物，影响路径规划精度</li>
+<li><strong>点位/区域标注</strong>：没有标注关键点位和功能区域，机器人无法在导航中使用这些预设位置和区域限制</li>
 </ul>
 </div>
-<h5 id="41">4.1 擦除地图杂点 (可选)</h5>
-<p>推荐进行本步骤。地图中通常可能存在少量杂点，擦除后可以提高导航成功率。尤其当房间中存在镜面、毛玻璃等材质物体时，点云地图中更容易出现杂点，建议使用 CloudCompare 软件进行后处理。</p>
-<p><strong>准备工作</strong>：下载 CloudCompare 软件</p>
-<p>下载链接：<a href="https://www.cloudcompare.org/release/index.html">https://www.cloudcompare.org/release/index.html</a></p>
-<p>如图所示：</p>
-<p><img alt="下载软件" src="/image/download.jpg" /></p>
-<p><strong>操作步骤</strong>：</p>
+<h5 id="61">6.1 擦除噪点 (必选)</h5>
+<p>建图过程中可能会采集到不必要的点云数据（如行人、临时障碍物等），需要进行清理。</p>
+<p><strong>进入编辑模式</strong></p>
 <ol>
-<li>打开 CloudCompare 软件，将点云地图 <code>global_cloud.pcd</code> 拖入软件工作区</li>
+<li>在地图列表中点击目标地图的<strong>加载</strong> 按钮，可视化地图</li>
+<li>点击<strong>编辑</strong> 按钮进入地图编辑页面</li>
 </ol>
-<p><img alt="pcd" src="/image/source.jpg" /></p>
+<p><img alt="编辑" src="/image/new_map_edit.png" /></p>
+<p><strong>使用噪点清除工具</strong></p>
 <ol>
-<li>按照下图绿色箭头编号依次操作：</li>
-<li><strong>步骤 1</strong>：勾选文件</li>
-<li><strong>步骤 2</strong>：选择正视图</li>
-<li><strong>步骤 3</strong>：选择裁剪功能（图标为剪刀）</li>
-<li><strong>步骤 4</strong>：框选目标区域（地面和天花板之间的机器人活动区域）</li>
-<li><strong>步骤 5</strong>：保留内部点云</li>
-<li><strong>步骤 6</strong>：确认操作（图标为对勾）</li>
+<li>在编辑页面上方工具栏选择<strong>噪点清除</strong> 功能</li>
+<li>配置清除参数：</li>
+<li><strong>选择工具</strong>：多边形 / 矩形 / 圆形</li>
+<li><strong>清除方式</strong>：范围内（删除选中区域）/ 范围外（保留选中区域，删除其他）</li>
+<li><strong>高度范围</strong>：与当前可视化范围一致，或自定义（指定 min/max 高度值）；勾选"与当前显示高度范围一致"时切割深度范围不可编辑，会自动使用右侧视图控制中设置的显示范围，取消勾选后可自定义切割深度范围</li>
+<li>举例：清除方式选择"范围内"，切割深度范围为 "0-2" 表示清除选中区域内、高度在 0-2 米之间的点云</li>
 </ol>
-<p>此时点云被分割为两部分：框选内的 <code>global_cloud.segmented</code> 和框选外的 <code>global_cloud.remaining</code>：</p>
-<p><img alt="opensource" src="/image/opensource.jpg" /></p>
+<p><strong>预览与确认</strong></p>
 <ol>
-<li>继续以下步骤：</li>
-<li><strong>步骤 7</strong>：取消勾选 <code>global_cloud.remaining</code></li>
-<li><strong>步骤 8</strong>：勾选 <code>global_cloud.segmented</code></li>
-<li><strong>步骤 9</strong>：选择俯视图</li>
-<li><strong>步骤 10</strong>：选择裁剪功能（剪刀图标）</li>
-<li><strong>步骤 11</strong>：框选机器人活动区域（注意不要选中真实障碍物，如料垛、桌子等）</li>
-<li><strong>步骤 12</strong>：点击框外图标</li>
-<li><strong>步骤 13</strong>：确认操作</li>
+<li>使用选中工具在地图上框选需要清除的区域</li>
+<li>可切换至<strong>3D视图</strong> 视角预览切割范围，确保不误删有效数据</li>
+<li>确认无误后点击<strong>完成</strong> 保存修改</li>
 </ol>
-<p><img alt="opensource2" src="/image/opensource2.jpg" /></p>
-<ol>
-<li>删除杂点并合并：</li>
-<li>选中 <code>global_cloud.segmented.remaining</code>（杂点部分），右键删除</li>
-<li>按住 Ctrl 键多选 <code>global_cloud.remaining</code> 和 <code>global_cloud.segmented.remaining</code></li>
-</ol>
-<p><img alt="opensource3" src="/image/opensource3.jpg" /></p>
-<ol>
-<li>保存清理后的地图：</li>
-<li>选择 Edit → Merge 合并两部分点云</li>
-<li>选择 File → Save 保存点云</li>
-<li>必须命名为 <code>global_cloud_cleaned.pcd</code></li>
-<li>移动擦除后的地图 <code>global_cloud_cleaned.pcd</code> 到地图文件夹 <code>/var/maps/room1102/</code></li>
-</ol>
-<p><img alt="opensource4" src="/image/opensource4.jpg" /></p>
-<h5 id="42-osm">4.2 编辑 OSM 文件 (可选)</h5>
-<p>通过绘制电子围栏来限制机器人的活动范围，防止机器人进入危险或非预期区域。</p>
-<div class="admonition info">
-<p class="admonition-title">作用说明</p>
+<p><img alt="噪点清除" src="/image/new_map_noise.png" /></p>
+<h5 id="62">6.2 点位标注 (可选)</h5>
+<p>点位标注用于标记机器人作业的关键位置，如取货点、放置点、充电点等。</p>
+<p>支持两种标注方式：</p>
 <ul>
-<li><strong>绘制电子围栏</strong>：在地图上设置虚拟边界，禁止机器人穿越围栏进入特定区域（如楼梯、危险区域、非工作区域等）</li>
-<li><strong>不做的影响</strong>：机器人可以自由移动到地图中的任何位置，可能进入危险区域或非预期的工作区域，存在安全风险</li>
+<li><strong>精准创建点位</strong>：将机器人移动到目标位置后，以机器人当前定位为目标记录坐标，支持点位二次编辑</li>
+<li><strong>模糊创建点位</strong>：直接在地图视图上手动选择位置进行创建，支持点位二次编辑</li>
 </ul>
-</div>
-<p>在建图完成后（假设地图保存路径为 <code>/var/maps/room1102/</code>），使用 <code>engine_tools</code> 工具转换点云地图为 OSM 文件：</p>
+<p><strong>标注步骤</strong>：</p>
 <ol>
-<li>执行 <code>engine_tools</code>，输入数字 <code>3</code>，选择点云地图转 OSM 文件功能</li>
-<li>直接回车使用默认地图。当前示例地图存放在 <code>/var/maps/room1102/</code>，所以需要输入地图的完整路径 <code>/var/maps/room1102/global_cloud.pcd</code>，然后回车转换：</li>
+<li>进入编辑页面，点击上方<strong>点位标注</strong> 按钮</li>
+<li>选择标注方式：</li>
+<li>若使用<strong>机器人当前定位</strong>：必须先应用本地图，否则无法获取实时位置</li>
+<li>若使用<strong>手动点击</strong>：直接在地图上点击目标位置</li>
+<li>在弹出窗口中填写点位信息：</li>
+<li><strong>名称</strong>：点位标识（如：<code>取货点-A01</code>）</li>
+<li><strong>属性</strong>：选择点位类型</li>
+<li><strong>Z 轴朝向</strong>：调整机器人的朝向角度（-180° ~ 180°）</li>
+<li>点击<strong>确认</strong> 保存点位，点击<strong>完成</strong> 结束标注模式</li>
 </ol>
-<p><img alt="osm1" src="/image/osm1.jpg" /></p>
+<p><img alt="标注" src="/image/new_map_point.png" /></p>
+<h5 id="63">6.3 区域标注 (可选)</h5>
+<p>区域标注用于划分特定功能区域，如禁行区、限速区、作业区等。</p>
 <ol>
-<li>转换后的文件如下图绿框所示，使用 JOSM 软件打开该 OSM 文件，如图所示：</li>
+<li>进入编辑页面，点击上方<strong>区域标注</strong> 按钮</li>
+<li>左侧弹出工具栏，选择绘图工具（多边形/矩形/圆形）</li>
+<li>在俯视图上绘制封闭区域</li>
+<li>填写区域信息：</li>
+<li><strong>属性</strong>：区域类型</li>
+<li>点击<strong>完成</strong> 保存区域</li>
 </ol>
-<p><img alt="osm2" src="/image/osm2.jpg" /></p>
-<p><strong>安装 JOSM</strong>（如未安装）：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>josm
-</span></code></pre></div>
-<p>安装完成后，终端输入 <code>josm</code> 打开软件。</p>
-<p><strong>绘制电子围栏步骤</strong>：</p>
-<ol>
-<li>选择左上角文件 → 打开，找到 <code>/var/maps/room1102/map_topo.osm</code></li>
-<li>选择下图白色箭头 1 指向的图标，鼠标左键单击绘制图形（红色细线），如白色箭头 2 所示</li>
-<li>绘制结束后（封闭图形自动结束，非封闭图形按 Esc 结束），单击白色箭头 1 上方的图标，选择刚刚绘制的线（被选中的线呈红色，按住 Ctrl 可选择多条线），然后点击白色箭头 3：</li>
-</ol>
-<p><img alt="osm3" src="/image/osm3.jpg" /></p>
-<ol>
-<li>在弹窗里选择 Fence 栏，设置类型为 <code>barbed_wire</code>（如白色箭头 4 所示），点击 Apply Preset，最后鼠标右击白色箭头 5，选择 Save 保存：</li>
-</ol>
-<p><img alt="osm4" src="/image/osm4.jpg" /></p>
-<h4 id="5">5. 地图更新 (可选)</h4>
-<p>当环境发生变化时（如新增家具、障碍物移动等），可以通过地图更新功能来优化地图。</p>
-<div class="admonition info">
-<p class="admonition-title">不做的影响</p>
-<p>如果环境发生变化后不更新地图，机器人仍使用旧地图进行导航，可能导致：
-- 定位精度下降
-- 路径规划不准确
-- 机器人可能误判障碍物位置</p>
-</div>
-<p>为节省计算资源，地图更新功能默认关闭。可以手动开启更新开关并由人工操作保存更新后的地图：</p>
-<p><strong>步骤 1</strong>：在定位良好的情况下（当前评分大于 0.9）打开地图更新开关</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>vim<span class="w"> </span>/data/galbot/config/mes/manager.config
-</span></code></pre></div>
-<p>将 <code>manager_update_map=0</code> 改为 <code>manager_update_map=1</code></p>
-<p><strong>步骤 2</strong>：原地重启定位，在评分恢复正常后（当前评分大于 0.9），执行 <code>engine_tools</code> 选择开始更新地图</p>
-<p><strong>步骤 3</strong>：推动机器人绕环境一周后，执行 <code>engine_tools</code> 选择结束更新地图</p>
-<p><strong>步骤 4</strong>：更新后的地图不会覆盖当前定位地图（<code>/var/maps/cur</code>），而是保存在 <code>/var/maps/update_map</code></p>
-<p><strong>步骤 5</strong>：地图更新结束后，将参数 <code>manager_update_map=1</code> 改回 <code>0</code>，然后可以替换新地图了</p>
+<p><img alt="区域" src="/image/new_map_area.png" /></p>
+<h5 id="64-v118">6.4 物体标注 (可选，v1.18 及以上版本)</h5>
+<p>物体标注用于标记环境中的固定障碍物或设备，帮助机器人更好地理解环境。</p>
 <div class="admonition warning">
-<p class="admonition-title">注意事项</p>
+<p class="admonition-title">编辑页面注意事项</p>
 <ol>
-<li>修改参数和替换地图都需要重启定位服务才能生效</li>
-<li>当前示例写的是 <code>engine_tools</code>，如果没有 <code>engine_tools</code>，使用对应的 <code>/data/galbot/bin/test_start_update_map</code> 和 <code>/data/galbot/bin/test_stop_update_map</code></li>
+<li>编辑或移动标注后，需要点击左侧弹窗的<strong>完成</strong>才能对刚才的操作进行暂存，否则被修改的标注会返回修改前的状态（用于防止误触）</li>
+<li>保存地图时，由于需要将地图打包后上传到上位机、再由上位机上传到机器人，耗时可能较长，请耐心等待</li>
+<li>如果长时间没有响应，请刷新页面重试</li>
+<li>每次保存都会以当前页面状态生成一份新地图，如需应用该地图，还需返回首页的地图列表进行应用地图操作</li>
 </ol>
 </div>
+<h4 id="7">7. 地图管理 (可选)</h4>
+<h5 id="71">7.1 地图导出</h5>
+<ol>
+<li>在地图列表中找到目标地图</li>
+<li>点击<strong>导出</strong> 按钮</li>
+<li>通过网页端下载</li>
+</ol>
+<h5 id="72">7.2 地图导入</h5>
+<ol>
+<li>点击地图列表上方的<strong>导入</strong> 按钮</li>
+<li>选择本地地图文件</li>
+<li>点击<strong>上传</strong>，等待导入完成</li>
+</ol>
 <hr />
 <h3 id="_3">定位流程</h3>
-<p>定位是使用导航功能的前提。在开始导航前，必须确保定位服务正常运行且定位状态良好。</p>
-<h4 id="1_1">1. 准备地图 (必选)</h4>
-<p>定位程序需要启动雷达（定位程序不依赖建图程序，建图结束后即可关闭建图程序）。</p>
-<p>定位使用的地图路径是 <code>/var/maps/cur</code>，将目标地图重命名为 <code>cur</code>，例如将刚刚新建的地图 <code>room1102</code> 直接重命名为 <code>cur</code>，如图所示：</p>
-<p><img alt="cur" src="/image/cur.jpg" /></p>
-<h4 id="2_1">2. 启动定位 (必选)</h4>
-<p>启动定位服务：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>/data/galbot/bin/localization_server
-</span></code></pre></div>
-<h4 id="3_1">3. 查看定位状态 (必选)</h4>
-<p>查看定位状态：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>tail<span class="w"> </span>-f<span class="w"> </span>/userdata/log/localization_server/localization_server.INFO
-</span></code></pre></div>
-<p><img alt="state" src="/image/state.jpg" /></p>
-<p>如果分数低于 0.75 或者没有分数和位姿发布，请将机器推至建图起点位姿，下发一次初始位姿（使用 <code>engine_tools</code> 输入数字 2，Enter 回车发送一次初始位姿），如图所示：</p>
-<p><img alt="state2" src="/image/state2.jpg" /></p>
-<h4 id="4_1">4. 验证定位就绪 (必选)</h4>
+<p>定位是使用导航功能的前提。在开始导航前，必须确保定位服务正常运行且定位状态良好。当机器人出现<strong>抓取不准、移动偏差、定位丢失</strong>等问题时，需要通过校准定位功能恢复精度。</p>
+<h4 id="1_1">1. 自动校准流程 (必选)</h4>
+<ol>
+<li>点击地图列表上方的<strong>校准定位</strong> 按钮</li>
+<li>系统进入当前应用地图的校准页面</li>
+<li>页面显示<strong>实时定位分</strong>（正常范围：0.9-1.0），系统会自动尝试恢复定位</li>
+</ol>
+<p><img alt="定位" src="/image/new_map_location.png" /></p>
+<h4 id="2-1">2. 手动恢复定位 (可选，定位分为 -1 或持续低分时执行)</h4>
+<p>当定位分为 <strong>-1</strong> 或持续低分时，需要手动干预：</p>
+<ol>
+<li>进入校准定位页面后，如果在进入之前进行了模式切换，需要等待几秒到十几秒的时间，等待机器人数据返回</li>
+<li>当有数据返回后，如果定位分与 1.0 差距较大，需要点击<strong>手动恢复定位</strong> 按钮</li>
+<li>黄色点代表机器人返回的 base 位置，绿色点表示需要校准的位置，点击黄色位置，让绿色点的位置与方向跟黄色点重合即可</li>
+<li>使用左下角角度调节器调整机器人朝向</li>
+<li>点击<strong>以该姿态恢复定位</strong> 按钮提交</li>
+<li>等待 5-10 秒，观察定位分变化</li>
+</ol>
+<p><img alt="手动定位" src="/image/new_map_manual_location.png" /></p>
+<h4 id="3_1">3. 验证定位就绪 (必选)</h4>
 <p>在开始导航前，请确认以下检查项：</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 雷达服务正在运行</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 定位服务已启动</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 定位分数大于 0.75</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 定位分数大于 0.8</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 当前位姿正常发布</li>
 </ul>
 <div class="admonition success">
@@ -1437,7 +1577,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "toc.integrate", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../javascripts/language_switch.js"></script>
       

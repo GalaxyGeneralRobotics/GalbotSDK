@@ -38,6 +38,7 @@
 #include "galbot/core_proto/header.pb.h"
 #include "galbot/core_proto/wrapper.pb.h"
 #include "galbot/spatial_proto/frame.pb.h"
+#include "galbot/arbitrator_proto/arbitrator.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_galbot_2fsingorix_5fproto_2fsingorix_5fcommand_2eproto
@@ -444,6 +445,7 @@ class GroupCommand PROTOBUF_FINAL :
   enum : int {
     kJointCommandsFieldNumber = 2,
     kTimeFromStartFieldNumber = 1,
+    kAuthorityTokenFieldNumber = 4,
   };
   // repeated .galbot.singorix_proto.JointCommand joint_commands = 2;
   int joint_commands_size() const;
@@ -481,6 +483,24 @@ class GroupCommand PROTOBUF_FINAL :
       ::galbot::core_proto::Duration* time_from_start);
   ::galbot::core_proto::Duration* unsafe_arena_release_time_from_start();
 
+  // .galbot.arbitrator_proto.AuthorityToken authority_token = 4;
+  bool has_authority_token() const;
+  private:
+  bool _internal_has_authority_token() const;
+  public:
+  void clear_authority_token();
+  const ::galbot::arbitrator_proto::AuthorityToken& authority_token() const;
+  ::galbot::arbitrator_proto::AuthorityToken* release_authority_token();
+  ::galbot::arbitrator_proto::AuthorityToken* mutable_authority_token();
+  void set_allocated_authority_token(::galbot::arbitrator_proto::AuthorityToken* authority_token);
+  private:
+  const ::galbot::arbitrator_proto::AuthorityToken& _internal_authority_token() const;
+  ::galbot::arbitrator_proto::AuthorityToken* _internal_mutable_authority_token();
+  public:
+  void unsafe_arena_set_allocated_authority_token(
+      ::galbot::arbitrator_proto::AuthorityToken* authority_token);
+  ::galbot::arbitrator_proto::AuthorityToken* unsafe_arena_release_authority_token();
+
   // @@protoc_insertion_point(class_scope:galbot.singorix_proto.GroupCommand)
  private:
   class _Internal;
@@ -488,9 +508,11 @@ class GroupCommand PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::JointCommand > joint_commands_;
   ::galbot::core_proto::Duration* time_from_start_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::galbot::arbitrator_proto::AuthorityToken* authority_token_;
   friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5fcommand_2eproto;
 };
 // -------------------------------------------------------------------
@@ -609,6 +631,7 @@ class TaskCommand PROTOBUF_FINAL :
   enum : int {
     kSubtaskCommandsFieldNumber = 2,
     kTimeFromStartFieldNumber = 1,
+    kAuthorityTokenFieldNumber = 4,
   };
   // repeated .galbot.spatial_proto.FrameTriad subtask_commands = 2;
   int subtask_commands_size() const;
@@ -646,6 +669,24 @@ class TaskCommand PROTOBUF_FINAL :
       ::galbot::core_proto::Duration* time_from_start);
   ::galbot::core_proto::Duration* unsafe_arena_release_time_from_start();
 
+  // .galbot.arbitrator_proto.AuthorityToken authority_token = 4;
+  bool has_authority_token() const;
+  private:
+  bool _internal_has_authority_token() const;
+  public:
+  void clear_authority_token();
+  const ::galbot::arbitrator_proto::AuthorityToken& authority_token() const;
+  ::galbot::arbitrator_proto::AuthorityToken* release_authority_token();
+  ::galbot::arbitrator_proto::AuthorityToken* mutable_authority_token();
+  void set_allocated_authority_token(::galbot::arbitrator_proto::AuthorityToken* authority_token);
+  private:
+  const ::galbot::arbitrator_proto::AuthorityToken& _internal_authority_token() const;
+  ::galbot::arbitrator_proto::AuthorityToken* _internal_mutable_authority_token();
+  public:
+  void unsafe_arena_set_allocated_authority_token(
+      ::galbot::arbitrator_proto::AuthorityToken* authority_token);
+  ::galbot::arbitrator_proto::AuthorityToken* unsafe_arena_release_authority_token();
+
   // @@protoc_insertion_point(class_scope:galbot.singorix_proto.TaskCommand)
  private:
   class _Internal;
@@ -653,9 +694,11 @@ class TaskCommand PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::spatial_proto::FrameTriad > subtask_commands_;
   ::galbot::core_proto::Duration* time_from_start_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::galbot::arbitrator_proto::AuthorityToken* authority_token_;
   friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5fcommand_2eproto;
 };
 // ===================================================================
@@ -974,6 +1017,85 @@ GroupCommand::joint_commands() const {
   return joint_commands_;
 }
 
+// .galbot.arbitrator_proto.AuthorityToken authority_token = 4;
+inline bool GroupCommand::_internal_has_authority_token() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || authority_token_ != nullptr);
+  return value;
+}
+inline bool GroupCommand::has_authority_token() const {
+  return _internal_has_authority_token();
+}
+inline const ::galbot::arbitrator_proto::AuthorityToken& GroupCommand::_internal_authority_token() const {
+  const ::galbot::arbitrator_proto::AuthorityToken* p = authority_token_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::arbitrator_proto::AuthorityToken&>(
+      ::galbot::arbitrator_proto::_AuthorityToken_default_instance_);
+}
+inline const ::galbot::arbitrator_proto::AuthorityToken& GroupCommand::authority_token() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.GroupCommand.authority_token)
+  return _internal_authority_token();
+}
+inline void GroupCommand::unsafe_arena_set_allocated_authority_token(
+    ::galbot::arbitrator_proto::AuthorityToken* authority_token) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token_);
+  }
+  authority_token_ = authority_token;
+  if (authority_token) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.singorix_proto.GroupCommand.authority_token)
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* GroupCommand::release_authority_token() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::galbot::arbitrator_proto::AuthorityToken* temp = authority_token_;
+  authority_token_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* GroupCommand::unsafe_arena_release_authority_token() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.GroupCommand.authority_token)
+  _has_bits_[0] &= ~0x00000001u;
+  ::galbot::arbitrator_proto::AuthorityToken* temp = authority_token_;
+  authority_token_ = nullptr;
+  return temp;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* GroupCommand::_internal_mutable_authority_token() {
+  _has_bits_[0] |= 0x00000001u;
+  if (authority_token_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::arbitrator_proto::AuthorityToken>(GetArena());
+    authority_token_ = p;
+  }
+  return authority_token_;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* GroupCommand::mutable_authority_token() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.GroupCommand.authority_token)
+  return _internal_mutable_authority_token();
+}
+inline void GroupCommand::set_allocated_authority_token(::galbot::arbitrator_proto::AuthorityToken* authority_token) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token_);
+  }
+  if (authority_token) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token)->GetArena();
+    if (message_arena != submessage_arena) {
+      authority_token = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, authority_token, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  authority_token_ = authority_token;
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.GroupCommand.authority_token)
+}
+
 // -------------------------------------------------------------------
 
 // TaskCommand
@@ -1089,6 +1211,85 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::spatial_proto:
 TaskCommand::subtask_commands() const {
   // @@protoc_insertion_point(field_list:galbot.singorix_proto.TaskCommand.subtask_commands)
   return subtask_commands_;
+}
+
+// .galbot.arbitrator_proto.AuthorityToken authority_token = 4;
+inline bool TaskCommand::_internal_has_authority_token() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || authority_token_ != nullptr);
+  return value;
+}
+inline bool TaskCommand::has_authority_token() const {
+  return _internal_has_authority_token();
+}
+inline const ::galbot::arbitrator_proto::AuthorityToken& TaskCommand::_internal_authority_token() const {
+  const ::galbot::arbitrator_proto::AuthorityToken* p = authority_token_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::arbitrator_proto::AuthorityToken&>(
+      ::galbot::arbitrator_proto::_AuthorityToken_default_instance_);
+}
+inline const ::galbot::arbitrator_proto::AuthorityToken& TaskCommand::authority_token() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.TaskCommand.authority_token)
+  return _internal_authority_token();
+}
+inline void TaskCommand::unsafe_arena_set_allocated_authority_token(
+    ::galbot::arbitrator_proto::AuthorityToken* authority_token) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token_);
+  }
+  authority_token_ = authority_token;
+  if (authority_token) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.singorix_proto.TaskCommand.authority_token)
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* TaskCommand::release_authority_token() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::galbot::arbitrator_proto::AuthorityToken* temp = authority_token_;
+  authority_token_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* TaskCommand::unsafe_arena_release_authority_token() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.TaskCommand.authority_token)
+  _has_bits_[0] &= ~0x00000001u;
+  ::galbot::arbitrator_proto::AuthorityToken* temp = authority_token_;
+  authority_token_ = nullptr;
+  return temp;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* TaskCommand::_internal_mutable_authority_token() {
+  _has_bits_[0] |= 0x00000001u;
+  if (authority_token_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::arbitrator_proto::AuthorityToken>(GetArena());
+    authority_token_ = p;
+  }
+  return authority_token_;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* TaskCommand::mutable_authority_token() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.TaskCommand.authority_token)
+  return _internal_mutable_authority_token();
+}
+inline void TaskCommand::set_allocated_authority_token(::galbot::arbitrator_proto::AuthorityToken* authority_token) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token_);
+  }
+  if (authority_token) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token)->GetArena();
+    if (message_arena != submessage_arena) {
+      authority_token = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, authority_token, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  authority_token_ = authority_token;
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.TaskCommand.authority_token)
 }
 
 #ifdef __GNUC__

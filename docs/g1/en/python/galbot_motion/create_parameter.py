@@ -13,7 +13,7 @@ p.joint_state = {
     G1JointGroup.left_arm: [0.0] * 7,
     # Can add others if needed:
     # G1JointGroup.right_arm: [0.0] * 7,
-    # G1JointGroup.LEG: [0.0] * 4,
+    # G1JointGroup.leg: [0.0] * 4,
 }
 
 print('blocking:', p.get_blocking())

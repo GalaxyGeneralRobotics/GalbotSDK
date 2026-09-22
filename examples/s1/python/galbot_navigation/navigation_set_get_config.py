@@ -28,9 +28,13 @@ def main():
     print("dump navigation configs before setting parameters")
     print_result("dump_navigation_configs", navigation.dump_navigation_configs())
 
+    # valid range: [0.05, 1.5]
     vel_limit = np.array([0.5, 0.5, 0.5], dtype=np.float64)
-    acc_limit = np.array([1.0, 1.0, 1.0], dtype=np.float64)
+    # valid range: [0.05, 6.0]
+    acc_limit = np.array([0.5, 0.5, 0.5], dtype=np.float64)
+    # valid range: [0.05, 12.0]
     jerk_limit = np.array([5.0, 5.0, 5.0], dtype=np.float64)
+    # valid range: [0.03, 2.0]
     arrival_threshold = np.array([0.05, 0.05, 0.05], dtype=np.float64)
     timeout_s = 30.0
 

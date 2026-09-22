@@ -63,6 +63,7 @@ int main() {
     return -1;
   }
 
+  // Sync-mode RGB payloads are tightly packed CPU-owned NV12, not JPEG.
   std::cout << "[Synced RGB]" << std::endl;
   const auto anchor_it = obs->rgb_data_map.find(cameras[0]);
   if (anchor_it == obs->rgb_data_map.end() || !anchor_it->second) {
@@ -79,6 +80,8 @@ int main() {
       const int64_t cam_ts_ns = it->second->header.timestamp_ns;
       std::cout << "  " << sensor_name(cam) << " timestamp_ns=" << cam_ts_ns
                 << " delta_to_anchor_ms=" << (cam_ts_ns - anchor_ts_ns) / 1e6
+                << " format=" << it->second->format
+                << " dimensions=" << it->second->width << "x" << it->second->height
                 << " bytes=" << it->second->data.size() << std::endl;
     }
   }

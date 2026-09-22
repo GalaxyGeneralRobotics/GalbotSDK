@@ -1,0 +1,33 @@
+.nav-collapse-toggle{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:1.2em;
+  height:1.2em;
+  padding:0;
+  margin-right:6px;
+  color:var(--md-default-fg, #2b2b2b);
+}
+
+/* Slightly reduce indent of nested lists when collapsed/expanded */
+.md-nav__list > li .md-nav__list,
+.md-nav__sublist{
+  margin-left: 0.5em;
+}
+
+/* Ensure toggle button blends with text */
+.nav-collapse-toggle:focus{ outline: 2px solid rgba(0,0,0,0.08); outline-offset: 2px; }
+
+/* Orphan "Installation and Configuration" detail pages (e.g.
+   installation_robot_deployment, installation_pc_ubuntu, ...) get the
+   marker class `md-nav--installation-detail` from the postprocess step
+   in generate_mkdocs.sh. The primary sidebar there should only show the
+   "Installation and Configuration" nested section (the only nested
+   top-level item in mkdocs.yml) with the current page's TOC injected.
+   Hide all other top-level siblings (Home, Overview, Routine Operations,
+   Tutorials, Python/C++ Examples, API References, Troubleshooting,
+   License) so the sidebar stays focused on installation content while
+   the top tabs still provide global navigation. */
+.md-nav--installation-detail > .md-nav__list > .md-nav__item:not(.md-nav__item--nested){
+  display: none;
+}

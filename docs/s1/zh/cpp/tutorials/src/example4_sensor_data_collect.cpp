@@ -193,7 +193,7 @@ int main(){
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
         
         /** Get rgb image */
-        std::shared_ptr<RgbData> rgb_data = robot.get_rgb_data(SensorType::LEFT_ARM_CAMERA);
+        std::shared_ptr<RgbData> rgb_data = robot.get_rgb_data(SensorType::LEFT_ARM_CAMERA, RgbOutputFormat::JPEG, true);
         std::shared_ptr<cv::Mat> rgb_img;
         if (rgb_data) {
             std::cout << "Get rgb image suceess" << std::endl;

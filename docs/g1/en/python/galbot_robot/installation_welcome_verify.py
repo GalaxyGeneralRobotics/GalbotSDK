@@ -15,7 +15,7 @@ from galbot_sdk.g1 import (
     ControlStatus,
     GalbotRobot,
     JointCommand,
-    SensorType,
+    SensorType, RgbOutputFormat,
     Trajectory,
     TrajectoryPoint,
 )
@@ -264,7 +264,7 @@ def main() -> int:
             welcome_pcm_playback_ok = play_pcm(robot, resolved_welcome_pcm_path)
     _print_summary("Welcome PCM playback", welcome_pcm_playback_ok)
 
-    head_rgb_data = robot.get_rgb_data(SensorType.HEAD_LEFT_CAMERA)
+    head_rgb_data = robot.get_rgb_data(SensorType.HEAD_LEFT_CAMERA, RgbOutputFormat.JPEG, True)
     if not head_rgb_data:
         print("[FAIL] get_rgb_data returned null", file=sys.stderr)
         head_camera_capture_ok = False

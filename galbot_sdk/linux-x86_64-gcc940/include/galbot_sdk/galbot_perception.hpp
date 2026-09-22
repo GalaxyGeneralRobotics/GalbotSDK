@@ -32,7 +32,7 @@ namespace sdk {
  * @class GalbotPerception
  * @brief Perception module interface; obtain the singleton via get_instance(MachineType).
  *
- * @robot G1 S1
+ * @robot G1 S1 G3
  */
 class GalbotPerception {
  public:
@@ -40,7 +40,7 @@ class GalbotPerception {
 
   /**
    * @brief Get the singleton instance of GalbotPerception.
-   * @param m Machine type (e.g. MachineType::G1 or MachineType::S1).
+   * @param m Machine type (e.g. MachineType::G1, MachineType::S1 or MachineType::G3).
    * @return Reference to the singleton instance for the given machine type.
    */
   static GalbotPerception& get_instance(MachineType m);

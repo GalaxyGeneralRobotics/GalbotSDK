@@ -40,6 +40,7 @@
 #include "galbot/aphropm_proto/common_interface.pb.h"
 #include "galbot/aphropm_proto/mps_interface.pb.h"
 #include "galbot/aphropm_proto/common_planner_config.pb.h"
+#include "galbot/arbitrator_proto/arbitrator.pb.h"
 #include <google/protobuf/wrappers.pb.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -422,6 +423,7 @@ class MotionPlanServerReq PROTOBUF_FINAL :
     kHeaderFieldNumber = 1,
     kImmediateExecuteFieldNumber = 3,
     kEnableCollisionEnvEcheckFieldNumber = 5,
+    kAuthorityTokenFieldNumber = 7,
     kTaskTypeFieldNumber = 4,
     kMotionPlanReqFieldNumber = 50,
     kMoveLineReqFieldNumber = 51,
@@ -514,6 +516,24 @@ class MotionPlanServerReq PROTOBUF_FINAL :
   void unsafe_arena_set_allocated_enable_collision_env_echeck(
       PROTOBUF_NAMESPACE_ID::BoolValue* enable_collision_env_echeck);
   PROTOBUF_NAMESPACE_ID::BoolValue* unsafe_arena_release_enable_collision_env_echeck();
+
+  // .galbot.arbitrator_proto.AuthorityToken authority_token = 7;
+  bool has_authority_token() const;
+  private:
+  bool _internal_has_authority_token() const;
+  public:
+  void clear_authority_token();
+  const ::galbot::arbitrator_proto::AuthorityToken& authority_token() const;
+  ::galbot::arbitrator_proto::AuthorityToken* release_authority_token();
+  ::galbot::arbitrator_proto::AuthorityToken* mutable_authority_token();
+  void set_allocated_authority_token(::galbot::arbitrator_proto::AuthorityToken* authority_token);
+  private:
+  const ::galbot::arbitrator_proto::AuthorityToken& _internal_authority_token() const;
+  ::galbot::arbitrator_proto::AuthorityToken* _internal_mutable_authority_token();
+  public:
+  void unsafe_arena_set_allocated_authority_token(
+      ::galbot::arbitrator_proto::AuthorityToken* authority_token);
+  ::galbot::arbitrator_proto::AuthorityToken* unsafe_arena_release_authority_token();
 
   // .galbot.aphropm_proto.TaskType task_type = 4;
   void clear_task_type();
@@ -631,11 +651,14 @@ class MotionPlanServerReq PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr task_id_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr common_str_;
   ::galbot::core_proto::Header* header_;
   PROTOBUF_NAMESPACE_ID::BoolValue* immediate_execute_;
   PROTOBUF_NAMESPACE_ID::BoolValue* enable_collision_env_echeck_;
+  ::galbot::arbitrator_proto::AuthorityToken* authority_token_;
   int task_type_;
   union RequestUnion {
     RequestUnion() {}
@@ -645,7 +668,6 @@ class MotionPlanServerReq PROTOBUF_FINAL :
     ::galbot::aphropm_proto::SigPlanReq* sig_plan_req_;
     ::galbot::aphropm_proto::CombinePlanReq* combine_plan_req_;
   } Request_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::uint32 _oneof_case_[1];
 
   friend struct ::TableStruct_galbot_2faphropm_5fproto_2faphropm_5fmps_5finterface_2eproto;
@@ -1026,6 +1048,7 @@ class MotionPlanServerStatus PROTOBUF_FINAL :
     kTaskInfoFieldNumber = 3,
     kServerStatusDespFieldNumber = 2,
     kCommonStrFieldNumber = 300,
+    kAuthorityTokenFieldNumber = 4,
     kServerStatusCodeFieldNumber = 1,
   };
   // repeated .galbot.aphropm_proto.TaskInfo task_info = 3;
@@ -1078,6 +1101,24 @@ class MotionPlanServerStatus PROTOBUF_FINAL :
   std::string* _internal_mutable_common_str();
   public:
 
+  // .galbot.arbitrator_proto.AuthorityToken authority_token = 4;
+  bool has_authority_token() const;
+  private:
+  bool _internal_has_authority_token() const;
+  public:
+  void clear_authority_token();
+  const ::galbot::arbitrator_proto::AuthorityToken& authority_token() const;
+  ::galbot::arbitrator_proto::AuthorityToken* release_authority_token();
+  ::galbot::arbitrator_proto::AuthorityToken* mutable_authority_token();
+  void set_allocated_authority_token(::galbot::arbitrator_proto::AuthorityToken* authority_token);
+  private:
+  const ::galbot::arbitrator_proto::AuthorityToken& _internal_authority_token() const;
+  ::galbot::arbitrator_proto::AuthorityToken* _internal_mutable_authority_token();
+  public:
+  void unsafe_arena_set_allocated_authority_token(
+      ::galbot::arbitrator_proto::AuthorityToken* authority_token);
+  ::galbot::arbitrator_proto::AuthorityToken* unsafe_arena_release_authority_token();
+
   // int32 server_status_code = 1;
   void clear_server_status_code();
   ::PROTOBUF_NAMESPACE_ID::int32 server_status_code() const;
@@ -1097,6 +1138,7 @@ class MotionPlanServerStatus PROTOBUF_FINAL :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::aphropm_proto::TaskInfo > task_info_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr server_status_desp_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr common_str_;
+  ::galbot::arbitrator_proto::AuthorityToken* authority_token_;
   ::PROTOBUF_NAMESPACE_ID::int32 server_status_code_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_galbot_2faphropm_5fproto_2faphropm_5fmps_5finterface_2eproto;
@@ -1547,6 +1589,85 @@ inline void MotionPlanServerReq::set_allocated_enable_collision_env_echeck(PROTO
   }
   enable_collision_env_echeck_ = enable_collision_env_echeck;
   // @@protoc_insertion_point(field_set_allocated:galbot.aphropm_proto.MotionPlanServerReq.enable_collision_env_echeck)
+}
+
+// .galbot.arbitrator_proto.AuthorityToken authority_token = 7;
+inline bool MotionPlanServerReq::_internal_has_authority_token() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || authority_token_ != nullptr);
+  return value;
+}
+inline bool MotionPlanServerReq::has_authority_token() const {
+  return _internal_has_authority_token();
+}
+inline const ::galbot::arbitrator_proto::AuthorityToken& MotionPlanServerReq::_internal_authority_token() const {
+  const ::galbot::arbitrator_proto::AuthorityToken* p = authority_token_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::arbitrator_proto::AuthorityToken&>(
+      ::galbot::arbitrator_proto::_AuthorityToken_default_instance_);
+}
+inline const ::galbot::arbitrator_proto::AuthorityToken& MotionPlanServerReq::authority_token() const {
+  // @@protoc_insertion_point(field_get:galbot.aphropm_proto.MotionPlanServerReq.authority_token)
+  return _internal_authority_token();
+}
+inline void MotionPlanServerReq::unsafe_arena_set_allocated_authority_token(
+    ::galbot::arbitrator_proto::AuthorityToken* authority_token) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token_);
+  }
+  authority_token_ = authority_token;
+  if (authority_token) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.aphropm_proto.MotionPlanServerReq.authority_token)
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* MotionPlanServerReq::release_authority_token() {
+  _has_bits_[0] &= ~0x00000001u;
+  ::galbot::arbitrator_proto::AuthorityToken* temp = authority_token_;
+  authority_token_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* MotionPlanServerReq::unsafe_arena_release_authority_token() {
+  // @@protoc_insertion_point(field_release:galbot.aphropm_proto.MotionPlanServerReq.authority_token)
+  _has_bits_[0] &= ~0x00000001u;
+  ::galbot::arbitrator_proto::AuthorityToken* temp = authority_token_;
+  authority_token_ = nullptr;
+  return temp;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* MotionPlanServerReq::_internal_mutable_authority_token() {
+  _has_bits_[0] |= 0x00000001u;
+  if (authority_token_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::arbitrator_proto::AuthorityToken>(GetArena());
+    authority_token_ = p;
+  }
+  return authority_token_;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* MotionPlanServerReq::mutable_authority_token() {
+  // @@protoc_insertion_point(field_mutable:galbot.aphropm_proto.MotionPlanServerReq.authority_token)
+  return _internal_mutable_authority_token();
+}
+inline void MotionPlanServerReq::set_allocated_authority_token(::galbot::arbitrator_proto::AuthorityToken* authority_token) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token_);
+  }
+  if (authority_token) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token)->GetArena();
+    if (message_arena != submessage_arena) {
+      authority_token = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, authority_token, submessage_arena);
+    }
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  authority_token_ = authority_token;
+  // @@protoc_insertion_point(field_set_allocated:galbot.aphropm_proto.MotionPlanServerReq.authority_token)
 }
 
 // .galbot.aphropm_proto.MotionPlanReq motion_plan_req = 50;
@@ -2508,6 +2629,83 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::aphropm_proto:
 MotionPlanServerStatus::task_info() const {
   // @@protoc_insertion_point(field_list:galbot.aphropm_proto.MotionPlanServerStatus.task_info)
   return task_info_;
+}
+
+// .galbot.arbitrator_proto.AuthorityToken authority_token = 4;
+inline bool MotionPlanServerStatus::_internal_has_authority_token() const {
+  return this != internal_default_instance() && authority_token_ != nullptr;
+}
+inline bool MotionPlanServerStatus::has_authority_token() const {
+  return _internal_has_authority_token();
+}
+inline const ::galbot::arbitrator_proto::AuthorityToken& MotionPlanServerStatus::_internal_authority_token() const {
+  const ::galbot::arbitrator_proto::AuthorityToken* p = authority_token_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::arbitrator_proto::AuthorityToken&>(
+      ::galbot::arbitrator_proto::_AuthorityToken_default_instance_);
+}
+inline const ::galbot::arbitrator_proto::AuthorityToken& MotionPlanServerStatus::authority_token() const {
+  // @@protoc_insertion_point(field_get:galbot.aphropm_proto.MotionPlanServerStatus.authority_token)
+  return _internal_authority_token();
+}
+inline void MotionPlanServerStatus::unsafe_arena_set_allocated_authority_token(
+    ::galbot::arbitrator_proto::AuthorityToken* authority_token) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token_);
+  }
+  authority_token_ = authority_token;
+  if (authority_token) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.aphropm_proto.MotionPlanServerStatus.authority_token)
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* MotionPlanServerStatus::release_authority_token() {
+  
+  ::galbot::arbitrator_proto::AuthorityToken* temp = authority_token_;
+  authority_token_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* MotionPlanServerStatus::unsafe_arena_release_authority_token() {
+  // @@protoc_insertion_point(field_release:galbot.aphropm_proto.MotionPlanServerStatus.authority_token)
+  
+  ::galbot::arbitrator_proto::AuthorityToken* temp = authority_token_;
+  authority_token_ = nullptr;
+  return temp;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* MotionPlanServerStatus::_internal_mutable_authority_token() {
+  
+  if (authority_token_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::arbitrator_proto::AuthorityToken>(GetArena());
+    authority_token_ = p;
+  }
+  return authority_token_;
+}
+inline ::galbot::arbitrator_proto::AuthorityToken* MotionPlanServerStatus::mutable_authority_token() {
+  // @@protoc_insertion_point(field_mutable:galbot.aphropm_proto.MotionPlanServerStatus.authority_token)
+  return _internal_mutable_authority_token();
+}
+inline void MotionPlanServerStatus::set_allocated_authority_token(::galbot::arbitrator_proto::AuthorityToken* authority_token) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token_);
+  }
+  if (authority_token) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(authority_token)->GetArena();
+    if (message_arena != submessage_arena) {
+      authority_token = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, authority_token, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  authority_token_ = authority_token;
+  // @@protoc_insertion_point(field_set_allocated:galbot.aphropm_proto.MotionPlanServerStatus.authority_token)
 }
 
 // string common_str = 300;

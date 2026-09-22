@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "galbot_motion.hpp"
+#include "galbot_navigation.hpp"
 #include "galbot_robot.hpp"
 
 using namespace galbot::sdk;
@@ -46,11 +47,19 @@ int main() {
     return -1;
   }
 
+  auto& navigation = GalbotNavigation::get_instance(MachineType::G1);
+  bool navigation_ready = navigation.init();
+  if (navigation_ready) {
+    std::cout << "Navigation initialized successfully!" << std::endl;
+  } else {
+    std::cerr << "Navigation initialization failed! World/map-frame FK calls below will be skipped." << std::endl;
+  }
+
   // Program started, waiting for data
   std::this_thread::sleep_for(std::chrono::milliseconds(3000));
 
   std::map<std::string, std::vector<double>> chain_joints = {
-      {"leg", {0.4992, 1.4991, 1.0005, 0.0000}},
+      {"leg", {0.4992, 1.4991, 1.0005, 0.0000, -0.0004}},
       {"head", {0.0000, 0.0}},
       {"left_arm", {1.9999, -1.6000, -0.5999, -1.6999, 0.0000, -0.7999, 0.0000}},
       {"right_arm", {-2.0000, 1.6001, 0.6001, 1.7000, 0.0000, 0.8000, 0.0000}}};
@@ -83,6 +92,13 @@ int main() {
     auto res2 = planner.forward_kinematics(end_link, reference_frame, custom_joint_state, custom_param_ptr);
 
     print_pose("Custom parameters", res2, planner);
+
+    if (navigation_ready) {
+      auto res2_world = planner.forward_kinematics(end_link, "world", custom_joint_state, custom_param_ptr);
+      print_pose("Custom joints in world frame", res2_world, planner);
+    } else {
+      std::cout << "[Custom joints in world frame] skipped: navigation not initialized." << std::endl;
+    }
   } catch (const std::exception& e) {
     std::cerr << "❌ Custom-parameter exception: " << e.what() << std::endl;
   }

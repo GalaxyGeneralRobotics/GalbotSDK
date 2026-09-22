@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -391,6 +391,25 @@
     
   
   C++ API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../set_config_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  set_config Reference
 
       </a>
     </li>
@@ -812,10 +831,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-start-mapping-required" class="md-nav__link">
+  <a href="#2-log-in-to-the-mapping-platform-required" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Start Mapping (Required)
+        2. Log In to the Mapping Platform (Required)
       
     </span>
   </a>
@@ -823,10 +842,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-save-the-map-required" class="md-nav__link">
+  <a href="#3-start-mapping-required" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Save the Map (Required)
+        3. Start Mapping (Required)
       
     </span>
   </a>
@@ -834,22 +853,44 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-edit-map-optional" class="md-nav__link">
+  <a href="#4-finish-mapping-required" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Edit Map (Optional)
+        4. Finish Mapping (Required)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. Edit Map (Optional)">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-apply-the-map-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Apply the Map (Required)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-edit-the-map-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Edit the Map (Required)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Edit the Map (Required)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#41-remove-map-noise-optional" class="md-nav__link">
+  <a href="#61-remove-noise-required" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.1 Remove Map Noise (Optional)
+        6.1 Remove Noise (Required)
       
     </span>
   </a>
@@ -857,10 +898,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#42-edit-osm-file-optional" class="md-nav__link">
+  <a href="#62-point-annotation-optional" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.2 Edit OSM File (Optional)
+        6.2 Point Annotation (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-area-annotation-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Area Annotation (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-object-annotation-optional-v118-and-above" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Object Annotation (Optional, v1.18 and above)
       
     </span>
   </a>
@@ -873,13 +936,41 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-map-update-optional" class="md-nav__link">
+  <a href="#7-map-management-optional" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Map Update (Optional)
+        7. Map Management (Optional)
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="7. Map Management (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-export-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Export Map
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-import-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Import Map
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -901,10 +992,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-prepare-the-map-required" class="md-nav__link">
+  <a href="#1-automatic-calibration-required" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Prepare the Map (Required)
+        1. Automatic Calibration (Required)
       
     </span>
   </a>
@@ -912,10 +1003,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-start-localization-required" class="md-nav__link">
+  <a href="#2-manual-localization-recovery-optional-when-the-score-is-1-or-stays-low" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Start Localization (Required)
+        2. Manual Localization Recovery (Optional, when the score is -1 or stays low)
       
     </span>
   </a>
@@ -923,21 +1014,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-check-localization-status-required" class="md-nav__link">
+  <a href="#3-verify-localization-ready-required" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Check Localization Status (Required)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-verify-localization-ready-required" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Verify Localization Ready (Required)
+        3. Verify Localization Ready (Required)
       
     </span>
   </a>
@@ -1104,6 +1184,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../set_config_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set_config Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../troubleshooting/" class="md-nav__link">
         
   
@@ -1198,183 +1305,214 @@
 <p>If the LiDAR is not running, use the following command to start it (do not start it repeatedly):</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/data/galbot/bin/service_lidar_capture
 </span></code></pre></div>
-<p>Ensure the map path has write permissions</p>
-<p>The default map path is stored in the <code>/var/maps/</code> directory. If the path does not exist or does not have write permissions, create the path and grant write permissions:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/var/maps/
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>-R<span class="w"> </span>/var/maps/
-</span></code></pre></div>
-<h4 id="2-start-mapping-required">2. Start Mapping (Required)</h4>
-<p>Start the mapping program</p>
+<h4 id="2-log-in-to-the-mapping-platform-required">2. Log In to the Mapping Platform (Required)</h4>
+<p><strong>Log in to the Mapping Platform</strong></p>
 <ol>
-<li>Press the robot's emergency stop button and push the robot to the mapping start point (mapping can begin from any location)</li>
-<li>Execute the following command to start mapping:</li>
+<li>Open a browser and go to <code>http://&lt;HPU IP&gt;:8000</code> (for example: <code>http://192.168.38.184:8000</code>); you will be redirected to the login page automatically</li>
+<li>Enter username <code>admin</code> and password <code>galbot</code></li>
+<li>Click the <strong>Login</strong> button to enter the platform</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/data/galbot/bin/mapping_server
-</span></code></pre></div>
-<p>During normal mapping, the following information will be displayed:
-- Keyframe count (keyframe num)
-- Pose delay (time delay)
-- Current robot pose (x y z qx qy qz qw)</p>
-<p>The keyframe count increases as the robot moves and remains unchanged when the robot is stationary, as shown below:</p>
-<p><img alt="Mapping Process" src="/image/jt.jpg" /></p>
+<p><img alt="Login" src="/image/new_map_login.png" /></p>
+<p>After logging in, the interface is divided into the following areas:</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left map list</td>
+<td>Shows all maps stored on the currently connected robot; supports edit, export, load, and apply operations</td>
+</tr>
+<tr>
+<td>Center visualization area</td>
+<td>Shows the 3D point cloud view of the selected map; renders after clicking the map's Load button</td>
+</tr>
+<tr>
+<td>Right toolbar</td>
+<td>View switching (top-down/front/side), display range, point cloud density, point size, and other parameters</td>
+</tr>
+<tr>
+<td>Top-left</td>
+<td>Import map</td>
+</tr>
+<tr>
+<td>Top-right</td>
+<td>Switch the currently connected robot device and mode</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Main Interface" src="/image/new_map_main.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Notes on Using the Mapping Platform</p>
+<ol>
+<li>For an imported map archive, the zip file name must match the folder name inside it, otherwise the import will fail</li>
+<li>The currently applied map cannot be deleted</li>
+<li>The Edit, Export, and Apply Map buttons only appear once a map already exists on the HPU</li>
+<li>After successfully applying a map, you must manually switch to Working mode for the map to actually take effect</li>
+<li><strong>If the platform becomes unresponsive or keeps loading, refresh the page and try again</strong></li>
+</ol>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Emergency Stop (E-Stop) and Mode Switching</p>
+<ul>
+<li>The robot's working mode is either <strong>Working</strong> or <strong>Deployment</strong>, viewable/switchable in the top-right corner of the platform. <strong>Switching mode (in either direction) requires releasing the emergency stop first</strong>, otherwise you will see <code>Cannot switch mode while emergency stop is active</code> and the switch will fail.</li>
+<li>Clicking <strong>New Map</strong> restarts Deployment mode; the platform will prompt "Please release the emergency stop to restart Deployment mode, then press it again after entering the mapping page." Releasing the emergency stop briefly powers the motors — <strong>make sure the area around the robot is safe and someone is standing by before doing this</strong>. Once you enter the mapping page and see the point cloud rendering normally, press the emergency stop again immediately, then manually push the robot to map.</li>
+<li>After mapping/editing is complete, switching back to Working mode also requires briefly releasing the emergency stop, then pressing it again once the switch succeeds.</li>
+</ul>
+</div>
+<h4 id="3-start-mapping-required">3. Start Mapping (Required)</h4>
+<ol>
+<li>Make sure the robot is connected, then click the <strong>New Map</strong> button below the map list</li>
+<li>The first click shows a prompt reminding you to release the emergency stop to restart Deployment mode; after releasing it per the notes above, click <strong>New Map</strong> again — the platform switches to Deployment mode and automatically enters the mapping page
+<img alt="Mapping" src="/image/new_map_create.png" /></li>
+</ol>
+<p>After entering the mapping page:</p>
+<ul>
+<li>Because of the service restart caused by the mode switch, it may take a few seconds to over ten seconds</li>
+<li>Once a small amount of point cloud appears on the map, the point cloud push service has started and you can begin pushing the robot to map</li>
+<li>Mapping data is pushed roughly every 1–1.5 seconds; the data may occasionally look unchanged for a moment if consecutive frames are similar</li>
+<li>If the robot is not moved, the point cloud will not change; once you start pushing it, the point cloud updates roughly every 5 seconds</li>
+</ul>
+<p><img alt="LiDAR Scan" src="/image/new_map_lidar.png" /></p>
 <ol>
 <li>Push the robot around the environment once to build a complete map. Avoid excessive acceleration and angular velocity while pushing (approximately walking speed is sufficient)</li>
 </ol>
-<h4 id="3-save-the-map-required">3. Save the Map (Required)</h4>
-<p>Save the constructed map</p>
-<p>Simply stopping the mapping program will not automatically save the map. If you need to save the map, please perform the save operation before closing the mapping program.</p>
-<p>Run the map saving tool:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>/data/galbot/bin/engine_tools
-</span></code></pre></div>
-<p>After launching the tool, enter <code>1</code> and press Enter to select the save map function. The default save path is <code>/var/maps/room1102</code>, as shown below:</p>
-<p><img alt="Save Map" src="/image/savepic.jpg" /></p>
-<p>After saving the map, the map directory must contain <code>global_cloud_cleaned.pcd</code> for subsequent localization.</p>
-<ul>
-<li>If point cloud post-processing has been completed, make sure the cleaned map file is named <code>global_cloud_cleaned.pcd</code></li>
-<li>If map noise removal is not performed for now, run the following command in the map directory:</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cp<span class="w"> </span>global_cloud.pcd<span class="w"> </span>global_cloud_cleaned.pcd
-</span></code></pre></div>
-<h4 id="4-edit-map-optional">4. Edit Map (Optional)</h4>
-<p>This step is used to optimize map quality, improving navigation accuracy and safety.</p>
+<h4 id="4-finish-mapping-required">4. Finish Mapping (Required)</h4>
+<ol>
+<li>Click the <strong>Save</strong> icon (disk icon) in the top-left corner of the mapping page to save the map</li>
+<li>If you don't want to save the map, click the Home icon in the top-left corner to exit mapping directly</li>
+</ol>
+<h4 id="5-apply-the-map-required">5. Apply the Map (Required)</h4>
+<p>Once a map has been created, it must be applied to the robot before it can be used for navigation and tasks.</p>
 <div class="admonition info">
-<p class="admonition-title">Impact if skipped</p>
-<ul>
-<li><strong>Removing map noise</strong>: Airborne noise points in the map may cause the navigation system to misidentify obstacles, affecting path planning accuracy</li>
-<li><strong>Drawing geofences</strong>: Without geofence restrictions, the robot may enter unexpected or dangerous areas</li>
-</ul>
+<p class="admonition-title">Recommended Order</p>
+<p>It is generally recommended to finish editing operations such as noise removal before applying the map, to avoid having to re-apply the map after removing noise.</p>
 </div>
-<h5 id="41-remove-map-noise-optional">4.1 Remove Map Noise (Optional)</h5>
-<p>This step is recommended. The map may usually contain some noise points, and removing them can improve the navigation success rate. In particular, rooms with mirrors, frosted glass, or similar materials are more likely to produce noise points in the point cloud map, so CloudCompare post-processing is recommended.</p>
-<p>You need to check for noise points within the robot's operating area (from ground level up to 2.5 meters in height). Ground points do not affect navigation; the main focus is on checking and removing airborne floating noise points.</p>
-<p><strong>Preparation</strong>: Download CloudCompare software</p>
-<p>Download link: <a href="https://www.cloudcompare.org/release/index.html">https://www.cloudcompare.org/release/index.html</a></p>
-<p>As shown below:</p>
-<p><img alt="Download Software" src="/image/download.jpg" /></p>
-<p><strong>Steps</strong>:</p>
 <ol>
-<li>Open CloudCompare and drag the point cloud map <code>global_cloud.pcd</code> into the workspace</li>
+<li>Find the map you want to use in the map list on the left</li>
+<li>If it is a newly created map, or has not yet been loaded onto the HPU, click the <strong>Load</strong> button first to load it (this can take a few seconds to 20 seconds depending on map size and network conditions)</li>
+<li>If loading takes a long time with no response, refresh the page and try again</li>
+<li>Once the map has finished loading, click the <strong>Apply Map</strong> button (this must be done in Deployment mode; switch to Working mode afterward to take effect)</li>
+<li>Wait for the map to be pushed to the robot; once it succeeds you will see a success message — switch to Working mode at this point (<strong>this is important</strong>)</li>
+<li>After it is successfully applied, the robot will automatically load the map and attempt to localize</li>
 </ol>
-<p><img alt="pcd" src="/image/source.jpg" /></p>
-<ol>
-<li>Follow the numbered green arrows in the image below:</li>
-<li><strong>Step 1</strong>: Check the file</li>
-<li><strong>Step 2</strong>: Select the front view</li>
-<li><strong>Step 3</strong>: Select the crop tool (scissors icon)</li>
-<li><strong>Step 4</strong>: Box-select the target area (between floor and ceiling in the robot's operating area)</li>
-<li><strong>Step 5</strong>: Keep the points inside the selection</li>
-<li><strong>Step 6</strong>: Confirm the operation (checkmark icon)</li>
-</ol>
-<p>The point cloud is now split into two parts: <code>global_cloud.segmented</code> inside the selection and <code>global_cloud.remaining</code> outside:</p>
-<p><img alt="opensource" src="/image/opensource.jpg" /></p>
-<ol>
-<li>Continue with the following steps:</li>
-<li><strong>Step 7</strong>: Uncheck <code>global_cloud.remaining</code></li>
-<li><strong>Step 8</strong>: Check <code>global_cloud.segmented</code></li>
-<li><strong>Step 9</strong>: Select the top view</li>
-<li><strong>Step 10</strong>: Select the crop tool (scissors icon)</li>
-<li><strong>Step 11</strong>: Box-select the robot's operating area (do not select real obstacles such as stacks or tables)</li>
-<li><strong>Step 12</strong>: Click the icon outside the box</li>
-<li><strong>Step 13</strong>: Confirm the operation</li>
-</ol>
-<p><img alt="opensource2" src="/image/opensource2.jpg" /></p>
-<ol>
-<li>Delete noise and merge:</li>
-<li>Select <code>global_cloud.segmented.remaining</code> (noise portion), right-click and delete</li>
-<li>Hold Ctrl and multi-select <code>global_cloud.remaining</code> and <code>global_cloud.segmented.remaining</code></li>
-</ol>
-<p><img alt="opensource3" src="/image/opensource3.jpg" /></p>
-<ol>
-<li>Save the cleaned map:</li>
-<li>Select Edit → Merge to merge the two point clouds</li>
-<li>Select File → Save to save the point cloud</li>
-<li>It must be named <code>global_cloud_cleaned.pcd</code></li>
-<li>Move the cleaned map <code>global_cloud_cleaned.pcd</code> to the map folder <code>/var/maps/room1102/</code></li>
-</ol>
-<p><img alt="opensource4" src="/image/opensource4.jpg" /></p>
-<h5 id="42-edit-osm-file-optional">4.2 Edit OSM File (Optional)</h5>
-<p>Draw geofences to restrict the robot's operating range, preventing it from entering dangerous or unintended areas.</p>
+<h4 id="6-edit-the-map-required">6. Edit the Map (Required)</h4>
+<p>This step is used to optimize map quality and improve navigation accuracy and safety. It is all done on the map editing page of the mapping platform.</p>
 <div class="admonition info">
-<p class="admonition-title">Description</p>
+<p class="admonition-title">Impact if Skipped</p>
 <ul>
-<li><strong>Drawing geofences</strong>: Set virtual boundaries on the map to prohibit the robot from crossing fences into specific areas (such as stairs, dangerous areas, non-work areas, etc.)</li>
-<li><strong>Impact if skipped</strong>: The robot can freely move to any position on the map, potentially entering dangerous or unintended work areas, posing safety risks</li>
+<li><strong>Removing Noise</strong>: Stray point cloud data in the map may cause the navigation system to misidentify obstacles, affecting path planning accuracy</li>
+<li><strong>Point/Area Annotation</strong>: Without annotating key points and functional areas, the robot cannot use these preset positions and area restrictions during navigation</li>
 </ul>
 </div>
-<p>After mapping is complete (assuming the map is saved at <code>/var/maps/room1102/</code>), use the <code>engine_tools</code> tool to convert the point cloud map to an OSM file:</p>
+<h5 id="61-remove-noise-required">6.1 Remove Noise (Required)</h5>
+<p>The mapping process may pick up unwanted point cloud data (such as pedestrians, temporary obstacles, etc.), which needs to be cleaned up.</p>
+<p><strong>Enter Edit Mode</strong></p>
 <ol>
-<li>Run <code>engine_tools</code>, enter <code>3</code> to select the point cloud to OSM file conversion function</li>
-<li>Press Enter to use the default map. In this example, the map is stored at <code>/var/maps/room1102/</code>, so enter the full path <code>/var/maps/room1102/global_cloud.pcd</code> and press Enter to convert:</li>
+<li>In the map list, click the <strong>Load</strong> button for the target map to visualize it</li>
+<li>Click the <strong>Edit</strong> button to enter the map editing page</li>
 </ol>
-<p><img alt="osm1" src="/image/osm1.jpg" /></p>
+<p><img alt="Edit" src="/image/new_map_edit.png" /></p>
+<p><strong>Use the Noise Removal Tool</strong></p>
 <ol>
-<li>The converted file is highlighted in green below. Open the OSM file with JOSM, as shown below:</li>
+<li>In the toolbar above the editing page, select <strong>Noise Removal</strong>, and configure the removal parameters:</li>
+<li><strong>Selection Tool</strong>: Polygon / Rectangle / Circle</li>
+<li><strong>Removal Mode</strong>: Inside (delete the selected area) / Outside (keep the selected area, delete everything else)</li>
+<li><strong>Height Range</strong>: Match the current visualization range, or customize it (specify min/max height values); when "Match the current display height range" is checked, the cutting depth range cannot be edited and automatically uses the display range set in the view controls on the right; uncheck it to customize the cutting depth range</li>
+<li>Example: with Removal Mode set to "Inside" and the cutting depth range set to "0-2", the point cloud within the selected area between 0 and 2 meters in height is removed</li>
 </ol>
-<p><img alt="osm2" src="/image/osm2.jpg" /></p>
-<p><strong>Install JOSM</strong> (if not installed):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>josm
-</span></code></pre></div>
-<p>After installation, enter <code>josm</code> in the terminal to open the software.</p>
-<p><strong>Steps to draw geofences</strong>:</p>
+<p><strong>Preview and Confirm</strong></p>
 <ol>
-<li>Click File in the top-left corner, choose Open, and locate <code>/var/maps/room1102/map_topo.osm</code></li>
-<li>Select the tool indicated by white arrow 1, then left-click to draw the shape (thin red line), as shown by white arrow 2</li>
-<li>After drawing is complete (closed shapes finish automatically; otherwise press Esc), click the icon above white arrow 1 and select the line you just drew. The selected line turns red. Hold Ctrl to select multiple lines. Then click white arrow 3:</li>
+<li>Use the selected tool to draw a box around the area on the map that needs to be removed</li>
+<li>You can switch to the <strong>3D View</strong> to preview the cut range and make sure valid data isn't accidentally removed</li>
+<li>Once confirmed, click <strong>Done</strong> to save the changes</li>
 </ol>
-<p><img alt="osm3" src="/image/osm3.jpg" /></p>
+<p><img alt="Noise Removal" src="/image/new_map_noise.png" /></p>
+<h5 id="62-point-annotation-optional">6.2 Point Annotation (Optional)</h5>
+<p>Point annotation is used to mark key locations for robot tasks, such as pickup points, drop-off points, and charging points.</p>
+<p>Two annotation methods are supported:</p>
+<ul>
+<li><strong>Precise point creation</strong>: Move the robot to the target location, then record the coordinates using the robot's current localization as the target; the point can be edited afterward</li>
+<li><strong>Approximate point creation</strong>: Manually select a location directly on the map view to create a point; the point can be edited afterward</li>
+</ul>
+<p><strong>Annotation Steps</strong>:</p>
 <ol>
-<li>In the pop-up, choose the Fence tab, set the type to <code>barbed_wire</code> as indicated by white arrow 4, click Apply Preset, then right-click white arrow 5 and choose Save:</li>
+<li>Enter the editing page and click the <strong>Point Annotation</strong> button at the top</li>
+<li>Choose an annotation method:</li>
+<li>If using <strong>the robot's current localization</strong>: the map must be applied first, otherwise the real-time position cannot be obtained</li>
+<li>If using <strong>manual click</strong>: click the target location directly on the map</li>
+<li>Fill in the point information in the popup window:</li>
+<li><strong>Name</strong>: point identifier (e.g., <code>Pickup-A01</code>)</li>
+<li><strong>Attribute</strong>: select the point type</li>
+<li><strong>Z-axis orientation</strong>: adjust the robot's heading angle (-180° to 180°)</li>
+<li>Click <strong>Confirm</strong> to save the point, and click <strong>Done</strong> to exit annotation mode</li>
 </ol>
-<p><img alt="osm4" src="/image/osm4.jpg" /></p>
-<h4 id="5-map-update-optional">5. Map Update (Optional)</h4>
-<p>When the environment changes (e.g., new furniture added, obstacles moved, etc.), you can optimize the map using the map update function.</p>
-<div class="admonition info">
-<p class="admonition-title">Impact if skipped</p>
-<p>If the environment changes and the map is not updated, the robot will continue to navigate using the old map, which may lead to:
-- Decreased localization accuracy
-- Inaccurate path planning
-- The robot may misidentify obstacle positions</p>
-</div>
-<p>To save computing resources, the map update feature is disabled by default. You can manually enable the update switch and save the updated map:</p>
-<p><strong>Step 1</strong>: When localization is stable (current score &gt; 0.9), enable the map update switch</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>vim<span class="w"> </span>/data/galbot/config/mes/manager.config
-</span></code></pre></div>
-<p>Change <code>manager_update_map=0</code> to <code>manager_update_map=1</code></p>
-<p><strong>Step 2</strong>: Restart localization in place. Once the score returns to normal (current score &gt; 0.9), run <code>engine_tools</code> and choose Start Map Update</p>
-<p><strong>Step 3</strong>: Push the robot around the environment for one full loop, then run <code>engine_tools</code> and choose Stop Map Update</p>
-<p><strong>Step 4</strong>: The updated map will not overwrite the current localization map (<code>/var/maps/cur</code>). It will be saved to <code>/var/maps/update_map</code></p>
-<p><strong>Step 5</strong>: After finishing the map update, change <code>manager_update_map=1</code> back to <code>0</code>, then replace the map if needed</p>
+<p><img alt="Annotation" src="/image/new_map_point.png" /></p>
+<h5 id="63-area-annotation-optional">6.3 Area Annotation (Optional)</h5>
+<p>Area annotation is used to divide specific functional areas, such as no-go zones, speed-limit zones, and work zones.</p>
+<ol>
+<li>Enter the editing page and click the <strong>Area Annotation</strong> button at the top</li>
+<li>A toolbar pops up on the left; choose a drawing tool (Polygon/Rectangle/Circle)</li>
+<li>Draw a closed area in the top-down view</li>
+<li>Fill in the area information:</li>
+<li><strong>Attribute</strong>: area type</li>
+<li>Click <strong>Done</strong> to save the area</li>
+</ol>
+<p><img alt="Area" src="/image/new_map_area.png" /></p>
+<h5 id="64-object-annotation-optional-v118-and-above">6.4 Object Annotation (Optional, v1.18 and above)</h5>
+<p>Object annotation is used to mark fixed obstacles or equipment in the environment, helping the robot better understand its surroundings.</p>
 <div class="admonition warning">
-<p class="admonition-title">Important Notes</p>
+<p class="admonition-title">Notes on the Editing Page</p>
 <ol>
-<li>Both parameter changes and map replacement require restarting the localization service to take effect</li>
-<li>This example uses <code>engine_tools</code>. If you don't have <code>engine_tools</code>, use <code>/data/galbot/bin/test_start_update_map</code> and <code>/data/galbot/bin/test_stop_update_map</code> instead</li>
+<li>After editing or moving an annotation, you must click <strong>Done</strong> in the popup on the left to stage the change, otherwise the modified annotation will revert to its previous state (this prevents accidental edits)</li>
+<li>When saving a map, it needs to be packaged and uploaded to the HPU, then uploaded from the HPU to the robot — this can take a while, so please be patient</li>
+<li>If there is no response for a long time, refresh the page and try again</li>
+<li>Every save generates a new map based on the current page state; if you want to apply that map, you must go back to the map list on the home page and apply it</li>
 </ol>
 </div>
+<h4 id="7-map-management-optional">7. Map Management (Optional)</h4>
+<h5 id="71-export-map">7.1 Export Map</h5>
+<ol>
+<li>Find the target map in the map list</li>
+<li>Click the <strong>Export</strong> button</li>
+<li>Download it via the web page</li>
+</ol>
+<h5 id="72-import-map">7.2 Import Map</h5>
+<ol>
+<li>Click the <strong>Import</strong> button above the map list</li>
+<li>Select a local map file</li>
+<li>Click <strong>Upload</strong> and wait for the import to finish</li>
+</ol>
 <hr />
 <h3 id="localization-process">Localization Process</h3>
-<p>Localization is a prerequisite for navigation. Before starting navigation, you must ensure the localization service is running properly and the localization status is good.</p>
-<h4 id="1-prepare-the-map-required">1. Prepare the Map (Required)</h4>
-<p>The localization program requires the LiDAR to be running (it does not depend on the mapping program, so you can close the mapping program after it finishes).</p>
-<p>Localization uses the map path <code>/var/maps/cur</code>. Rename the target map to <code>cur</code> (for example, rename the newly created map <code>room1102</code> to <code>cur</code>), as shown below:</p>
-<p><img alt="cur" src="/image/cur.jpg" /></p>
-<h4 id="2-start-localization-required">2. Start Localization (Required)</h4>
-<p>Start the localization service:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>/data/galbot/bin/localization_server
-</span></code></pre></div>
-<h4 id="3-check-localization-status-required">3. Check Localization Status (Required)</h4>
-<p>Check localization status:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>tail<span class="w"> </span>-f<span class="w"> </span>/userdata/log/localization_server/localization_server.INFO
-</span></code></pre></div>
-<p><img alt="state" src="/image/state.jpg" /></p>
-<p>If the score is below 0.75 or no score/pose is published, push the robot to the mapping start pose and send an initial pose once (use <code>engine_tools</code>, enter <code>2</code>, and press Enter), as shown below:</p>
-<p><img alt="state2" src="/image/state2.jpg" /></p>
-<h4 id="4-verify-localization-ready-required">4. Verify Localization Ready (Required)</h4>
+<p>Localization is a prerequisite for navigation. Before starting navigation, you must ensure the localization service is running properly and the localization status is good. When the robot has issues such as <strong>inaccurate grasping, movement drift, or lost localization</strong>, use the calibration function to restore accuracy.</p>
+<h4 id="1-automatic-calibration-required">1. Automatic Calibration (Required)</h4>
+<ol>
+<li>Click the <strong>Calibrate Localization</strong> button above the map list</li>
+<li>The system enters the calibration page for the currently applied map</li>
+<li>The page shows the <strong>live localization score</strong> (normal range: 0.9–1.0); the system will automatically try to restore localization</li>
+</ol>
+<p><img alt="Localization" src="/image/new_map_location.png" /></p>
+<h4 id="2-manual-localization-recovery-optional-when-the-score-is-1-or-stays-low">2. Manual Localization Recovery (Optional, when the score is -1 or stays low)</h4>
+<p>When the localization score is <strong>-1</strong> or remains low, manual intervention is required:</p>
+<ol>
+<li>After entering the calibration page, if you switched modes right before entering, wait a few seconds to over ten seconds for the robot's data to come back</li>
+<li>Once data comes back, if the localization score is far from 1.0, click the <strong>Manual Recovery</strong> button</li>
+<li>The yellow dot represents the robot's reported base position, and the green dot represents the position that needs calibrating; click the yellow position so that the green dot's position and orientation line up with the yellow dot</li>
+<li>Use the angle adjuster in the bottom-left corner to adjust the robot's heading</li>
+<li>Click <strong>Recover Localization at This Pose</strong> to submit</li>
+<li>Wait 5–10 seconds and observe the localization score change</li>
+</ol>
+<p><img alt="Manual Localization" src="/image/new_map_manual_location.png" /></p>
+<h4 id="3-verify-localization-ready-required">3. Verify Localization Ready (Required)</h4>
 <p>Before starting navigation, please confirm the following checklist items:</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> LiDAR service is running</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Localization service has been started</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Localization score is greater than 0.75</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Localization score is greater than 0.8</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Current pose is being published normally</li>
 </ul>
 <div class="admonition success">
@@ -1438,7 +1576,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "toc.integrate", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../javascripts/language_switch.js"></script>
       

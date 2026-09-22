@@ -38,6 +38,7 @@
 #include "galbot/core_proto/header.pb.h"
 #include "galbot/core_proto/wrapper.pb.h"
 #include "galbot/spatial_proto/frame.pb.h"
+#include "galbot/singorix_proto/singorix_runtime.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto
@@ -53,7 +54,7 @@ struct TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[17]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[43]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -104,15 +105,93 @@ extern WBCInfo_OtherInfoMapEntry_DoNotUseDefaultTypeInternal _WBCInfo_OtherInfoM
 class WBCInfo_TaskInfoMapEntry_DoNotUse;
 class WBCInfo_TaskInfoMapEntry_DoNotUseDefaultTypeInternal;
 extern WBCInfo_TaskInfoMapEntry_DoNotUseDefaultTypeInternal _WBCInfo_TaskInfoMapEntry_DoNotUse_default_instance_;
+class WBCSCompiledTargetInfo;
+class WBCSCompiledTargetInfoDefaultTypeInternal;
+extern WBCSCompiledTargetInfoDefaultTypeInternal _WBCSCompiledTargetInfo_default_instance_;
+class WBCSCompiledTargetInfo_ConstraintScalarLimitsEntry_DoNotUse;
+class WBCSCompiledTargetInfo_ConstraintScalarLimitsEntry_DoNotUseDefaultTypeInternal;
+extern WBCSCompiledTargetInfo_ConstraintScalarLimitsEntry_DoNotUseDefaultTypeInternal _WBCSCompiledTargetInfo_ConstraintScalarLimitsEntry_DoNotUse_default_instance_;
+class WBCSCompiledTargetInfo_GroupSegmentCountBySamplingEntry_DoNotUse;
+class WBCSCompiledTargetInfo_GroupSegmentCountBySamplingEntry_DoNotUseDefaultTypeInternal;
+extern WBCSCompiledTargetInfo_GroupSegmentCountBySamplingEntry_DoNotUseDefaultTypeInternal _WBCSCompiledTargetInfo_GroupSegmentCountBySamplingEntry_DoNotUse_default_instance_;
+class WBCSCompiledTargetInfo_RetimedSegmentCountBySamplingEntry_DoNotUse;
+class WBCSCompiledTargetInfo_RetimedSegmentCountBySamplingEntry_DoNotUseDefaultTypeInternal;
+extern WBCSCompiledTargetInfo_RetimedSegmentCountBySamplingEntry_DoNotUseDefaultTypeInternal _WBCSCompiledTargetInfo_RetimedSegmentCountBySamplingEntry_DoNotUse_default_instance_;
+class WBCSCompiledTargetInfo_SegmentCountBySamplingEntry_DoNotUse;
+class WBCSCompiledTargetInfo_SegmentCountBySamplingEntry_DoNotUseDefaultTypeInternal;
+extern WBCSCompiledTargetInfo_SegmentCountBySamplingEntry_DoNotUseDefaultTypeInternal _WBCSCompiledTargetInfo_SegmentCountBySamplingEntry_DoNotUse_default_instance_;
+class WBCSCompiledTargetInfo_TaskSegmentCountBySamplingEntry_DoNotUse;
+class WBCSCompiledTargetInfo_TaskSegmentCountBySamplingEntry_DoNotUseDefaultTypeInternal;
+extern WBCSCompiledTargetInfo_TaskSegmentCountBySamplingEntry_DoNotUseDefaultTypeInternal _WBCSCompiledTargetInfo_TaskSegmentCountBySamplingEntry_DoNotUse_default_instance_;
+class WBCSExternalTargetIdentity;
+class WBCSExternalTargetIdentityDefaultTypeInternal;
+extern WBCSExternalTargetIdentityDefaultTypeInternal _WBCSExternalTargetIdentity_default_instance_;
+class WBCSFaultInfo;
+class WBCSFaultInfoDefaultTypeInternal;
+extern WBCSFaultInfoDefaultTypeInternal _WBCSFaultInfo_default_instance_;
 class WBCSInfo;
 class WBCSInfoDefaultTypeInternal;
 extern WBCSInfoDefaultTypeInternal _WBCSInfo_default_instance_;
 class WBCSInfoDetail;
 class WBCSInfoDetailDefaultTypeInternal;
 extern WBCSInfoDetailDefaultTypeInternal _WBCSInfoDetail_default_instance_;
+class WBCSInfo_CompiledTargetMapEntry_DoNotUse;
+class WBCSInfo_CompiledTargetMapEntry_DoNotUseDefaultTypeInternal;
+extern WBCSInfo_CompiledTargetMapEntry_DoNotUseDefaultTypeInternal _WBCSInfo_CompiledTargetMapEntry_DoNotUse_default_instance_;
 class WBCSInfo_InfoMapEntry_DoNotUse;
 class WBCSInfo_InfoMapEntry_DoNotUseDefaultTypeInternal;
 extern WBCSInfo_InfoMapEntry_DoNotUseDefaultTypeInternal _WBCSInfo_InfoMapEntry_DoNotUse_default_instance_;
+class WBCSInfo_LoopTimingMapEntry_DoNotUse;
+class WBCSInfo_LoopTimingMapEntry_DoNotUseDefaultTypeInternal;
+extern WBCSInfo_LoopTimingMapEntry_DoNotUseDefaultTypeInternal _WBCSInfo_LoopTimingMapEntry_DoNotUse_default_instance_;
+class WBCSInfo_RuntimeControllerStateMapEntry_DoNotUse;
+class WBCSInfo_RuntimeControllerStateMapEntry_DoNotUseDefaultTypeInternal;
+extern WBCSInfo_RuntimeControllerStateMapEntry_DoNotUseDefaultTypeInternal _WBCSInfo_RuntimeControllerStateMapEntry_DoNotUse_default_instance_;
+class WBCSInfo_RuntimeGraphBlockedAfterStageMapEntry_DoNotUse;
+class WBCSInfo_RuntimeGraphBlockedAfterStageMapEntry_DoNotUseDefaultTypeInternal;
+extern WBCSInfo_RuntimeGraphBlockedAfterStageMapEntry_DoNotUseDefaultTypeInternal _WBCSInfo_RuntimeGraphBlockedAfterStageMapEntry_DoNotUse_default_instance_;
+class WBCSInfo_RuntimeGraphGroupStatusMapEntry_DoNotUse;
+class WBCSInfo_RuntimeGraphGroupStatusMapEntry_DoNotUseDefaultTypeInternal;
+extern WBCSInfo_RuntimeGraphGroupStatusMapEntry_DoNotUseDefaultTypeInternal _WBCSInfo_RuntimeGraphGroupStatusMapEntry_DoNotUse_default_instance_;
+class WBCSInfo_RuntimeParamMapEntry_DoNotUse;
+class WBCSInfo_RuntimeParamMapEntry_DoNotUseDefaultTypeInternal;
+extern WBCSInfo_RuntimeParamMapEntry_DoNotUseDefaultTypeInternal _WBCSInfo_RuntimeParamMapEntry_DoNotUse_default_instance_;
+class WBCSInfo_TargetContributionMapEntry_DoNotUse;
+class WBCSInfo_TargetContributionMapEntry_DoNotUseDefaultTypeInternal;
+extern WBCSInfo_TargetContributionMapEntry_DoNotUseDefaultTypeInternal _WBCSInfo_TargetContributionMapEntry_DoNotUse_default_instance_;
+class WBCSInfo_TargetStatusMapEntry_DoNotUse;
+class WBCSInfo_TargetStatusMapEntry_DoNotUseDefaultTypeInternal;
+extern WBCSInfo_TargetStatusMapEntry_DoNotUseDefaultTypeInternal _WBCSInfo_TargetStatusMapEntry_DoNotUse_default_instance_;
+class WBCSLoopTimingMetricInfo;
+class WBCSLoopTimingMetricInfoDefaultTypeInternal;
+extern WBCSLoopTimingMetricInfoDefaultTypeInternal _WBCSLoopTimingMetricInfo_default_instance_;
+class WBCSLoopTimingSummaryInfo;
+class WBCSLoopTimingSummaryInfoDefaultTypeInternal;
+extern WBCSLoopTimingSummaryInfoDefaultTypeInternal _WBCSLoopTimingSummaryInfo_default_instance_;
+class WBCSRuntimeActionResultInfo;
+class WBCSRuntimeActionResultInfoDefaultTypeInternal;
+extern WBCSRuntimeActionResultInfoDefaultTypeInternal _WBCSRuntimeActionResultInfo_default_instance_;
+class WBCSRuntimeParamInfo;
+class WBCSRuntimeParamInfoDefaultTypeInternal;
+extern WBCSRuntimeParamInfoDefaultTypeInternal _WBCSRuntimeParamInfo_default_instance_;
+class WBCSRuntimeParamInfo_NamedValueAliasesEntry_DoNotUse;
+class WBCSRuntimeParamInfo_NamedValueAliasesEntry_DoNotUseDefaultTypeInternal;
+extern WBCSRuntimeParamInfo_NamedValueAliasesEntry_DoNotUseDefaultTypeInternal _WBCSRuntimeParamInfo_NamedValueAliasesEntry_DoNotUse_default_instance_;
+class WBCSRuntimeParamSummary;
+class WBCSRuntimeParamSummaryDefaultTypeInternal;
+extern WBCSRuntimeParamSummaryDefaultTypeInternal _WBCSRuntimeParamSummary_default_instance_;
+class WBCSSampleProvenanceInfo;
+class WBCSSampleProvenanceInfoDefaultTypeInternal;
+extern WBCSSampleProvenanceInfoDefaultTypeInternal _WBCSSampleProvenanceInfo_default_instance_;
+class WBCSTargetContributionRefInfo;
+class WBCSTargetContributionRefInfoDefaultTypeInternal;
+extern WBCSTargetContributionRefInfoDefaultTypeInternal _WBCSTargetContributionRefInfo_default_instance_;
+class WBCSTargetContributionStatusInfo;
+class WBCSTargetContributionStatusInfoDefaultTypeInternal;
+extern WBCSTargetContributionStatusInfoDefaultTypeInternal _WBCSTargetContributionStatusInfo_default_instance_;
+class WBCSTargetStatusInfo;
+class WBCSTargetStatusInfoDefaultTypeInternal;
+extern WBCSTargetStatusInfoDefaultTypeInternal _WBCSTargetStatusInfo_default_instance_;
 }  // namespace singorix_proto
 }  // namespace galbot
 PROTOBUF_NAMESPACE_OPEN
@@ -130,9 +209,35 @@ template<> ::galbot::singorix_proto::WBCInfo* Arena::CreateMaybeMessage<::galbot
 template<> ::galbot::singorix_proto::WBCInfo_GroupInfoMapEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCInfo_GroupInfoMapEntry_DoNotUse>(Arena*);
 template<> ::galbot::singorix_proto::WBCInfo_OtherInfoMapEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCInfo_OtherInfoMapEntry_DoNotUse>(Arena*);
 template<> ::galbot::singorix_proto::WBCInfo_TaskInfoMapEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCInfo_TaskInfoMapEntry_DoNotUse>(Arena*);
+template<> ::galbot::singorix_proto::WBCSCompiledTargetInfo* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSCompiledTargetInfo>(Arena*);
+template<> ::galbot::singorix_proto::WBCSCompiledTargetInfo_ConstraintScalarLimitsEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSCompiledTargetInfo_ConstraintScalarLimitsEntry_DoNotUse>(Arena*);
+template<> ::galbot::singorix_proto::WBCSCompiledTargetInfo_GroupSegmentCountBySamplingEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSCompiledTargetInfo_GroupSegmentCountBySamplingEntry_DoNotUse>(Arena*);
+template<> ::galbot::singorix_proto::WBCSCompiledTargetInfo_RetimedSegmentCountBySamplingEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSCompiledTargetInfo_RetimedSegmentCountBySamplingEntry_DoNotUse>(Arena*);
+template<> ::galbot::singorix_proto::WBCSCompiledTargetInfo_SegmentCountBySamplingEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSCompiledTargetInfo_SegmentCountBySamplingEntry_DoNotUse>(Arena*);
+template<> ::galbot::singorix_proto::WBCSCompiledTargetInfo_TaskSegmentCountBySamplingEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSCompiledTargetInfo_TaskSegmentCountBySamplingEntry_DoNotUse>(Arena*);
+template<> ::galbot::singorix_proto::WBCSExternalTargetIdentity* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSExternalTargetIdentity>(Arena*);
+template<> ::galbot::singorix_proto::WBCSFaultInfo* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSFaultInfo>(Arena*);
 template<> ::galbot::singorix_proto::WBCSInfo* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSInfo>(Arena*);
 template<> ::galbot::singorix_proto::WBCSInfoDetail* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSInfoDetail>(Arena*);
+template<> ::galbot::singorix_proto::WBCSInfo_CompiledTargetMapEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSInfo_CompiledTargetMapEntry_DoNotUse>(Arena*);
 template<> ::galbot::singorix_proto::WBCSInfo_InfoMapEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSInfo_InfoMapEntry_DoNotUse>(Arena*);
+template<> ::galbot::singorix_proto::WBCSInfo_LoopTimingMapEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSInfo_LoopTimingMapEntry_DoNotUse>(Arena*);
+template<> ::galbot::singorix_proto::WBCSInfo_RuntimeControllerStateMapEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSInfo_RuntimeControllerStateMapEntry_DoNotUse>(Arena*);
+template<> ::galbot::singorix_proto::WBCSInfo_RuntimeGraphBlockedAfterStageMapEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSInfo_RuntimeGraphBlockedAfterStageMapEntry_DoNotUse>(Arena*);
+template<> ::galbot::singorix_proto::WBCSInfo_RuntimeGraphGroupStatusMapEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSInfo_RuntimeGraphGroupStatusMapEntry_DoNotUse>(Arena*);
+template<> ::galbot::singorix_proto::WBCSInfo_RuntimeParamMapEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSInfo_RuntimeParamMapEntry_DoNotUse>(Arena*);
+template<> ::galbot::singorix_proto::WBCSInfo_TargetContributionMapEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSInfo_TargetContributionMapEntry_DoNotUse>(Arena*);
+template<> ::galbot::singorix_proto::WBCSInfo_TargetStatusMapEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSInfo_TargetStatusMapEntry_DoNotUse>(Arena*);
+template<> ::galbot::singorix_proto::WBCSLoopTimingMetricInfo* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSLoopTimingMetricInfo>(Arena*);
+template<> ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSLoopTimingSummaryInfo>(Arena*);
+template<> ::galbot::singorix_proto::WBCSRuntimeActionResultInfo* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSRuntimeActionResultInfo>(Arena*);
+template<> ::galbot::singorix_proto::WBCSRuntimeParamInfo* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSRuntimeParamInfo>(Arena*);
+template<> ::galbot::singorix_proto::WBCSRuntimeParamInfo_NamedValueAliasesEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSRuntimeParamInfo_NamedValueAliasesEntry_DoNotUse>(Arena*);
+template<> ::galbot::singorix_proto::WBCSRuntimeParamSummary* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSRuntimeParamSummary>(Arena*);
+template<> ::galbot::singorix_proto::WBCSSampleProvenanceInfo* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSSampleProvenanceInfo>(Arena*);
+template<> ::galbot::singorix_proto::WBCSTargetContributionRefInfo* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSTargetContributionRefInfo>(Arena*);
+template<> ::galbot::singorix_proto::WBCSTargetContributionStatusInfo* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSTargetContributionStatusInfo>(Arena*);
+template<> ::galbot::singorix_proto::WBCSTargetStatusInfo* Arena::CreateMaybeMessage<::galbot::singorix_proto::WBCSTargetStatusInfo>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace galbot {
 namespace singorix_proto {
@@ -268,6 +373,13 @@ class JointInfo PROTOBUF_FINAL :
     kStateAccFieldNumber = 15,
     kStateEffFieldNumber = 16,
     kStateCurFieldNumber = 17,
+    kLimitLowerPosFieldNumber = 18,
+    kLimitUpperPosFieldNumber = 19,
+    kLimitSoftLowerPosFieldNumber = 20,
+    kLimitSoftUpperPosFieldNumber = 21,
+    kLimitAbsVelFieldNumber = 22,
+    kLimitAbsEffFieldNumber = 23,
+    kLimitAbsCurFieldNumber = 24,
   };
   // repeated string names = 1;
   int names_size() const;
@@ -645,6 +757,160 @@ class JointInfo PROTOBUF_FINAL :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
       mutable_state_cur();
 
+  // repeated double limit_lower_pos = 18;
+  int limit_lower_pos_size() const;
+  private:
+  int _internal_limit_lower_pos_size() const;
+  public:
+  void clear_limit_lower_pos();
+  private:
+  double _internal_limit_lower_pos(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      _internal_limit_lower_pos() const;
+  void _internal_add_limit_lower_pos(double value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      _internal_mutable_limit_lower_pos();
+  public:
+  double limit_lower_pos(int index) const;
+  void set_limit_lower_pos(int index, double value);
+  void add_limit_lower_pos(double value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      limit_lower_pos() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      mutable_limit_lower_pos();
+
+  // repeated double limit_upper_pos = 19;
+  int limit_upper_pos_size() const;
+  private:
+  int _internal_limit_upper_pos_size() const;
+  public:
+  void clear_limit_upper_pos();
+  private:
+  double _internal_limit_upper_pos(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      _internal_limit_upper_pos() const;
+  void _internal_add_limit_upper_pos(double value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      _internal_mutable_limit_upper_pos();
+  public:
+  double limit_upper_pos(int index) const;
+  void set_limit_upper_pos(int index, double value);
+  void add_limit_upper_pos(double value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      limit_upper_pos() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      mutable_limit_upper_pos();
+
+  // repeated double limit_soft_lower_pos = 20;
+  int limit_soft_lower_pos_size() const;
+  private:
+  int _internal_limit_soft_lower_pos_size() const;
+  public:
+  void clear_limit_soft_lower_pos();
+  private:
+  double _internal_limit_soft_lower_pos(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      _internal_limit_soft_lower_pos() const;
+  void _internal_add_limit_soft_lower_pos(double value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      _internal_mutable_limit_soft_lower_pos();
+  public:
+  double limit_soft_lower_pos(int index) const;
+  void set_limit_soft_lower_pos(int index, double value);
+  void add_limit_soft_lower_pos(double value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      limit_soft_lower_pos() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      mutable_limit_soft_lower_pos();
+
+  // repeated double limit_soft_upper_pos = 21;
+  int limit_soft_upper_pos_size() const;
+  private:
+  int _internal_limit_soft_upper_pos_size() const;
+  public:
+  void clear_limit_soft_upper_pos();
+  private:
+  double _internal_limit_soft_upper_pos(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      _internal_limit_soft_upper_pos() const;
+  void _internal_add_limit_soft_upper_pos(double value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      _internal_mutable_limit_soft_upper_pos();
+  public:
+  double limit_soft_upper_pos(int index) const;
+  void set_limit_soft_upper_pos(int index, double value);
+  void add_limit_soft_upper_pos(double value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      limit_soft_upper_pos() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      mutable_limit_soft_upper_pos();
+
+  // repeated double limit_abs_vel = 22;
+  int limit_abs_vel_size() const;
+  private:
+  int _internal_limit_abs_vel_size() const;
+  public:
+  void clear_limit_abs_vel();
+  private:
+  double _internal_limit_abs_vel(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      _internal_limit_abs_vel() const;
+  void _internal_add_limit_abs_vel(double value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      _internal_mutable_limit_abs_vel();
+  public:
+  double limit_abs_vel(int index) const;
+  void set_limit_abs_vel(int index, double value);
+  void add_limit_abs_vel(double value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      limit_abs_vel() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      mutable_limit_abs_vel();
+
+  // repeated double limit_abs_eff = 23;
+  int limit_abs_eff_size() const;
+  private:
+  int _internal_limit_abs_eff_size() const;
+  public:
+  void clear_limit_abs_eff();
+  private:
+  double _internal_limit_abs_eff(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      _internal_limit_abs_eff() const;
+  void _internal_add_limit_abs_eff(double value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      _internal_mutable_limit_abs_eff();
+  public:
+  double limit_abs_eff(int index) const;
+  void set_limit_abs_eff(int index, double value);
+  void add_limit_abs_eff(double value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      limit_abs_eff() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      mutable_limit_abs_eff();
+
+  // repeated double limit_abs_cur = 24;
+  int limit_abs_cur_size() const;
+  private:
+  int _internal_limit_abs_cur_size() const;
+  public:
+  void clear_limit_abs_cur();
+  private:
+  double _internal_limit_abs_cur(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      _internal_limit_abs_cur() const;
+  void _internal_add_limit_abs_cur(double value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      _internal_mutable_limit_abs_cur();
+  public:
+  double limit_abs_cur(int index) const;
+  void set_limit_abs_cur(int index, double value);
+  void add_limit_abs_cur(double value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+      limit_abs_cur() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+      mutable_limit_abs_cur();
+
   // @@protoc_insertion_point(class_scope:galbot.singorix_proto.JointInfo)
  private:
   class _Internal;
@@ -685,6 +951,20 @@ class JointInfo PROTOBUF_FINAL :
   mutable std::atomic<int> _state_eff_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > state_cur_;
   mutable std::atomic<int> _state_cur_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > limit_lower_pos_;
+  mutable std::atomic<int> _limit_lower_pos_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > limit_upper_pos_;
+  mutable std::atomic<int> _limit_upper_pos_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > limit_soft_lower_pos_;
+  mutable std::atomic<int> _limit_soft_lower_pos_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > limit_soft_upper_pos_;
+  mutable std::atomic<int> _limit_soft_upper_pos_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > limit_abs_vel_;
+  mutable std::atomic<int> _limit_abs_vel_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > limit_abs_eff_;
+  mutable std::atomic<int> _limit_abs_eff_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > limit_abs_cur_;
+  mutable std::atomic<int> _limit_abs_cur_cached_byte_size_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto;
 };
@@ -2320,6 +2600,3369 @@ class WBCSInfoDetail PROTOBUF_FINAL :
 };
 // -------------------------------------------------------------------
 
+class WBCSRuntimeParamInfo_NamedValueAliasesEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSRuntimeParamInfo_NamedValueAliasesEntry_DoNotUse, 
+    std::string, ::galbot::core_proto::Value,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSRuntimeParamInfo_NamedValueAliasesEntry_DoNotUse, 
+    std::string, ::galbot::core_proto::Value,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  WBCSRuntimeParamInfo_NamedValueAliasesEntry_DoNotUse();
+  explicit WBCSRuntimeParamInfo_NamedValueAliasesEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const WBCSRuntimeParamInfo_NamedValueAliasesEntry_DoNotUse& other);
+  static const WBCSRuntimeParamInfo_NamedValueAliasesEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const WBCSRuntimeParamInfo_NamedValueAliasesEntry_DoNotUse*>(&_WBCSRuntimeParamInfo_NamedValueAliasesEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.singorix_proto.WBCSRuntimeParamInfo.NamedValueAliasesEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[15];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class WBCSRuntimeParamInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.singorix_proto.WBCSRuntimeParamInfo) */ {
+ public:
+  inline WBCSRuntimeParamInfo() : WBCSRuntimeParamInfo(nullptr) {}
+  virtual ~WBCSRuntimeParamInfo();
+
+  WBCSRuntimeParamInfo(const WBCSRuntimeParamInfo& from);
+  WBCSRuntimeParamInfo(WBCSRuntimeParamInfo&& from) noexcept
+    : WBCSRuntimeParamInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline WBCSRuntimeParamInfo& operator=(const WBCSRuntimeParamInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WBCSRuntimeParamInfo& operator=(WBCSRuntimeParamInfo&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const WBCSRuntimeParamInfo& default_instance();
+
+  static inline const WBCSRuntimeParamInfo* internal_default_instance() {
+    return reinterpret_cast<const WBCSRuntimeParamInfo*>(
+               &_WBCSRuntimeParamInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(WBCSRuntimeParamInfo& a, WBCSRuntimeParamInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WBCSRuntimeParamInfo* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WBCSRuntimeParamInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline WBCSRuntimeParamInfo* New() const final {
+    return CreateMaybeMessage<WBCSRuntimeParamInfo>(nullptr);
+  }
+
+  WBCSRuntimeParamInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<WBCSRuntimeParamInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const WBCSRuntimeParamInfo& from);
+  void MergeFrom(const WBCSRuntimeParamInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WBCSRuntimeParamInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "galbot.singorix_proto.WBCSRuntimeParamInfo";
+  }
+  protected:
+  explicit WBCSRuntimeParamInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAllowedStringValuesFieldNumber = 12,
+    kNamedValueAliasesFieldNumber = 13,
+    kScopeKeyFieldNumber = 1,
+    kNameFieldNumber = 2,
+    kMutablePolicyFieldNumber = 5,
+    kOwnerFieldNumber = 6,
+    kDescriptionFieldNumber = 7,
+    kEffectHintFieldNumber = 11,
+    kEffectiveValueFieldNumber = 3,
+    kDefaultValueFieldNumber = 9,
+    kOverrideValueFieldNumber = 10,
+    kVersionFieldNumber = 4,
+    kOverriddenFieldNumber = 8,
+  };
+  // repeated string allowed_string_values = 12;
+  int allowed_string_values_size() const;
+  private:
+  int _internal_allowed_string_values_size() const;
+  public:
+  void clear_allowed_string_values();
+  const std::string& allowed_string_values(int index) const;
+  std::string* mutable_allowed_string_values(int index);
+  void set_allowed_string_values(int index, const std::string& value);
+  void set_allowed_string_values(int index, std::string&& value);
+  void set_allowed_string_values(int index, const char* value);
+  void set_allowed_string_values(int index, const char* value, size_t size);
+  std::string* add_allowed_string_values();
+  void add_allowed_string_values(const std::string& value);
+  void add_allowed_string_values(std::string&& value);
+  void add_allowed_string_values(const char* value);
+  void add_allowed_string_values(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& allowed_string_values() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_allowed_string_values();
+  private:
+  const std::string& _internal_allowed_string_values(int index) const;
+  std::string* _internal_add_allowed_string_values();
+  public:
+
+  // map<string, .galbot.core_proto.Value> named_value_aliases = 13;
+  int named_value_aliases_size() const;
+  private:
+  int _internal_named_value_aliases_size() const;
+  public:
+  void clear_named_value_aliases();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >&
+      _internal_named_value_aliases() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >*
+      _internal_mutable_named_value_aliases();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >&
+      named_value_aliases() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >*
+      mutable_named_value_aliases();
+
+  // string scope_key = 1;
+  void clear_scope_key();
+  const std::string& scope_key() const;
+  void set_scope_key(const std::string& value);
+  void set_scope_key(std::string&& value);
+  void set_scope_key(const char* value);
+  void set_scope_key(const char* value, size_t size);
+  std::string* mutable_scope_key();
+  std::string* release_scope_key();
+  void set_allocated_scope_key(std::string* scope_key);
+  private:
+  const std::string& _internal_scope_key() const;
+  void _internal_set_scope_key(const std::string& value);
+  std::string* _internal_mutable_scope_key();
+  public:
+
+  // string name = 2;
+  void clear_name();
+  const std::string& name() const;
+  void set_name(const std::string& value);
+  void set_name(std::string&& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  std::string* mutable_name();
+  std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string mutable_policy = 5;
+  void clear_mutable_policy();
+  const std::string& mutable_policy() const;
+  void set_mutable_policy(const std::string& value);
+  void set_mutable_policy(std::string&& value);
+  void set_mutable_policy(const char* value);
+  void set_mutable_policy(const char* value, size_t size);
+  std::string* mutable_mutable_policy();
+  std::string* release_mutable_policy();
+  void set_allocated_mutable_policy(std::string* mutable_policy);
+  private:
+  const std::string& _internal_mutable_policy() const;
+  void _internal_set_mutable_policy(const std::string& value);
+  std::string* _internal_mutable_mutable_policy();
+  public:
+
+  // string owner = 6;
+  void clear_owner();
+  const std::string& owner() const;
+  void set_owner(const std::string& value);
+  void set_owner(std::string&& value);
+  void set_owner(const char* value);
+  void set_owner(const char* value, size_t size);
+  std::string* mutable_owner();
+  std::string* release_owner();
+  void set_allocated_owner(std::string* owner);
+  private:
+  const std::string& _internal_owner() const;
+  void _internal_set_owner(const std::string& value);
+  std::string* _internal_mutable_owner();
+  public:
+
+  // string description = 7;
+  void clear_description();
+  const std::string& description() const;
+  void set_description(const std::string& value);
+  void set_description(std::string&& value);
+  void set_description(const char* value);
+  void set_description(const char* value, size_t size);
+  std::string* mutable_description();
+  std::string* release_description();
+  void set_allocated_description(std::string* description);
+  private:
+  const std::string& _internal_description() const;
+  void _internal_set_description(const std::string& value);
+  std::string* _internal_mutable_description();
+  public:
+
+  // string effect_hint = 11;
+  void clear_effect_hint();
+  const std::string& effect_hint() const;
+  void set_effect_hint(const std::string& value);
+  void set_effect_hint(std::string&& value);
+  void set_effect_hint(const char* value);
+  void set_effect_hint(const char* value, size_t size);
+  std::string* mutable_effect_hint();
+  std::string* release_effect_hint();
+  void set_allocated_effect_hint(std::string* effect_hint);
+  private:
+  const std::string& _internal_effect_hint() const;
+  void _internal_set_effect_hint(const std::string& value);
+  std::string* _internal_mutable_effect_hint();
+  public:
+
+  // .galbot.core_proto.Value effective_value = 3;
+  bool has_effective_value() const;
+  private:
+  bool _internal_has_effective_value() const;
+  public:
+  void clear_effective_value();
+  const ::galbot::core_proto::Value& effective_value() const;
+  ::galbot::core_proto::Value* release_effective_value();
+  ::galbot::core_proto::Value* mutable_effective_value();
+  void set_allocated_effective_value(::galbot::core_proto::Value* effective_value);
+  private:
+  const ::galbot::core_proto::Value& _internal_effective_value() const;
+  ::galbot::core_proto::Value* _internal_mutable_effective_value();
+  public:
+  void unsafe_arena_set_allocated_effective_value(
+      ::galbot::core_proto::Value* effective_value);
+  ::galbot::core_proto::Value* unsafe_arena_release_effective_value();
+
+  // .galbot.core_proto.Value default_value = 9;
+  bool has_default_value() const;
+  private:
+  bool _internal_has_default_value() const;
+  public:
+  void clear_default_value();
+  const ::galbot::core_proto::Value& default_value() const;
+  ::galbot::core_proto::Value* release_default_value();
+  ::galbot::core_proto::Value* mutable_default_value();
+  void set_allocated_default_value(::galbot::core_proto::Value* default_value);
+  private:
+  const ::galbot::core_proto::Value& _internal_default_value() const;
+  ::galbot::core_proto::Value* _internal_mutable_default_value();
+  public:
+  void unsafe_arena_set_allocated_default_value(
+      ::galbot::core_proto::Value* default_value);
+  ::galbot::core_proto::Value* unsafe_arena_release_default_value();
+
+  // .galbot.core_proto.Value override_value = 10;
+  bool has_override_value() const;
+  private:
+  bool _internal_has_override_value() const;
+  public:
+  void clear_override_value();
+  const ::galbot::core_proto::Value& override_value() const;
+  ::galbot::core_proto::Value* release_override_value();
+  ::galbot::core_proto::Value* mutable_override_value();
+  void set_allocated_override_value(::galbot::core_proto::Value* override_value);
+  private:
+  const ::galbot::core_proto::Value& _internal_override_value() const;
+  ::galbot::core_proto::Value* _internal_mutable_override_value();
+  public:
+  void unsafe_arena_set_allocated_override_value(
+      ::galbot::core_proto::Value* override_value);
+  ::galbot::core_proto::Value* unsafe_arena_release_override_value();
+
+  // uint64 version = 4;
+  void clear_version();
+  ::PROTOBUF_NAMESPACE_ID::uint64 version() const;
+  void set_version(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_version() const;
+  void _internal_set_version(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // bool overridden = 8;
+  void clear_overridden();
+  bool overridden() const;
+  void set_overridden(bool value);
+  private:
+  bool _internal_overridden() const;
+  void _internal_set_overridden(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:galbot.singorix_proto.WBCSRuntimeParamInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> allowed_string_values_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      WBCSRuntimeParamInfo_NamedValueAliasesEntry_DoNotUse,
+      std::string, ::galbot::core_proto::Value,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> named_value_aliases_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr scope_key_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr mutable_policy_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr owner_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr effect_hint_;
+  ::galbot::core_proto::Value* effective_value_;
+  ::galbot::core_proto::Value* default_value_;
+  ::galbot::core_proto::Value* override_value_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 version_;
+  bool overridden_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto;
+};
+// -------------------------------------------------------------------
+
+class WBCSRuntimeParamSummary PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.singorix_proto.WBCSRuntimeParamSummary) */ {
+ public:
+  inline WBCSRuntimeParamSummary() : WBCSRuntimeParamSummary(nullptr) {}
+  virtual ~WBCSRuntimeParamSummary();
+
+  WBCSRuntimeParamSummary(const WBCSRuntimeParamSummary& from);
+  WBCSRuntimeParamSummary(WBCSRuntimeParamSummary&& from) noexcept
+    : WBCSRuntimeParamSummary() {
+    *this = ::std::move(from);
+  }
+
+  inline WBCSRuntimeParamSummary& operator=(const WBCSRuntimeParamSummary& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WBCSRuntimeParamSummary& operator=(WBCSRuntimeParamSummary&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const WBCSRuntimeParamSummary& default_instance();
+
+  static inline const WBCSRuntimeParamSummary* internal_default_instance() {
+    return reinterpret_cast<const WBCSRuntimeParamSummary*>(
+               &_WBCSRuntimeParamSummary_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(WBCSRuntimeParamSummary& a, WBCSRuntimeParamSummary& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WBCSRuntimeParamSummary* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WBCSRuntimeParamSummary* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline WBCSRuntimeParamSummary* New() const final {
+    return CreateMaybeMessage<WBCSRuntimeParamSummary>(nullptr);
+  }
+
+  WBCSRuntimeParamSummary* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<WBCSRuntimeParamSummary>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const WBCSRuntimeParamSummary& from);
+  void MergeFrom(const WBCSRuntimeParamSummary& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WBCSRuntimeParamSummary* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "galbot.singorix_proto.WBCSRuntimeParamSummary";
+  }
+  protected:
+  explicit WBCSRuntimeParamSummary(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kVersionFieldNumber = 1,
+    kScopeCountFieldNumber = 2,
+    kParameterCountFieldNumber = 3,
+  };
+  // uint64 version = 1;
+  void clear_version();
+  ::PROTOBUF_NAMESPACE_ID::uint64 version() const;
+  void set_version(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_version() const;
+  void _internal_set_version(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint32 scope_count = 2;
+  void clear_scope_count();
+  ::PROTOBUF_NAMESPACE_ID::uint32 scope_count() const;
+  void set_scope_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_scope_count() const;
+  void _internal_set_scope_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // uint32 parameter_count = 3;
+  void clear_parameter_count();
+  ::PROTOBUF_NAMESPACE_ID::uint32 parameter_count() const;
+  void set_parameter_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_parameter_count() const;
+  void _internal_set_parameter_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:galbot.singorix_proto.WBCSRuntimeParamSummary)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 version_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 scope_count_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 parameter_count_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto;
+};
+// -------------------------------------------------------------------
+
+class WBCSExternalTargetIdentity PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.singorix_proto.WBCSExternalTargetIdentity) */ {
+ public:
+  inline WBCSExternalTargetIdentity() : WBCSExternalTargetIdentity(nullptr) {}
+  virtual ~WBCSExternalTargetIdentity();
+
+  WBCSExternalTargetIdentity(const WBCSExternalTargetIdentity& from);
+  WBCSExternalTargetIdentity(WBCSExternalTargetIdentity&& from) noexcept
+    : WBCSExternalTargetIdentity() {
+    *this = ::std::move(from);
+  }
+
+  inline WBCSExternalTargetIdentity& operator=(const WBCSExternalTargetIdentity& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WBCSExternalTargetIdentity& operator=(WBCSExternalTargetIdentity&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const WBCSExternalTargetIdentity& default_instance();
+
+  static inline const WBCSExternalTargetIdentity* internal_default_instance() {
+    return reinterpret_cast<const WBCSExternalTargetIdentity*>(
+               &_WBCSExternalTargetIdentity_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    18;
+
+  friend void swap(WBCSExternalTargetIdentity& a, WBCSExternalTargetIdentity& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WBCSExternalTargetIdentity* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WBCSExternalTargetIdentity* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline WBCSExternalTargetIdentity* New() const final {
+    return CreateMaybeMessage<WBCSExternalTargetIdentity>(nullptr);
+  }
+
+  WBCSExternalTargetIdentity* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<WBCSExternalTargetIdentity>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const WBCSExternalTargetIdentity& from);
+  void MergeFrom(const WBCSExternalTargetIdentity& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WBCSExternalTargetIdentity* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "galbot.singorix_proto.WBCSExternalTargetIdentity";
+  }
+  protected:
+  explicit WBCSExternalTargetIdentity(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTargetIdFieldNumber = 1,
+    kTargetTsFieldNumber = 2,
+  };
+  // string target_id = 1;
+  void clear_target_id();
+  const std::string& target_id() const;
+  void set_target_id(const std::string& value);
+  void set_target_id(std::string&& value);
+  void set_target_id(const char* value);
+  void set_target_id(const char* value, size_t size);
+  std::string* mutable_target_id();
+  std::string* release_target_id();
+  void set_allocated_target_id(std::string* target_id);
+  private:
+  const std::string& _internal_target_id() const;
+  void _internal_set_target_id(const std::string& value);
+  std::string* _internal_mutable_target_id();
+  public:
+
+  // .galbot.core_proto.Timestamp target_ts = 2;
+  bool has_target_ts() const;
+  private:
+  bool _internal_has_target_ts() const;
+  public:
+  void clear_target_ts();
+  const ::galbot::core_proto::Timestamp& target_ts() const;
+  ::galbot::core_proto::Timestamp* release_target_ts();
+  ::galbot::core_proto::Timestamp* mutable_target_ts();
+  void set_allocated_target_ts(::galbot::core_proto::Timestamp* target_ts);
+  private:
+  const ::galbot::core_proto::Timestamp& _internal_target_ts() const;
+  ::galbot::core_proto::Timestamp* _internal_mutable_target_ts();
+  public:
+  void unsafe_arena_set_allocated_target_ts(
+      ::galbot::core_proto::Timestamp* target_ts);
+  ::galbot::core_proto::Timestamp* unsafe_arena_release_target_ts();
+
+  // @@protoc_insertion_point(class_scope:galbot.singorix_proto.WBCSExternalTargetIdentity)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr target_id_;
+  ::galbot::core_proto::Timestamp* target_ts_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto;
+};
+// -------------------------------------------------------------------
+
+class WBCSTargetStatusInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.singorix_proto.WBCSTargetStatusInfo) */ {
+ public:
+  inline WBCSTargetStatusInfo() : WBCSTargetStatusInfo(nullptr) {}
+  virtual ~WBCSTargetStatusInfo();
+
+  WBCSTargetStatusInfo(const WBCSTargetStatusInfo& from);
+  WBCSTargetStatusInfo(WBCSTargetStatusInfo&& from) noexcept
+    : WBCSTargetStatusInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline WBCSTargetStatusInfo& operator=(const WBCSTargetStatusInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WBCSTargetStatusInfo& operator=(WBCSTargetStatusInfo&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const WBCSTargetStatusInfo& default_instance();
+
+  static inline const WBCSTargetStatusInfo* internal_default_instance() {
+    return reinterpret_cast<const WBCSTargetStatusInfo*>(
+               &_WBCSTargetStatusInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    19;
+
+  friend void swap(WBCSTargetStatusInfo& a, WBCSTargetStatusInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WBCSTargetStatusInfo* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WBCSTargetStatusInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline WBCSTargetStatusInfo* New() const final {
+    return CreateMaybeMessage<WBCSTargetStatusInfo>(nullptr);
+  }
+
+  WBCSTargetStatusInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<WBCSTargetStatusInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const WBCSTargetStatusInfo& from);
+  void MergeFrom(const WBCSTargetStatusInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WBCSTargetStatusInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "galbot.singorix_proto.WBCSTargetStatusInfo";
+  }
+  protected:
+  explicit WBCSTargetStatusInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kScopeTypeFieldNumber = 1,
+    kScopeNameFieldNumber = 2,
+    kRuntimeTargetUidFieldNumber = 4,
+    kStatusFieldNumber = 9,
+    kIngressFieldNumber = 10,
+    kErrorMessageFieldNumber = 12,
+    kFailureStageFieldNumber = 15,
+    kFailureCategoryFieldNumber = 16,
+    kExternalTargetFieldNumber = 3,
+    kGenerationFieldNumber = 5,
+    kCompileJobIdFieldNumber = 6,
+    kCompiledVersionFieldNumber = 8,
+    kPointCountFieldNumber = 11,
+    kCompiledAvailableFieldNumber = 7,
+    kTerminalFieldNumber = 13,
+    kRetryableFieldNumber = 14,
+  };
+  // string scope_type = 1;
+  void clear_scope_type();
+  const std::string& scope_type() const;
+  void set_scope_type(const std::string& value);
+  void set_scope_type(std::string&& value);
+  void set_scope_type(const char* value);
+  void set_scope_type(const char* value, size_t size);
+  std::string* mutable_scope_type();
+  std::string* release_scope_type();
+  void set_allocated_scope_type(std::string* scope_type);
+  private:
+  const std::string& _internal_scope_type() const;
+  void _internal_set_scope_type(const std::string& value);
+  std::string* _internal_mutable_scope_type();
+  public:
+
+  // string scope_name = 2;
+  void clear_scope_name();
+  const std::string& scope_name() const;
+  void set_scope_name(const std::string& value);
+  void set_scope_name(std::string&& value);
+  void set_scope_name(const char* value);
+  void set_scope_name(const char* value, size_t size);
+  std::string* mutable_scope_name();
+  std::string* release_scope_name();
+  void set_allocated_scope_name(std::string* scope_name);
+  private:
+  const std::string& _internal_scope_name() const;
+  void _internal_set_scope_name(const std::string& value);
+  std::string* _internal_mutable_scope_name();
+  public:
+
+  // string runtime_target_uid = 4;
+  void clear_runtime_target_uid();
+  const std::string& runtime_target_uid() const;
+  void set_runtime_target_uid(const std::string& value);
+  void set_runtime_target_uid(std::string&& value);
+  void set_runtime_target_uid(const char* value);
+  void set_runtime_target_uid(const char* value, size_t size);
+  std::string* mutable_runtime_target_uid();
+  std::string* release_runtime_target_uid();
+  void set_allocated_runtime_target_uid(std::string* runtime_target_uid);
+  private:
+  const std::string& _internal_runtime_target_uid() const;
+  void _internal_set_runtime_target_uid(const std::string& value);
+  std::string* _internal_mutable_runtime_target_uid();
+  public:
+
+  // string status = 9;
+  void clear_status();
+  const std::string& status() const;
+  void set_status(const std::string& value);
+  void set_status(std::string&& value);
+  void set_status(const char* value);
+  void set_status(const char* value, size_t size);
+  std::string* mutable_status();
+  std::string* release_status();
+  void set_allocated_status(std::string* status);
+  private:
+  const std::string& _internal_status() const;
+  void _internal_set_status(const std::string& value);
+  std::string* _internal_mutable_status();
+  public:
+
+  // string ingress = 10;
+  void clear_ingress();
+  const std::string& ingress() const;
+  void set_ingress(const std::string& value);
+  void set_ingress(std::string&& value);
+  void set_ingress(const char* value);
+  void set_ingress(const char* value, size_t size);
+  std::string* mutable_ingress();
+  std::string* release_ingress();
+  void set_allocated_ingress(std::string* ingress);
+  private:
+  const std::string& _internal_ingress() const;
+  void _internal_set_ingress(const std::string& value);
+  std::string* _internal_mutable_ingress();
+  public:
+
+  // string error_message = 12;
+  void clear_error_message();
+  const std::string& error_message() const;
+  void set_error_message(const std::string& value);
+  void set_error_message(std::string&& value);
+  void set_error_message(const char* value);
+  void set_error_message(const char* value, size_t size);
+  std::string* mutable_error_message();
+  std::string* release_error_message();
+  void set_allocated_error_message(std::string* error_message);
+  private:
+  const std::string& _internal_error_message() const;
+  void _internal_set_error_message(const std::string& value);
+  std::string* _internal_mutable_error_message();
+  public:
+
+  // string failure_stage = 15;
+  void clear_failure_stage();
+  const std::string& failure_stage() const;
+  void set_failure_stage(const std::string& value);
+  void set_failure_stage(std::string&& value);
+  void set_failure_stage(const char* value);
+  void set_failure_stage(const char* value, size_t size);
+  std::string* mutable_failure_stage();
+  std::string* release_failure_stage();
+  void set_allocated_failure_stage(std::string* failure_stage);
+  private:
+  const std::string& _internal_failure_stage() const;
+  void _internal_set_failure_stage(const std::string& value);
+  std::string* _internal_mutable_failure_stage();
+  public:
+
+  // string failure_category = 16;
+  void clear_failure_category();
+  const std::string& failure_category() const;
+  void set_failure_category(const std::string& value);
+  void set_failure_category(std::string&& value);
+  void set_failure_category(const char* value);
+  void set_failure_category(const char* value, size_t size);
+  std::string* mutable_failure_category();
+  std::string* release_failure_category();
+  void set_allocated_failure_category(std::string* failure_category);
+  private:
+  const std::string& _internal_failure_category() const;
+  void _internal_set_failure_category(const std::string& value);
+  std::string* _internal_mutable_failure_category();
+  public:
+
+  // .galbot.singorix_proto.WBCSExternalTargetIdentity external_target = 3;
+  bool has_external_target() const;
+  private:
+  bool _internal_has_external_target() const;
+  public:
+  void clear_external_target();
+  const ::galbot::singorix_proto::WBCSExternalTargetIdentity& external_target() const;
+  ::galbot::singorix_proto::WBCSExternalTargetIdentity* release_external_target();
+  ::galbot::singorix_proto::WBCSExternalTargetIdentity* mutable_external_target();
+  void set_allocated_external_target(::galbot::singorix_proto::WBCSExternalTargetIdentity* external_target);
+  private:
+  const ::galbot::singorix_proto::WBCSExternalTargetIdentity& _internal_external_target() const;
+  ::galbot::singorix_proto::WBCSExternalTargetIdentity* _internal_mutable_external_target();
+  public:
+  void unsafe_arena_set_allocated_external_target(
+      ::galbot::singorix_proto::WBCSExternalTargetIdentity* external_target);
+  ::galbot::singorix_proto::WBCSExternalTargetIdentity* unsafe_arena_release_external_target();
+
+  // uint64 generation = 5;
+  void clear_generation();
+  ::PROTOBUF_NAMESPACE_ID::uint64 generation() const;
+  void set_generation(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_generation() const;
+  void _internal_set_generation(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint64 compile_job_id = 6;
+  void clear_compile_job_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 compile_job_id() const;
+  void set_compile_job_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_compile_job_id() const;
+  void _internal_set_compile_job_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint64 compiled_version = 8;
+  void clear_compiled_version();
+  ::PROTOBUF_NAMESPACE_ID::uint64 compiled_version() const;
+  void set_compiled_version(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_compiled_version() const;
+  void _internal_set_compiled_version(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint32 point_count = 11;
+  void clear_point_count();
+  ::PROTOBUF_NAMESPACE_ID::uint32 point_count() const;
+  void set_point_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_point_count() const;
+  void _internal_set_point_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // bool compiled_available = 7;
+  void clear_compiled_available();
+  bool compiled_available() const;
+  void set_compiled_available(bool value);
+  private:
+  bool _internal_compiled_available() const;
+  void _internal_set_compiled_available(bool value);
+  public:
+
+  // bool terminal = 13;
+  void clear_terminal();
+  bool terminal() const;
+  void set_terminal(bool value);
+  private:
+  bool _internal_terminal() const;
+  void _internal_set_terminal(bool value);
+  public:
+
+  // bool retryable = 14;
+  void clear_retryable();
+  bool retryable() const;
+  void set_retryable(bool value);
+  private:
+  bool _internal_retryable() const;
+  void _internal_set_retryable(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:galbot.singorix_proto.WBCSTargetStatusInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr scope_type_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr scope_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr runtime_target_uid_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr status_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr ingress_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_message_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr failure_stage_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr failure_category_;
+  ::galbot::singorix_proto::WBCSExternalTargetIdentity* external_target_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 generation_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 compile_job_id_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 compiled_version_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 point_count_;
+  bool compiled_available_;
+  bool terminal_;
+  bool retryable_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto;
+};
+// -------------------------------------------------------------------
+
+class WBCSTargetContributionRefInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.singorix_proto.WBCSTargetContributionRefInfo) */ {
+ public:
+  inline WBCSTargetContributionRefInfo() : WBCSTargetContributionRefInfo(nullptr) {}
+  virtual ~WBCSTargetContributionRefInfo();
+
+  WBCSTargetContributionRefInfo(const WBCSTargetContributionRefInfo& from);
+  WBCSTargetContributionRefInfo(WBCSTargetContributionRefInfo&& from) noexcept
+    : WBCSTargetContributionRefInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline WBCSTargetContributionRefInfo& operator=(const WBCSTargetContributionRefInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WBCSTargetContributionRefInfo& operator=(WBCSTargetContributionRefInfo&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const WBCSTargetContributionRefInfo& default_instance();
+
+  static inline const WBCSTargetContributionRefInfo* internal_default_instance() {
+    return reinterpret_cast<const WBCSTargetContributionRefInfo*>(
+               &_WBCSTargetContributionRefInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    20;
+
+  friend void swap(WBCSTargetContributionRefInfo& a, WBCSTargetContributionRefInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WBCSTargetContributionRefInfo* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WBCSTargetContributionRefInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline WBCSTargetContributionRefInfo* New() const final {
+    return CreateMaybeMessage<WBCSTargetContributionRefInfo>(nullptr);
+  }
+
+  WBCSTargetContributionRefInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<WBCSTargetContributionRefInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const WBCSTargetContributionRefInfo& from);
+  void MergeFrom(const WBCSTargetContributionRefInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WBCSTargetContributionRefInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "galbot.singorix_proto.WBCSTargetContributionRefInfo";
+  }
+  protected:
+  explicit WBCSTargetContributionRefInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRuntimeTargetUidFieldNumber = 2,
+    kContributionIdFieldNumber = 3,
+    kSourceKindFieldNumber = 4,
+    kScopeTypeFieldNumber = 10,
+    kScopeNameFieldNumber = 11,
+    kExternalTargetFieldNumber = 1,
+    kRawPointBeginFieldNumber = 5,
+    kRawPointEndFieldNumber = 6,
+    kActiveTimeStartFieldNumber = 7,
+    kActiveTimeEndFieldNumber = 8,
+    kWeightFieldNumber = 9,
+    kRawPointCountFieldNumber = 12,
+    kActiveDurationFieldNumber = 13,
+  };
+  // string runtime_target_uid = 2;
+  void clear_runtime_target_uid();
+  const std::string& runtime_target_uid() const;
+  void set_runtime_target_uid(const std::string& value);
+  void set_runtime_target_uid(std::string&& value);
+  void set_runtime_target_uid(const char* value);
+  void set_runtime_target_uid(const char* value, size_t size);
+  std::string* mutable_runtime_target_uid();
+  std::string* release_runtime_target_uid();
+  void set_allocated_runtime_target_uid(std::string* runtime_target_uid);
+  private:
+  const std::string& _internal_runtime_target_uid() const;
+  void _internal_set_runtime_target_uid(const std::string& value);
+  std::string* _internal_mutable_runtime_target_uid();
+  public:
+
+  // string contribution_id = 3;
+  void clear_contribution_id();
+  const std::string& contribution_id() const;
+  void set_contribution_id(const std::string& value);
+  void set_contribution_id(std::string&& value);
+  void set_contribution_id(const char* value);
+  void set_contribution_id(const char* value, size_t size);
+  std::string* mutable_contribution_id();
+  std::string* release_contribution_id();
+  void set_allocated_contribution_id(std::string* contribution_id);
+  private:
+  const std::string& _internal_contribution_id() const;
+  void _internal_set_contribution_id(const std::string& value);
+  std::string* _internal_mutable_contribution_id();
+  public:
+
+  // string source_kind = 4;
+  void clear_source_kind();
+  const std::string& source_kind() const;
+  void set_source_kind(const std::string& value);
+  void set_source_kind(std::string&& value);
+  void set_source_kind(const char* value);
+  void set_source_kind(const char* value, size_t size);
+  std::string* mutable_source_kind();
+  std::string* release_source_kind();
+  void set_allocated_source_kind(std::string* source_kind);
+  private:
+  const std::string& _internal_source_kind() const;
+  void _internal_set_source_kind(const std::string& value);
+  std::string* _internal_mutable_source_kind();
+  public:
+
+  // string scope_type = 10;
+  void clear_scope_type();
+  const std::string& scope_type() const;
+  void set_scope_type(const std::string& value);
+  void set_scope_type(std::string&& value);
+  void set_scope_type(const char* value);
+  void set_scope_type(const char* value, size_t size);
+  std::string* mutable_scope_type();
+  std::string* release_scope_type();
+  void set_allocated_scope_type(std::string* scope_type);
+  private:
+  const std::string& _internal_scope_type() const;
+  void _internal_set_scope_type(const std::string& value);
+  std::string* _internal_mutable_scope_type();
+  public:
+
+  // string scope_name = 11;
+  void clear_scope_name();
+  const std::string& scope_name() const;
+  void set_scope_name(const std::string& value);
+  void set_scope_name(std::string&& value);
+  void set_scope_name(const char* value);
+  void set_scope_name(const char* value, size_t size);
+  std::string* mutable_scope_name();
+  std::string* release_scope_name();
+  void set_allocated_scope_name(std::string* scope_name);
+  private:
+  const std::string& _internal_scope_name() const;
+  void _internal_set_scope_name(const std::string& value);
+  std::string* _internal_mutable_scope_name();
+  public:
+
+  // .galbot.singorix_proto.WBCSExternalTargetIdentity external_target = 1;
+  bool has_external_target() const;
+  private:
+  bool _internal_has_external_target() const;
+  public:
+  void clear_external_target();
+  const ::galbot::singorix_proto::WBCSExternalTargetIdentity& external_target() const;
+  ::galbot::singorix_proto::WBCSExternalTargetIdentity* release_external_target();
+  ::galbot::singorix_proto::WBCSExternalTargetIdentity* mutable_external_target();
+  void set_allocated_external_target(::galbot::singorix_proto::WBCSExternalTargetIdentity* external_target);
+  private:
+  const ::galbot::singorix_proto::WBCSExternalTargetIdentity& _internal_external_target() const;
+  ::galbot::singorix_proto::WBCSExternalTargetIdentity* _internal_mutable_external_target();
+  public:
+  void unsafe_arena_set_allocated_external_target(
+      ::galbot::singorix_proto::WBCSExternalTargetIdentity* external_target);
+  ::galbot::singorix_proto::WBCSExternalTargetIdentity* unsafe_arena_release_external_target();
+
+  // uint64 raw_point_begin = 5;
+  void clear_raw_point_begin();
+  ::PROTOBUF_NAMESPACE_ID::uint64 raw_point_begin() const;
+  void set_raw_point_begin(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_raw_point_begin() const;
+  void _internal_set_raw_point_begin(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint64 raw_point_end = 6;
+  void clear_raw_point_end();
+  ::PROTOBUF_NAMESPACE_ID::uint64 raw_point_end() const;
+  void set_raw_point_end(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_raw_point_end() const;
+  void _internal_set_raw_point_end(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // double active_time_start = 7;
+  void clear_active_time_start();
+  double active_time_start() const;
+  void set_active_time_start(double value);
+  private:
+  double _internal_active_time_start() const;
+  void _internal_set_active_time_start(double value);
+  public:
+
+  // double active_time_end = 8;
+  void clear_active_time_end();
+  double active_time_end() const;
+  void set_active_time_end(double value);
+  private:
+  double _internal_active_time_end() const;
+  void _internal_set_active_time_end(double value);
+  public:
+
+  // double weight = 9;
+  void clear_weight();
+  double weight() const;
+  void set_weight(double value);
+  private:
+  double _internal_weight() const;
+  void _internal_set_weight(double value);
+  public:
+
+  // uint64 raw_point_count = 12;
+  void clear_raw_point_count();
+  ::PROTOBUF_NAMESPACE_ID::uint64 raw_point_count() const;
+  void set_raw_point_count(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_raw_point_count() const;
+  void _internal_set_raw_point_count(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // double active_duration = 13;
+  void clear_active_duration();
+  double active_duration() const;
+  void set_active_duration(double value);
+  private:
+  double _internal_active_duration() const;
+  void _internal_set_active_duration(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:galbot.singorix_proto.WBCSTargetContributionRefInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr runtime_target_uid_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr contribution_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr source_kind_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr scope_type_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr scope_name_;
+  ::galbot::singorix_proto::WBCSExternalTargetIdentity* external_target_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 raw_point_begin_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 raw_point_end_;
+  double active_time_start_;
+  double active_time_end_;
+  double weight_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 raw_point_count_;
+  double active_duration_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto;
+};
+// -------------------------------------------------------------------
+
+class WBCSTargetContributionStatusInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.singorix_proto.WBCSTargetContributionStatusInfo) */ {
+ public:
+  inline WBCSTargetContributionStatusInfo() : WBCSTargetContributionStatusInfo(nullptr) {}
+  virtual ~WBCSTargetContributionStatusInfo();
+
+  WBCSTargetContributionStatusInfo(const WBCSTargetContributionStatusInfo& from);
+  WBCSTargetContributionStatusInfo(WBCSTargetContributionStatusInfo&& from) noexcept
+    : WBCSTargetContributionStatusInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline WBCSTargetContributionStatusInfo& operator=(const WBCSTargetContributionStatusInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WBCSTargetContributionStatusInfo& operator=(WBCSTargetContributionStatusInfo&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const WBCSTargetContributionStatusInfo& default_instance();
+
+  static inline const WBCSTargetContributionStatusInfo* internal_default_instance() {
+    return reinterpret_cast<const WBCSTargetContributionStatusInfo*>(
+               &_WBCSTargetContributionStatusInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    21;
+
+  friend void swap(WBCSTargetContributionStatusInfo& a, WBCSTargetContributionStatusInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WBCSTargetContributionStatusInfo* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WBCSTargetContributionStatusInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline WBCSTargetContributionStatusInfo* New() const final {
+    return CreateMaybeMessage<WBCSTargetContributionStatusInfo>(nullptr);
+  }
+
+  WBCSTargetContributionStatusInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<WBCSTargetContributionStatusInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const WBCSTargetContributionStatusInfo& from);
+  void MergeFrom(const WBCSTargetContributionStatusInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WBCSTargetContributionStatusInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "galbot.singorix_proto.WBCSTargetContributionStatusInfo";
+  }
+  protected:
+  explicit WBCSTargetContributionStatusInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kStatusFieldNumber = 2,
+    kErrorMessageFieldNumber = 4,
+    kFailureStageFieldNumber = 7,
+    kFailureCategoryFieldNumber = 8,
+    kContributionFieldNumber = 1,
+    kProgressFieldNumber = 3,
+    kTerminalFieldNumber = 5,
+    kRetryableFieldNumber = 6,
+  };
+  // string status = 2;
+  void clear_status();
+  const std::string& status() const;
+  void set_status(const std::string& value);
+  void set_status(std::string&& value);
+  void set_status(const char* value);
+  void set_status(const char* value, size_t size);
+  std::string* mutable_status();
+  std::string* release_status();
+  void set_allocated_status(std::string* status);
+  private:
+  const std::string& _internal_status() const;
+  void _internal_set_status(const std::string& value);
+  std::string* _internal_mutable_status();
+  public:
+
+  // string error_message = 4;
+  void clear_error_message();
+  const std::string& error_message() const;
+  void set_error_message(const std::string& value);
+  void set_error_message(std::string&& value);
+  void set_error_message(const char* value);
+  void set_error_message(const char* value, size_t size);
+  std::string* mutable_error_message();
+  std::string* release_error_message();
+  void set_allocated_error_message(std::string* error_message);
+  private:
+  const std::string& _internal_error_message() const;
+  void _internal_set_error_message(const std::string& value);
+  std::string* _internal_mutable_error_message();
+  public:
+
+  // string failure_stage = 7;
+  void clear_failure_stage();
+  const std::string& failure_stage() const;
+  void set_failure_stage(const std::string& value);
+  void set_failure_stage(std::string&& value);
+  void set_failure_stage(const char* value);
+  void set_failure_stage(const char* value, size_t size);
+  std::string* mutable_failure_stage();
+  std::string* release_failure_stage();
+  void set_allocated_failure_stage(std::string* failure_stage);
+  private:
+  const std::string& _internal_failure_stage() const;
+  void _internal_set_failure_stage(const std::string& value);
+  std::string* _internal_mutable_failure_stage();
+  public:
+
+  // string failure_category = 8;
+  void clear_failure_category();
+  const std::string& failure_category() const;
+  void set_failure_category(const std::string& value);
+  void set_failure_category(std::string&& value);
+  void set_failure_category(const char* value);
+  void set_failure_category(const char* value, size_t size);
+  std::string* mutable_failure_category();
+  std::string* release_failure_category();
+  void set_allocated_failure_category(std::string* failure_category);
+  private:
+  const std::string& _internal_failure_category() const;
+  void _internal_set_failure_category(const std::string& value);
+  std::string* _internal_mutable_failure_category();
+  public:
+
+  // .galbot.singorix_proto.WBCSTargetContributionRefInfo contribution = 1;
+  bool has_contribution() const;
+  private:
+  bool _internal_has_contribution() const;
+  public:
+  void clear_contribution();
+  const ::galbot::singorix_proto::WBCSTargetContributionRefInfo& contribution() const;
+  ::galbot::singorix_proto::WBCSTargetContributionRefInfo* release_contribution();
+  ::galbot::singorix_proto::WBCSTargetContributionRefInfo* mutable_contribution();
+  void set_allocated_contribution(::galbot::singorix_proto::WBCSTargetContributionRefInfo* contribution);
+  private:
+  const ::galbot::singorix_proto::WBCSTargetContributionRefInfo& _internal_contribution() const;
+  ::galbot::singorix_proto::WBCSTargetContributionRefInfo* _internal_mutable_contribution();
+  public:
+  void unsafe_arena_set_allocated_contribution(
+      ::galbot::singorix_proto::WBCSTargetContributionRefInfo* contribution);
+  ::galbot::singorix_proto::WBCSTargetContributionRefInfo* unsafe_arena_release_contribution();
+
+  // double progress = 3;
+  void clear_progress();
+  double progress() const;
+  void set_progress(double value);
+  private:
+  double _internal_progress() const;
+  void _internal_set_progress(double value);
+  public:
+
+  // bool terminal = 5;
+  void clear_terminal();
+  bool terminal() const;
+  void set_terminal(bool value);
+  private:
+  bool _internal_terminal() const;
+  void _internal_set_terminal(bool value);
+  public:
+
+  // bool retryable = 6;
+  void clear_retryable();
+  bool retryable() const;
+  void set_retryable(bool value);
+  private:
+  bool _internal_retryable() const;
+  void _internal_set_retryable(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:galbot.singorix_proto.WBCSTargetContributionStatusInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr status_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_message_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr failure_stage_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr failure_category_;
+  ::galbot::singorix_proto::WBCSTargetContributionRefInfo* contribution_;
+  double progress_;
+  bool terminal_;
+  bool retryable_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto;
+};
+// -------------------------------------------------------------------
+
+class WBCSCompiledTargetInfo_ConstraintScalarLimitsEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSCompiledTargetInfo_ConstraintScalarLimitsEntry_DoNotUse, 
+    std::string, double,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_DOUBLE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSCompiledTargetInfo_ConstraintScalarLimitsEntry_DoNotUse, 
+    std::string, double,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_DOUBLE> SuperType;
+  WBCSCompiledTargetInfo_ConstraintScalarLimitsEntry_DoNotUse();
+  explicit WBCSCompiledTargetInfo_ConstraintScalarLimitsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const WBCSCompiledTargetInfo_ConstraintScalarLimitsEntry_DoNotUse& other);
+  static const WBCSCompiledTargetInfo_ConstraintScalarLimitsEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const WBCSCompiledTargetInfo_ConstraintScalarLimitsEntry_DoNotUse*>(&_WBCSCompiledTargetInfo_ConstraintScalarLimitsEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.singorix_proto.WBCSCompiledTargetInfo.ConstraintScalarLimitsEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[22];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class WBCSCompiledTargetInfo_GroupSegmentCountBySamplingEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSCompiledTargetInfo_GroupSegmentCountBySamplingEntry_DoNotUse, 
+    std::string, ::PROTOBUF_NAMESPACE_ID::uint32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSCompiledTargetInfo_GroupSegmentCountBySamplingEntry_DoNotUse, 
+    std::string, ::PROTOBUF_NAMESPACE_ID::uint32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32> SuperType;
+  WBCSCompiledTargetInfo_GroupSegmentCountBySamplingEntry_DoNotUse();
+  explicit WBCSCompiledTargetInfo_GroupSegmentCountBySamplingEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const WBCSCompiledTargetInfo_GroupSegmentCountBySamplingEntry_DoNotUse& other);
+  static const WBCSCompiledTargetInfo_GroupSegmentCountBySamplingEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const WBCSCompiledTargetInfo_GroupSegmentCountBySamplingEntry_DoNotUse*>(&_WBCSCompiledTargetInfo_GroupSegmentCountBySamplingEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.singorix_proto.WBCSCompiledTargetInfo.GroupSegmentCountBySamplingEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[23];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class WBCSCompiledTargetInfo_TaskSegmentCountBySamplingEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSCompiledTargetInfo_TaskSegmentCountBySamplingEntry_DoNotUse, 
+    std::string, ::PROTOBUF_NAMESPACE_ID::uint32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSCompiledTargetInfo_TaskSegmentCountBySamplingEntry_DoNotUse, 
+    std::string, ::PROTOBUF_NAMESPACE_ID::uint32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32> SuperType;
+  WBCSCompiledTargetInfo_TaskSegmentCountBySamplingEntry_DoNotUse();
+  explicit WBCSCompiledTargetInfo_TaskSegmentCountBySamplingEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const WBCSCompiledTargetInfo_TaskSegmentCountBySamplingEntry_DoNotUse& other);
+  static const WBCSCompiledTargetInfo_TaskSegmentCountBySamplingEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const WBCSCompiledTargetInfo_TaskSegmentCountBySamplingEntry_DoNotUse*>(&_WBCSCompiledTargetInfo_TaskSegmentCountBySamplingEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.singorix_proto.WBCSCompiledTargetInfo.TaskSegmentCountBySamplingEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[24];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class WBCSCompiledTargetInfo_SegmentCountBySamplingEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSCompiledTargetInfo_SegmentCountBySamplingEntry_DoNotUse, 
+    std::string, ::PROTOBUF_NAMESPACE_ID::uint32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSCompiledTargetInfo_SegmentCountBySamplingEntry_DoNotUse, 
+    std::string, ::PROTOBUF_NAMESPACE_ID::uint32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32> SuperType;
+  WBCSCompiledTargetInfo_SegmentCountBySamplingEntry_DoNotUse();
+  explicit WBCSCompiledTargetInfo_SegmentCountBySamplingEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const WBCSCompiledTargetInfo_SegmentCountBySamplingEntry_DoNotUse& other);
+  static const WBCSCompiledTargetInfo_SegmentCountBySamplingEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const WBCSCompiledTargetInfo_SegmentCountBySamplingEntry_DoNotUse*>(&_WBCSCompiledTargetInfo_SegmentCountBySamplingEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.singorix_proto.WBCSCompiledTargetInfo.SegmentCountBySamplingEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[25];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class WBCSCompiledTargetInfo_RetimedSegmentCountBySamplingEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSCompiledTargetInfo_RetimedSegmentCountBySamplingEntry_DoNotUse, 
+    std::string, ::PROTOBUF_NAMESPACE_ID::uint32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSCompiledTargetInfo_RetimedSegmentCountBySamplingEntry_DoNotUse, 
+    std::string, ::PROTOBUF_NAMESPACE_ID::uint32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32> SuperType;
+  WBCSCompiledTargetInfo_RetimedSegmentCountBySamplingEntry_DoNotUse();
+  explicit WBCSCompiledTargetInfo_RetimedSegmentCountBySamplingEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const WBCSCompiledTargetInfo_RetimedSegmentCountBySamplingEntry_DoNotUse& other);
+  static const WBCSCompiledTargetInfo_RetimedSegmentCountBySamplingEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const WBCSCompiledTargetInfo_RetimedSegmentCountBySamplingEntry_DoNotUse*>(&_WBCSCompiledTargetInfo_RetimedSegmentCountBySamplingEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.singorix_proto.WBCSCompiledTargetInfo.RetimedSegmentCountBySamplingEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[26];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class WBCSCompiledTargetInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.singorix_proto.WBCSCompiledTargetInfo) */ {
+ public:
+  inline WBCSCompiledTargetInfo() : WBCSCompiledTargetInfo(nullptr) {}
+  virtual ~WBCSCompiledTargetInfo();
+
+  WBCSCompiledTargetInfo(const WBCSCompiledTargetInfo& from);
+  WBCSCompiledTargetInfo(WBCSCompiledTargetInfo&& from) noexcept
+    : WBCSCompiledTargetInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline WBCSCompiledTargetInfo& operator=(const WBCSCompiledTargetInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WBCSCompiledTargetInfo& operator=(WBCSCompiledTargetInfo&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const WBCSCompiledTargetInfo& default_instance();
+
+  static inline const WBCSCompiledTargetInfo* internal_default_instance() {
+    return reinterpret_cast<const WBCSCompiledTargetInfo*>(
+               &_WBCSCompiledTargetInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    27;
+
+  friend void swap(WBCSCompiledTargetInfo& a, WBCSCompiledTargetInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WBCSCompiledTargetInfo* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WBCSCompiledTargetInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline WBCSCompiledTargetInfo* New() const final {
+    return CreateMaybeMessage<WBCSCompiledTargetInfo>(nullptr);
+  }
+
+  WBCSCompiledTargetInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<WBCSCompiledTargetInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const WBCSCompiledTargetInfo& from);
+  void MergeFrom(const WBCSCompiledTargetInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WBCSCompiledTargetInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "galbot.singorix_proto.WBCSCompiledTargetInfo";
+  }
+  protected:
+  explicit WBCSCompiledTargetInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kContributionsFieldNumber = 8,
+    kConstraintScalarLimitsFieldNumber = 14,
+    kGroupSegmentCountBySamplingFieldNumber = 15,
+    kTaskSegmentCountBySamplingFieldNumber = 16,
+    kSegmentCountBySamplingFieldNumber = 17,
+    kRetimedSegmentCountBySamplingFieldNumber = 26,
+    kRuntimeTargetUidFieldNumber = 1,
+    kDefaultSamplingFieldNumber = 13,
+    kGenerationFieldNumber = 2,
+    kCompileJobIdFieldNumber = 3,
+    kVersionFieldNumber = 4,
+    kGroupCountFieldNumber = 5,
+    kTaskCountFieldNumber = 6,
+    kContributionCountFieldNumber = 7,
+    kGroupSegmentCountFieldNumber = 9,
+    kTaskSegmentCountFieldNumber = 10,
+    kTotalSegmentCountFieldNumber = 11,
+    kCompileDurationMsFieldNumber = 12,
+    kCompiledTimeStartFieldNumber = 19,
+    kCompiledTimeEndFieldNumber = 20,
+    kSourceTimeStartFieldNumber = 21,
+    kSourceTimeEndFieldNumber = 22,
+    kCompiledDurationFieldNumber = 23,
+    kSourceDurationFieldNumber = 24,
+    kHasTimeRangeFieldNumber = 18,
+    kHasSegmentDurationRangeFieldNumber = 31,
+    kRetimedSegmentCountFieldNumber = 25,
+    kMaxRetimeRatioFieldNumber = 27,
+    kGroupPointCountFieldNumber = 28,
+    kTaskPointCountFieldNumber = 29,
+    kMinCompiledSegmentDurationFieldNumber = 32,
+    kMaxCompiledSegmentDurationFieldNumber = 33,
+    kMinSourceSegmentDurationFieldNumber = 34,
+    kMaxSourceSegmentDurationFieldNumber = 35,
+    kTotalPointCountFieldNumber = 30,
+  };
+  // repeated .galbot.singorix_proto.WBCSTargetContributionRefInfo contributions = 8;
+  int contributions_size() const;
+  private:
+  int _internal_contributions_size() const;
+  public:
+  void clear_contributions();
+  ::galbot::singorix_proto::WBCSTargetContributionRefInfo* mutable_contributions(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSTargetContributionRefInfo >*
+      mutable_contributions();
+  private:
+  const ::galbot::singorix_proto::WBCSTargetContributionRefInfo& _internal_contributions(int index) const;
+  ::galbot::singorix_proto::WBCSTargetContributionRefInfo* _internal_add_contributions();
+  public:
+  const ::galbot::singorix_proto::WBCSTargetContributionRefInfo& contributions(int index) const;
+  ::galbot::singorix_proto::WBCSTargetContributionRefInfo* add_contributions();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSTargetContributionRefInfo >&
+      contributions() const;
+
+  // map<string, double> constraint_scalar_limits = 14;
+  int constraint_scalar_limits_size() const;
+  private:
+  int _internal_constraint_scalar_limits_size() const;
+  public:
+  void clear_constraint_scalar_limits();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, double >&
+      _internal_constraint_scalar_limits() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, double >*
+      _internal_mutable_constraint_scalar_limits();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, double >&
+      constraint_scalar_limits() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, double >*
+      mutable_constraint_scalar_limits();
+
+  // map<string, uint32> group_segment_count_by_sampling = 15;
+  int group_segment_count_by_sampling_size() const;
+  private:
+  int _internal_group_segment_count_by_sampling_size() const;
+  public:
+  void clear_group_segment_count_by_sampling();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >&
+      _internal_group_segment_count_by_sampling() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >*
+      _internal_mutable_group_segment_count_by_sampling();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >&
+      group_segment_count_by_sampling() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >*
+      mutable_group_segment_count_by_sampling();
+
+  // map<string, uint32> task_segment_count_by_sampling = 16;
+  int task_segment_count_by_sampling_size() const;
+  private:
+  int _internal_task_segment_count_by_sampling_size() const;
+  public:
+  void clear_task_segment_count_by_sampling();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >&
+      _internal_task_segment_count_by_sampling() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >*
+      _internal_mutable_task_segment_count_by_sampling();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >&
+      task_segment_count_by_sampling() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >*
+      mutable_task_segment_count_by_sampling();
+
+  // map<string, uint32> segment_count_by_sampling = 17;
+  int segment_count_by_sampling_size() const;
+  private:
+  int _internal_segment_count_by_sampling_size() const;
+  public:
+  void clear_segment_count_by_sampling();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >&
+      _internal_segment_count_by_sampling() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >*
+      _internal_mutable_segment_count_by_sampling();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >&
+      segment_count_by_sampling() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >*
+      mutable_segment_count_by_sampling();
+
+  // map<string, uint32> retimed_segment_count_by_sampling = 26;
+  int retimed_segment_count_by_sampling_size() const;
+  private:
+  int _internal_retimed_segment_count_by_sampling_size() const;
+  public:
+  void clear_retimed_segment_count_by_sampling();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >&
+      _internal_retimed_segment_count_by_sampling() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >*
+      _internal_mutable_retimed_segment_count_by_sampling();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >&
+      retimed_segment_count_by_sampling() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >*
+      mutable_retimed_segment_count_by_sampling();
+
+  // string runtime_target_uid = 1;
+  void clear_runtime_target_uid();
+  const std::string& runtime_target_uid() const;
+  void set_runtime_target_uid(const std::string& value);
+  void set_runtime_target_uid(std::string&& value);
+  void set_runtime_target_uid(const char* value);
+  void set_runtime_target_uid(const char* value, size_t size);
+  std::string* mutable_runtime_target_uid();
+  std::string* release_runtime_target_uid();
+  void set_allocated_runtime_target_uid(std::string* runtime_target_uid);
+  private:
+  const std::string& _internal_runtime_target_uid() const;
+  void _internal_set_runtime_target_uid(const std::string& value);
+  std::string* _internal_mutable_runtime_target_uid();
+  public:
+
+  // string default_sampling = 13;
+  void clear_default_sampling();
+  const std::string& default_sampling() const;
+  void set_default_sampling(const std::string& value);
+  void set_default_sampling(std::string&& value);
+  void set_default_sampling(const char* value);
+  void set_default_sampling(const char* value, size_t size);
+  std::string* mutable_default_sampling();
+  std::string* release_default_sampling();
+  void set_allocated_default_sampling(std::string* default_sampling);
+  private:
+  const std::string& _internal_default_sampling() const;
+  void _internal_set_default_sampling(const std::string& value);
+  std::string* _internal_mutable_default_sampling();
+  public:
+
+  // uint64 generation = 2;
+  void clear_generation();
+  ::PROTOBUF_NAMESPACE_ID::uint64 generation() const;
+  void set_generation(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_generation() const;
+  void _internal_set_generation(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint64 compile_job_id = 3;
+  void clear_compile_job_id();
+  ::PROTOBUF_NAMESPACE_ID::uint64 compile_job_id() const;
+  void set_compile_job_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_compile_job_id() const;
+  void _internal_set_compile_job_id(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint64 version = 4;
+  void clear_version();
+  ::PROTOBUF_NAMESPACE_ID::uint64 version() const;
+  void set_version(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_version() const;
+  void _internal_set_version(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // uint32 group_count = 5;
+  void clear_group_count();
+  ::PROTOBUF_NAMESPACE_ID::uint32 group_count() const;
+  void set_group_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_group_count() const;
+  void _internal_set_group_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // uint32 task_count = 6;
+  void clear_task_count();
+  ::PROTOBUF_NAMESPACE_ID::uint32 task_count() const;
+  void set_task_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_task_count() const;
+  void _internal_set_task_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // uint32 contribution_count = 7;
+  void clear_contribution_count();
+  ::PROTOBUF_NAMESPACE_ID::uint32 contribution_count() const;
+  void set_contribution_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_contribution_count() const;
+  void _internal_set_contribution_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // uint32 group_segment_count = 9;
+  void clear_group_segment_count();
+  ::PROTOBUF_NAMESPACE_ID::uint32 group_segment_count() const;
+  void set_group_segment_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_group_segment_count() const;
+  void _internal_set_group_segment_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // uint32 task_segment_count = 10;
+  void clear_task_segment_count();
+  ::PROTOBUF_NAMESPACE_ID::uint32 task_segment_count() const;
+  void set_task_segment_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_task_segment_count() const;
+  void _internal_set_task_segment_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // uint32 total_segment_count = 11;
+  void clear_total_segment_count();
+  ::PROTOBUF_NAMESPACE_ID::uint32 total_segment_count() const;
+  void set_total_segment_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_total_segment_count() const;
+  void _internal_set_total_segment_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // double compile_duration_ms = 12;
+  void clear_compile_duration_ms();
+  double compile_duration_ms() const;
+  void set_compile_duration_ms(double value);
+  private:
+  double _internal_compile_duration_ms() const;
+  void _internal_set_compile_duration_ms(double value);
+  public:
+
+  // double compiled_time_start = 19;
+  void clear_compiled_time_start();
+  double compiled_time_start() const;
+  void set_compiled_time_start(double value);
+  private:
+  double _internal_compiled_time_start() const;
+  void _internal_set_compiled_time_start(double value);
+  public:
+
+  // double compiled_time_end = 20;
+  void clear_compiled_time_end();
+  double compiled_time_end() const;
+  void set_compiled_time_end(double value);
+  private:
+  double _internal_compiled_time_end() const;
+  void _internal_set_compiled_time_end(double value);
+  public:
+
+  // double source_time_start = 21;
+  void clear_source_time_start();
+  double source_time_start() const;
+  void set_source_time_start(double value);
+  private:
+  double _internal_source_time_start() const;
+  void _internal_set_source_time_start(double value);
+  public:
+
+  // double source_time_end = 22;
+  void clear_source_time_end();
+  double source_time_end() const;
+  void set_source_time_end(double value);
+  private:
+  double _internal_source_time_end() const;
+  void _internal_set_source_time_end(double value);
+  public:
+
+  // double compiled_duration = 23;
+  void clear_compiled_duration();
+  double compiled_duration() const;
+  void set_compiled_duration(double value);
+  private:
+  double _internal_compiled_duration() const;
+  void _internal_set_compiled_duration(double value);
+  public:
+
+  // double source_duration = 24;
+  void clear_source_duration();
+  double source_duration() const;
+  void set_source_duration(double value);
+  private:
+  double _internal_source_duration() const;
+  void _internal_set_source_duration(double value);
+  public:
+
+  // bool has_time_range = 18;
+  void clear_has_time_range();
+  bool has_time_range() const;
+  void set_has_time_range(bool value);
+  private:
+  bool _internal_has_time_range() const;
+  void _internal_set_has_time_range(bool value);
+  public:
+
+  // bool has_segment_duration_range = 31;
+  void clear_has_segment_duration_range();
+  bool has_segment_duration_range() const;
+  void set_has_segment_duration_range(bool value);
+  private:
+  bool _internal_has_segment_duration_range() const;
+  void _internal_set_has_segment_duration_range(bool value);
+  public:
+
+  // uint32 retimed_segment_count = 25;
+  void clear_retimed_segment_count();
+  ::PROTOBUF_NAMESPACE_ID::uint32 retimed_segment_count() const;
+  void set_retimed_segment_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_retimed_segment_count() const;
+  void _internal_set_retimed_segment_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // double max_retime_ratio = 27;
+  void clear_max_retime_ratio();
+  double max_retime_ratio() const;
+  void set_max_retime_ratio(double value);
+  private:
+  double _internal_max_retime_ratio() const;
+  void _internal_set_max_retime_ratio(double value);
+  public:
+
+  // uint32 group_point_count = 28;
+  void clear_group_point_count();
+  ::PROTOBUF_NAMESPACE_ID::uint32 group_point_count() const;
+  void set_group_point_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_group_point_count() const;
+  void _internal_set_group_point_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // uint32 task_point_count = 29;
+  void clear_task_point_count();
+  ::PROTOBUF_NAMESPACE_ID::uint32 task_point_count() const;
+  void set_task_point_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_task_point_count() const;
+  void _internal_set_task_point_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // double min_compiled_segment_duration = 32;
+  void clear_min_compiled_segment_duration();
+  double min_compiled_segment_duration() const;
+  void set_min_compiled_segment_duration(double value);
+  private:
+  double _internal_min_compiled_segment_duration() const;
+  void _internal_set_min_compiled_segment_duration(double value);
+  public:
+
+  // double max_compiled_segment_duration = 33;
+  void clear_max_compiled_segment_duration();
+  double max_compiled_segment_duration() const;
+  void set_max_compiled_segment_duration(double value);
+  private:
+  double _internal_max_compiled_segment_duration() const;
+  void _internal_set_max_compiled_segment_duration(double value);
+  public:
+
+  // double min_source_segment_duration = 34;
+  void clear_min_source_segment_duration();
+  double min_source_segment_duration() const;
+  void set_min_source_segment_duration(double value);
+  private:
+  double _internal_min_source_segment_duration() const;
+  void _internal_set_min_source_segment_duration(double value);
+  public:
+
+  // double max_source_segment_duration = 35;
+  void clear_max_source_segment_duration();
+  double max_source_segment_duration() const;
+  void set_max_source_segment_duration(double value);
+  private:
+  double _internal_max_source_segment_duration() const;
+  void _internal_set_max_source_segment_duration(double value);
+  public:
+
+  // uint32 total_point_count = 30;
+  void clear_total_point_count();
+  ::PROTOBUF_NAMESPACE_ID::uint32 total_point_count() const;
+  void set_total_point_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_total_point_count() const;
+  void _internal_set_total_point_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:galbot.singorix_proto.WBCSCompiledTargetInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSTargetContributionRefInfo > contributions_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      WBCSCompiledTargetInfo_ConstraintScalarLimitsEntry_DoNotUse,
+      std::string, double,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_DOUBLE> constraint_scalar_limits_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      WBCSCompiledTargetInfo_GroupSegmentCountBySamplingEntry_DoNotUse,
+      std::string, ::PROTOBUF_NAMESPACE_ID::uint32,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32> group_segment_count_by_sampling_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      WBCSCompiledTargetInfo_TaskSegmentCountBySamplingEntry_DoNotUse,
+      std::string, ::PROTOBUF_NAMESPACE_ID::uint32,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32> task_segment_count_by_sampling_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      WBCSCompiledTargetInfo_SegmentCountBySamplingEntry_DoNotUse,
+      std::string, ::PROTOBUF_NAMESPACE_ID::uint32,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32> segment_count_by_sampling_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      WBCSCompiledTargetInfo_RetimedSegmentCountBySamplingEntry_DoNotUse,
+      std::string, ::PROTOBUF_NAMESPACE_ID::uint32,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32> retimed_segment_count_by_sampling_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr runtime_target_uid_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr default_sampling_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 generation_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 compile_job_id_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 version_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 group_count_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 task_count_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 contribution_count_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 group_segment_count_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 task_segment_count_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 total_segment_count_;
+  double compile_duration_ms_;
+  double compiled_time_start_;
+  double compiled_time_end_;
+  double source_time_start_;
+  double source_time_end_;
+  double compiled_duration_;
+  double source_duration_;
+  bool has_time_range_;
+  bool has_segment_duration_range_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 retimed_segment_count_;
+  double max_retime_ratio_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 group_point_count_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 task_point_count_;
+  double min_compiled_segment_duration_;
+  double max_compiled_segment_duration_;
+  double min_source_segment_duration_;
+  double max_source_segment_duration_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 total_point_count_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto;
+};
+// -------------------------------------------------------------------
+
+class WBCSSampleProvenanceInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.singorix_proto.WBCSSampleProvenanceInfo) */ {
+ public:
+  inline WBCSSampleProvenanceInfo() : WBCSSampleProvenanceInfo(nullptr) {}
+  virtual ~WBCSSampleProvenanceInfo();
+
+  WBCSSampleProvenanceInfo(const WBCSSampleProvenanceInfo& from);
+  WBCSSampleProvenanceInfo(WBCSSampleProvenanceInfo&& from) noexcept
+    : WBCSSampleProvenanceInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline WBCSSampleProvenanceInfo& operator=(const WBCSSampleProvenanceInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WBCSSampleProvenanceInfo& operator=(WBCSSampleProvenanceInfo&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const WBCSSampleProvenanceInfo& default_instance();
+
+  static inline const WBCSSampleProvenanceInfo* internal_default_instance() {
+    return reinterpret_cast<const WBCSSampleProvenanceInfo*>(
+               &_WBCSSampleProvenanceInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    28;
+
+  friend void swap(WBCSSampleProvenanceInfo& a, WBCSSampleProvenanceInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WBCSSampleProvenanceInfo* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WBCSSampleProvenanceInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline WBCSSampleProvenanceInfo* New() const final {
+    return CreateMaybeMessage<WBCSSampleProvenanceInfo>(nullptr);
+  }
+
+  WBCSSampleProvenanceInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<WBCSSampleProvenanceInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const WBCSSampleProvenanceInfo& from);
+  void MergeFrom(const WBCSSampleProvenanceInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WBCSSampleProvenanceInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "galbot.singorix_proto.WBCSSampleProvenanceInfo";
+  }
+  protected:
+  explicit WBCSSampleProvenanceInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kActiveSourcesFieldNumber = 3,
+    kSampleTimeFieldNumber = 1,
+    kActiveSourceCountFieldNumber = 2,
+  };
+  // repeated .galbot.singorix_proto.WBCSTargetContributionRefInfo active_sources = 3;
+  int active_sources_size() const;
+  private:
+  int _internal_active_sources_size() const;
+  public:
+  void clear_active_sources();
+  ::galbot::singorix_proto::WBCSTargetContributionRefInfo* mutable_active_sources(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSTargetContributionRefInfo >*
+      mutable_active_sources();
+  private:
+  const ::galbot::singorix_proto::WBCSTargetContributionRefInfo& _internal_active_sources(int index) const;
+  ::galbot::singorix_proto::WBCSTargetContributionRefInfo* _internal_add_active_sources();
+  public:
+  const ::galbot::singorix_proto::WBCSTargetContributionRefInfo& active_sources(int index) const;
+  ::galbot::singorix_proto::WBCSTargetContributionRefInfo* add_active_sources();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSTargetContributionRefInfo >&
+      active_sources() const;
+
+  // double sample_time = 1;
+  void clear_sample_time();
+  double sample_time() const;
+  void set_sample_time(double value);
+  private:
+  double _internal_sample_time() const;
+  void _internal_set_sample_time(double value);
+  public:
+
+  // uint32 active_source_count = 2;
+  void clear_active_source_count();
+  ::PROTOBUF_NAMESPACE_ID::uint32 active_source_count() const;
+  void set_active_source_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_active_source_count() const;
+  void _internal_set_active_source_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:galbot.singorix_proto.WBCSSampleProvenanceInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSTargetContributionRefInfo > active_sources_;
+  double sample_time_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 active_source_count_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto;
+};
+// -------------------------------------------------------------------
+
+class WBCSLoopTimingMetricInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.singorix_proto.WBCSLoopTimingMetricInfo) */ {
+ public:
+  inline WBCSLoopTimingMetricInfo() : WBCSLoopTimingMetricInfo(nullptr) {}
+  virtual ~WBCSLoopTimingMetricInfo();
+
+  WBCSLoopTimingMetricInfo(const WBCSLoopTimingMetricInfo& from);
+  WBCSLoopTimingMetricInfo(WBCSLoopTimingMetricInfo&& from) noexcept
+    : WBCSLoopTimingMetricInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline WBCSLoopTimingMetricInfo& operator=(const WBCSLoopTimingMetricInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WBCSLoopTimingMetricInfo& operator=(WBCSLoopTimingMetricInfo&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const WBCSLoopTimingMetricInfo& default_instance();
+
+  static inline const WBCSLoopTimingMetricInfo* internal_default_instance() {
+    return reinterpret_cast<const WBCSLoopTimingMetricInfo*>(
+               &_WBCSLoopTimingMetricInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    29;
+
+  friend void swap(WBCSLoopTimingMetricInfo& a, WBCSLoopTimingMetricInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WBCSLoopTimingMetricInfo* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WBCSLoopTimingMetricInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline WBCSLoopTimingMetricInfo* New() const final {
+    return CreateMaybeMessage<WBCSLoopTimingMetricInfo>(nullptr);
+  }
+
+  WBCSLoopTimingMetricInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<WBCSLoopTimingMetricInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const WBCSLoopTimingMetricInfo& from);
+  void MergeFrom(const WBCSLoopTimingMetricInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WBCSLoopTimingMetricInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "galbot.singorix_proto.WBCSLoopTimingMetricInfo";
+  }
+  protected:
+  explicit WBCSLoopTimingMetricInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCountFieldNumber = 1,
+    kAvgMsFieldNumber = 2,
+    kMinMsFieldNumber = 3,
+    kMaxMsFieldNumber = 4,
+    kVarMs2FieldNumber = 5,
+  };
+  // uint64 count = 1;
+  void clear_count();
+  ::PROTOBUF_NAMESPACE_ID::uint64 count() const;
+  void set_count(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_count() const;
+  void _internal_set_count(::PROTOBUF_NAMESPACE_ID::uint64 value);
+  public:
+
+  // double avg_ms = 2;
+  void clear_avg_ms();
+  double avg_ms() const;
+  void set_avg_ms(double value);
+  private:
+  double _internal_avg_ms() const;
+  void _internal_set_avg_ms(double value);
+  public:
+
+  // double min_ms = 3;
+  void clear_min_ms();
+  double min_ms() const;
+  void set_min_ms(double value);
+  private:
+  double _internal_min_ms() const;
+  void _internal_set_min_ms(double value);
+  public:
+
+  // double max_ms = 4;
+  void clear_max_ms();
+  double max_ms() const;
+  void set_max_ms(double value);
+  private:
+  double _internal_max_ms() const;
+  void _internal_set_max_ms(double value);
+  public:
+
+  // double var_ms2 = 5;
+  void clear_var_ms2();
+  double var_ms2() const;
+  void set_var_ms2(double value);
+  private:
+  double _internal_var_ms2() const;
+  void _internal_set_var_ms2(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:galbot.singorix_proto.WBCSLoopTimingMetricInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 count_;
+  double avg_ms_;
+  double min_ms_;
+  double max_ms_;
+  double var_ms2_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto;
+};
+// -------------------------------------------------------------------
+
+class WBCSLoopTimingSummaryInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.singorix_proto.WBCSLoopTimingSummaryInfo) */ {
+ public:
+  inline WBCSLoopTimingSummaryInfo() : WBCSLoopTimingSummaryInfo(nullptr) {}
+  virtual ~WBCSLoopTimingSummaryInfo();
+
+  WBCSLoopTimingSummaryInfo(const WBCSLoopTimingSummaryInfo& from);
+  WBCSLoopTimingSummaryInfo(WBCSLoopTimingSummaryInfo&& from) noexcept
+    : WBCSLoopTimingSummaryInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline WBCSLoopTimingSummaryInfo& operator=(const WBCSLoopTimingSummaryInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WBCSLoopTimingSummaryInfo& operator=(WBCSLoopTimingSummaryInfo&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const WBCSLoopTimingSummaryInfo& default_instance();
+
+  static inline const WBCSLoopTimingSummaryInfo* internal_default_instance() {
+    return reinterpret_cast<const WBCSLoopTimingSummaryInfo*>(
+               &_WBCSLoopTimingSummaryInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    30;
+
+  friend void swap(WBCSLoopTimingSummaryInfo& a, WBCSLoopTimingSummaryInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WBCSLoopTimingSummaryInfo* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WBCSLoopTimingSummaryInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline WBCSLoopTimingSummaryInfo* New() const final {
+    return CreateMaybeMessage<WBCSLoopTimingSummaryInfo>(nullptr);
+  }
+
+  WBCSLoopTimingSummaryInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<WBCSLoopTimingSummaryInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const WBCSLoopTimingSummaryInfo& from);
+  void MergeFrom(const WBCSLoopTimingSummaryInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WBCSLoopTimingSummaryInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "galbot.singorix_proto.WBCSLoopTimingSummaryInfo";
+  }
+  protected:
+  explicit WBCSLoopTimingSummaryInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kWindowMsFieldNumber = 1,
+    kMetricCountFieldNumber = 2,
+  };
+  // double window_ms = 1;
+  void clear_window_ms();
+  double window_ms() const;
+  void set_window_ms(double value);
+  private:
+  double _internal_window_ms() const;
+  void _internal_set_window_ms(double value);
+  public:
+
+  // uint32 metric_count = 2;
+  void clear_metric_count();
+  ::PROTOBUF_NAMESPACE_ID::uint32 metric_count() const;
+  void set_metric_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_metric_count() const;
+  void _internal_set_metric_count(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:galbot.singorix_proto.WBCSLoopTimingSummaryInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  double window_ms_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 metric_count_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto;
+};
+// -------------------------------------------------------------------
+
+class WBCSFaultInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.singorix_proto.WBCSFaultInfo) */ {
+ public:
+  inline WBCSFaultInfo() : WBCSFaultInfo(nullptr) {}
+  virtual ~WBCSFaultInfo();
+
+  WBCSFaultInfo(const WBCSFaultInfo& from);
+  WBCSFaultInfo(WBCSFaultInfo&& from) noexcept
+    : WBCSFaultInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline WBCSFaultInfo& operator=(const WBCSFaultInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WBCSFaultInfo& operator=(WBCSFaultInfo&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const WBCSFaultInfo& default_instance();
+
+  static inline const WBCSFaultInfo* internal_default_instance() {
+    return reinterpret_cast<const WBCSFaultInfo*>(
+               &_WBCSFaultInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    31;
+
+  friend void swap(WBCSFaultInfo& a, WBCSFaultInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WBCSFaultInfo* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WBCSFaultInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline WBCSFaultInfo* New() const final {
+    return CreateMaybeMessage<WBCSFaultInfo>(nullptr);
+  }
+
+  WBCSFaultInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<WBCSFaultInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const WBCSFaultInfo& from);
+  void MergeFrom(const WBCSFaultInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WBCSFaultInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "galbot.singorix_proto.WBCSFaultInfo";
+  }
+  protected:
+  explicit WBCSFaultInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSourceFieldNumber = 2,
+    kDescriptionFieldNumber = 3,
+    kFaultCodeFieldNumber = 1,
+    kSyntheticFieldNumber = 4,
+  };
+  // string source = 2;
+  void clear_source();
+  const std::string& source() const;
+  void set_source(const std::string& value);
+  void set_source(std::string&& value);
+  void set_source(const char* value);
+  void set_source(const char* value, size_t size);
+  std::string* mutable_source();
+  std::string* release_source();
+  void set_allocated_source(std::string* source);
+  private:
+  const std::string& _internal_source() const;
+  void _internal_set_source(const std::string& value);
+  std::string* _internal_mutable_source();
+  public:
+
+  // string description = 3;
+  void clear_description();
+  const std::string& description() const;
+  void set_description(const std::string& value);
+  void set_description(std::string&& value);
+  void set_description(const char* value);
+  void set_description(const char* value, size_t size);
+  std::string* mutable_description();
+  std::string* release_description();
+  void set_allocated_description(std::string* description);
+  private:
+  const std::string& _internal_description() const;
+  void _internal_set_description(const std::string& value);
+  std::string* _internal_mutable_description();
+  public:
+
+  // uint32 fault_code = 1;
+  void clear_fault_code();
+  ::PROTOBUF_NAMESPACE_ID::uint32 fault_code() const;
+  void set_fault_code(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_fault_code() const;
+  void _internal_set_fault_code(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
+  // bool synthetic = 4;
+  void clear_synthetic();
+  bool synthetic() const;
+  void set_synthetic(bool value);
+  private:
+  bool _internal_synthetic() const;
+  void _internal_set_synthetic(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:galbot.singorix_proto.WBCSFaultInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr source_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 fault_code_;
+  bool synthetic_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto;
+};
+// -------------------------------------------------------------------
+
+class WBCSRuntimeActionResultInfo PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.singorix_proto.WBCSRuntimeActionResultInfo) */ {
+ public:
+  inline WBCSRuntimeActionResultInfo() : WBCSRuntimeActionResultInfo(nullptr) {}
+  virtual ~WBCSRuntimeActionResultInfo();
+
+  WBCSRuntimeActionResultInfo(const WBCSRuntimeActionResultInfo& from);
+  WBCSRuntimeActionResultInfo(WBCSRuntimeActionResultInfo&& from) noexcept
+    : WBCSRuntimeActionResultInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline WBCSRuntimeActionResultInfo& operator=(const WBCSRuntimeActionResultInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline WBCSRuntimeActionResultInfo& operator=(WBCSRuntimeActionResultInfo&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const WBCSRuntimeActionResultInfo& default_instance();
+
+  static inline const WBCSRuntimeActionResultInfo* internal_default_instance() {
+    return reinterpret_cast<const WBCSRuntimeActionResultInfo*>(
+               &_WBCSRuntimeActionResultInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    32;
+
+  friend void swap(WBCSRuntimeActionResultInfo& a, WBCSRuntimeActionResultInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(WBCSRuntimeActionResultInfo* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(WBCSRuntimeActionResultInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline WBCSRuntimeActionResultInfo* New() const final {
+    return CreateMaybeMessage<WBCSRuntimeActionResultInfo>(nullptr);
+  }
+
+  WBCSRuntimeActionResultInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<WBCSRuntimeActionResultInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const WBCSRuntimeActionResultInfo& from);
+  void MergeFrom(const WBCSRuntimeActionResultInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(WBCSRuntimeActionResultInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "galbot.singorix_proto.WBCSRuntimeActionResultInfo";
+  }
+  protected:
+  explicit WBCSRuntimeActionResultInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kGraphIdFieldNumber = 1,
+    kControllerIdFieldNumber = 2,
+    kGroupNameFieldNumber = 3,
+    kStageNameFieldNumber = 4,
+    kActionTypeFieldNumber = 5,
+    kTargetGraphIdFieldNumber = 7,
+    kTargetGroupNameFieldNumber = 8,
+    kDescriptionFieldNumber = 9,
+    kErrorMessageFieldNumber = 10,
+    kSuccessFieldNumber = 6,
+  };
+  // string graph_id = 1;
+  void clear_graph_id();
+  const std::string& graph_id() const;
+  void set_graph_id(const std::string& value);
+  void set_graph_id(std::string&& value);
+  void set_graph_id(const char* value);
+  void set_graph_id(const char* value, size_t size);
+  std::string* mutable_graph_id();
+  std::string* release_graph_id();
+  void set_allocated_graph_id(std::string* graph_id);
+  private:
+  const std::string& _internal_graph_id() const;
+  void _internal_set_graph_id(const std::string& value);
+  std::string* _internal_mutable_graph_id();
+  public:
+
+  // string controller_id = 2;
+  void clear_controller_id();
+  const std::string& controller_id() const;
+  void set_controller_id(const std::string& value);
+  void set_controller_id(std::string&& value);
+  void set_controller_id(const char* value);
+  void set_controller_id(const char* value, size_t size);
+  std::string* mutable_controller_id();
+  std::string* release_controller_id();
+  void set_allocated_controller_id(std::string* controller_id);
+  private:
+  const std::string& _internal_controller_id() const;
+  void _internal_set_controller_id(const std::string& value);
+  std::string* _internal_mutable_controller_id();
+  public:
+
+  // string group_name = 3;
+  void clear_group_name();
+  const std::string& group_name() const;
+  void set_group_name(const std::string& value);
+  void set_group_name(std::string&& value);
+  void set_group_name(const char* value);
+  void set_group_name(const char* value, size_t size);
+  std::string* mutable_group_name();
+  std::string* release_group_name();
+  void set_allocated_group_name(std::string* group_name);
+  private:
+  const std::string& _internal_group_name() const;
+  void _internal_set_group_name(const std::string& value);
+  std::string* _internal_mutable_group_name();
+  public:
+
+  // string stage_name = 4;
+  void clear_stage_name();
+  const std::string& stage_name() const;
+  void set_stage_name(const std::string& value);
+  void set_stage_name(std::string&& value);
+  void set_stage_name(const char* value);
+  void set_stage_name(const char* value, size_t size);
+  std::string* mutable_stage_name();
+  std::string* release_stage_name();
+  void set_allocated_stage_name(std::string* stage_name);
+  private:
+  const std::string& _internal_stage_name() const;
+  void _internal_set_stage_name(const std::string& value);
+  std::string* _internal_mutable_stage_name();
+  public:
+
+  // string action_type = 5;
+  void clear_action_type();
+  const std::string& action_type() const;
+  void set_action_type(const std::string& value);
+  void set_action_type(std::string&& value);
+  void set_action_type(const char* value);
+  void set_action_type(const char* value, size_t size);
+  std::string* mutable_action_type();
+  std::string* release_action_type();
+  void set_allocated_action_type(std::string* action_type);
+  private:
+  const std::string& _internal_action_type() const;
+  void _internal_set_action_type(const std::string& value);
+  std::string* _internal_mutable_action_type();
+  public:
+
+  // string target_graph_id = 7;
+  void clear_target_graph_id();
+  const std::string& target_graph_id() const;
+  void set_target_graph_id(const std::string& value);
+  void set_target_graph_id(std::string&& value);
+  void set_target_graph_id(const char* value);
+  void set_target_graph_id(const char* value, size_t size);
+  std::string* mutable_target_graph_id();
+  std::string* release_target_graph_id();
+  void set_allocated_target_graph_id(std::string* target_graph_id);
+  private:
+  const std::string& _internal_target_graph_id() const;
+  void _internal_set_target_graph_id(const std::string& value);
+  std::string* _internal_mutable_target_graph_id();
+  public:
+
+  // string target_group_name = 8;
+  void clear_target_group_name();
+  const std::string& target_group_name() const;
+  void set_target_group_name(const std::string& value);
+  void set_target_group_name(std::string&& value);
+  void set_target_group_name(const char* value);
+  void set_target_group_name(const char* value, size_t size);
+  std::string* mutable_target_group_name();
+  std::string* release_target_group_name();
+  void set_allocated_target_group_name(std::string* target_group_name);
+  private:
+  const std::string& _internal_target_group_name() const;
+  void _internal_set_target_group_name(const std::string& value);
+  std::string* _internal_mutable_target_group_name();
+  public:
+
+  // string description = 9;
+  void clear_description();
+  const std::string& description() const;
+  void set_description(const std::string& value);
+  void set_description(std::string&& value);
+  void set_description(const char* value);
+  void set_description(const char* value, size_t size);
+  std::string* mutable_description();
+  std::string* release_description();
+  void set_allocated_description(std::string* description);
+  private:
+  const std::string& _internal_description() const;
+  void _internal_set_description(const std::string& value);
+  std::string* _internal_mutable_description();
+  public:
+
+  // string error_message = 10;
+  void clear_error_message();
+  const std::string& error_message() const;
+  void set_error_message(const std::string& value);
+  void set_error_message(std::string&& value);
+  void set_error_message(const char* value);
+  void set_error_message(const char* value, size_t size);
+  std::string* mutable_error_message();
+  std::string* release_error_message();
+  void set_allocated_error_message(std::string* error_message);
+  private:
+  const std::string& _internal_error_message() const;
+  void _internal_set_error_message(const std::string& value);
+  std::string* _internal_mutable_error_message();
+  public:
+
+  // bool success = 6;
+  void clear_success();
+  bool success() const;
+  void set_success(bool value);
+  private:
+  bool _internal_success() const;
+  void _internal_set_success(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:galbot.singorix_proto.WBCSRuntimeActionResultInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr graph_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr controller_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr group_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr stage_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr action_type_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr target_graph_id_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr target_group_name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr description_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_message_;
+  bool success_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto;
+};
+// -------------------------------------------------------------------
+
 class WBCSInfo_InfoMapEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_InfoMapEntry_DoNotUse, 
     std::string, ::galbot::singorix_proto::WBCSInfoDetail,
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
@@ -2342,7 +5985,249 @@ public:
   private:
   static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
     ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
-    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[15];
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[33];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class WBCSInfo_RuntimeParamMapEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_RuntimeParamMapEntry_DoNotUse, 
+    std::string, ::galbot::singorix_proto::WBCSRuntimeParamInfo,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_RuntimeParamMapEntry_DoNotUse, 
+    std::string, ::galbot::singorix_proto::WBCSRuntimeParamInfo,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  WBCSInfo_RuntimeParamMapEntry_DoNotUse();
+  explicit WBCSInfo_RuntimeParamMapEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const WBCSInfo_RuntimeParamMapEntry_DoNotUse& other);
+  static const WBCSInfo_RuntimeParamMapEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const WBCSInfo_RuntimeParamMapEntry_DoNotUse*>(&_WBCSInfo_RuntimeParamMapEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.singorix_proto.WBCSInfo.RuntimeParamMapEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[34];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class WBCSInfo_TargetStatusMapEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_TargetStatusMapEntry_DoNotUse, 
+    std::string, ::galbot::singorix_proto::WBCSTargetStatusInfo,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_TargetStatusMapEntry_DoNotUse, 
+    std::string, ::galbot::singorix_proto::WBCSTargetStatusInfo,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  WBCSInfo_TargetStatusMapEntry_DoNotUse();
+  explicit WBCSInfo_TargetStatusMapEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const WBCSInfo_TargetStatusMapEntry_DoNotUse& other);
+  static const WBCSInfo_TargetStatusMapEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const WBCSInfo_TargetStatusMapEntry_DoNotUse*>(&_WBCSInfo_TargetStatusMapEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.singorix_proto.WBCSInfo.TargetStatusMapEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[35];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class WBCSInfo_CompiledTargetMapEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_CompiledTargetMapEntry_DoNotUse, 
+    std::string, ::galbot::singorix_proto::WBCSCompiledTargetInfo,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_CompiledTargetMapEntry_DoNotUse, 
+    std::string, ::galbot::singorix_proto::WBCSCompiledTargetInfo,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  WBCSInfo_CompiledTargetMapEntry_DoNotUse();
+  explicit WBCSInfo_CompiledTargetMapEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const WBCSInfo_CompiledTargetMapEntry_DoNotUse& other);
+  static const WBCSInfo_CompiledTargetMapEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const WBCSInfo_CompiledTargetMapEntry_DoNotUse*>(&_WBCSInfo_CompiledTargetMapEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.singorix_proto.WBCSInfo.CompiledTargetMapEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[36];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class WBCSInfo_TargetContributionMapEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_TargetContributionMapEntry_DoNotUse, 
+    std::string, ::galbot::singorix_proto::WBCSTargetContributionStatusInfo,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_TargetContributionMapEntry_DoNotUse, 
+    std::string, ::galbot::singorix_proto::WBCSTargetContributionStatusInfo,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  WBCSInfo_TargetContributionMapEntry_DoNotUse();
+  explicit WBCSInfo_TargetContributionMapEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const WBCSInfo_TargetContributionMapEntry_DoNotUse& other);
+  static const WBCSInfo_TargetContributionMapEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const WBCSInfo_TargetContributionMapEntry_DoNotUse*>(&_WBCSInfo_TargetContributionMapEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.singorix_proto.WBCSInfo.TargetContributionMapEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[37];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class WBCSInfo_RuntimeGraphGroupStatusMapEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_RuntimeGraphGroupStatusMapEntry_DoNotUse, 
+    std::string, ::galbot::singorix_proto::RuntimeGraphGroupStatus,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_RuntimeGraphGroupStatusMapEntry_DoNotUse, 
+    std::string, ::galbot::singorix_proto::RuntimeGraphGroupStatus,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  WBCSInfo_RuntimeGraphGroupStatusMapEntry_DoNotUse();
+  explicit WBCSInfo_RuntimeGraphGroupStatusMapEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const WBCSInfo_RuntimeGraphGroupStatusMapEntry_DoNotUse& other);
+  static const WBCSInfo_RuntimeGraphGroupStatusMapEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const WBCSInfo_RuntimeGraphGroupStatusMapEntry_DoNotUse*>(&_WBCSInfo_RuntimeGraphGroupStatusMapEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.singorix_proto.WBCSInfo.RuntimeGraphGroupStatusMapEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[38];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class WBCSInfo_RuntimeGraphBlockedAfterStageMapEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_RuntimeGraphBlockedAfterStageMapEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_RuntimeGraphBlockedAfterStageMapEntry_DoNotUse, 
+    std::string, std::string,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> SuperType;
+  WBCSInfo_RuntimeGraphBlockedAfterStageMapEntry_DoNotUse();
+  explicit WBCSInfo_RuntimeGraphBlockedAfterStageMapEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const WBCSInfo_RuntimeGraphBlockedAfterStageMapEntry_DoNotUse& other);
+  static const WBCSInfo_RuntimeGraphBlockedAfterStageMapEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const WBCSInfo_RuntimeGraphBlockedAfterStageMapEntry_DoNotUse*>(&_WBCSInfo_RuntimeGraphBlockedAfterStageMapEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.singorix_proto.WBCSInfo.RuntimeGraphBlockedAfterStageMapEntry.key");
+ }
+  static bool ValidateValue(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.singorix_proto.WBCSInfo.RuntimeGraphBlockedAfterStageMapEntry.value");
+ }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[39];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class WBCSInfo_RuntimeControllerStateMapEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_RuntimeControllerStateMapEntry_DoNotUse, 
+    std::string, ::galbot::singorix_proto::RuntimeControllerStatus,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_RuntimeControllerStateMapEntry_DoNotUse, 
+    std::string, ::galbot::singorix_proto::RuntimeControllerStatus,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  WBCSInfo_RuntimeControllerStateMapEntry_DoNotUse();
+  explicit WBCSInfo_RuntimeControllerStateMapEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const WBCSInfo_RuntimeControllerStateMapEntry_DoNotUse& other);
+  static const WBCSInfo_RuntimeControllerStateMapEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const WBCSInfo_RuntimeControllerStateMapEntry_DoNotUse*>(&_WBCSInfo_RuntimeControllerStateMapEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.singorix_proto.WBCSInfo.RuntimeControllerStateMapEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[40];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
+class WBCSInfo_LoopTimingMapEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_LoopTimingMapEntry_DoNotUse, 
+    std::string, ::galbot::singorix_proto::WBCSLoopTimingMetricInfo,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<WBCSInfo_LoopTimingMapEntry_DoNotUse, 
+    std::string, ::galbot::singorix_proto::WBCSLoopTimingMetricInfo,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  WBCSInfo_LoopTimingMapEntry_DoNotUse();
+  explicit WBCSInfo_LoopTimingMapEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const WBCSInfo_LoopTimingMapEntry_DoNotUse& other);
+  static const WBCSInfo_LoopTimingMapEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const WBCSInfo_LoopTimingMapEntry_DoNotUse*>(&_WBCSInfo_LoopTimingMapEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.singorix_proto.WBCSInfo.LoopTimingMapEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto);
+    return ::descriptor_table_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto.file_level_metadata[41];
   }
 
   public:
@@ -2391,7 +6276,7 @@ class WBCSInfo PROTOBUF_FINAL :
                &_WBCSInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    42;
 
   friend void swap(WBCSInfo& a, WBCSInfo& b) {
     a.Swap(&b);
@@ -2464,7 +6349,22 @@ class WBCSInfo PROTOBUF_FINAL :
 
   enum : int {
     kInfoMapFieldNumber = 2,
+    kRuntimeParamMapFieldNumber = 3,
+    kTargetStatusMapFieldNumber = 5,
+    kCompiledTargetMapFieldNumber = 6,
+    kTargetContributionMapFieldNumber = 7,
+    kRuntimeGraphGroupStatusMapFieldNumber = 9,
+    kRuntimeGraphActiveClaimsFieldNumber = 10,
+    kRuntimeGraphBlockedAfterStageMapFieldNumber = 11,
+    kRuntimeControllerStateMapFieldNumber = 12,
+    kRuntimeGraphLifecycleEventsFieldNumber = 13,
+    kLoopTimingMapFieldNumber = 14,
+    kFaultInfosFieldNumber = 16,
+    kRuntimeActionResultsFieldNumber = 17,
     kHeaderFieldNumber = 1,
+    kRuntimeParamSummaryFieldNumber = 4,
+    kSampleProvenanceFieldNumber = 8,
+    kLoopTimingSummaryFieldNumber = 15,
   };
   // map<string, .galbot.singorix_proto.WBCSInfoDetail> info_map = 2;
   int info_map_size() const;
@@ -2482,6 +6382,214 @@ class WBCSInfo PROTOBUF_FINAL :
       info_map() const;
   ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSInfoDetail >*
       mutable_info_map();
+
+  // map<string, .galbot.singorix_proto.WBCSRuntimeParamInfo> runtime_param_map = 3;
+  int runtime_param_map_size() const;
+  private:
+  int _internal_runtime_param_map_size() const;
+  public:
+  void clear_runtime_param_map();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSRuntimeParamInfo >&
+      _internal_runtime_param_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSRuntimeParamInfo >*
+      _internal_mutable_runtime_param_map();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSRuntimeParamInfo >&
+      runtime_param_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSRuntimeParamInfo >*
+      mutable_runtime_param_map();
+
+  // map<string, .galbot.singorix_proto.WBCSTargetStatusInfo> target_status_map = 5;
+  int target_status_map_size() const;
+  private:
+  int _internal_target_status_map_size() const;
+  public:
+  void clear_target_status_map();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSTargetStatusInfo >&
+      _internal_target_status_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSTargetStatusInfo >*
+      _internal_mutable_target_status_map();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSTargetStatusInfo >&
+      target_status_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSTargetStatusInfo >*
+      mutable_target_status_map();
+
+  // map<string, .galbot.singorix_proto.WBCSCompiledTargetInfo> compiled_target_map = 6;
+  int compiled_target_map_size() const;
+  private:
+  int _internal_compiled_target_map_size() const;
+  public:
+  void clear_compiled_target_map();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSCompiledTargetInfo >&
+      _internal_compiled_target_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSCompiledTargetInfo >*
+      _internal_mutable_compiled_target_map();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSCompiledTargetInfo >&
+      compiled_target_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSCompiledTargetInfo >*
+      mutable_compiled_target_map();
+
+  // map<string, .galbot.singorix_proto.WBCSTargetContributionStatusInfo> target_contribution_map = 7;
+  int target_contribution_map_size() const;
+  private:
+  int _internal_target_contribution_map_size() const;
+  public:
+  void clear_target_contribution_map();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSTargetContributionStatusInfo >&
+      _internal_target_contribution_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSTargetContributionStatusInfo >*
+      _internal_mutable_target_contribution_map();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSTargetContributionStatusInfo >&
+      target_contribution_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSTargetContributionStatusInfo >*
+      mutable_target_contribution_map();
+
+  // map<string, .galbot.singorix_proto.RuntimeGraphGroupStatus> runtime_graph_group_status_map = 9;
+  int runtime_graph_group_status_map_size() const;
+  private:
+  int _internal_runtime_graph_group_status_map_size() const;
+  public:
+  void clear_runtime_graph_group_status_map();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::RuntimeGraphGroupStatus >&
+      _internal_runtime_graph_group_status_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::RuntimeGraphGroupStatus >*
+      _internal_mutable_runtime_graph_group_status_map();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::RuntimeGraphGroupStatus >&
+      runtime_graph_group_status_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::RuntimeGraphGroupStatus >*
+      mutable_runtime_graph_group_status_map();
+
+  // repeated .galbot.singorix_proto.RuntimeGraphClaimStatus runtime_graph_active_claims = 10;
+  int runtime_graph_active_claims_size() const;
+  private:
+  int _internal_runtime_graph_active_claims_size() const;
+  public:
+  void clear_runtime_graph_active_claims();
+  ::galbot::singorix_proto::RuntimeGraphClaimStatus* mutable_runtime_graph_active_claims(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::RuntimeGraphClaimStatus >*
+      mutable_runtime_graph_active_claims();
+  private:
+  const ::galbot::singorix_proto::RuntimeGraphClaimStatus& _internal_runtime_graph_active_claims(int index) const;
+  ::galbot::singorix_proto::RuntimeGraphClaimStatus* _internal_add_runtime_graph_active_claims();
+  public:
+  const ::galbot::singorix_proto::RuntimeGraphClaimStatus& runtime_graph_active_claims(int index) const;
+  ::galbot::singorix_proto::RuntimeGraphClaimStatus* add_runtime_graph_active_claims();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::RuntimeGraphClaimStatus >&
+      runtime_graph_active_claims() const;
+
+  // map<string, string> runtime_graph_blocked_after_stage_map = 11;
+  int runtime_graph_blocked_after_stage_map_size() const;
+  private:
+  int _internal_runtime_graph_blocked_after_stage_map_size() const;
+  public:
+  void clear_runtime_graph_blocked_after_stage_map();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      _internal_runtime_graph_blocked_after_stage_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      _internal_mutable_runtime_graph_blocked_after_stage_map();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+      runtime_graph_blocked_after_stage_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+      mutable_runtime_graph_blocked_after_stage_map();
+
+  // map<string, .galbot.singorix_proto.RuntimeControllerStatus> runtime_controller_state_map = 12;
+  int runtime_controller_state_map_size() const;
+  private:
+  int _internal_runtime_controller_state_map_size() const;
+  public:
+  void clear_runtime_controller_state_map();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::RuntimeControllerStatus >&
+      _internal_runtime_controller_state_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::RuntimeControllerStatus >*
+      _internal_mutable_runtime_controller_state_map();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::RuntimeControllerStatus >&
+      runtime_controller_state_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::RuntimeControllerStatus >*
+      mutable_runtime_controller_state_map();
+
+  // repeated .galbot.singorix_proto.RuntimeGraphLifecycleEvent runtime_graph_lifecycle_events = 13;
+  int runtime_graph_lifecycle_events_size() const;
+  private:
+  int _internal_runtime_graph_lifecycle_events_size() const;
+  public:
+  void clear_runtime_graph_lifecycle_events();
+  ::galbot::singorix_proto::RuntimeGraphLifecycleEvent* mutable_runtime_graph_lifecycle_events(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::RuntimeGraphLifecycleEvent >*
+      mutable_runtime_graph_lifecycle_events();
+  private:
+  const ::galbot::singorix_proto::RuntimeGraphLifecycleEvent& _internal_runtime_graph_lifecycle_events(int index) const;
+  ::galbot::singorix_proto::RuntimeGraphLifecycleEvent* _internal_add_runtime_graph_lifecycle_events();
+  public:
+  const ::galbot::singorix_proto::RuntimeGraphLifecycleEvent& runtime_graph_lifecycle_events(int index) const;
+  ::galbot::singorix_proto::RuntimeGraphLifecycleEvent* add_runtime_graph_lifecycle_events();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::RuntimeGraphLifecycleEvent >&
+      runtime_graph_lifecycle_events() const;
+
+  // map<string, .galbot.singorix_proto.WBCSLoopTimingMetricInfo> loop_timing_map = 14;
+  int loop_timing_map_size() const;
+  private:
+  int _internal_loop_timing_map_size() const;
+  public:
+  void clear_loop_timing_map();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSLoopTimingMetricInfo >&
+      _internal_loop_timing_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSLoopTimingMetricInfo >*
+      _internal_mutable_loop_timing_map();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSLoopTimingMetricInfo >&
+      loop_timing_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSLoopTimingMetricInfo >*
+      mutable_loop_timing_map();
+
+  // repeated .galbot.singorix_proto.WBCSFaultInfo fault_infos = 16;
+  int fault_infos_size() const;
+  private:
+  int _internal_fault_infos_size() const;
+  public:
+  void clear_fault_infos();
+  ::galbot::singorix_proto::WBCSFaultInfo* mutable_fault_infos(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSFaultInfo >*
+      mutable_fault_infos();
+  private:
+  const ::galbot::singorix_proto::WBCSFaultInfo& _internal_fault_infos(int index) const;
+  ::galbot::singorix_proto::WBCSFaultInfo* _internal_add_fault_infos();
+  public:
+  const ::galbot::singorix_proto::WBCSFaultInfo& fault_infos(int index) const;
+  ::galbot::singorix_proto::WBCSFaultInfo* add_fault_infos();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSFaultInfo >&
+      fault_infos() const;
+
+  // repeated .galbot.singorix_proto.WBCSRuntimeActionResultInfo runtime_action_results = 17;
+  int runtime_action_results_size() const;
+  private:
+  int _internal_runtime_action_results_size() const;
+  public:
+  void clear_runtime_action_results();
+  ::galbot::singorix_proto::WBCSRuntimeActionResultInfo* mutable_runtime_action_results(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSRuntimeActionResultInfo >*
+      mutable_runtime_action_results();
+  private:
+  const ::galbot::singorix_proto::WBCSRuntimeActionResultInfo& _internal_runtime_action_results(int index) const;
+  ::galbot::singorix_proto::WBCSRuntimeActionResultInfo* _internal_add_runtime_action_results();
+  public:
+  const ::galbot::singorix_proto::WBCSRuntimeActionResultInfo& runtime_action_results(int index) const;
+  ::galbot::singorix_proto::WBCSRuntimeActionResultInfo* add_runtime_action_results();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSRuntimeActionResultInfo >&
+      runtime_action_results() const;
 
   // .galbot.core_proto.Header header = 1;
   bool has_header() const;
@@ -2501,6 +6609,60 @@ class WBCSInfo PROTOBUF_FINAL :
       ::galbot::core_proto::Header* header);
   ::galbot::core_proto::Header* unsafe_arena_release_header();
 
+  // .galbot.singorix_proto.WBCSRuntimeParamSummary runtime_param_summary = 4;
+  bool has_runtime_param_summary() const;
+  private:
+  bool _internal_has_runtime_param_summary() const;
+  public:
+  void clear_runtime_param_summary();
+  const ::galbot::singorix_proto::WBCSRuntimeParamSummary& runtime_param_summary() const;
+  ::galbot::singorix_proto::WBCSRuntimeParamSummary* release_runtime_param_summary();
+  ::galbot::singorix_proto::WBCSRuntimeParamSummary* mutable_runtime_param_summary();
+  void set_allocated_runtime_param_summary(::galbot::singorix_proto::WBCSRuntimeParamSummary* runtime_param_summary);
+  private:
+  const ::galbot::singorix_proto::WBCSRuntimeParamSummary& _internal_runtime_param_summary() const;
+  ::galbot::singorix_proto::WBCSRuntimeParamSummary* _internal_mutable_runtime_param_summary();
+  public:
+  void unsafe_arena_set_allocated_runtime_param_summary(
+      ::galbot::singorix_proto::WBCSRuntimeParamSummary* runtime_param_summary);
+  ::galbot::singorix_proto::WBCSRuntimeParamSummary* unsafe_arena_release_runtime_param_summary();
+
+  // .galbot.singorix_proto.WBCSSampleProvenanceInfo sample_provenance = 8;
+  bool has_sample_provenance() const;
+  private:
+  bool _internal_has_sample_provenance() const;
+  public:
+  void clear_sample_provenance();
+  const ::galbot::singorix_proto::WBCSSampleProvenanceInfo& sample_provenance() const;
+  ::galbot::singorix_proto::WBCSSampleProvenanceInfo* release_sample_provenance();
+  ::galbot::singorix_proto::WBCSSampleProvenanceInfo* mutable_sample_provenance();
+  void set_allocated_sample_provenance(::galbot::singorix_proto::WBCSSampleProvenanceInfo* sample_provenance);
+  private:
+  const ::galbot::singorix_proto::WBCSSampleProvenanceInfo& _internal_sample_provenance() const;
+  ::galbot::singorix_proto::WBCSSampleProvenanceInfo* _internal_mutable_sample_provenance();
+  public:
+  void unsafe_arena_set_allocated_sample_provenance(
+      ::galbot::singorix_proto::WBCSSampleProvenanceInfo* sample_provenance);
+  ::galbot::singorix_proto::WBCSSampleProvenanceInfo* unsafe_arena_release_sample_provenance();
+
+  // .galbot.singorix_proto.WBCSLoopTimingSummaryInfo loop_timing_summary = 15;
+  bool has_loop_timing_summary() const;
+  private:
+  bool _internal_has_loop_timing_summary() const;
+  public:
+  void clear_loop_timing_summary();
+  const ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo& loop_timing_summary() const;
+  ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* release_loop_timing_summary();
+  ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* mutable_loop_timing_summary();
+  void set_allocated_loop_timing_summary(::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* loop_timing_summary);
+  private:
+  const ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo& _internal_loop_timing_summary() const;
+  ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* _internal_mutable_loop_timing_summary();
+  public:
+  void unsafe_arena_set_allocated_loop_timing_summary(
+      ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* loop_timing_summary);
+  ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* unsafe_arena_release_loop_timing_summary();
+
   // @@protoc_insertion_point(class_scope:galbot.singorix_proto.WBCSInfo)
  private:
   class _Internal;
@@ -2513,7 +6675,54 @@ class WBCSInfo PROTOBUF_FINAL :
       std::string, ::galbot::singorix_proto::WBCSInfoDetail,
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> info_map_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      WBCSInfo_RuntimeParamMapEntry_DoNotUse,
+      std::string, ::galbot::singorix_proto::WBCSRuntimeParamInfo,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> runtime_param_map_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      WBCSInfo_TargetStatusMapEntry_DoNotUse,
+      std::string, ::galbot::singorix_proto::WBCSTargetStatusInfo,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> target_status_map_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      WBCSInfo_CompiledTargetMapEntry_DoNotUse,
+      std::string, ::galbot::singorix_proto::WBCSCompiledTargetInfo,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> compiled_target_map_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      WBCSInfo_TargetContributionMapEntry_DoNotUse,
+      std::string, ::galbot::singorix_proto::WBCSTargetContributionStatusInfo,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> target_contribution_map_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      WBCSInfo_RuntimeGraphGroupStatusMapEntry_DoNotUse,
+      std::string, ::galbot::singorix_proto::RuntimeGraphGroupStatus,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> runtime_graph_group_status_map_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::RuntimeGraphClaimStatus > runtime_graph_active_claims_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      WBCSInfo_RuntimeGraphBlockedAfterStageMapEntry_DoNotUse,
+      std::string, std::string,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> runtime_graph_blocked_after_stage_map_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      WBCSInfo_RuntimeControllerStateMapEntry_DoNotUse,
+      std::string, ::galbot::singorix_proto::RuntimeControllerStatus,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> runtime_controller_state_map_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::RuntimeGraphLifecycleEvent > runtime_graph_lifecycle_events_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      WBCSInfo_LoopTimingMapEntry_DoNotUse,
+      std::string, ::galbot::singorix_proto::WBCSLoopTimingMetricInfo,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> loop_timing_map_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSFaultInfo > fault_infos_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSRuntimeActionResultInfo > runtime_action_results_;
   ::galbot::core_proto::Header* header_;
+  ::galbot::singorix_proto::WBCSRuntimeParamSummary* runtime_param_summary_;
+  ::galbot::singorix_proto::WBCSSampleProvenanceInfo* sample_provenance_;
+  ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* loop_timing_summary_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_galbot_2fsingorix_5fproto_2fsingorix_5finfo_2eproto;
 };
@@ -3352,6 +7561,335 @@ inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
 JointInfo::mutable_state_cur() {
   // @@protoc_insertion_point(field_mutable_list:galbot.singorix_proto.JointInfo.state_cur)
   return _internal_mutable_state_cur();
+}
+
+// repeated double limit_lower_pos = 18;
+inline int JointInfo::_internal_limit_lower_pos_size() const {
+  return limit_lower_pos_.size();
+}
+inline int JointInfo::limit_lower_pos_size() const {
+  return _internal_limit_lower_pos_size();
+}
+inline void JointInfo::clear_limit_lower_pos() {
+  limit_lower_pos_.Clear();
+}
+inline double JointInfo::_internal_limit_lower_pos(int index) const {
+  return limit_lower_pos_.Get(index);
+}
+inline double JointInfo::limit_lower_pos(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.JointInfo.limit_lower_pos)
+  return _internal_limit_lower_pos(index);
+}
+inline void JointInfo::set_limit_lower_pos(int index, double value) {
+  limit_lower_pos_.Set(index, value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.JointInfo.limit_lower_pos)
+}
+inline void JointInfo::_internal_add_limit_lower_pos(double value) {
+  limit_lower_pos_.Add(value);
+}
+inline void JointInfo::add_limit_lower_pos(double value) {
+  _internal_add_limit_lower_pos(value);
+  // @@protoc_insertion_point(field_add:galbot.singorix_proto.JointInfo.limit_lower_pos)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+JointInfo::_internal_limit_lower_pos() const {
+  return limit_lower_pos_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+JointInfo::limit_lower_pos() const {
+  // @@protoc_insertion_point(field_list:galbot.singorix_proto.JointInfo.limit_lower_pos)
+  return _internal_limit_lower_pos();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+JointInfo::_internal_mutable_limit_lower_pos() {
+  return &limit_lower_pos_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+JointInfo::mutable_limit_lower_pos() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.singorix_proto.JointInfo.limit_lower_pos)
+  return _internal_mutable_limit_lower_pos();
+}
+
+// repeated double limit_upper_pos = 19;
+inline int JointInfo::_internal_limit_upper_pos_size() const {
+  return limit_upper_pos_.size();
+}
+inline int JointInfo::limit_upper_pos_size() const {
+  return _internal_limit_upper_pos_size();
+}
+inline void JointInfo::clear_limit_upper_pos() {
+  limit_upper_pos_.Clear();
+}
+inline double JointInfo::_internal_limit_upper_pos(int index) const {
+  return limit_upper_pos_.Get(index);
+}
+inline double JointInfo::limit_upper_pos(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.JointInfo.limit_upper_pos)
+  return _internal_limit_upper_pos(index);
+}
+inline void JointInfo::set_limit_upper_pos(int index, double value) {
+  limit_upper_pos_.Set(index, value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.JointInfo.limit_upper_pos)
+}
+inline void JointInfo::_internal_add_limit_upper_pos(double value) {
+  limit_upper_pos_.Add(value);
+}
+inline void JointInfo::add_limit_upper_pos(double value) {
+  _internal_add_limit_upper_pos(value);
+  // @@protoc_insertion_point(field_add:galbot.singorix_proto.JointInfo.limit_upper_pos)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+JointInfo::_internal_limit_upper_pos() const {
+  return limit_upper_pos_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+JointInfo::limit_upper_pos() const {
+  // @@protoc_insertion_point(field_list:galbot.singorix_proto.JointInfo.limit_upper_pos)
+  return _internal_limit_upper_pos();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+JointInfo::_internal_mutable_limit_upper_pos() {
+  return &limit_upper_pos_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+JointInfo::mutable_limit_upper_pos() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.singorix_proto.JointInfo.limit_upper_pos)
+  return _internal_mutable_limit_upper_pos();
+}
+
+// repeated double limit_soft_lower_pos = 20;
+inline int JointInfo::_internal_limit_soft_lower_pos_size() const {
+  return limit_soft_lower_pos_.size();
+}
+inline int JointInfo::limit_soft_lower_pos_size() const {
+  return _internal_limit_soft_lower_pos_size();
+}
+inline void JointInfo::clear_limit_soft_lower_pos() {
+  limit_soft_lower_pos_.Clear();
+}
+inline double JointInfo::_internal_limit_soft_lower_pos(int index) const {
+  return limit_soft_lower_pos_.Get(index);
+}
+inline double JointInfo::limit_soft_lower_pos(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.JointInfo.limit_soft_lower_pos)
+  return _internal_limit_soft_lower_pos(index);
+}
+inline void JointInfo::set_limit_soft_lower_pos(int index, double value) {
+  limit_soft_lower_pos_.Set(index, value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.JointInfo.limit_soft_lower_pos)
+}
+inline void JointInfo::_internal_add_limit_soft_lower_pos(double value) {
+  limit_soft_lower_pos_.Add(value);
+}
+inline void JointInfo::add_limit_soft_lower_pos(double value) {
+  _internal_add_limit_soft_lower_pos(value);
+  // @@protoc_insertion_point(field_add:galbot.singorix_proto.JointInfo.limit_soft_lower_pos)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+JointInfo::_internal_limit_soft_lower_pos() const {
+  return limit_soft_lower_pos_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+JointInfo::limit_soft_lower_pos() const {
+  // @@protoc_insertion_point(field_list:galbot.singorix_proto.JointInfo.limit_soft_lower_pos)
+  return _internal_limit_soft_lower_pos();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+JointInfo::_internal_mutable_limit_soft_lower_pos() {
+  return &limit_soft_lower_pos_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+JointInfo::mutable_limit_soft_lower_pos() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.singorix_proto.JointInfo.limit_soft_lower_pos)
+  return _internal_mutable_limit_soft_lower_pos();
+}
+
+// repeated double limit_soft_upper_pos = 21;
+inline int JointInfo::_internal_limit_soft_upper_pos_size() const {
+  return limit_soft_upper_pos_.size();
+}
+inline int JointInfo::limit_soft_upper_pos_size() const {
+  return _internal_limit_soft_upper_pos_size();
+}
+inline void JointInfo::clear_limit_soft_upper_pos() {
+  limit_soft_upper_pos_.Clear();
+}
+inline double JointInfo::_internal_limit_soft_upper_pos(int index) const {
+  return limit_soft_upper_pos_.Get(index);
+}
+inline double JointInfo::limit_soft_upper_pos(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.JointInfo.limit_soft_upper_pos)
+  return _internal_limit_soft_upper_pos(index);
+}
+inline void JointInfo::set_limit_soft_upper_pos(int index, double value) {
+  limit_soft_upper_pos_.Set(index, value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.JointInfo.limit_soft_upper_pos)
+}
+inline void JointInfo::_internal_add_limit_soft_upper_pos(double value) {
+  limit_soft_upper_pos_.Add(value);
+}
+inline void JointInfo::add_limit_soft_upper_pos(double value) {
+  _internal_add_limit_soft_upper_pos(value);
+  // @@protoc_insertion_point(field_add:galbot.singorix_proto.JointInfo.limit_soft_upper_pos)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+JointInfo::_internal_limit_soft_upper_pos() const {
+  return limit_soft_upper_pos_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+JointInfo::limit_soft_upper_pos() const {
+  // @@protoc_insertion_point(field_list:galbot.singorix_proto.JointInfo.limit_soft_upper_pos)
+  return _internal_limit_soft_upper_pos();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+JointInfo::_internal_mutable_limit_soft_upper_pos() {
+  return &limit_soft_upper_pos_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+JointInfo::mutable_limit_soft_upper_pos() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.singorix_proto.JointInfo.limit_soft_upper_pos)
+  return _internal_mutable_limit_soft_upper_pos();
+}
+
+// repeated double limit_abs_vel = 22;
+inline int JointInfo::_internal_limit_abs_vel_size() const {
+  return limit_abs_vel_.size();
+}
+inline int JointInfo::limit_abs_vel_size() const {
+  return _internal_limit_abs_vel_size();
+}
+inline void JointInfo::clear_limit_abs_vel() {
+  limit_abs_vel_.Clear();
+}
+inline double JointInfo::_internal_limit_abs_vel(int index) const {
+  return limit_abs_vel_.Get(index);
+}
+inline double JointInfo::limit_abs_vel(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.JointInfo.limit_abs_vel)
+  return _internal_limit_abs_vel(index);
+}
+inline void JointInfo::set_limit_abs_vel(int index, double value) {
+  limit_abs_vel_.Set(index, value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.JointInfo.limit_abs_vel)
+}
+inline void JointInfo::_internal_add_limit_abs_vel(double value) {
+  limit_abs_vel_.Add(value);
+}
+inline void JointInfo::add_limit_abs_vel(double value) {
+  _internal_add_limit_abs_vel(value);
+  // @@protoc_insertion_point(field_add:galbot.singorix_proto.JointInfo.limit_abs_vel)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+JointInfo::_internal_limit_abs_vel() const {
+  return limit_abs_vel_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+JointInfo::limit_abs_vel() const {
+  // @@protoc_insertion_point(field_list:galbot.singorix_proto.JointInfo.limit_abs_vel)
+  return _internal_limit_abs_vel();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+JointInfo::_internal_mutable_limit_abs_vel() {
+  return &limit_abs_vel_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+JointInfo::mutable_limit_abs_vel() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.singorix_proto.JointInfo.limit_abs_vel)
+  return _internal_mutable_limit_abs_vel();
+}
+
+// repeated double limit_abs_eff = 23;
+inline int JointInfo::_internal_limit_abs_eff_size() const {
+  return limit_abs_eff_.size();
+}
+inline int JointInfo::limit_abs_eff_size() const {
+  return _internal_limit_abs_eff_size();
+}
+inline void JointInfo::clear_limit_abs_eff() {
+  limit_abs_eff_.Clear();
+}
+inline double JointInfo::_internal_limit_abs_eff(int index) const {
+  return limit_abs_eff_.Get(index);
+}
+inline double JointInfo::limit_abs_eff(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.JointInfo.limit_abs_eff)
+  return _internal_limit_abs_eff(index);
+}
+inline void JointInfo::set_limit_abs_eff(int index, double value) {
+  limit_abs_eff_.Set(index, value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.JointInfo.limit_abs_eff)
+}
+inline void JointInfo::_internal_add_limit_abs_eff(double value) {
+  limit_abs_eff_.Add(value);
+}
+inline void JointInfo::add_limit_abs_eff(double value) {
+  _internal_add_limit_abs_eff(value);
+  // @@protoc_insertion_point(field_add:galbot.singorix_proto.JointInfo.limit_abs_eff)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+JointInfo::_internal_limit_abs_eff() const {
+  return limit_abs_eff_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+JointInfo::limit_abs_eff() const {
+  // @@protoc_insertion_point(field_list:galbot.singorix_proto.JointInfo.limit_abs_eff)
+  return _internal_limit_abs_eff();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+JointInfo::_internal_mutable_limit_abs_eff() {
+  return &limit_abs_eff_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+JointInfo::mutable_limit_abs_eff() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.singorix_proto.JointInfo.limit_abs_eff)
+  return _internal_mutable_limit_abs_eff();
+}
+
+// repeated double limit_abs_cur = 24;
+inline int JointInfo::_internal_limit_abs_cur_size() const {
+  return limit_abs_cur_.size();
+}
+inline int JointInfo::limit_abs_cur_size() const {
+  return _internal_limit_abs_cur_size();
+}
+inline void JointInfo::clear_limit_abs_cur() {
+  limit_abs_cur_.Clear();
+}
+inline double JointInfo::_internal_limit_abs_cur(int index) const {
+  return limit_abs_cur_.Get(index);
+}
+inline double JointInfo::limit_abs_cur(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.JointInfo.limit_abs_cur)
+  return _internal_limit_abs_cur(index);
+}
+inline void JointInfo::set_limit_abs_cur(int index, double value) {
+  limit_abs_cur_.Set(index, value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.JointInfo.limit_abs_cur)
+}
+inline void JointInfo::_internal_add_limit_abs_cur(double value) {
+  limit_abs_cur_.Add(value);
+}
+inline void JointInfo::add_limit_abs_cur(double value) {
+  _internal_add_limit_abs_cur(value);
+  // @@protoc_insertion_point(field_add:galbot.singorix_proto.JointInfo.limit_abs_cur)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+JointInfo::_internal_limit_abs_cur() const {
+  return limit_abs_cur_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >&
+JointInfo::limit_abs_cur() const {
+  // @@protoc_insertion_point(field_list:galbot.singorix_proto.JointInfo.limit_abs_cur)
+  return _internal_limit_abs_cur();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+JointInfo::_internal_mutable_limit_abs_cur() {
+  return &limit_abs_cur_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
+JointInfo::mutable_limit_abs_cur() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.singorix_proto.JointInfo.limit_abs_cur)
+  return _internal_mutable_limit_abs_cur();
 }
 
 // -------------------------------------------------------------------
@@ -4796,6 +9334,4439 @@ inline void WBCSInfoDetail::set_allocated_description(std::string* description) 
 
 // -------------------------------------------------------------------
 
+// WBCSRuntimeParamInfo
+
+// string scope_key = 1;
+inline void WBCSRuntimeParamInfo::clear_scope_key() {
+  scope_key_.ClearToEmpty();
+}
+inline const std::string& WBCSRuntimeParamInfo::scope_key() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeParamInfo.scope_key)
+  return _internal_scope_key();
+}
+inline void WBCSRuntimeParamInfo::set_scope_key(const std::string& value) {
+  _internal_set_scope_key(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeParamInfo.scope_key)
+}
+inline std::string* WBCSRuntimeParamInfo::mutable_scope_key() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeParamInfo.scope_key)
+  return _internal_mutable_scope_key();
+}
+inline const std::string& WBCSRuntimeParamInfo::_internal_scope_key() const {
+  return scope_key_.Get();
+}
+inline void WBCSRuntimeParamInfo::_internal_set_scope_key(const std::string& value) {
+  
+  scope_key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSRuntimeParamInfo::set_scope_key(std::string&& value) {
+  
+  scope_key_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSRuntimeParamInfo.scope_key)
+}
+inline void WBCSRuntimeParamInfo::set_scope_key(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  scope_key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSRuntimeParamInfo.scope_key)
+}
+inline void WBCSRuntimeParamInfo::set_scope_key(const char* value,
+    size_t size) {
+  
+  scope_key_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSRuntimeParamInfo.scope_key)
+}
+inline std::string* WBCSRuntimeParamInfo::_internal_mutable_scope_key() {
+  
+  return scope_key_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSRuntimeParamInfo::release_scope_key() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeParamInfo.scope_key)
+  return scope_key_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSRuntimeParamInfo::set_allocated_scope_key(std::string* scope_key) {
+  if (scope_key != nullptr) {
+    
+  } else {
+    
+  }
+  scope_key_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), scope_key,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeParamInfo.scope_key)
+}
+
+// string name = 2;
+inline void WBCSRuntimeParamInfo::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& WBCSRuntimeParamInfo::name() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeParamInfo.name)
+  return _internal_name();
+}
+inline void WBCSRuntimeParamInfo::set_name(const std::string& value) {
+  _internal_set_name(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeParamInfo.name)
+}
+inline std::string* WBCSRuntimeParamInfo::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeParamInfo.name)
+  return _internal_mutable_name();
+}
+inline const std::string& WBCSRuntimeParamInfo::_internal_name() const {
+  return name_.Get();
+}
+inline void WBCSRuntimeParamInfo::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSRuntimeParamInfo::set_name(std::string&& value) {
+  
+  name_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSRuntimeParamInfo.name)
+}
+inline void WBCSRuntimeParamInfo::set_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSRuntimeParamInfo.name)
+}
+inline void WBCSRuntimeParamInfo::set_name(const char* value,
+    size_t size) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSRuntimeParamInfo.name)
+}
+inline std::string* WBCSRuntimeParamInfo::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSRuntimeParamInfo::release_name() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeParamInfo.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSRuntimeParamInfo::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeParamInfo.name)
+}
+
+// .galbot.core_proto.Value effective_value = 3;
+inline bool WBCSRuntimeParamInfo::_internal_has_effective_value() const {
+  return this != internal_default_instance() && effective_value_ != nullptr;
+}
+inline bool WBCSRuntimeParamInfo::has_effective_value() const {
+  return _internal_has_effective_value();
+}
+inline const ::galbot::core_proto::Value& WBCSRuntimeParamInfo::_internal_effective_value() const {
+  const ::galbot::core_proto::Value* p = effective_value_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::core_proto::Value&>(
+      ::galbot::core_proto::_Value_default_instance_);
+}
+inline const ::galbot::core_proto::Value& WBCSRuntimeParamInfo::effective_value() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeParamInfo.effective_value)
+  return _internal_effective_value();
+}
+inline void WBCSRuntimeParamInfo::unsafe_arena_set_allocated_effective_value(
+    ::galbot::core_proto::Value* effective_value) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(effective_value_);
+  }
+  effective_value_ = effective_value;
+  if (effective_value) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.singorix_proto.WBCSRuntimeParamInfo.effective_value)
+}
+inline ::galbot::core_proto::Value* WBCSRuntimeParamInfo::release_effective_value() {
+  
+  ::galbot::core_proto::Value* temp = effective_value_;
+  effective_value_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::core_proto::Value* WBCSRuntimeParamInfo::unsafe_arena_release_effective_value() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeParamInfo.effective_value)
+  
+  ::galbot::core_proto::Value* temp = effective_value_;
+  effective_value_ = nullptr;
+  return temp;
+}
+inline ::galbot::core_proto::Value* WBCSRuntimeParamInfo::_internal_mutable_effective_value() {
+  
+  if (effective_value_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::core_proto::Value>(GetArena());
+    effective_value_ = p;
+  }
+  return effective_value_;
+}
+inline ::galbot::core_proto::Value* WBCSRuntimeParamInfo::mutable_effective_value() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeParamInfo.effective_value)
+  return _internal_mutable_effective_value();
+}
+inline void WBCSRuntimeParamInfo::set_allocated_effective_value(::galbot::core_proto::Value* effective_value) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(effective_value_);
+  }
+  if (effective_value) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(effective_value)->GetArena();
+    if (message_arena != submessage_arena) {
+      effective_value = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, effective_value, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  effective_value_ = effective_value;
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeParamInfo.effective_value)
+}
+
+// uint64 version = 4;
+inline void WBCSRuntimeParamInfo::clear_version() {
+  version_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSRuntimeParamInfo::_internal_version() const {
+  return version_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSRuntimeParamInfo::version() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeParamInfo.version)
+  return _internal_version();
+}
+inline void WBCSRuntimeParamInfo::_internal_set_version(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  version_ = value;
+}
+inline void WBCSRuntimeParamInfo::set_version(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_version(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeParamInfo.version)
+}
+
+// string mutable_policy = 5;
+inline void WBCSRuntimeParamInfo::clear_mutable_policy() {
+  mutable_policy_.ClearToEmpty();
+}
+inline const std::string& WBCSRuntimeParamInfo::mutable_policy() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeParamInfo.mutable_policy)
+  return _internal_mutable_policy();
+}
+inline void WBCSRuntimeParamInfo::set_mutable_policy(const std::string& value) {
+  _internal_set_mutable_policy(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeParamInfo.mutable_policy)
+}
+inline std::string* WBCSRuntimeParamInfo::mutable_mutable_policy() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeParamInfo.mutable_policy)
+  return _internal_mutable_mutable_policy();
+}
+inline const std::string& WBCSRuntimeParamInfo::_internal_mutable_policy() const {
+  return mutable_policy_.Get();
+}
+inline void WBCSRuntimeParamInfo::_internal_set_mutable_policy(const std::string& value) {
+  
+  mutable_policy_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSRuntimeParamInfo::set_mutable_policy(std::string&& value) {
+  
+  mutable_policy_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSRuntimeParamInfo.mutable_policy)
+}
+inline void WBCSRuntimeParamInfo::set_mutable_policy(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  mutable_policy_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSRuntimeParamInfo.mutable_policy)
+}
+inline void WBCSRuntimeParamInfo::set_mutable_policy(const char* value,
+    size_t size) {
+  
+  mutable_policy_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSRuntimeParamInfo.mutable_policy)
+}
+inline std::string* WBCSRuntimeParamInfo::_internal_mutable_mutable_policy() {
+  
+  return mutable_policy_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSRuntimeParamInfo::release_mutable_policy() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeParamInfo.mutable_policy)
+  return mutable_policy_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSRuntimeParamInfo::set_allocated_mutable_policy(std::string* mutable_policy) {
+  if (mutable_policy != nullptr) {
+    
+  } else {
+    
+  }
+  mutable_policy_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), mutable_policy,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeParamInfo.mutable_policy)
+}
+
+// string owner = 6;
+inline void WBCSRuntimeParamInfo::clear_owner() {
+  owner_.ClearToEmpty();
+}
+inline const std::string& WBCSRuntimeParamInfo::owner() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeParamInfo.owner)
+  return _internal_owner();
+}
+inline void WBCSRuntimeParamInfo::set_owner(const std::string& value) {
+  _internal_set_owner(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeParamInfo.owner)
+}
+inline std::string* WBCSRuntimeParamInfo::mutable_owner() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeParamInfo.owner)
+  return _internal_mutable_owner();
+}
+inline const std::string& WBCSRuntimeParamInfo::_internal_owner() const {
+  return owner_.Get();
+}
+inline void WBCSRuntimeParamInfo::_internal_set_owner(const std::string& value) {
+  
+  owner_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSRuntimeParamInfo::set_owner(std::string&& value) {
+  
+  owner_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSRuntimeParamInfo.owner)
+}
+inline void WBCSRuntimeParamInfo::set_owner(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  owner_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSRuntimeParamInfo.owner)
+}
+inline void WBCSRuntimeParamInfo::set_owner(const char* value,
+    size_t size) {
+  
+  owner_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSRuntimeParamInfo.owner)
+}
+inline std::string* WBCSRuntimeParamInfo::_internal_mutable_owner() {
+  
+  return owner_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSRuntimeParamInfo::release_owner() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeParamInfo.owner)
+  return owner_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSRuntimeParamInfo::set_allocated_owner(std::string* owner) {
+  if (owner != nullptr) {
+    
+  } else {
+    
+  }
+  owner_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), owner,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeParamInfo.owner)
+}
+
+// string description = 7;
+inline void WBCSRuntimeParamInfo::clear_description() {
+  description_.ClearToEmpty();
+}
+inline const std::string& WBCSRuntimeParamInfo::description() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeParamInfo.description)
+  return _internal_description();
+}
+inline void WBCSRuntimeParamInfo::set_description(const std::string& value) {
+  _internal_set_description(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeParamInfo.description)
+}
+inline std::string* WBCSRuntimeParamInfo::mutable_description() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeParamInfo.description)
+  return _internal_mutable_description();
+}
+inline const std::string& WBCSRuntimeParamInfo::_internal_description() const {
+  return description_.Get();
+}
+inline void WBCSRuntimeParamInfo::_internal_set_description(const std::string& value) {
+  
+  description_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSRuntimeParamInfo::set_description(std::string&& value) {
+  
+  description_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSRuntimeParamInfo.description)
+}
+inline void WBCSRuntimeParamInfo::set_description(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  description_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSRuntimeParamInfo.description)
+}
+inline void WBCSRuntimeParamInfo::set_description(const char* value,
+    size_t size) {
+  
+  description_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSRuntimeParamInfo.description)
+}
+inline std::string* WBCSRuntimeParamInfo::_internal_mutable_description() {
+  
+  return description_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSRuntimeParamInfo::release_description() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeParamInfo.description)
+  return description_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSRuntimeParamInfo::set_allocated_description(std::string* description) {
+  if (description != nullptr) {
+    
+  } else {
+    
+  }
+  description_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), description,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeParamInfo.description)
+}
+
+// bool overridden = 8;
+inline void WBCSRuntimeParamInfo::clear_overridden() {
+  overridden_ = false;
+}
+inline bool WBCSRuntimeParamInfo::_internal_overridden() const {
+  return overridden_;
+}
+inline bool WBCSRuntimeParamInfo::overridden() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeParamInfo.overridden)
+  return _internal_overridden();
+}
+inline void WBCSRuntimeParamInfo::_internal_set_overridden(bool value) {
+  
+  overridden_ = value;
+}
+inline void WBCSRuntimeParamInfo::set_overridden(bool value) {
+  _internal_set_overridden(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeParamInfo.overridden)
+}
+
+// .galbot.core_proto.Value default_value = 9;
+inline bool WBCSRuntimeParamInfo::_internal_has_default_value() const {
+  return this != internal_default_instance() && default_value_ != nullptr;
+}
+inline bool WBCSRuntimeParamInfo::has_default_value() const {
+  return _internal_has_default_value();
+}
+inline const ::galbot::core_proto::Value& WBCSRuntimeParamInfo::_internal_default_value() const {
+  const ::galbot::core_proto::Value* p = default_value_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::core_proto::Value&>(
+      ::galbot::core_proto::_Value_default_instance_);
+}
+inline const ::galbot::core_proto::Value& WBCSRuntimeParamInfo::default_value() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeParamInfo.default_value)
+  return _internal_default_value();
+}
+inline void WBCSRuntimeParamInfo::unsafe_arena_set_allocated_default_value(
+    ::galbot::core_proto::Value* default_value) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(default_value_);
+  }
+  default_value_ = default_value;
+  if (default_value) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.singorix_proto.WBCSRuntimeParamInfo.default_value)
+}
+inline ::galbot::core_proto::Value* WBCSRuntimeParamInfo::release_default_value() {
+  
+  ::galbot::core_proto::Value* temp = default_value_;
+  default_value_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::core_proto::Value* WBCSRuntimeParamInfo::unsafe_arena_release_default_value() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeParamInfo.default_value)
+  
+  ::galbot::core_proto::Value* temp = default_value_;
+  default_value_ = nullptr;
+  return temp;
+}
+inline ::galbot::core_proto::Value* WBCSRuntimeParamInfo::_internal_mutable_default_value() {
+  
+  if (default_value_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::core_proto::Value>(GetArena());
+    default_value_ = p;
+  }
+  return default_value_;
+}
+inline ::galbot::core_proto::Value* WBCSRuntimeParamInfo::mutable_default_value() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeParamInfo.default_value)
+  return _internal_mutable_default_value();
+}
+inline void WBCSRuntimeParamInfo::set_allocated_default_value(::galbot::core_proto::Value* default_value) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(default_value_);
+  }
+  if (default_value) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(default_value)->GetArena();
+    if (message_arena != submessage_arena) {
+      default_value = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, default_value, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  default_value_ = default_value;
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeParamInfo.default_value)
+}
+
+// .galbot.core_proto.Value override_value = 10;
+inline bool WBCSRuntimeParamInfo::_internal_has_override_value() const {
+  return this != internal_default_instance() && override_value_ != nullptr;
+}
+inline bool WBCSRuntimeParamInfo::has_override_value() const {
+  return _internal_has_override_value();
+}
+inline const ::galbot::core_proto::Value& WBCSRuntimeParamInfo::_internal_override_value() const {
+  const ::galbot::core_proto::Value* p = override_value_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::core_proto::Value&>(
+      ::galbot::core_proto::_Value_default_instance_);
+}
+inline const ::galbot::core_proto::Value& WBCSRuntimeParamInfo::override_value() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeParamInfo.override_value)
+  return _internal_override_value();
+}
+inline void WBCSRuntimeParamInfo::unsafe_arena_set_allocated_override_value(
+    ::galbot::core_proto::Value* override_value) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(override_value_);
+  }
+  override_value_ = override_value;
+  if (override_value) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.singorix_proto.WBCSRuntimeParamInfo.override_value)
+}
+inline ::galbot::core_proto::Value* WBCSRuntimeParamInfo::release_override_value() {
+  
+  ::galbot::core_proto::Value* temp = override_value_;
+  override_value_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::core_proto::Value* WBCSRuntimeParamInfo::unsafe_arena_release_override_value() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeParamInfo.override_value)
+  
+  ::galbot::core_proto::Value* temp = override_value_;
+  override_value_ = nullptr;
+  return temp;
+}
+inline ::galbot::core_proto::Value* WBCSRuntimeParamInfo::_internal_mutable_override_value() {
+  
+  if (override_value_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::core_proto::Value>(GetArena());
+    override_value_ = p;
+  }
+  return override_value_;
+}
+inline ::galbot::core_proto::Value* WBCSRuntimeParamInfo::mutable_override_value() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeParamInfo.override_value)
+  return _internal_mutable_override_value();
+}
+inline void WBCSRuntimeParamInfo::set_allocated_override_value(::galbot::core_proto::Value* override_value) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(override_value_);
+  }
+  if (override_value) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(override_value)->GetArena();
+    if (message_arena != submessage_arena) {
+      override_value = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, override_value, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  override_value_ = override_value;
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeParamInfo.override_value)
+}
+
+// string effect_hint = 11;
+inline void WBCSRuntimeParamInfo::clear_effect_hint() {
+  effect_hint_.ClearToEmpty();
+}
+inline const std::string& WBCSRuntimeParamInfo::effect_hint() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeParamInfo.effect_hint)
+  return _internal_effect_hint();
+}
+inline void WBCSRuntimeParamInfo::set_effect_hint(const std::string& value) {
+  _internal_set_effect_hint(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeParamInfo.effect_hint)
+}
+inline std::string* WBCSRuntimeParamInfo::mutable_effect_hint() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeParamInfo.effect_hint)
+  return _internal_mutable_effect_hint();
+}
+inline const std::string& WBCSRuntimeParamInfo::_internal_effect_hint() const {
+  return effect_hint_.Get();
+}
+inline void WBCSRuntimeParamInfo::_internal_set_effect_hint(const std::string& value) {
+  
+  effect_hint_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSRuntimeParamInfo::set_effect_hint(std::string&& value) {
+  
+  effect_hint_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSRuntimeParamInfo.effect_hint)
+}
+inline void WBCSRuntimeParamInfo::set_effect_hint(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  effect_hint_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSRuntimeParamInfo.effect_hint)
+}
+inline void WBCSRuntimeParamInfo::set_effect_hint(const char* value,
+    size_t size) {
+  
+  effect_hint_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSRuntimeParamInfo.effect_hint)
+}
+inline std::string* WBCSRuntimeParamInfo::_internal_mutable_effect_hint() {
+  
+  return effect_hint_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSRuntimeParamInfo::release_effect_hint() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeParamInfo.effect_hint)
+  return effect_hint_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSRuntimeParamInfo::set_allocated_effect_hint(std::string* effect_hint) {
+  if (effect_hint != nullptr) {
+    
+  } else {
+    
+  }
+  effect_hint_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), effect_hint,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeParamInfo.effect_hint)
+}
+
+// repeated string allowed_string_values = 12;
+inline int WBCSRuntimeParamInfo::_internal_allowed_string_values_size() const {
+  return allowed_string_values_.size();
+}
+inline int WBCSRuntimeParamInfo::allowed_string_values_size() const {
+  return _internal_allowed_string_values_size();
+}
+inline void WBCSRuntimeParamInfo::clear_allowed_string_values() {
+  allowed_string_values_.Clear();
+}
+inline std::string* WBCSRuntimeParamInfo::add_allowed_string_values() {
+  // @@protoc_insertion_point(field_add_mutable:galbot.singorix_proto.WBCSRuntimeParamInfo.allowed_string_values)
+  return _internal_add_allowed_string_values();
+}
+inline const std::string& WBCSRuntimeParamInfo::_internal_allowed_string_values(int index) const {
+  return allowed_string_values_.Get(index);
+}
+inline const std::string& WBCSRuntimeParamInfo::allowed_string_values(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeParamInfo.allowed_string_values)
+  return _internal_allowed_string_values(index);
+}
+inline std::string* WBCSRuntimeParamInfo::mutable_allowed_string_values(int index) {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeParamInfo.allowed_string_values)
+  return allowed_string_values_.Mutable(index);
+}
+inline void WBCSRuntimeParamInfo::set_allowed_string_values(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeParamInfo.allowed_string_values)
+  allowed_string_values_.Mutable(index)->assign(value);
+}
+inline void WBCSRuntimeParamInfo::set_allowed_string_values(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeParamInfo.allowed_string_values)
+  allowed_string_values_.Mutable(index)->assign(std::move(value));
+}
+inline void WBCSRuntimeParamInfo::set_allowed_string_values(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  allowed_string_values_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSRuntimeParamInfo.allowed_string_values)
+}
+inline void WBCSRuntimeParamInfo::set_allowed_string_values(int index, const char* value, size_t size) {
+  allowed_string_values_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSRuntimeParamInfo.allowed_string_values)
+}
+inline std::string* WBCSRuntimeParamInfo::_internal_add_allowed_string_values() {
+  return allowed_string_values_.Add();
+}
+inline void WBCSRuntimeParamInfo::add_allowed_string_values(const std::string& value) {
+  allowed_string_values_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:galbot.singorix_proto.WBCSRuntimeParamInfo.allowed_string_values)
+}
+inline void WBCSRuntimeParamInfo::add_allowed_string_values(std::string&& value) {
+  allowed_string_values_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:galbot.singorix_proto.WBCSRuntimeParamInfo.allowed_string_values)
+}
+inline void WBCSRuntimeParamInfo::add_allowed_string_values(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  allowed_string_values_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:galbot.singorix_proto.WBCSRuntimeParamInfo.allowed_string_values)
+}
+inline void WBCSRuntimeParamInfo::add_allowed_string_values(const char* value, size_t size) {
+  allowed_string_values_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:galbot.singorix_proto.WBCSRuntimeParamInfo.allowed_string_values)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+WBCSRuntimeParamInfo::allowed_string_values() const {
+  // @@protoc_insertion_point(field_list:galbot.singorix_proto.WBCSRuntimeParamInfo.allowed_string_values)
+  return allowed_string_values_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+WBCSRuntimeParamInfo::mutable_allowed_string_values() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.singorix_proto.WBCSRuntimeParamInfo.allowed_string_values)
+  return &allowed_string_values_;
+}
+
+// map<string, .galbot.core_proto.Value> named_value_aliases = 13;
+inline int WBCSRuntimeParamInfo::_internal_named_value_aliases_size() const {
+  return named_value_aliases_.size();
+}
+inline int WBCSRuntimeParamInfo::named_value_aliases_size() const {
+  return _internal_named_value_aliases_size();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >&
+WBCSRuntimeParamInfo::_internal_named_value_aliases() const {
+  return named_value_aliases_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >&
+WBCSRuntimeParamInfo::named_value_aliases() const {
+  // @@protoc_insertion_point(field_map:galbot.singorix_proto.WBCSRuntimeParamInfo.named_value_aliases)
+  return _internal_named_value_aliases();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >*
+WBCSRuntimeParamInfo::_internal_mutable_named_value_aliases() {
+  return named_value_aliases_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >*
+WBCSRuntimeParamInfo::mutable_named_value_aliases() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.singorix_proto.WBCSRuntimeParamInfo.named_value_aliases)
+  return _internal_mutable_named_value_aliases();
+}
+
+// -------------------------------------------------------------------
+
+// WBCSRuntimeParamSummary
+
+// uint64 version = 1;
+inline void WBCSRuntimeParamSummary::clear_version() {
+  version_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSRuntimeParamSummary::_internal_version() const {
+  return version_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSRuntimeParamSummary::version() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeParamSummary.version)
+  return _internal_version();
+}
+inline void WBCSRuntimeParamSummary::_internal_set_version(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  version_ = value;
+}
+inline void WBCSRuntimeParamSummary::set_version(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_version(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeParamSummary.version)
+}
+
+// uint32 scope_count = 2;
+inline void WBCSRuntimeParamSummary::clear_scope_count() {
+  scope_count_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSRuntimeParamSummary::_internal_scope_count() const {
+  return scope_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSRuntimeParamSummary::scope_count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeParamSummary.scope_count)
+  return _internal_scope_count();
+}
+inline void WBCSRuntimeParamSummary::_internal_set_scope_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  scope_count_ = value;
+}
+inline void WBCSRuntimeParamSummary::set_scope_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_scope_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeParamSummary.scope_count)
+}
+
+// uint32 parameter_count = 3;
+inline void WBCSRuntimeParamSummary::clear_parameter_count() {
+  parameter_count_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSRuntimeParamSummary::_internal_parameter_count() const {
+  return parameter_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSRuntimeParamSummary::parameter_count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeParamSummary.parameter_count)
+  return _internal_parameter_count();
+}
+inline void WBCSRuntimeParamSummary::_internal_set_parameter_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  parameter_count_ = value;
+}
+inline void WBCSRuntimeParamSummary::set_parameter_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_parameter_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeParamSummary.parameter_count)
+}
+
+// -------------------------------------------------------------------
+
+// WBCSExternalTargetIdentity
+
+// string target_id = 1;
+inline void WBCSExternalTargetIdentity::clear_target_id() {
+  target_id_.ClearToEmpty();
+}
+inline const std::string& WBCSExternalTargetIdentity::target_id() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSExternalTargetIdentity.target_id)
+  return _internal_target_id();
+}
+inline void WBCSExternalTargetIdentity::set_target_id(const std::string& value) {
+  _internal_set_target_id(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSExternalTargetIdentity.target_id)
+}
+inline std::string* WBCSExternalTargetIdentity::mutable_target_id() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSExternalTargetIdentity.target_id)
+  return _internal_mutable_target_id();
+}
+inline const std::string& WBCSExternalTargetIdentity::_internal_target_id() const {
+  return target_id_.Get();
+}
+inline void WBCSExternalTargetIdentity::_internal_set_target_id(const std::string& value) {
+  
+  target_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSExternalTargetIdentity::set_target_id(std::string&& value) {
+  
+  target_id_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSExternalTargetIdentity.target_id)
+}
+inline void WBCSExternalTargetIdentity::set_target_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  target_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSExternalTargetIdentity.target_id)
+}
+inline void WBCSExternalTargetIdentity::set_target_id(const char* value,
+    size_t size) {
+  
+  target_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSExternalTargetIdentity.target_id)
+}
+inline std::string* WBCSExternalTargetIdentity::_internal_mutable_target_id() {
+  
+  return target_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSExternalTargetIdentity::release_target_id() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSExternalTargetIdentity.target_id)
+  return target_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSExternalTargetIdentity::set_allocated_target_id(std::string* target_id) {
+  if (target_id != nullptr) {
+    
+  } else {
+    
+  }
+  target_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), target_id,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSExternalTargetIdentity.target_id)
+}
+
+// .galbot.core_proto.Timestamp target_ts = 2;
+inline bool WBCSExternalTargetIdentity::_internal_has_target_ts() const {
+  return this != internal_default_instance() && target_ts_ != nullptr;
+}
+inline bool WBCSExternalTargetIdentity::has_target_ts() const {
+  return _internal_has_target_ts();
+}
+inline const ::galbot::core_proto::Timestamp& WBCSExternalTargetIdentity::_internal_target_ts() const {
+  const ::galbot::core_proto::Timestamp* p = target_ts_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::core_proto::Timestamp&>(
+      ::galbot::core_proto::_Timestamp_default_instance_);
+}
+inline const ::galbot::core_proto::Timestamp& WBCSExternalTargetIdentity::target_ts() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSExternalTargetIdentity.target_ts)
+  return _internal_target_ts();
+}
+inline void WBCSExternalTargetIdentity::unsafe_arena_set_allocated_target_ts(
+    ::galbot::core_proto::Timestamp* target_ts) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(target_ts_);
+  }
+  target_ts_ = target_ts;
+  if (target_ts) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.singorix_proto.WBCSExternalTargetIdentity.target_ts)
+}
+inline ::galbot::core_proto::Timestamp* WBCSExternalTargetIdentity::release_target_ts() {
+  
+  ::galbot::core_proto::Timestamp* temp = target_ts_;
+  target_ts_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::core_proto::Timestamp* WBCSExternalTargetIdentity::unsafe_arena_release_target_ts() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSExternalTargetIdentity.target_ts)
+  
+  ::galbot::core_proto::Timestamp* temp = target_ts_;
+  target_ts_ = nullptr;
+  return temp;
+}
+inline ::galbot::core_proto::Timestamp* WBCSExternalTargetIdentity::_internal_mutable_target_ts() {
+  
+  if (target_ts_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::core_proto::Timestamp>(GetArena());
+    target_ts_ = p;
+  }
+  return target_ts_;
+}
+inline ::galbot::core_proto::Timestamp* WBCSExternalTargetIdentity::mutable_target_ts() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSExternalTargetIdentity.target_ts)
+  return _internal_mutable_target_ts();
+}
+inline void WBCSExternalTargetIdentity::set_allocated_target_ts(::galbot::core_proto::Timestamp* target_ts) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(target_ts_);
+  }
+  if (target_ts) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(target_ts)->GetArena();
+    if (message_arena != submessage_arena) {
+      target_ts = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, target_ts, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  target_ts_ = target_ts;
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSExternalTargetIdentity.target_ts)
+}
+
+// -------------------------------------------------------------------
+
+// WBCSTargetStatusInfo
+
+// string scope_type = 1;
+inline void WBCSTargetStatusInfo::clear_scope_type() {
+  scope_type_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetStatusInfo::scope_type() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetStatusInfo.scope_type)
+  return _internal_scope_type();
+}
+inline void WBCSTargetStatusInfo::set_scope_type(const std::string& value) {
+  _internal_set_scope_type(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetStatusInfo.scope_type)
+}
+inline std::string* WBCSTargetStatusInfo::mutable_scope_type() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetStatusInfo.scope_type)
+  return _internal_mutable_scope_type();
+}
+inline const std::string& WBCSTargetStatusInfo::_internal_scope_type() const {
+  return scope_type_.Get();
+}
+inline void WBCSTargetStatusInfo::_internal_set_scope_type(const std::string& value) {
+  
+  scope_type_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetStatusInfo::set_scope_type(std::string&& value) {
+  
+  scope_type_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetStatusInfo.scope_type)
+}
+inline void WBCSTargetStatusInfo::set_scope_type(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  scope_type_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetStatusInfo.scope_type)
+}
+inline void WBCSTargetStatusInfo::set_scope_type(const char* value,
+    size_t size) {
+  
+  scope_type_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetStatusInfo.scope_type)
+}
+inline std::string* WBCSTargetStatusInfo::_internal_mutable_scope_type() {
+  
+  return scope_type_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetStatusInfo::release_scope_type() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetStatusInfo.scope_type)
+  return scope_type_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetStatusInfo::set_allocated_scope_type(std::string* scope_type) {
+  if (scope_type != nullptr) {
+    
+  } else {
+    
+  }
+  scope_type_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), scope_type,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetStatusInfo.scope_type)
+}
+
+// string scope_name = 2;
+inline void WBCSTargetStatusInfo::clear_scope_name() {
+  scope_name_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetStatusInfo::scope_name() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetStatusInfo.scope_name)
+  return _internal_scope_name();
+}
+inline void WBCSTargetStatusInfo::set_scope_name(const std::string& value) {
+  _internal_set_scope_name(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetStatusInfo.scope_name)
+}
+inline std::string* WBCSTargetStatusInfo::mutable_scope_name() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetStatusInfo.scope_name)
+  return _internal_mutable_scope_name();
+}
+inline const std::string& WBCSTargetStatusInfo::_internal_scope_name() const {
+  return scope_name_.Get();
+}
+inline void WBCSTargetStatusInfo::_internal_set_scope_name(const std::string& value) {
+  
+  scope_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetStatusInfo::set_scope_name(std::string&& value) {
+  
+  scope_name_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetStatusInfo.scope_name)
+}
+inline void WBCSTargetStatusInfo::set_scope_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  scope_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetStatusInfo.scope_name)
+}
+inline void WBCSTargetStatusInfo::set_scope_name(const char* value,
+    size_t size) {
+  
+  scope_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetStatusInfo.scope_name)
+}
+inline std::string* WBCSTargetStatusInfo::_internal_mutable_scope_name() {
+  
+  return scope_name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetStatusInfo::release_scope_name() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetStatusInfo.scope_name)
+  return scope_name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetStatusInfo::set_allocated_scope_name(std::string* scope_name) {
+  if (scope_name != nullptr) {
+    
+  } else {
+    
+  }
+  scope_name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), scope_name,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetStatusInfo.scope_name)
+}
+
+// .galbot.singorix_proto.WBCSExternalTargetIdentity external_target = 3;
+inline bool WBCSTargetStatusInfo::_internal_has_external_target() const {
+  return this != internal_default_instance() && external_target_ != nullptr;
+}
+inline bool WBCSTargetStatusInfo::has_external_target() const {
+  return _internal_has_external_target();
+}
+inline void WBCSTargetStatusInfo::clear_external_target() {
+  if (GetArena() == nullptr && external_target_ != nullptr) {
+    delete external_target_;
+  }
+  external_target_ = nullptr;
+}
+inline const ::galbot::singorix_proto::WBCSExternalTargetIdentity& WBCSTargetStatusInfo::_internal_external_target() const {
+  const ::galbot::singorix_proto::WBCSExternalTargetIdentity* p = external_target_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::singorix_proto::WBCSExternalTargetIdentity&>(
+      ::galbot::singorix_proto::_WBCSExternalTargetIdentity_default_instance_);
+}
+inline const ::galbot::singorix_proto::WBCSExternalTargetIdentity& WBCSTargetStatusInfo::external_target() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetStatusInfo.external_target)
+  return _internal_external_target();
+}
+inline void WBCSTargetStatusInfo::unsafe_arena_set_allocated_external_target(
+    ::galbot::singorix_proto::WBCSExternalTargetIdentity* external_target) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(external_target_);
+  }
+  external_target_ = external_target;
+  if (external_target) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.singorix_proto.WBCSTargetStatusInfo.external_target)
+}
+inline ::galbot::singorix_proto::WBCSExternalTargetIdentity* WBCSTargetStatusInfo::release_external_target() {
+  
+  ::galbot::singorix_proto::WBCSExternalTargetIdentity* temp = external_target_;
+  external_target_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::singorix_proto::WBCSExternalTargetIdentity* WBCSTargetStatusInfo::unsafe_arena_release_external_target() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetStatusInfo.external_target)
+  
+  ::galbot::singorix_proto::WBCSExternalTargetIdentity* temp = external_target_;
+  external_target_ = nullptr;
+  return temp;
+}
+inline ::galbot::singorix_proto::WBCSExternalTargetIdentity* WBCSTargetStatusInfo::_internal_mutable_external_target() {
+  
+  if (external_target_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::singorix_proto::WBCSExternalTargetIdentity>(GetArena());
+    external_target_ = p;
+  }
+  return external_target_;
+}
+inline ::galbot::singorix_proto::WBCSExternalTargetIdentity* WBCSTargetStatusInfo::mutable_external_target() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetStatusInfo.external_target)
+  return _internal_mutable_external_target();
+}
+inline void WBCSTargetStatusInfo::set_allocated_external_target(::galbot::singorix_proto::WBCSExternalTargetIdentity* external_target) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete external_target_;
+  }
+  if (external_target) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(external_target);
+    if (message_arena != submessage_arena) {
+      external_target = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, external_target, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  external_target_ = external_target;
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetStatusInfo.external_target)
+}
+
+// string runtime_target_uid = 4;
+inline void WBCSTargetStatusInfo::clear_runtime_target_uid() {
+  runtime_target_uid_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetStatusInfo::runtime_target_uid() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetStatusInfo.runtime_target_uid)
+  return _internal_runtime_target_uid();
+}
+inline void WBCSTargetStatusInfo::set_runtime_target_uid(const std::string& value) {
+  _internal_set_runtime_target_uid(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetStatusInfo.runtime_target_uid)
+}
+inline std::string* WBCSTargetStatusInfo::mutable_runtime_target_uid() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetStatusInfo.runtime_target_uid)
+  return _internal_mutable_runtime_target_uid();
+}
+inline const std::string& WBCSTargetStatusInfo::_internal_runtime_target_uid() const {
+  return runtime_target_uid_.Get();
+}
+inline void WBCSTargetStatusInfo::_internal_set_runtime_target_uid(const std::string& value) {
+  
+  runtime_target_uid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetStatusInfo::set_runtime_target_uid(std::string&& value) {
+  
+  runtime_target_uid_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetStatusInfo.runtime_target_uid)
+}
+inline void WBCSTargetStatusInfo::set_runtime_target_uid(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  runtime_target_uid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetStatusInfo.runtime_target_uid)
+}
+inline void WBCSTargetStatusInfo::set_runtime_target_uid(const char* value,
+    size_t size) {
+  
+  runtime_target_uid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetStatusInfo.runtime_target_uid)
+}
+inline std::string* WBCSTargetStatusInfo::_internal_mutable_runtime_target_uid() {
+  
+  return runtime_target_uid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetStatusInfo::release_runtime_target_uid() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetStatusInfo.runtime_target_uid)
+  return runtime_target_uid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetStatusInfo::set_allocated_runtime_target_uid(std::string* runtime_target_uid) {
+  if (runtime_target_uid != nullptr) {
+    
+  } else {
+    
+  }
+  runtime_target_uid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), runtime_target_uid,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetStatusInfo.runtime_target_uid)
+}
+
+// uint64 generation = 5;
+inline void WBCSTargetStatusInfo::clear_generation() {
+  generation_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSTargetStatusInfo::_internal_generation() const {
+  return generation_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSTargetStatusInfo::generation() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetStatusInfo.generation)
+  return _internal_generation();
+}
+inline void WBCSTargetStatusInfo::_internal_set_generation(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  generation_ = value;
+}
+inline void WBCSTargetStatusInfo::set_generation(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_generation(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetStatusInfo.generation)
+}
+
+// uint64 compile_job_id = 6;
+inline void WBCSTargetStatusInfo::clear_compile_job_id() {
+  compile_job_id_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSTargetStatusInfo::_internal_compile_job_id() const {
+  return compile_job_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSTargetStatusInfo::compile_job_id() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetStatusInfo.compile_job_id)
+  return _internal_compile_job_id();
+}
+inline void WBCSTargetStatusInfo::_internal_set_compile_job_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  compile_job_id_ = value;
+}
+inline void WBCSTargetStatusInfo::set_compile_job_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_compile_job_id(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetStatusInfo.compile_job_id)
+}
+
+// bool compiled_available = 7;
+inline void WBCSTargetStatusInfo::clear_compiled_available() {
+  compiled_available_ = false;
+}
+inline bool WBCSTargetStatusInfo::_internal_compiled_available() const {
+  return compiled_available_;
+}
+inline bool WBCSTargetStatusInfo::compiled_available() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetStatusInfo.compiled_available)
+  return _internal_compiled_available();
+}
+inline void WBCSTargetStatusInfo::_internal_set_compiled_available(bool value) {
+  
+  compiled_available_ = value;
+}
+inline void WBCSTargetStatusInfo::set_compiled_available(bool value) {
+  _internal_set_compiled_available(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetStatusInfo.compiled_available)
+}
+
+// uint64 compiled_version = 8;
+inline void WBCSTargetStatusInfo::clear_compiled_version() {
+  compiled_version_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSTargetStatusInfo::_internal_compiled_version() const {
+  return compiled_version_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSTargetStatusInfo::compiled_version() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetStatusInfo.compiled_version)
+  return _internal_compiled_version();
+}
+inline void WBCSTargetStatusInfo::_internal_set_compiled_version(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  compiled_version_ = value;
+}
+inline void WBCSTargetStatusInfo::set_compiled_version(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_compiled_version(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetStatusInfo.compiled_version)
+}
+
+// string status = 9;
+inline void WBCSTargetStatusInfo::clear_status() {
+  status_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetStatusInfo::status() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetStatusInfo.status)
+  return _internal_status();
+}
+inline void WBCSTargetStatusInfo::set_status(const std::string& value) {
+  _internal_set_status(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetStatusInfo.status)
+}
+inline std::string* WBCSTargetStatusInfo::mutable_status() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetStatusInfo.status)
+  return _internal_mutable_status();
+}
+inline const std::string& WBCSTargetStatusInfo::_internal_status() const {
+  return status_.Get();
+}
+inline void WBCSTargetStatusInfo::_internal_set_status(const std::string& value) {
+  
+  status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetStatusInfo::set_status(std::string&& value) {
+  
+  status_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetStatusInfo.status)
+}
+inline void WBCSTargetStatusInfo::set_status(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetStatusInfo.status)
+}
+inline void WBCSTargetStatusInfo::set_status(const char* value,
+    size_t size) {
+  
+  status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetStatusInfo.status)
+}
+inline std::string* WBCSTargetStatusInfo::_internal_mutable_status() {
+  
+  return status_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetStatusInfo::release_status() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetStatusInfo.status)
+  return status_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetStatusInfo::set_allocated_status(std::string* status) {
+  if (status != nullptr) {
+    
+  } else {
+    
+  }
+  status_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), status,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetStatusInfo.status)
+}
+
+// string ingress = 10;
+inline void WBCSTargetStatusInfo::clear_ingress() {
+  ingress_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetStatusInfo::ingress() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetStatusInfo.ingress)
+  return _internal_ingress();
+}
+inline void WBCSTargetStatusInfo::set_ingress(const std::string& value) {
+  _internal_set_ingress(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetStatusInfo.ingress)
+}
+inline std::string* WBCSTargetStatusInfo::mutable_ingress() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetStatusInfo.ingress)
+  return _internal_mutable_ingress();
+}
+inline const std::string& WBCSTargetStatusInfo::_internal_ingress() const {
+  return ingress_.Get();
+}
+inline void WBCSTargetStatusInfo::_internal_set_ingress(const std::string& value) {
+  
+  ingress_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetStatusInfo::set_ingress(std::string&& value) {
+  
+  ingress_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetStatusInfo.ingress)
+}
+inline void WBCSTargetStatusInfo::set_ingress(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  ingress_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetStatusInfo.ingress)
+}
+inline void WBCSTargetStatusInfo::set_ingress(const char* value,
+    size_t size) {
+  
+  ingress_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetStatusInfo.ingress)
+}
+inline std::string* WBCSTargetStatusInfo::_internal_mutable_ingress() {
+  
+  return ingress_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetStatusInfo::release_ingress() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetStatusInfo.ingress)
+  return ingress_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetStatusInfo::set_allocated_ingress(std::string* ingress) {
+  if (ingress != nullptr) {
+    
+  } else {
+    
+  }
+  ingress_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ingress,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetStatusInfo.ingress)
+}
+
+// uint32 point_count = 11;
+inline void WBCSTargetStatusInfo::clear_point_count() {
+  point_count_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSTargetStatusInfo::_internal_point_count() const {
+  return point_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSTargetStatusInfo::point_count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetStatusInfo.point_count)
+  return _internal_point_count();
+}
+inline void WBCSTargetStatusInfo::_internal_set_point_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  point_count_ = value;
+}
+inline void WBCSTargetStatusInfo::set_point_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_point_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetStatusInfo.point_count)
+}
+
+// string error_message = 12;
+inline void WBCSTargetStatusInfo::clear_error_message() {
+  error_message_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetStatusInfo::error_message() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetStatusInfo.error_message)
+  return _internal_error_message();
+}
+inline void WBCSTargetStatusInfo::set_error_message(const std::string& value) {
+  _internal_set_error_message(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetStatusInfo.error_message)
+}
+inline std::string* WBCSTargetStatusInfo::mutable_error_message() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetStatusInfo.error_message)
+  return _internal_mutable_error_message();
+}
+inline const std::string& WBCSTargetStatusInfo::_internal_error_message() const {
+  return error_message_.Get();
+}
+inline void WBCSTargetStatusInfo::_internal_set_error_message(const std::string& value) {
+  
+  error_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetStatusInfo::set_error_message(std::string&& value) {
+  
+  error_message_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetStatusInfo.error_message)
+}
+inline void WBCSTargetStatusInfo::set_error_message(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  error_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetStatusInfo.error_message)
+}
+inline void WBCSTargetStatusInfo::set_error_message(const char* value,
+    size_t size) {
+  
+  error_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetStatusInfo.error_message)
+}
+inline std::string* WBCSTargetStatusInfo::_internal_mutable_error_message() {
+  
+  return error_message_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetStatusInfo::release_error_message() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetStatusInfo.error_message)
+  return error_message_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetStatusInfo::set_allocated_error_message(std::string* error_message) {
+  if (error_message != nullptr) {
+    
+  } else {
+    
+  }
+  error_message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), error_message,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetStatusInfo.error_message)
+}
+
+// bool terminal = 13;
+inline void WBCSTargetStatusInfo::clear_terminal() {
+  terminal_ = false;
+}
+inline bool WBCSTargetStatusInfo::_internal_terminal() const {
+  return terminal_;
+}
+inline bool WBCSTargetStatusInfo::terminal() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetStatusInfo.terminal)
+  return _internal_terminal();
+}
+inline void WBCSTargetStatusInfo::_internal_set_terminal(bool value) {
+  
+  terminal_ = value;
+}
+inline void WBCSTargetStatusInfo::set_terminal(bool value) {
+  _internal_set_terminal(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetStatusInfo.terminal)
+}
+
+// bool retryable = 14;
+inline void WBCSTargetStatusInfo::clear_retryable() {
+  retryable_ = false;
+}
+inline bool WBCSTargetStatusInfo::_internal_retryable() const {
+  return retryable_;
+}
+inline bool WBCSTargetStatusInfo::retryable() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetStatusInfo.retryable)
+  return _internal_retryable();
+}
+inline void WBCSTargetStatusInfo::_internal_set_retryable(bool value) {
+  
+  retryable_ = value;
+}
+inline void WBCSTargetStatusInfo::set_retryable(bool value) {
+  _internal_set_retryable(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetStatusInfo.retryable)
+}
+
+// string failure_stage = 15;
+inline void WBCSTargetStatusInfo::clear_failure_stage() {
+  failure_stage_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetStatusInfo::failure_stage() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetStatusInfo.failure_stage)
+  return _internal_failure_stage();
+}
+inline void WBCSTargetStatusInfo::set_failure_stage(const std::string& value) {
+  _internal_set_failure_stage(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetStatusInfo.failure_stage)
+}
+inline std::string* WBCSTargetStatusInfo::mutable_failure_stage() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetStatusInfo.failure_stage)
+  return _internal_mutable_failure_stage();
+}
+inline const std::string& WBCSTargetStatusInfo::_internal_failure_stage() const {
+  return failure_stage_.Get();
+}
+inline void WBCSTargetStatusInfo::_internal_set_failure_stage(const std::string& value) {
+  
+  failure_stage_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetStatusInfo::set_failure_stage(std::string&& value) {
+  
+  failure_stage_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetStatusInfo.failure_stage)
+}
+inline void WBCSTargetStatusInfo::set_failure_stage(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  failure_stage_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetStatusInfo.failure_stage)
+}
+inline void WBCSTargetStatusInfo::set_failure_stage(const char* value,
+    size_t size) {
+  
+  failure_stage_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetStatusInfo.failure_stage)
+}
+inline std::string* WBCSTargetStatusInfo::_internal_mutable_failure_stage() {
+  
+  return failure_stage_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetStatusInfo::release_failure_stage() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetStatusInfo.failure_stage)
+  return failure_stage_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetStatusInfo::set_allocated_failure_stage(std::string* failure_stage) {
+  if (failure_stage != nullptr) {
+    
+  } else {
+    
+  }
+  failure_stage_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), failure_stage,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetStatusInfo.failure_stage)
+}
+
+// string failure_category = 16;
+inline void WBCSTargetStatusInfo::clear_failure_category() {
+  failure_category_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetStatusInfo::failure_category() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetStatusInfo.failure_category)
+  return _internal_failure_category();
+}
+inline void WBCSTargetStatusInfo::set_failure_category(const std::string& value) {
+  _internal_set_failure_category(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetStatusInfo.failure_category)
+}
+inline std::string* WBCSTargetStatusInfo::mutable_failure_category() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetStatusInfo.failure_category)
+  return _internal_mutable_failure_category();
+}
+inline const std::string& WBCSTargetStatusInfo::_internal_failure_category() const {
+  return failure_category_.Get();
+}
+inline void WBCSTargetStatusInfo::_internal_set_failure_category(const std::string& value) {
+  
+  failure_category_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetStatusInfo::set_failure_category(std::string&& value) {
+  
+  failure_category_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetStatusInfo.failure_category)
+}
+inline void WBCSTargetStatusInfo::set_failure_category(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  failure_category_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetStatusInfo.failure_category)
+}
+inline void WBCSTargetStatusInfo::set_failure_category(const char* value,
+    size_t size) {
+  
+  failure_category_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetStatusInfo.failure_category)
+}
+inline std::string* WBCSTargetStatusInfo::_internal_mutable_failure_category() {
+  
+  return failure_category_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetStatusInfo::release_failure_category() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetStatusInfo.failure_category)
+  return failure_category_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetStatusInfo::set_allocated_failure_category(std::string* failure_category) {
+  if (failure_category != nullptr) {
+    
+  } else {
+    
+  }
+  failure_category_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), failure_category,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetStatusInfo.failure_category)
+}
+
+// -------------------------------------------------------------------
+
+// WBCSTargetContributionRefInfo
+
+// .galbot.singorix_proto.WBCSExternalTargetIdentity external_target = 1;
+inline bool WBCSTargetContributionRefInfo::_internal_has_external_target() const {
+  return this != internal_default_instance() && external_target_ != nullptr;
+}
+inline bool WBCSTargetContributionRefInfo::has_external_target() const {
+  return _internal_has_external_target();
+}
+inline void WBCSTargetContributionRefInfo::clear_external_target() {
+  if (GetArena() == nullptr && external_target_ != nullptr) {
+    delete external_target_;
+  }
+  external_target_ = nullptr;
+}
+inline const ::galbot::singorix_proto::WBCSExternalTargetIdentity& WBCSTargetContributionRefInfo::_internal_external_target() const {
+  const ::galbot::singorix_proto::WBCSExternalTargetIdentity* p = external_target_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::singorix_proto::WBCSExternalTargetIdentity&>(
+      ::galbot::singorix_proto::_WBCSExternalTargetIdentity_default_instance_);
+}
+inline const ::galbot::singorix_proto::WBCSExternalTargetIdentity& WBCSTargetContributionRefInfo::external_target() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionRefInfo.external_target)
+  return _internal_external_target();
+}
+inline void WBCSTargetContributionRefInfo::unsafe_arena_set_allocated_external_target(
+    ::galbot::singorix_proto::WBCSExternalTargetIdentity* external_target) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(external_target_);
+  }
+  external_target_ = external_target;
+  if (external_target) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.singorix_proto.WBCSTargetContributionRefInfo.external_target)
+}
+inline ::galbot::singorix_proto::WBCSExternalTargetIdentity* WBCSTargetContributionRefInfo::release_external_target() {
+  
+  ::galbot::singorix_proto::WBCSExternalTargetIdentity* temp = external_target_;
+  external_target_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::singorix_proto::WBCSExternalTargetIdentity* WBCSTargetContributionRefInfo::unsafe_arena_release_external_target() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetContributionRefInfo.external_target)
+  
+  ::galbot::singorix_proto::WBCSExternalTargetIdentity* temp = external_target_;
+  external_target_ = nullptr;
+  return temp;
+}
+inline ::galbot::singorix_proto::WBCSExternalTargetIdentity* WBCSTargetContributionRefInfo::_internal_mutable_external_target() {
+  
+  if (external_target_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::singorix_proto::WBCSExternalTargetIdentity>(GetArena());
+    external_target_ = p;
+  }
+  return external_target_;
+}
+inline ::galbot::singorix_proto::WBCSExternalTargetIdentity* WBCSTargetContributionRefInfo::mutable_external_target() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetContributionRefInfo.external_target)
+  return _internal_mutable_external_target();
+}
+inline void WBCSTargetContributionRefInfo::set_allocated_external_target(::galbot::singorix_proto::WBCSExternalTargetIdentity* external_target) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete external_target_;
+  }
+  if (external_target) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(external_target);
+    if (message_arena != submessage_arena) {
+      external_target = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, external_target, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  external_target_ = external_target;
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetContributionRefInfo.external_target)
+}
+
+// string runtime_target_uid = 2;
+inline void WBCSTargetContributionRefInfo::clear_runtime_target_uid() {
+  runtime_target_uid_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetContributionRefInfo::runtime_target_uid() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionRefInfo.runtime_target_uid)
+  return _internal_runtime_target_uid();
+}
+inline void WBCSTargetContributionRefInfo::set_runtime_target_uid(const std::string& value) {
+  _internal_set_runtime_target_uid(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionRefInfo.runtime_target_uid)
+}
+inline std::string* WBCSTargetContributionRefInfo::mutable_runtime_target_uid() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetContributionRefInfo.runtime_target_uid)
+  return _internal_mutable_runtime_target_uid();
+}
+inline const std::string& WBCSTargetContributionRefInfo::_internal_runtime_target_uid() const {
+  return runtime_target_uid_.Get();
+}
+inline void WBCSTargetContributionRefInfo::_internal_set_runtime_target_uid(const std::string& value) {
+  
+  runtime_target_uid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetContributionRefInfo::set_runtime_target_uid(std::string&& value) {
+  
+  runtime_target_uid_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetContributionRefInfo.runtime_target_uid)
+}
+inline void WBCSTargetContributionRefInfo::set_runtime_target_uid(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  runtime_target_uid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetContributionRefInfo.runtime_target_uid)
+}
+inline void WBCSTargetContributionRefInfo::set_runtime_target_uid(const char* value,
+    size_t size) {
+  
+  runtime_target_uid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetContributionRefInfo.runtime_target_uid)
+}
+inline std::string* WBCSTargetContributionRefInfo::_internal_mutable_runtime_target_uid() {
+  
+  return runtime_target_uid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetContributionRefInfo::release_runtime_target_uid() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetContributionRefInfo.runtime_target_uid)
+  return runtime_target_uid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetContributionRefInfo::set_allocated_runtime_target_uid(std::string* runtime_target_uid) {
+  if (runtime_target_uid != nullptr) {
+    
+  } else {
+    
+  }
+  runtime_target_uid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), runtime_target_uid,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetContributionRefInfo.runtime_target_uid)
+}
+
+// string contribution_id = 3;
+inline void WBCSTargetContributionRefInfo::clear_contribution_id() {
+  contribution_id_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetContributionRefInfo::contribution_id() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionRefInfo.contribution_id)
+  return _internal_contribution_id();
+}
+inline void WBCSTargetContributionRefInfo::set_contribution_id(const std::string& value) {
+  _internal_set_contribution_id(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionRefInfo.contribution_id)
+}
+inline std::string* WBCSTargetContributionRefInfo::mutable_contribution_id() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetContributionRefInfo.contribution_id)
+  return _internal_mutable_contribution_id();
+}
+inline const std::string& WBCSTargetContributionRefInfo::_internal_contribution_id() const {
+  return contribution_id_.Get();
+}
+inline void WBCSTargetContributionRefInfo::_internal_set_contribution_id(const std::string& value) {
+  
+  contribution_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetContributionRefInfo::set_contribution_id(std::string&& value) {
+  
+  contribution_id_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetContributionRefInfo.contribution_id)
+}
+inline void WBCSTargetContributionRefInfo::set_contribution_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  contribution_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetContributionRefInfo.contribution_id)
+}
+inline void WBCSTargetContributionRefInfo::set_contribution_id(const char* value,
+    size_t size) {
+  
+  contribution_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetContributionRefInfo.contribution_id)
+}
+inline std::string* WBCSTargetContributionRefInfo::_internal_mutable_contribution_id() {
+  
+  return contribution_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetContributionRefInfo::release_contribution_id() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetContributionRefInfo.contribution_id)
+  return contribution_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetContributionRefInfo::set_allocated_contribution_id(std::string* contribution_id) {
+  if (contribution_id != nullptr) {
+    
+  } else {
+    
+  }
+  contribution_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), contribution_id,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetContributionRefInfo.contribution_id)
+}
+
+// string source_kind = 4;
+inline void WBCSTargetContributionRefInfo::clear_source_kind() {
+  source_kind_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetContributionRefInfo::source_kind() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionRefInfo.source_kind)
+  return _internal_source_kind();
+}
+inline void WBCSTargetContributionRefInfo::set_source_kind(const std::string& value) {
+  _internal_set_source_kind(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionRefInfo.source_kind)
+}
+inline std::string* WBCSTargetContributionRefInfo::mutable_source_kind() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetContributionRefInfo.source_kind)
+  return _internal_mutable_source_kind();
+}
+inline const std::string& WBCSTargetContributionRefInfo::_internal_source_kind() const {
+  return source_kind_.Get();
+}
+inline void WBCSTargetContributionRefInfo::_internal_set_source_kind(const std::string& value) {
+  
+  source_kind_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetContributionRefInfo::set_source_kind(std::string&& value) {
+  
+  source_kind_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetContributionRefInfo.source_kind)
+}
+inline void WBCSTargetContributionRefInfo::set_source_kind(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  source_kind_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetContributionRefInfo.source_kind)
+}
+inline void WBCSTargetContributionRefInfo::set_source_kind(const char* value,
+    size_t size) {
+  
+  source_kind_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetContributionRefInfo.source_kind)
+}
+inline std::string* WBCSTargetContributionRefInfo::_internal_mutable_source_kind() {
+  
+  return source_kind_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetContributionRefInfo::release_source_kind() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetContributionRefInfo.source_kind)
+  return source_kind_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetContributionRefInfo::set_allocated_source_kind(std::string* source_kind) {
+  if (source_kind != nullptr) {
+    
+  } else {
+    
+  }
+  source_kind_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), source_kind,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetContributionRefInfo.source_kind)
+}
+
+// uint64 raw_point_begin = 5;
+inline void WBCSTargetContributionRefInfo::clear_raw_point_begin() {
+  raw_point_begin_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSTargetContributionRefInfo::_internal_raw_point_begin() const {
+  return raw_point_begin_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSTargetContributionRefInfo::raw_point_begin() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionRefInfo.raw_point_begin)
+  return _internal_raw_point_begin();
+}
+inline void WBCSTargetContributionRefInfo::_internal_set_raw_point_begin(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  raw_point_begin_ = value;
+}
+inline void WBCSTargetContributionRefInfo::set_raw_point_begin(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_raw_point_begin(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionRefInfo.raw_point_begin)
+}
+
+// uint64 raw_point_end = 6;
+inline void WBCSTargetContributionRefInfo::clear_raw_point_end() {
+  raw_point_end_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSTargetContributionRefInfo::_internal_raw_point_end() const {
+  return raw_point_end_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSTargetContributionRefInfo::raw_point_end() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionRefInfo.raw_point_end)
+  return _internal_raw_point_end();
+}
+inline void WBCSTargetContributionRefInfo::_internal_set_raw_point_end(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  raw_point_end_ = value;
+}
+inline void WBCSTargetContributionRefInfo::set_raw_point_end(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_raw_point_end(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionRefInfo.raw_point_end)
+}
+
+// double active_time_start = 7;
+inline void WBCSTargetContributionRefInfo::clear_active_time_start() {
+  active_time_start_ = 0;
+}
+inline double WBCSTargetContributionRefInfo::_internal_active_time_start() const {
+  return active_time_start_;
+}
+inline double WBCSTargetContributionRefInfo::active_time_start() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionRefInfo.active_time_start)
+  return _internal_active_time_start();
+}
+inline void WBCSTargetContributionRefInfo::_internal_set_active_time_start(double value) {
+  
+  active_time_start_ = value;
+}
+inline void WBCSTargetContributionRefInfo::set_active_time_start(double value) {
+  _internal_set_active_time_start(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionRefInfo.active_time_start)
+}
+
+// double active_time_end = 8;
+inline void WBCSTargetContributionRefInfo::clear_active_time_end() {
+  active_time_end_ = 0;
+}
+inline double WBCSTargetContributionRefInfo::_internal_active_time_end() const {
+  return active_time_end_;
+}
+inline double WBCSTargetContributionRefInfo::active_time_end() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionRefInfo.active_time_end)
+  return _internal_active_time_end();
+}
+inline void WBCSTargetContributionRefInfo::_internal_set_active_time_end(double value) {
+  
+  active_time_end_ = value;
+}
+inline void WBCSTargetContributionRefInfo::set_active_time_end(double value) {
+  _internal_set_active_time_end(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionRefInfo.active_time_end)
+}
+
+// double weight = 9;
+inline void WBCSTargetContributionRefInfo::clear_weight() {
+  weight_ = 0;
+}
+inline double WBCSTargetContributionRefInfo::_internal_weight() const {
+  return weight_;
+}
+inline double WBCSTargetContributionRefInfo::weight() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionRefInfo.weight)
+  return _internal_weight();
+}
+inline void WBCSTargetContributionRefInfo::_internal_set_weight(double value) {
+  
+  weight_ = value;
+}
+inline void WBCSTargetContributionRefInfo::set_weight(double value) {
+  _internal_set_weight(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionRefInfo.weight)
+}
+
+// string scope_type = 10;
+inline void WBCSTargetContributionRefInfo::clear_scope_type() {
+  scope_type_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetContributionRefInfo::scope_type() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionRefInfo.scope_type)
+  return _internal_scope_type();
+}
+inline void WBCSTargetContributionRefInfo::set_scope_type(const std::string& value) {
+  _internal_set_scope_type(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionRefInfo.scope_type)
+}
+inline std::string* WBCSTargetContributionRefInfo::mutable_scope_type() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetContributionRefInfo.scope_type)
+  return _internal_mutable_scope_type();
+}
+inline const std::string& WBCSTargetContributionRefInfo::_internal_scope_type() const {
+  return scope_type_.Get();
+}
+inline void WBCSTargetContributionRefInfo::_internal_set_scope_type(const std::string& value) {
+  
+  scope_type_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetContributionRefInfo::set_scope_type(std::string&& value) {
+  
+  scope_type_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetContributionRefInfo.scope_type)
+}
+inline void WBCSTargetContributionRefInfo::set_scope_type(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  scope_type_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetContributionRefInfo.scope_type)
+}
+inline void WBCSTargetContributionRefInfo::set_scope_type(const char* value,
+    size_t size) {
+  
+  scope_type_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetContributionRefInfo.scope_type)
+}
+inline std::string* WBCSTargetContributionRefInfo::_internal_mutable_scope_type() {
+  
+  return scope_type_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetContributionRefInfo::release_scope_type() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetContributionRefInfo.scope_type)
+  return scope_type_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetContributionRefInfo::set_allocated_scope_type(std::string* scope_type) {
+  if (scope_type != nullptr) {
+    
+  } else {
+    
+  }
+  scope_type_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), scope_type,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetContributionRefInfo.scope_type)
+}
+
+// string scope_name = 11;
+inline void WBCSTargetContributionRefInfo::clear_scope_name() {
+  scope_name_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetContributionRefInfo::scope_name() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionRefInfo.scope_name)
+  return _internal_scope_name();
+}
+inline void WBCSTargetContributionRefInfo::set_scope_name(const std::string& value) {
+  _internal_set_scope_name(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionRefInfo.scope_name)
+}
+inline std::string* WBCSTargetContributionRefInfo::mutable_scope_name() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetContributionRefInfo.scope_name)
+  return _internal_mutable_scope_name();
+}
+inline const std::string& WBCSTargetContributionRefInfo::_internal_scope_name() const {
+  return scope_name_.Get();
+}
+inline void WBCSTargetContributionRefInfo::_internal_set_scope_name(const std::string& value) {
+  
+  scope_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetContributionRefInfo::set_scope_name(std::string&& value) {
+  
+  scope_name_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetContributionRefInfo.scope_name)
+}
+inline void WBCSTargetContributionRefInfo::set_scope_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  scope_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetContributionRefInfo.scope_name)
+}
+inline void WBCSTargetContributionRefInfo::set_scope_name(const char* value,
+    size_t size) {
+  
+  scope_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetContributionRefInfo.scope_name)
+}
+inline std::string* WBCSTargetContributionRefInfo::_internal_mutable_scope_name() {
+  
+  return scope_name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetContributionRefInfo::release_scope_name() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetContributionRefInfo.scope_name)
+  return scope_name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetContributionRefInfo::set_allocated_scope_name(std::string* scope_name) {
+  if (scope_name != nullptr) {
+    
+  } else {
+    
+  }
+  scope_name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), scope_name,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetContributionRefInfo.scope_name)
+}
+
+// uint64 raw_point_count = 12;
+inline void WBCSTargetContributionRefInfo::clear_raw_point_count() {
+  raw_point_count_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSTargetContributionRefInfo::_internal_raw_point_count() const {
+  return raw_point_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSTargetContributionRefInfo::raw_point_count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionRefInfo.raw_point_count)
+  return _internal_raw_point_count();
+}
+inline void WBCSTargetContributionRefInfo::_internal_set_raw_point_count(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  raw_point_count_ = value;
+}
+inline void WBCSTargetContributionRefInfo::set_raw_point_count(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_raw_point_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionRefInfo.raw_point_count)
+}
+
+// double active_duration = 13;
+inline void WBCSTargetContributionRefInfo::clear_active_duration() {
+  active_duration_ = 0;
+}
+inline double WBCSTargetContributionRefInfo::_internal_active_duration() const {
+  return active_duration_;
+}
+inline double WBCSTargetContributionRefInfo::active_duration() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionRefInfo.active_duration)
+  return _internal_active_duration();
+}
+inline void WBCSTargetContributionRefInfo::_internal_set_active_duration(double value) {
+  
+  active_duration_ = value;
+}
+inline void WBCSTargetContributionRefInfo::set_active_duration(double value) {
+  _internal_set_active_duration(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionRefInfo.active_duration)
+}
+
+// -------------------------------------------------------------------
+
+// WBCSTargetContributionStatusInfo
+
+// .galbot.singorix_proto.WBCSTargetContributionRefInfo contribution = 1;
+inline bool WBCSTargetContributionStatusInfo::_internal_has_contribution() const {
+  return this != internal_default_instance() && contribution_ != nullptr;
+}
+inline bool WBCSTargetContributionStatusInfo::has_contribution() const {
+  return _internal_has_contribution();
+}
+inline void WBCSTargetContributionStatusInfo::clear_contribution() {
+  if (GetArena() == nullptr && contribution_ != nullptr) {
+    delete contribution_;
+  }
+  contribution_ = nullptr;
+}
+inline const ::galbot::singorix_proto::WBCSTargetContributionRefInfo& WBCSTargetContributionStatusInfo::_internal_contribution() const {
+  const ::galbot::singorix_proto::WBCSTargetContributionRefInfo* p = contribution_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::singorix_proto::WBCSTargetContributionRefInfo&>(
+      ::galbot::singorix_proto::_WBCSTargetContributionRefInfo_default_instance_);
+}
+inline const ::galbot::singorix_proto::WBCSTargetContributionRefInfo& WBCSTargetContributionStatusInfo::contribution() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionStatusInfo.contribution)
+  return _internal_contribution();
+}
+inline void WBCSTargetContributionStatusInfo::unsafe_arena_set_allocated_contribution(
+    ::galbot::singorix_proto::WBCSTargetContributionRefInfo* contribution) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(contribution_);
+  }
+  contribution_ = contribution;
+  if (contribution) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.singorix_proto.WBCSTargetContributionStatusInfo.contribution)
+}
+inline ::galbot::singorix_proto::WBCSTargetContributionRefInfo* WBCSTargetContributionStatusInfo::release_contribution() {
+  
+  ::galbot::singorix_proto::WBCSTargetContributionRefInfo* temp = contribution_;
+  contribution_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::singorix_proto::WBCSTargetContributionRefInfo* WBCSTargetContributionStatusInfo::unsafe_arena_release_contribution() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetContributionStatusInfo.contribution)
+  
+  ::galbot::singorix_proto::WBCSTargetContributionRefInfo* temp = contribution_;
+  contribution_ = nullptr;
+  return temp;
+}
+inline ::galbot::singorix_proto::WBCSTargetContributionRefInfo* WBCSTargetContributionStatusInfo::_internal_mutable_contribution() {
+  
+  if (contribution_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::singorix_proto::WBCSTargetContributionRefInfo>(GetArena());
+    contribution_ = p;
+  }
+  return contribution_;
+}
+inline ::galbot::singorix_proto::WBCSTargetContributionRefInfo* WBCSTargetContributionStatusInfo::mutable_contribution() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetContributionStatusInfo.contribution)
+  return _internal_mutable_contribution();
+}
+inline void WBCSTargetContributionStatusInfo::set_allocated_contribution(::galbot::singorix_proto::WBCSTargetContributionRefInfo* contribution) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete contribution_;
+  }
+  if (contribution) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(contribution);
+    if (message_arena != submessage_arena) {
+      contribution = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, contribution, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  contribution_ = contribution;
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetContributionStatusInfo.contribution)
+}
+
+// string status = 2;
+inline void WBCSTargetContributionStatusInfo::clear_status() {
+  status_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetContributionStatusInfo::status() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionStatusInfo.status)
+  return _internal_status();
+}
+inline void WBCSTargetContributionStatusInfo::set_status(const std::string& value) {
+  _internal_set_status(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionStatusInfo.status)
+}
+inline std::string* WBCSTargetContributionStatusInfo::mutable_status() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetContributionStatusInfo.status)
+  return _internal_mutable_status();
+}
+inline const std::string& WBCSTargetContributionStatusInfo::_internal_status() const {
+  return status_.Get();
+}
+inline void WBCSTargetContributionStatusInfo::_internal_set_status(const std::string& value) {
+  
+  status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetContributionStatusInfo::set_status(std::string&& value) {
+  
+  status_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetContributionStatusInfo.status)
+}
+inline void WBCSTargetContributionStatusInfo::set_status(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetContributionStatusInfo.status)
+}
+inline void WBCSTargetContributionStatusInfo::set_status(const char* value,
+    size_t size) {
+  
+  status_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetContributionStatusInfo.status)
+}
+inline std::string* WBCSTargetContributionStatusInfo::_internal_mutable_status() {
+  
+  return status_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetContributionStatusInfo::release_status() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetContributionStatusInfo.status)
+  return status_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetContributionStatusInfo::set_allocated_status(std::string* status) {
+  if (status != nullptr) {
+    
+  } else {
+    
+  }
+  status_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), status,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetContributionStatusInfo.status)
+}
+
+// double progress = 3;
+inline void WBCSTargetContributionStatusInfo::clear_progress() {
+  progress_ = 0;
+}
+inline double WBCSTargetContributionStatusInfo::_internal_progress() const {
+  return progress_;
+}
+inline double WBCSTargetContributionStatusInfo::progress() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionStatusInfo.progress)
+  return _internal_progress();
+}
+inline void WBCSTargetContributionStatusInfo::_internal_set_progress(double value) {
+  
+  progress_ = value;
+}
+inline void WBCSTargetContributionStatusInfo::set_progress(double value) {
+  _internal_set_progress(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionStatusInfo.progress)
+}
+
+// string error_message = 4;
+inline void WBCSTargetContributionStatusInfo::clear_error_message() {
+  error_message_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetContributionStatusInfo::error_message() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionStatusInfo.error_message)
+  return _internal_error_message();
+}
+inline void WBCSTargetContributionStatusInfo::set_error_message(const std::string& value) {
+  _internal_set_error_message(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionStatusInfo.error_message)
+}
+inline std::string* WBCSTargetContributionStatusInfo::mutable_error_message() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetContributionStatusInfo.error_message)
+  return _internal_mutable_error_message();
+}
+inline const std::string& WBCSTargetContributionStatusInfo::_internal_error_message() const {
+  return error_message_.Get();
+}
+inline void WBCSTargetContributionStatusInfo::_internal_set_error_message(const std::string& value) {
+  
+  error_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetContributionStatusInfo::set_error_message(std::string&& value) {
+  
+  error_message_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetContributionStatusInfo.error_message)
+}
+inline void WBCSTargetContributionStatusInfo::set_error_message(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  error_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetContributionStatusInfo.error_message)
+}
+inline void WBCSTargetContributionStatusInfo::set_error_message(const char* value,
+    size_t size) {
+  
+  error_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetContributionStatusInfo.error_message)
+}
+inline std::string* WBCSTargetContributionStatusInfo::_internal_mutable_error_message() {
+  
+  return error_message_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetContributionStatusInfo::release_error_message() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetContributionStatusInfo.error_message)
+  return error_message_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetContributionStatusInfo::set_allocated_error_message(std::string* error_message) {
+  if (error_message != nullptr) {
+    
+  } else {
+    
+  }
+  error_message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), error_message,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetContributionStatusInfo.error_message)
+}
+
+// bool terminal = 5;
+inline void WBCSTargetContributionStatusInfo::clear_terminal() {
+  terminal_ = false;
+}
+inline bool WBCSTargetContributionStatusInfo::_internal_terminal() const {
+  return terminal_;
+}
+inline bool WBCSTargetContributionStatusInfo::terminal() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionStatusInfo.terminal)
+  return _internal_terminal();
+}
+inline void WBCSTargetContributionStatusInfo::_internal_set_terminal(bool value) {
+  
+  terminal_ = value;
+}
+inline void WBCSTargetContributionStatusInfo::set_terminal(bool value) {
+  _internal_set_terminal(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionStatusInfo.terminal)
+}
+
+// bool retryable = 6;
+inline void WBCSTargetContributionStatusInfo::clear_retryable() {
+  retryable_ = false;
+}
+inline bool WBCSTargetContributionStatusInfo::_internal_retryable() const {
+  return retryable_;
+}
+inline bool WBCSTargetContributionStatusInfo::retryable() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionStatusInfo.retryable)
+  return _internal_retryable();
+}
+inline void WBCSTargetContributionStatusInfo::_internal_set_retryable(bool value) {
+  
+  retryable_ = value;
+}
+inline void WBCSTargetContributionStatusInfo::set_retryable(bool value) {
+  _internal_set_retryable(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionStatusInfo.retryable)
+}
+
+// string failure_stage = 7;
+inline void WBCSTargetContributionStatusInfo::clear_failure_stage() {
+  failure_stage_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetContributionStatusInfo::failure_stage() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionStatusInfo.failure_stage)
+  return _internal_failure_stage();
+}
+inline void WBCSTargetContributionStatusInfo::set_failure_stage(const std::string& value) {
+  _internal_set_failure_stage(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionStatusInfo.failure_stage)
+}
+inline std::string* WBCSTargetContributionStatusInfo::mutable_failure_stage() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetContributionStatusInfo.failure_stage)
+  return _internal_mutable_failure_stage();
+}
+inline const std::string& WBCSTargetContributionStatusInfo::_internal_failure_stage() const {
+  return failure_stage_.Get();
+}
+inline void WBCSTargetContributionStatusInfo::_internal_set_failure_stage(const std::string& value) {
+  
+  failure_stage_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetContributionStatusInfo::set_failure_stage(std::string&& value) {
+  
+  failure_stage_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetContributionStatusInfo.failure_stage)
+}
+inline void WBCSTargetContributionStatusInfo::set_failure_stage(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  failure_stage_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetContributionStatusInfo.failure_stage)
+}
+inline void WBCSTargetContributionStatusInfo::set_failure_stage(const char* value,
+    size_t size) {
+  
+  failure_stage_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetContributionStatusInfo.failure_stage)
+}
+inline std::string* WBCSTargetContributionStatusInfo::_internal_mutable_failure_stage() {
+  
+  return failure_stage_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetContributionStatusInfo::release_failure_stage() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetContributionStatusInfo.failure_stage)
+  return failure_stage_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetContributionStatusInfo::set_allocated_failure_stage(std::string* failure_stage) {
+  if (failure_stage != nullptr) {
+    
+  } else {
+    
+  }
+  failure_stage_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), failure_stage,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetContributionStatusInfo.failure_stage)
+}
+
+// string failure_category = 8;
+inline void WBCSTargetContributionStatusInfo::clear_failure_category() {
+  failure_category_.ClearToEmpty();
+}
+inline const std::string& WBCSTargetContributionStatusInfo::failure_category() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSTargetContributionStatusInfo.failure_category)
+  return _internal_failure_category();
+}
+inline void WBCSTargetContributionStatusInfo::set_failure_category(const std::string& value) {
+  _internal_set_failure_category(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSTargetContributionStatusInfo.failure_category)
+}
+inline std::string* WBCSTargetContributionStatusInfo::mutable_failure_category() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSTargetContributionStatusInfo.failure_category)
+  return _internal_mutable_failure_category();
+}
+inline const std::string& WBCSTargetContributionStatusInfo::_internal_failure_category() const {
+  return failure_category_.Get();
+}
+inline void WBCSTargetContributionStatusInfo::_internal_set_failure_category(const std::string& value) {
+  
+  failure_category_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSTargetContributionStatusInfo::set_failure_category(std::string&& value) {
+  
+  failure_category_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSTargetContributionStatusInfo.failure_category)
+}
+inline void WBCSTargetContributionStatusInfo::set_failure_category(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  failure_category_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSTargetContributionStatusInfo.failure_category)
+}
+inline void WBCSTargetContributionStatusInfo::set_failure_category(const char* value,
+    size_t size) {
+  
+  failure_category_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSTargetContributionStatusInfo.failure_category)
+}
+inline std::string* WBCSTargetContributionStatusInfo::_internal_mutable_failure_category() {
+  
+  return failure_category_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSTargetContributionStatusInfo::release_failure_category() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSTargetContributionStatusInfo.failure_category)
+  return failure_category_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSTargetContributionStatusInfo::set_allocated_failure_category(std::string* failure_category) {
+  if (failure_category != nullptr) {
+    
+  } else {
+    
+  }
+  failure_category_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), failure_category,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSTargetContributionStatusInfo.failure_category)
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// WBCSCompiledTargetInfo
+
+// string runtime_target_uid = 1;
+inline void WBCSCompiledTargetInfo::clear_runtime_target_uid() {
+  runtime_target_uid_.ClearToEmpty();
+}
+inline const std::string& WBCSCompiledTargetInfo::runtime_target_uid() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.runtime_target_uid)
+  return _internal_runtime_target_uid();
+}
+inline void WBCSCompiledTargetInfo::set_runtime_target_uid(const std::string& value) {
+  _internal_set_runtime_target_uid(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.runtime_target_uid)
+}
+inline std::string* WBCSCompiledTargetInfo::mutable_runtime_target_uid() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSCompiledTargetInfo.runtime_target_uid)
+  return _internal_mutable_runtime_target_uid();
+}
+inline const std::string& WBCSCompiledTargetInfo::_internal_runtime_target_uid() const {
+  return runtime_target_uid_.Get();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_runtime_target_uid(const std::string& value) {
+  
+  runtime_target_uid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSCompiledTargetInfo::set_runtime_target_uid(std::string&& value) {
+  
+  runtime_target_uid_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSCompiledTargetInfo.runtime_target_uid)
+}
+inline void WBCSCompiledTargetInfo::set_runtime_target_uid(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  runtime_target_uid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSCompiledTargetInfo.runtime_target_uid)
+}
+inline void WBCSCompiledTargetInfo::set_runtime_target_uid(const char* value,
+    size_t size) {
+  
+  runtime_target_uid_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSCompiledTargetInfo.runtime_target_uid)
+}
+inline std::string* WBCSCompiledTargetInfo::_internal_mutable_runtime_target_uid() {
+  
+  return runtime_target_uid_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSCompiledTargetInfo::release_runtime_target_uid() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSCompiledTargetInfo.runtime_target_uid)
+  return runtime_target_uid_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSCompiledTargetInfo::set_allocated_runtime_target_uid(std::string* runtime_target_uid) {
+  if (runtime_target_uid != nullptr) {
+    
+  } else {
+    
+  }
+  runtime_target_uid_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), runtime_target_uid,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSCompiledTargetInfo.runtime_target_uid)
+}
+
+// uint64 generation = 2;
+inline void WBCSCompiledTargetInfo::clear_generation() {
+  generation_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSCompiledTargetInfo::_internal_generation() const {
+  return generation_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSCompiledTargetInfo::generation() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.generation)
+  return _internal_generation();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_generation(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  generation_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_generation(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_generation(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.generation)
+}
+
+// uint64 compile_job_id = 3;
+inline void WBCSCompiledTargetInfo::clear_compile_job_id() {
+  compile_job_id_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSCompiledTargetInfo::_internal_compile_job_id() const {
+  return compile_job_id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSCompiledTargetInfo::compile_job_id() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.compile_job_id)
+  return _internal_compile_job_id();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_compile_job_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  compile_job_id_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_compile_job_id(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_compile_job_id(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.compile_job_id)
+}
+
+// uint64 version = 4;
+inline void WBCSCompiledTargetInfo::clear_version() {
+  version_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSCompiledTargetInfo::_internal_version() const {
+  return version_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSCompiledTargetInfo::version() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.version)
+  return _internal_version();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_version(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  version_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_version(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_version(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.version)
+}
+
+// uint32 group_count = 5;
+inline void WBCSCompiledTargetInfo::clear_group_count() {
+  group_count_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::_internal_group_count() const {
+  return group_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::group_count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.group_count)
+  return _internal_group_count();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_group_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  group_count_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_group_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_group_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.group_count)
+}
+
+// uint32 task_count = 6;
+inline void WBCSCompiledTargetInfo::clear_task_count() {
+  task_count_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::_internal_task_count() const {
+  return task_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::task_count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.task_count)
+  return _internal_task_count();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_task_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  task_count_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_task_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_task_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.task_count)
+}
+
+// uint32 contribution_count = 7;
+inline void WBCSCompiledTargetInfo::clear_contribution_count() {
+  contribution_count_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::_internal_contribution_count() const {
+  return contribution_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::contribution_count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.contribution_count)
+  return _internal_contribution_count();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_contribution_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  contribution_count_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_contribution_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_contribution_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.contribution_count)
+}
+
+// repeated .galbot.singorix_proto.WBCSTargetContributionRefInfo contributions = 8;
+inline int WBCSCompiledTargetInfo::_internal_contributions_size() const {
+  return contributions_.size();
+}
+inline int WBCSCompiledTargetInfo::contributions_size() const {
+  return _internal_contributions_size();
+}
+inline void WBCSCompiledTargetInfo::clear_contributions() {
+  contributions_.Clear();
+}
+inline ::galbot::singorix_proto::WBCSTargetContributionRefInfo* WBCSCompiledTargetInfo::mutable_contributions(int index) {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSCompiledTargetInfo.contributions)
+  return contributions_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSTargetContributionRefInfo >*
+WBCSCompiledTargetInfo::mutable_contributions() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.singorix_proto.WBCSCompiledTargetInfo.contributions)
+  return &contributions_;
+}
+inline const ::galbot::singorix_proto::WBCSTargetContributionRefInfo& WBCSCompiledTargetInfo::_internal_contributions(int index) const {
+  return contributions_.Get(index);
+}
+inline const ::galbot::singorix_proto::WBCSTargetContributionRefInfo& WBCSCompiledTargetInfo::contributions(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.contributions)
+  return _internal_contributions(index);
+}
+inline ::galbot::singorix_proto::WBCSTargetContributionRefInfo* WBCSCompiledTargetInfo::_internal_add_contributions() {
+  return contributions_.Add();
+}
+inline ::galbot::singorix_proto::WBCSTargetContributionRefInfo* WBCSCompiledTargetInfo::add_contributions() {
+  // @@protoc_insertion_point(field_add:galbot.singorix_proto.WBCSCompiledTargetInfo.contributions)
+  return _internal_add_contributions();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSTargetContributionRefInfo >&
+WBCSCompiledTargetInfo::contributions() const {
+  // @@protoc_insertion_point(field_list:galbot.singorix_proto.WBCSCompiledTargetInfo.contributions)
+  return contributions_;
+}
+
+// uint32 group_segment_count = 9;
+inline void WBCSCompiledTargetInfo::clear_group_segment_count() {
+  group_segment_count_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::_internal_group_segment_count() const {
+  return group_segment_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::group_segment_count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.group_segment_count)
+  return _internal_group_segment_count();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_group_segment_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  group_segment_count_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_group_segment_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_group_segment_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.group_segment_count)
+}
+
+// uint32 task_segment_count = 10;
+inline void WBCSCompiledTargetInfo::clear_task_segment_count() {
+  task_segment_count_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::_internal_task_segment_count() const {
+  return task_segment_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::task_segment_count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.task_segment_count)
+  return _internal_task_segment_count();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_task_segment_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  task_segment_count_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_task_segment_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_task_segment_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.task_segment_count)
+}
+
+// uint32 total_segment_count = 11;
+inline void WBCSCompiledTargetInfo::clear_total_segment_count() {
+  total_segment_count_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::_internal_total_segment_count() const {
+  return total_segment_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::total_segment_count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.total_segment_count)
+  return _internal_total_segment_count();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_total_segment_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  total_segment_count_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_total_segment_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_total_segment_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.total_segment_count)
+}
+
+// double compile_duration_ms = 12;
+inline void WBCSCompiledTargetInfo::clear_compile_duration_ms() {
+  compile_duration_ms_ = 0;
+}
+inline double WBCSCompiledTargetInfo::_internal_compile_duration_ms() const {
+  return compile_duration_ms_;
+}
+inline double WBCSCompiledTargetInfo::compile_duration_ms() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.compile_duration_ms)
+  return _internal_compile_duration_ms();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_compile_duration_ms(double value) {
+  
+  compile_duration_ms_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_compile_duration_ms(double value) {
+  _internal_set_compile_duration_ms(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.compile_duration_ms)
+}
+
+// string default_sampling = 13;
+inline void WBCSCompiledTargetInfo::clear_default_sampling() {
+  default_sampling_.ClearToEmpty();
+}
+inline const std::string& WBCSCompiledTargetInfo::default_sampling() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.default_sampling)
+  return _internal_default_sampling();
+}
+inline void WBCSCompiledTargetInfo::set_default_sampling(const std::string& value) {
+  _internal_set_default_sampling(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.default_sampling)
+}
+inline std::string* WBCSCompiledTargetInfo::mutable_default_sampling() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSCompiledTargetInfo.default_sampling)
+  return _internal_mutable_default_sampling();
+}
+inline const std::string& WBCSCompiledTargetInfo::_internal_default_sampling() const {
+  return default_sampling_.Get();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_default_sampling(const std::string& value) {
+  
+  default_sampling_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSCompiledTargetInfo::set_default_sampling(std::string&& value) {
+  
+  default_sampling_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSCompiledTargetInfo.default_sampling)
+}
+inline void WBCSCompiledTargetInfo::set_default_sampling(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  default_sampling_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSCompiledTargetInfo.default_sampling)
+}
+inline void WBCSCompiledTargetInfo::set_default_sampling(const char* value,
+    size_t size) {
+  
+  default_sampling_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSCompiledTargetInfo.default_sampling)
+}
+inline std::string* WBCSCompiledTargetInfo::_internal_mutable_default_sampling() {
+  
+  return default_sampling_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSCompiledTargetInfo::release_default_sampling() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSCompiledTargetInfo.default_sampling)
+  return default_sampling_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSCompiledTargetInfo::set_allocated_default_sampling(std::string* default_sampling) {
+  if (default_sampling != nullptr) {
+    
+  } else {
+    
+  }
+  default_sampling_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), default_sampling,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSCompiledTargetInfo.default_sampling)
+}
+
+// map<string, double> constraint_scalar_limits = 14;
+inline int WBCSCompiledTargetInfo::_internal_constraint_scalar_limits_size() const {
+  return constraint_scalar_limits_.size();
+}
+inline int WBCSCompiledTargetInfo::constraint_scalar_limits_size() const {
+  return _internal_constraint_scalar_limits_size();
+}
+inline void WBCSCompiledTargetInfo::clear_constraint_scalar_limits() {
+  constraint_scalar_limits_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, double >&
+WBCSCompiledTargetInfo::_internal_constraint_scalar_limits() const {
+  return constraint_scalar_limits_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, double >&
+WBCSCompiledTargetInfo::constraint_scalar_limits() const {
+  // @@protoc_insertion_point(field_map:galbot.singorix_proto.WBCSCompiledTargetInfo.constraint_scalar_limits)
+  return _internal_constraint_scalar_limits();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, double >*
+WBCSCompiledTargetInfo::_internal_mutable_constraint_scalar_limits() {
+  return constraint_scalar_limits_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, double >*
+WBCSCompiledTargetInfo::mutable_constraint_scalar_limits() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.singorix_proto.WBCSCompiledTargetInfo.constraint_scalar_limits)
+  return _internal_mutable_constraint_scalar_limits();
+}
+
+// map<string, uint32> group_segment_count_by_sampling = 15;
+inline int WBCSCompiledTargetInfo::_internal_group_segment_count_by_sampling_size() const {
+  return group_segment_count_by_sampling_.size();
+}
+inline int WBCSCompiledTargetInfo::group_segment_count_by_sampling_size() const {
+  return _internal_group_segment_count_by_sampling_size();
+}
+inline void WBCSCompiledTargetInfo::clear_group_segment_count_by_sampling() {
+  group_segment_count_by_sampling_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >&
+WBCSCompiledTargetInfo::_internal_group_segment_count_by_sampling() const {
+  return group_segment_count_by_sampling_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >&
+WBCSCompiledTargetInfo::group_segment_count_by_sampling() const {
+  // @@protoc_insertion_point(field_map:galbot.singorix_proto.WBCSCompiledTargetInfo.group_segment_count_by_sampling)
+  return _internal_group_segment_count_by_sampling();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >*
+WBCSCompiledTargetInfo::_internal_mutable_group_segment_count_by_sampling() {
+  return group_segment_count_by_sampling_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >*
+WBCSCompiledTargetInfo::mutable_group_segment_count_by_sampling() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.singorix_proto.WBCSCompiledTargetInfo.group_segment_count_by_sampling)
+  return _internal_mutable_group_segment_count_by_sampling();
+}
+
+// map<string, uint32> task_segment_count_by_sampling = 16;
+inline int WBCSCompiledTargetInfo::_internal_task_segment_count_by_sampling_size() const {
+  return task_segment_count_by_sampling_.size();
+}
+inline int WBCSCompiledTargetInfo::task_segment_count_by_sampling_size() const {
+  return _internal_task_segment_count_by_sampling_size();
+}
+inline void WBCSCompiledTargetInfo::clear_task_segment_count_by_sampling() {
+  task_segment_count_by_sampling_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >&
+WBCSCompiledTargetInfo::_internal_task_segment_count_by_sampling() const {
+  return task_segment_count_by_sampling_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >&
+WBCSCompiledTargetInfo::task_segment_count_by_sampling() const {
+  // @@protoc_insertion_point(field_map:galbot.singorix_proto.WBCSCompiledTargetInfo.task_segment_count_by_sampling)
+  return _internal_task_segment_count_by_sampling();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >*
+WBCSCompiledTargetInfo::_internal_mutable_task_segment_count_by_sampling() {
+  return task_segment_count_by_sampling_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >*
+WBCSCompiledTargetInfo::mutable_task_segment_count_by_sampling() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.singorix_proto.WBCSCompiledTargetInfo.task_segment_count_by_sampling)
+  return _internal_mutable_task_segment_count_by_sampling();
+}
+
+// map<string, uint32> segment_count_by_sampling = 17;
+inline int WBCSCompiledTargetInfo::_internal_segment_count_by_sampling_size() const {
+  return segment_count_by_sampling_.size();
+}
+inline int WBCSCompiledTargetInfo::segment_count_by_sampling_size() const {
+  return _internal_segment_count_by_sampling_size();
+}
+inline void WBCSCompiledTargetInfo::clear_segment_count_by_sampling() {
+  segment_count_by_sampling_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >&
+WBCSCompiledTargetInfo::_internal_segment_count_by_sampling() const {
+  return segment_count_by_sampling_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >&
+WBCSCompiledTargetInfo::segment_count_by_sampling() const {
+  // @@protoc_insertion_point(field_map:galbot.singorix_proto.WBCSCompiledTargetInfo.segment_count_by_sampling)
+  return _internal_segment_count_by_sampling();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >*
+WBCSCompiledTargetInfo::_internal_mutable_segment_count_by_sampling() {
+  return segment_count_by_sampling_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >*
+WBCSCompiledTargetInfo::mutable_segment_count_by_sampling() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.singorix_proto.WBCSCompiledTargetInfo.segment_count_by_sampling)
+  return _internal_mutable_segment_count_by_sampling();
+}
+
+// bool has_time_range = 18;
+inline void WBCSCompiledTargetInfo::clear_has_time_range() {
+  has_time_range_ = false;
+}
+inline bool WBCSCompiledTargetInfo::_internal_has_time_range() const {
+  return has_time_range_;
+}
+inline bool WBCSCompiledTargetInfo::has_time_range() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.has_time_range)
+  return _internal_has_time_range();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_has_time_range(bool value) {
+  
+  has_time_range_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_has_time_range(bool value) {
+  _internal_set_has_time_range(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.has_time_range)
+}
+
+// double compiled_time_start = 19;
+inline void WBCSCompiledTargetInfo::clear_compiled_time_start() {
+  compiled_time_start_ = 0;
+}
+inline double WBCSCompiledTargetInfo::_internal_compiled_time_start() const {
+  return compiled_time_start_;
+}
+inline double WBCSCompiledTargetInfo::compiled_time_start() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.compiled_time_start)
+  return _internal_compiled_time_start();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_compiled_time_start(double value) {
+  
+  compiled_time_start_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_compiled_time_start(double value) {
+  _internal_set_compiled_time_start(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.compiled_time_start)
+}
+
+// double compiled_time_end = 20;
+inline void WBCSCompiledTargetInfo::clear_compiled_time_end() {
+  compiled_time_end_ = 0;
+}
+inline double WBCSCompiledTargetInfo::_internal_compiled_time_end() const {
+  return compiled_time_end_;
+}
+inline double WBCSCompiledTargetInfo::compiled_time_end() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.compiled_time_end)
+  return _internal_compiled_time_end();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_compiled_time_end(double value) {
+  
+  compiled_time_end_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_compiled_time_end(double value) {
+  _internal_set_compiled_time_end(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.compiled_time_end)
+}
+
+// double source_time_start = 21;
+inline void WBCSCompiledTargetInfo::clear_source_time_start() {
+  source_time_start_ = 0;
+}
+inline double WBCSCompiledTargetInfo::_internal_source_time_start() const {
+  return source_time_start_;
+}
+inline double WBCSCompiledTargetInfo::source_time_start() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.source_time_start)
+  return _internal_source_time_start();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_source_time_start(double value) {
+  
+  source_time_start_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_source_time_start(double value) {
+  _internal_set_source_time_start(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.source_time_start)
+}
+
+// double source_time_end = 22;
+inline void WBCSCompiledTargetInfo::clear_source_time_end() {
+  source_time_end_ = 0;
+}
+inline double WBCSCompiledTargetInfo::_internal_source_time_end() const {
+  return source_time_end_;
+}
+inline double WBCSCompiledTargetInfo::source_time_end() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.source_time_end)
+  return _internal_source_time_end();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_source_time_end(double value) {
+  
+  source_time_end_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_source_time_end(double value) {
+  _internal_set_source_time_end(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.source_time_end)
+}
+
+// double compiled_duration = 23;
+inline void WBCSCompiledTargetInfo::clear_compiled_duration() {
+  compiled_duration_ = 0;
+}
+inline double WBCSCompiledTargetInfo::_internal_compiled_duration() const {
+  return compiled_duration_;
+}
+inline double WBCSCompiledTargetInfo::compiled_duration() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.compiled_duration)
+  return _internal_compiled_duration();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_compiled_duration(double value) {
+  
+  compiled_duration_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_compiled_duration(double value) {
+  _internal_set_compiled_duration(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.compiled_duration)
+}
+
+// double source_duration = 24;
+inline void WBCSCompiledTargetInfo::clear_source_duration() {
+  source_duration_ = 0;
+}
+inline double WBCSCompiledTargetInfo::_internal_source_duration() const {
+  return source_duration_;
+}
+inline double WBCSCompiledTargetInfo::source_duration() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.source_duration)
+  return _internal_source_duration();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_source_duration(double value) {
+  
+  source_duration_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_source_duration(double value) {
+  _internal_set_source_duration(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.source_duration)
+}
+
+// uint32 retimed_segment_count = 25;
+inline void WBCSCompiledTargetInfo::clear_retimed_segment_count() {
+  retimed_segment_count_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::_internal_retimed_segment_count() const {
+  return retimed_segment_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::retimed_segment_count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.retimed_segment_count)
+  return _internal_retimed_segment_count();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_retimed_segment_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  retimed_segment_count_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_retimed_segment_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_retimed_segment_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.retimed_segment_count)
+}
+
+// map<string, uint32> retimed_segment_count_by_sampling = 26;
+inline int WBCSCompiledTargetInfo::_internal_retimed_segment_count_by_sampling_size() const {
+  return retimed_segment_count_by_sampling_.size();
+}
+inline int WBCSCompiledTargetInfo::retimed_segment_count_by_sampling_size() const {
+  return _internal_retimed_segment_count_by_sampling_size();
+}
+inline void WBCSCompiledTargetInfo::clear_retimed_segment_count_by_sampling() {
+  retimed_segment_count_by_sampling_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >&
+WBCSCompiledTargetInfo::_internal_retimed_segment_count_by_sampling() const {
+  return retimed_segment_count_by_sampling_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >&
+WBCSCompiledTargetInfo::retimed_segment_count_by_sampling() const {
+  // @@protoc_insertion_point(field_map:galbot.singorix_proto.WBCSCompiledTargetInfo.retimed_segment_count_by_sampling)
+  return _internal_retimed_segment_count_by_sampling();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >*
+WBCSCompiledTargetInfo::_internal_mutable_retimed_segment_count_by_sampling() {
+  return retimed_segment_count_by_sampling_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::PROTOBUF_NAMESPACE_ID::uint32 >*
+WBCSCompiledTargetInfo::mutable_retimed_segment_count_by_sampling() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.singorix_proto.WBCSCompiledTargetInfo.retimed_segment_count_by_sampling)
+  return _internal_mutable_retimed_segment_count_by_sampling();
+}
+
+// double max_retime_ratio = 27;
+inline void WBCSCompiledTargetInfo::clear_max_retime_ratio() {
+  max_retime_ratio_ = 0;
+}
+inline double WBCSCompiledTargetInfo::_internal_max_retime_ratio() const {
+  return max_retime_ratio_;
+}
+inline double WBCSCompiledTargetInfo::max_retime_ratio() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.max_retime_ratio)
+  return _internal_max_retime_ratio();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_max_retime_ratio(double value) {
+  
+  max_retime_ratio_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_max_retime_ratio(double value) {
+  _internal_set_max_retime_ratio(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.max_retime_ratio)
+}
+
+// uint32 group_point_count = 28;
+inline void WBCSCompiledTargetInfo::clear_group_point_count() {
+  group_point_count_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::_internal_group_point_count() const {
+  return group_point_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::group_point_count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.group_point_count)
+  return _internal_group_point_count();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_group_point_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  group_point_count_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_group_point_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_group_point_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.group_point_count)
+}
+
+// uint32 task_point_count = 29;
+inline void WBCSCompiledTargetInfo::clear_task_point_count() {
+  task_point_count_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::_internal_task_point_count() const {
+  return task_point_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::task_point_count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.task_point_count)
+  return _internal_task_point_count();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_task_point_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  task_point_count_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_task_point_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_task_point_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.task_point_count)
+}
+
+// uint32 total_point_count = 30;
+inline void WBCSCompiledTargetInfo::clear_total_point_count() {
+  total_point_count_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::_internal_total_point_count() const {
+  return total_point_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSCompiledTargetInfo::total_point_count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.total_point_count)
+  return _internal_total_point_count();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_total_point_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  total_point_count_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_total_point_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_total_point_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.total_point_count)
+}
+
+// bool has_segment_duration_range = 31;
+inline void WBCSCompiledTargetInfo::clear_has_segment_duration_range() {
+  has_segment_duration_range_ = false;
+}
+inline bool WBCSCompiledTargetInfo::_internal_has_segment_duration_range() const {
+  return has_segment_duration_range_;
+}
+inline bool WBCSCompiledTargetInfo::has_segment_duration_range() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.has_segment_duration_range)
+  return _internal_has_segment_duration_range();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_has_segment_duration_range(bool value) {
+  
+  has_segment_duration_range_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_has_segment_duration_range(bool value) {
+  _internal_set_has_segment_duration_range(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.has_segment_duration_range)
+}
+
+// double min_compiled_segment_duration = 32;
+inline void WBCSCompiledTargetInfo::clear_min_compiled_segment_duration() {
+  min_compiled_segment_duration_ = 0;
+}
+inline double WBCSCompiledTargetInfo::_internal_min_compiled_segment_duration() const {
+  return min_compiled_segment_duration_;
+}
+inline double WBCSCompiledTargetInfo::min_compiled_segment_duration() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.min_compiled_segment_duration)
+  return _internal_min_compiled_segment_duration();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_min_compiled_segment_duration(double value) {
+  
+  min_compiled_segment_duration_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_min_compiled_segment_duration(double value) {
+  _internal_set_min_compiled_segment_duration(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.min_compiled_segment_duration)
+}
+
+// double max_compiled_segment_duration = 33;
+inline void WBCSCompiledTargetInfo::clear_max_compiled_segment_duration() {
+  max_compiled_segment_duration_ = 0;
+}
+inline double WBCSCompiledTargetInfo::_internal_max_compiled_segment_duration() const {
+  return max_compiled_segment_duration_;
+}
+inline double WBCSCompiledTargetInfo::max_compiled_segment_duration() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.max_compiled_segment_duration)
+  return _internal_max_compiled_segment_duration();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_max_compiled_segment_duration(double value) {
+  
+  max_compiled_segment_duration_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_max_compiled_segment_duration(double value) {
+  _internal_set_max_compiled_segment_duration(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.max_compiled_segment_duration)
+}
+
+// double min_source_segment_duration = 34;
+inline void WBCSCompiledTargetInfo::clear_min_source_segment_duration() {
+  min_source_segment_duration_ = 0;
+}
+inline double WBCSCompiledTargetInfo::_internal_min_source_segment_duration() const {
+  return min_source_segment_duration_;
+}
+inline double WBCSCompiledTargetInfo::min_source_segment_duration() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.min_source_segment_duration)
+  return _internal_min_source_segment_duration();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_min_source_segment_duration(double value) {
+  
+  min_source_segment_duration_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_min_source_segment_duration(double value) {
+  _internal_set_min_source_segment_duration(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.min_source_segment_duration)
+}
+
+// double max_source_segment_duration = 35;
+inline void WBCSCompiledTargetInfo::clear_max_source_segment_duration() {
+  max_source_segment_duration_ = 0;
+}
+inline double WBCSCompiledTargetInfo::_internal_max_source_segment_duration() const {
+  return max_source_segment_duration_;
+}
+inline double WBCSCompiledTargetInfo::max_source_segment_duration() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSCompiledTargetInfo.max_source_segment_duration)
+  return _internal_max_source_segment_duration();
+}
+inline void WBCSCompiledTargetInfo::_internal_set_max_source_segment_duration(double value) {
+  
+  max_source_segment_duration_ = value;
+}
+inline void WBCSCompiledTargetInfo::set_max_source_segment_duration(double value) {
+  _internal_set_max_source_segment_duration(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSCompiledTargetInfo.max_source_segment_duration)
+}
+
+// -------------------------------------------------------------------
+
+// WBCSSampleProvenanceInfo
+
+// double sample_time = 1;
+inline void WBCSSampleProvenanceInfo::clear_sample_time() {
+  sample_time_ = 0;
+}
+inline double WBCSSampleProvenanceInfo::_internal_sample_time() const {
+  return sample_time_;
+}
+inline double WBCSSampleProvenanceInfo::sample_time() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSSampleProvenanceInfo.sample_time)
+  return _internal_sample_time();
+}
+inline void WBCSSampleProvenanceInfo::_internal_set_sample_time(double value) {
+  
+  sample_time_ = value;
+}
+inline void WBCSSampleProvenanceInfo::set_sample_time(double value) {
+  _internal_set_sample_time(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSSampleProvenanceInfo.sample_time)
+}
+
+// uint32 active_source_count = 2;
+inline void WBCSSampleProvenanceInfo::clear_active_source_count() {
+  active_source_count_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSSampleProvenanceInfo::_internal_active_source_count() const {
+  return active_source_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSSampleProvenanceInfo::active_source_count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSSampleProvenanceInfo.active_source_count)
+  return _internal_active_source_count();
+}
+inline void WBCSSampleProvenanceInfo::_internal_set_active_source_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  active_source_count_ = value;
+}
+inline void WBCSSampleProvenanceInfo::set_active_source_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_active_source_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSSampleProvenanceInfo.active_source_count)
+}
+
+// repeated .galbot.singorix_proto.WBCSTargetContributionRefInfo active_sources = 3;
+inline int WBCSSampleProvenanceInfo::_internal_active_sources_size() const {
+  return active_sources_.size();
+}
+inline int WBCSSampleProvenanceInfo::active_sources_size() const {
+  return _internal_active_sources_size();
+}
+inline void WBCSSampleProvenanceInfo::clear_active_sources() {
+  active_sources_.Clear();
+}
+inline ::galbot::singorix_proto::WBCSTargetContributionRefInfo* WBCSSampleProvenanceInfo::mutable_active_sources(int index) {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSSampleProvenanceInfo.active_sources)
+  return active_sources_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSTargetContributionRefInfo >*
+WBCSSampleProvenanceInfo::mutable_active_sources() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.singorix_proto.WBCSSampleProvenanceInfo.active_sources)
+  return &active_sources_;
+}
+inline const ::galbot::singorix_proto::WBCSTargetContributionRefInfo& WBCSSampleProvenanceInfo::_internal_active_sources(int index) const {
+  return active_sources_.Get(index);
+}
+inline const ::galbot::singorix_proto::WBCSTargetContributionRefInfo& WBCSSampleProvenanceInfo::active_sources(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSSampleProvenanceInfo.active_sources)
+  return _internal_active_sources(index);
+}
+inline ::galbot::singorix_proto::WBCSTargetContributionRefInfo* WBCSSampleProvenanceInfo::_internal_add_active_sources() {
+  return active_sources_.Add();
+}
+inline ::galbot::singorix_proto::WBCSTargetContributionRefInfo* WBCSSampleProvenanceInfo::add_active_sources() {
+  // @@protoc_insertion_point(field_add:galbot.singorix_proto.WBCSSampleProvenanceInfo.active_sources)
+  return _internal_add_active_sources();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSTargetContributionRefInfo >&
+WBCSSampleProvenanceInfo::active_sources() const {
+  // @@protoc_insertion_point(field_list:galbot.singorix_proto.WBCSSampleProvenanceInfo.active_sources)
+  return active_sources_;
+}
+
+// -------------------------------------------------------------------
+
+// WBCSLoopTimingMetricInfo
+
+// uint64 count = 1;
+inline void WBCSLoopTimingMetricInfo::clear_count() {
+  count_ = PROTOBUF_ULONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSLoopTimingMetricInfo::_internal_count() const {
+  return count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint64 WBCSLoopTimingMetricInfo::count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSLoopTimingMetricInfo.count)
+  return _internal_count();
+}
+inline void WBCSLoopTimingMetricInfo::_internal_set_count(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  
+  count_ = value;
+}
+inline void WBCSLoopTimingMetricInfo::set_count(::PROTOBUF_NAMESPACE_ID::uint64 value) {
+  _internal_set_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSLoopTimingMetricInfo.count)
+}
+
+// double avg_ms = 2;
+inline void WBCSLoopTimingMetricInfo::clear_avg_ms() {
+  avg_ms_ = 0;
+}
+inline double WBCSLoopTimingMetricInfo::_internal_avg_ms() const {
+  return avg_ms_;
+}
+inline double WBCSLoopTimingMetricInfo::avg_ms() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSLoopTimingMetricInfo.avg_ms)
+  return _internal_avg_ms();
+}
+inline void WBCSLoopTimingMetricInfo::_internal_set_avg_ms(double value) {
+  
+  avg_ms_ = value;
+}
+inline void WBCSLoopTimingMetricInfo::set_avg_ms(double value) {
+  _internal_set_avg_ms(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSLoopTimingMetricInfo.avg_ms)
+}
+
+// double min_ms = 3;
+inline void WBCSLoopTimingMetricInfo::clear_min_ms() {
+  min_ms_ = 0;
+}
+inline double WBCSLoopTimingMetricInfo::_internal_min_ms() const {
+  return min_ms_;
+}
+inline double WBCSLoopTimingMetricInfo::min_ms() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSLoopTimingMetricInfo.min_ms)
+  return _internal_min_ms();
+}
+inline void WBCSLoopTimingMetricInfo::_internal_set_min_ms(double value) {
+  
+  min_ms_ = value;
+}
+inline void WBCSLoopTimingMetricInfo::set_min_ms(double value) {
+  _internal_set_min_ms(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSLoopTimingMetricInfo.min_ms)
+}
+
+// double max_ms = 4;
+inline void WBCSLoopTimingMetricInfo::clear_max_ms() {
+  max_ms_ = 0;
+}
+inline double WBCSLoopTimingMetricInfo::_internal_max_ms() const {
+  return max_ms_;
+}
+inline double WBCSLoopTimingMetricInfo::max_ms() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSLoopTimingMetricInfo.max_ms)
+  return _internal_max_ms();
+}
+inline void WBCSLoopTimingMetricInfo::_internal_set_max_ms(double value) {
+  
+  max_ms_ = value;
+}
+inline void WBCSLoopTimingMetricInfo::set_max_ms(double value) {
+  _internal_set_max_ms(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSLoopTimingMetricInfo.max_ms)
+}
+
+// double var_ms2 = 5;
+inline void WBCSLoopTimingMetricInfo::clear_var_ms2() {
+  var_ms2_ = 0;
+}
+inline double WBCSLoopTimingMetricInfo::_internal_var_ms2() const {
+  return var_ms2_;
+}
+inline double WBCSLoopTimingMetricInfo::var_ms2() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSLoopTimingMetricInfo.var_ms2)
+  return _internal_var_ms2();
+}
+inline void WBCSLoopTimingMetricInfo::_internal_set_var_ms2(double value) {
+  
+  var_ms2_ = value;
+}
+inline void WBCSLoopTimingMetricInfo::set_var_ms2(double value) {
+  _internal_set_var_ms2(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSLoopTimingMetricInfo.var_ms2)
+}
+
+// -------------------------------------------------------------------
+
+// WBCSLoopTimingSummaryInfo
+
+// double window_ms = 1;
+inline void WBCSLoopTimingSummaryInfo::clear_window_ms() {
+  window_ms_ = 0;
+}
+inline double WBCSLoopTimingSummaryInfo::_internal_window_ms() const {
+  return window_ms_;
+}
+inline double WBCSLoopTimingSummaryInfo::window_ms() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSLoopTimingSummaryInfo.window_ms)
+  return _internal_window_ms();
+}
+inline void WBCSLoopTimingSummaryInfo::_internal_set_window_ms(double value) {
+  
+  window_ms_ = value;
+}
+inline void WBCSLoopTimingSummaryInfo::set_window_ms(double value) {
+  _internal_set_window_ms(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSLoopTimingSummaryInfo.window_ms)
+}
+
+// uint32 metric_count = 2;
+inline void WBCSLoopTimingSummaryInfo::clear_metric_count() {
+  metric_count_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSLoopTimingSummaryInfo::_internal_metric_count() const {
+  return metric_count_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSLoopTimingSummaryInfo::metric_count() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSLoopTimingSummaryInfo.metric_count)
+  return _internal_metric_count();
+}
+inline void WBCSLoopTimingSummaryInfo::_internal_set_metric_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  metric_count_ = value;
+}
+inline void WBCSLoopTimingSummaryInfo::set_metric_count(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_metric_count(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSLoopTimingSummaryInfo.metric_count)
+}
+
+// -------------------------------------------------------------------
+
+// WBCSFaultInfo
+
+// uint32 fault_code = 1;
+inline void WBCSFaultInfo::clear_fault_code() {
+  fault_code_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSFaultInfo::_internal_fault_code() const {
+  return fault_code_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 WBCSFaultInfo::fault_code() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSFaultInfo.fault_code)
+  return _internal_fault_code();
+}
+inline void WBCSFaultInfo::_internal_set_fault_code(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  fault_code_ = value;
+}
+inline void WBCSFaultInfo::set_fault_code(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_fault_code(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSFaultInfo.fault_code)
+}
+
+// string source = 2;
+inline void WBCSFaultInfo::clear_source() {
+  source_.ClearToEmpty();
+}
+inline const std::string& WBCSFaultInfo::source() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSFaultInfo.source)
+  return _internal_source();
+}
+inline void WBCSFaultInfo::set_source(const std::string& value) {
+  _internal_set_source(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSFaultInfo.source)
+}
+inline std::string* WBCSFaultInfo::mutable_source() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSFaultInfo.source)
+  return _internal_mutable_source();
+}
+inline const std::string& WBCSFaultInfo::_internal_source() const {
+  return source_.Get();
+}
+inline void WBCSFaultInfo::_internal_set_source(const std::string& value) {
+  
+  source_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSFaultInfo::set_source(std::string&& value) {
+  
+  source_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSFaultInfo.source)
+}
+inline void WBCSFaultInfo::set_source(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  source_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSFaultInfo.source)
+}
+inline void WBCSFaultInfo::set_source(const char* value,
+    size_t size) {
+  
+  source_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSFaultInfo.source)
+}
+inline std::string* WBCSFaultInfo::_internal_mutable_source() {
+  
+  return source_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSFaultInfo::release_source() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSFaultInfo.source)
+  return source_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSFaultInfo::set_allocated_source(std::string* source) {
+  if (source != nullptr) {
+    
+  } else {
+    
+  }
+  source_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), source,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSFaultInfo.source)
+}
+
+// string description = 3;
+inline void WBCSFaultInfo::clear_description() {
+  description_.ClearToEmpty();
+}
+inline const std::string& WBCSFaultInfo::description() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSFaultInfo.description)
+  return _internal_description();
+}
+inline void WBCSFaultInfo::set_description(const std::string& value) {
+  _internal_set_description(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSFaultInfo.description)
+}
+inline std::string* WBCSFaultInfo::mutable_description() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSFaultInfo.description)
+  return _internal_mutable_description();
+}
+inline const std::string& WBCSFaultInfo::_internal_description() const {
+  return description_.Get();
+}
+inline void WBCSFaultInfo::_internal_set_description(const std::string& value) {
+  
+  description_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSFaultInfo::set_description(std::string&& value) {
+  
+  description_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSFaultInfo.description)
+}
+inline void WBCSFaultInfo::set_description(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  description_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSFaultInfo.description)
+}
+inline void WBCSFaultInfo::set_description(const char* value,
+    size_t size) {
+  
+  description_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSFaultInfo.description)
+}
+inline std::string* WBCSFaultInfo::_internal_mutable_description() {
+  
+  return description_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSFaultInfo::release_description() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSFaultInfo.description)
+  return description_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSFaultInfo::set_allocated_description(std::string* description) {
+  if (description != nullptr) {
+    
+  } else {
+    
+  }
+  description_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), description,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSFaultInfo.description)
+}
+
+// bool synthetic = 4;
+inline void WBCSFaultInfo::clear_synthetic() {
+  synthetic_ = false;
+}
+inline bool WBCSFaultInfo::_internal_synthetic() const {
+  return synthetic_;
+}
+inline bool WBCSFaultInfo::synthetic() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSFaultInfo.synthetic)
+  return _internal_synthetic();
+}
+inline void WBCSFaultInfo::_internal_set_synthetic(bool value) {
+  
+  synthetic_ = value;
+}
+inline void WBCSFaultInfo::set_synthetic(bool value) {
+  _internal_set_synthetic(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSFaultInfo.synthetic)
+}
+
+// -------------------------------------------------------------------
+
+// WBCSRuntimeActionResultInfo
+
+// string graph_id = 1;
+inline void WBCSRuntimeActionResultInfo::clear_graph_id() {
+  graph_id_.ClearToEmpty();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::graph_id() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeActionResultInfo.graph_id)
+  return _internal_graph_id();
+}
+inline void WBCSRuntimeActionResultInfo::set_graph_id(const std::string& value) {
+  _internal_set_graph_id(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeActionResultInfo.graph_id)
+}
+inline std::string* WBCSRuntimeActionResultInfo::mutable_graph_id() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeActionResultInfo.graph_id)
+  return _internal_mutable_graph_id();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::_internal_graph_id() const {
+  return graph_id_.Get();
+}
+inline void WBCSRuntimeActionResultInfo::_internal_set_graph_id(const std::string& value) {
+  
+  graph_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_graph_id(std::string&& value) {
+  
+  graph_id_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSRuntimeActionResultInfo.graph_id)
+}
+inline void WBCSRuntimeActionResultInfo::set_graph_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  graph_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSRuntimeActionResultInfo.graph_id)
+}
+inline void WBCSRuntimeActionResultInfo::set_graph_id(const char* value,
+    size_t size) {
+  
+  graph_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSRuntimeActionResultInfo.graph_id)
+}
+inline std::string* WBCSRuntimeActionResultInfo::_internal_mutable_graph_id() {
+  
+  return graph_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSRuntimeActionResultInfo::release_graph_id() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeActionResultInfo.graph_id)
+  return graph_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_allocated_graph_id(std::string* graph_id) {
+  if (graph_id != nullptr) {
+    
+  } else {
+    
+  }
+  graph_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), graph_id,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeActionResultInfo.graph_id)
+}
+
+// string controller_id = 2;
+inline void WBCSRuntimeActionResultInfo::clear_controller_id() {
+  controller_id_.ClearToEmpty();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::controller_id() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeActionResultInfo.controller_id)
+  return _internal_controller_id();
+}
+inline void WBCSRuntimeActionResultInfo::set_controller_id(const std::string& value) {
+  _internal_set_controller_id(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeActionResultInfo.controller_id)
+}
+inline std::string* WBCSRuntimeActionResultInfo::mutable_controller_id() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeActionResultInfo.controller_id)
+  return _internal_mutable_controller_id();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::_internal_controller_id() const {
+  return controller_id_.Get();
+}
+inline void WBCSRuntimeActionResultInfo::_internal_set_controller_id(const std::string& value) {
+  
+  controller_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_controller_id(std::string&& value) {
+  
+  controller_id_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSRuntimeActionResultInfo.controller_id)
+}
+inline void WBCSRuntimeActionResultInfo::set_controller_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  controller_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSRuntimeActionResultInfo.controller_id)
+}
+inline void WBCSRuntimeActionResultInfo::set_controller_id(const char* value,
+    size_t size) {
+  
+  controller_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSRuntimeActionResultInfo.controller_id)
+}
+inline std::string* WBCSRuntimeActionResultInfo::_internal_mutable_controller_id() {
+  
+  return controller_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSRuntimeActionResultInfo::release_controller_id() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeActionResultInfo.controller_id)
+  return controller_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_allocated_controller_id(std::string* controller_id) {
+  if (controller_id != nullptr) {
+    
+  } else {
+    
+  }
+  controller_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), controller_id,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeActionResultInfo.controller_id)
+}
+
+// string group_name = 3;
+inline void WBCSRuntimeActionResultInfo::clear_group_name() {
+  group_name_.ClearToEmpty();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::group_name() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeActionResultInfo.group_name)
+  return _internal_group_name();
+}
+inline void WBCSRuntimeActionResultInfo::set_group_name(const std::string& value) {
+  _internal_set_group_name(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeActionResultInfo.group_name)
+}
+inline std::string* WBCSRuntimeActionResultInfo::mutable_group_name() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeActionResultInfo.group_name)
+  return _internal_mutable_group_name();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::_internal_group_name() const {
+  return group_name_.Get();
+}
+inline void WBCSRuntimeActionResultInfo::_internal_set_group_name(const std::string& value) {
+  
+  group_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_group_name(std::string&& value) {
+  
+  group_name_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSRuntimeActionResultInfo.group_name)
+}
+inline void WBCSRuntimeActionResultInfo::set_group_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  group_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSRuntimeActionResultInfo.group_name)
+}
+inline void WBCSRuntimeActionResultInfo::set_group_name(const char* value,
+    size_t size) {
+  
+  group_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSRuntimeActionResultInfo.group_name)
+}
+inline std::string* WBCSRuntimeActionResultInfo::_internal_mutable_group_name() {
+  
+  return group_name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSRuntimeActionResultInfo::release_group_name() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeActionResultInfo.group_name)
+  return group_name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_allocated_group_name(std::string* group_name) {
+  if (group_name != nullptr) {
+    
+  } else {
+    
+  }
+  group_name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), group_name,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeActionResultInfo.group_name)
+}
+
+// string stage_name = 4;
+inline void WBCSRuntimeActionResultInfo::clear_stage_name() {
+  stage_name_.ClearToEmpty();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::stage_name() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeActionResultInfo.stage_name)
+  return _internal_stage_name();
+}
+inline void WBCSRuntimeActionResultInfo::set_stage_name(const std::string& value) {
+  _internal_set_stage_name(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeActionResultInfo.stage_name)
+}
+inline std::string* WBCSRuntimeActionResultInfo::mutable_stage_name() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeActionResultInfo.stage_name)
+  return _internal_mutable_stage_name();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::_internal_stage_name() const {
+  return stage_name_.Get();
+}
+inline void WBCSRuntimeActionResultInfo::_internal_set_stage_name(const std::string& value) {
+  
+  stage_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_stage_name(std::string&& value) {
+  
+  stage_name_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSRuntimeActionResultInfo.stage_name)
+}
+inline void WBCSRuntimeActionResultInfo::set_stage_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  stage_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSRuntimeActionResultInfo.stage_name)
+}
+inline void WBCSRuntimeActionResultInfo::set_stage_name(const char* value,
+    size_t size) {
+  
+  stage_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSRuntimeActionResultInfo.stage_name)
+}
+inline std::string* WBCSRuntimeActionResultInfo::_internal_mutable_stage_name() {
+  
+  return stage_name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSRuntimeActionResultInfo::release_stage_name() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeActionResultInfo.stage_name)
+  return stage_name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_allocated_stage_name(std::string* stage_name) {
+  if (stage_name != nullptr) {
+    
+  } else {
+    
+  }
+  stage_name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), stage_name,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeActionResultInfo.stage_name)
+}
+
+// string action_type = 5;
+inline void WBCSRuntimeActionResultInfo::clear_action_type() {
+  action_type_.ClearToEmpty();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::action_type() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeActionResultInfo.action_type)
+  return _internal_action_type();
+}
+inline void WBCSRuntimeActionResultInfo::set_action_type(const std::string& value) {
+  _internal_set_action_type(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeActionResultInfo.action_type)
+}
+inline std::string* WBCSRuntimeActionResultInfo::mutable_action_type() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeActionResultInfo.action_type)
+  return _internal_mutable_action_type();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::_internal_action_type() const {
+  return action_type_.Get();
+}
+inline void WBCSRuntimeActionResultInfo::_internal_set_action_type(const std::string& value) {
+  
+  action_type_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_action_type(std::string&& value) {
+  
+  action_type_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSRuntimeActionResultInfo.action_type)
+}
+inline void WBCSRuntimeActionResultInfo::set_action_type(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  action_type_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSRuntimeActionResultInfo.action_type)
+}
+inline void WBCSRuntimeActionResultInfo::set_action_type(const char* value,
+    size_t size) {
+  
+  action_type_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSRuntimeActionResultInfo.action_type)
+}
+inline std::string* WBCSRuntimeActionResultInfo::_internal_mutable_action_type() {
+  
+  return action_type_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSRuntimeActionResultInfo::release_action_type() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeActionResultInfo.action_type)
+  return action_type_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_allocated_action_type(std::string* action_type) {
+  if (action_type != nullptr) {
+    
+  } else {
+    
+  }
+  action_type_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), action_type,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeActionResultInfo.action_type)
+}
+
+// bool success = 6;
+inline void WBCSRuntimeActionResultInfo::clear_success() {
+  success_ = false;
+}
+inline bool WBCSRuntimeActionResultInfo::_internal_success() const {
+  return success_;
+}
+inline bool WBCSRuntimeActionResultInfo::success() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeActionResultInfo.success)
+  return _internal_success();
+}
+inline void WBCSRuntimeActionResultInfo::_internal_set_success(bool value) {
+  
+  success_ = value;
+}
+inline void WBCSRuntimeActionResultInfo::set_success(bool value) {
+  _internal_set_success(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeActionResultInfo.success)
+}
+
+// string target_graph_id = 7;
+inline void WBCSRuntimeActionResultInfo::clear_target_graph_id() {
+  target_graph_id_.ClearToEmpty();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::target_graph_id() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeActionResultInfo.target_graph_id)
+  return _internal_target_graph_id();
+}
+inline void WBCSRuntimeActionResultInfo::set_target_graph_id(const std::string& value) {
+  _internal_set_target_graph_id(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeActionResultInfo.target_graph_id)
+}
+inline std::string* WBCSRuntimeActionResultInfo::mutable_target_graph_id() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeActionResultInfo.target_graph_id)
+  return _internal_mutable_target_graph_id();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::_internal_target_graph_id() const {
+  return target_graph_id_.Get();
+}
+inline void WBCSRuntimeActionResultInfo::_internal_set_target_graph_id(const std::string& value) {
+  
+  target_graph_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_target_graph_id(std::string&& value) {
+  
+  target_graph_id_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSRuntimeActionResultInfo.target_graph_id)
+}
+inline void WBCSRuntimeActionResultInfo::set_target_graph_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  target_graph_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSRuntimeActionResultInfo.target_graph_id)
+}
+inline void WBCSRuntimeActionResultInfo::set_target_graph_id(const char* value,
+    size_t size) {
+  
+  target_graph_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSRuntimeActionResultInfo.target_graph_id)
+}
+inline std::string* WBCSRuntimeActionResultInfo::_internal_mutable_target_graph_id() {
+  
+  return target_graph_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSRuntimeActionResultInfo::release_target_graph_id() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeActionResultInfo.target_graph_id)
+  return target_graph_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_allocated_target_graph_id(std::string* target_graph_id) {
+  if (target_graph_id != nullptr) {
+    
+  } else {
+    
+  }
+  target_graph_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), target_graph_id,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeActionResultInfo.target_graph_id)
+}
+
+// string target_group_name = 8;
+inline void WBCSRuntimeActionResultInfo::clear_target_group_name() {
+  target_group_name_.ClearToEmpty();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::target_group_name() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeActionResultInfo.target_group_name)
+  return _internal_target_group_name();
+}
+inline void WBCSRuntimeActionResultInfo::set_target_group_name(const std::string& value) {
+  _internal_set_target_group_name(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeActionResultInfo.target_group_name)
+}
+inline std::string* WBCSRuntimeActionResultInfo::mutable_target_group_name() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeActionResultInfo.target_group_name)
+  return _internal_mutable_target_group_name();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::_internal_target_group_name() const {
+  return target_group_name_.Get();
+}
+inline void WBCSRuntimeActionResultInfo::_internal_set_target_group_name(const std::string& value) {
+  
+  target_group_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_target_group_name(std::string&& value) {
+  
+  target_group_name_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSRuntimeActionResultInfo.target_group_name)
+}
+inline void WBCSRuntimeActionResultInfo::set_target_group_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  target_group_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSRuntimeActionResultInfo.target_group_name)
+}
+inline void WBCSRuntimeActionResultInfo::set_target_group_name(const char* value,
+    size_t size) {
+  
+  target_group_name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSRuntimeActionResultInfo.target_group_name)
+}
+inline std::string* WBCSRuntimeActionResultInfo::_internal_mutable_target_group_name() {
+  
+  return target_group_name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSRuntimeActionResultInfo::release_target_group_name() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeActionResultInfo.target_group_name)
+  return target_group_name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_allocated_target_group_name(std::string* target_group_name) {
+  if (target_group_name != nullptr) {
+    
+  } else {
+    
+  }
+  target_group_name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), target_group_name,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeActionResultInfo.target_group_name)
+}
+
+// string description = 9;
+inline void WBCSRuntimeActionResultInfo::clear_description() {
+  description_.ClearToEmpty();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::description() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeActionResultInfo.description)
+  return _internal_description();
+}
+inline void WBCSRuntimeActionResultInfo::set_description(const std::string& value) {
+  _internal_set_description(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeActionResultInfo.description)
+}
+inline std::string* WBCSRuntimeActionResultInfo::mutable_description() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeActionResultInfo.description)
+  return _internal_mutable_description();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::_internal_description() const {
+  return description_.Get();
+}
+inline void WBCSRuntimeActionResultInfo::_internal_set_description(const std::string& value) {
+  
+  description_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_description(std::string&& value) {
+  
+  description_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSRuntimeActionResultInfo.description)
+}
+inline void WBCSRuntimeActionResultInfo::set_description(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  description_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSRuntimeActionResultInfo.description)
+}
+inline void WBCSRuntimeActionResultInfo::set_description(const char* value,
+    size_t size) {
+  
+  description_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSRuntimeActionResultInfo.description)
+}
+inline std::string* WBCSRuntimeActionResultInfo::_internal_mutable_description() {
+  
+  return description_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSRuntimeActionResultInfo::release_description() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeActionResultInfo.description)
+  return description_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_allocated_description(std::string* description) {
+  if (description != nullptr) {
+    
+  } else {
+    
+  }
+  description_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), description,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeActionResultInfo.description)
+}
+
+// string error_message = 10;
+inline void WBCSRuntimeActionResultInfo::clear_error_message() {
+  error_message_.ClearToEmpty();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::error_message() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSRuntimeActionResultInfo.error_message)
+  return _internal_error_message();
+}
+inline void WBCSRuntimeActionResultInfo::set_error_message(const std::string& value) {
+  _internal_set_error_message(value);
+  // @@protoc_insertion_point(field_set:galbot.singorix_proto.WBCSRuntimeActionResultInfo.error_message)
+}
+inline std::string* WBCSRuntimeActionResultInfo::mutable_error_message() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSRuntimeActionResultInfo.error_message)
+  return _internal_mutable_error_message();
+}
+inline const std::string& WBCSRuntimeActionResultInfo::_internal_error_message() const {
+  return error_message_.Get();
+}
+inline void WBCSRuntimeActionResultInfo::_internal_set_error_message(const std::string& value) {
+  
+  error_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_error_message(std::string&& value) {
+  
+  error_message_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:galbot.singorix_proto.WBCSRuntimeActionResultInfo.error_message)
+}
+inline void WBCSRuntimeActionResultInfo::set_error_message(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  error_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:galbot.singorix_proto.WBCSRuntimeActionResultInfo.error_message)
+}
+inline void WBCSRuntimeActionResultInfo::set_error_message(const char* value,
+    size_t size) {
+  
+  error_message_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:galbot.singorix_proto.WBCSRuntimeActionResultInfo.error_message)
+}
+inline std::string* WBCSRuntimeActionResultInfo::_internal_mutable_error_message() {
+  
+  return error_message_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* WBCSRuntimeActionResultInfo::release_error_message() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSRuntimeActionResultInfo.error_message)
+  return error_message_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void WBCSRuntimeActionResultInfo::set_allocated_error_message(std::string* error_message) {
+  if (error_message != nullptr) {
+    
+  } else {
+    
+  }
+  error_message_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), error_message,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSRuntimeActionResultInfo.error_message)
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // WBCSInfo
 
 // .galbot.core_proto.Header header = 1;
@@ -4904,9 +13875,686 @@ WBCSInfo::mutable_info_map() {
   return _internal_mutable_info_map();
 }
 
+// map<string, .galbot.singorix_proto.WBCSRuntimeParamInfo> runtime_param_map = 3;
+inline int WBCSInfo::_internal_runtime_param_map_size() const {
+  return runtime_param_map_.size();
+}
+inline int WBCSInfo::runtime_param_map_size() const {
+  return _internal_runtime_param_map_size();
+}
+inline void WBCSInfo::clear_runtime_param_map() {
+  runtime_param_map_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSRuntimeParamInfo >&
+WBCSInfo::_internal_runtime_param_map() const {
+  return runtime_param_map_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSRuntimeParamInfo >&
+WBCSInfo::runtime_param_map() const {
+  // @@protoc_insertion_point(field_map:galbot.singorix_proto.WBCSInfo.runtime_param_map)
+  return _internal_runtime_param_map();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSRuntimeParamInfo >*
+WBCSInfo::_internal_mutable_runtime_param_map() {
+  return runtime_param_map_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSRuntimeParamInfo >*
+WBCSInfo::mutable_runtime_param_map() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.singorix_proto.WBCSInfo.runtime_param_map)
+  return _internal_mutable_runtime_param_map();
+}
+
+// .galbot.singorix_proto.WBCSRuntimeParamSummary runtime_param_summary = 4;
+inline bool WBCSInfo::_internal_has_runtime_param_summary() const {
+  return this != internal_default_instance() && runtime_param_summary_ != nullptr;
+}
+inline bool WBCSInfo::has_runtime_param_summary() const {
+  return _internal_has_runtime_param_summary();
+}
+inline void WBCSInfo::clear_runtime_param_summary() {
+  if (GetArena() == nullptr && runtime_param_summary_ != nullptr) {
+    delete runtime_param_summary_;
+  }
+  runtime_param_summary_ = nullptr;
+}
+inline const ::galbot::singorix_proto::WBCSRuntimeParamSummary& WBCSInfo::_internal_runtime_param_summary() const {
+  const ::galbot::singorix_proto::WBCSRuntimeParamSummary* p = runtime_param_summary_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::singorix_proto::WBCSRuntimeParamSummary&>(
+      ::galbot::singorix_proto::_WBCSRuntimeParamSummary_default_instance_);
+}
+inline const ::galbot::singorix_proto::WBCSRuntimeParamSummary& WBCSInfo::runtime_param_summary() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSInfo.runtime_param_summary)
+  return _internal_runtime_param_summary();
+}
+inline void WBCSInfo::unsafe_arena_set_allocated_runtime_param_summary(
+    ::galbot::singorix_proto::WBCSRuntimeParamSummary* runtime_param_summary) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(runtime_param_summary_);
+  }
+  runtime_param_summary_ = runtime_param_summary;
+  if (runtime_param_summary) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.singorix_proto.WBCSInfo.runtime_param_summary)
+}
+inline ::galbot::singorix_proto::WBCSRuntimeParamSummary* WBCSInfo::release_runtime_param_summary() {
+  
+  ::galbot::singorix_proto::WBCSRuntimeParamSummary* temp = runtime_param_summary_;
+  runtime_param_summary_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::singorix_proto::WBCSRuntimeParamSummary* WBCSInfo::unsafe_arena_release_runtime_param_summary() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSInfo.runtime_param_summary)
+  
+  ::galbot::singorix_proto::WBCSRuntimeParamSummary* temp = runtime_param_summary_;
+  runtime_param_summary_ = nullptr;
+  return temp;
+}
+inline ::galbot::singorix_proto::WBCSRuntimeParamSummary* WBCSInfo::_internal_mutable_runtime_param_summary() {
+  
+  if (runtime_param_summary_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::singorix_proto::WBCSRuntimeParamSummary>(GetArena());
+    runtime_param_summary_ = p;
+  }
+  return runtime_param_summary_;
+}
+inline ::galbot::singorix_proto::WBCSRuntimeParamSummary* WBCSInfo::mutable_runtime_param_summary() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSInfo.runtime_param_summary)
+  return _internal_mutable_runtime_param_summary();
+}
+inline void WBCSInfo::set_allocated_runtime_param_summary(::galbot::singorix_proto::WBCSRuntimeParamSummary* runtime_param_summary) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete runtime_param_summary_;
+  }
+  if (runtime_param_summary) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(runtime_param_summary);
+    if (message_arena != submessage_arena) {
+      runtime_param_summary = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, runtime_param_summary, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  runtime_param_summary_ = runtime_param_summary;
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSInfo.runtime_param_summary)
+}
+
+// map<string, .galbot.singorix_proto.WBCSTargetStatusInfo> target_status_map = 5;
+inline int WBCSInfo::_internal_target_status_map_size() const {
+  return target_status_map_.size();
+}
+inline int WBCSInfo::target_status_map_size() const {
+  return _internal_target_status_map_size();
+}
+inline void WBCSInfo::clear_target_status_map() {
+  target_status_map_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSTargetStatusInfo >&
+WBCSInfo::_internal_target_status_map() const {
+  return target_status_map_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSTargetStatusInfo >&
+WBCSInfo::target_status_map() const {
+  // @@protoc_insertion_point(field_map:galbot.singorix_proto.WBCSInfo.target_status_map)
+  return _internal_target_status_map();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSTargetStatusInfo >*
+WBCSInfo::_internal_mutable_target_status_map() {
+  return target_status_map_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSTargetStatusInfo >*
+WBCSInfo::mutable_target_status_map() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.singorix_proto.WBCSInfo.target_status_map)
+  return _internal_mutable_target_status_map();
+}
+
+// map<string, .galbot.singorix_proto.WBCSCompiledTargetInfo> compiled_target_map = 6;
+inline int WBCSInfo::_internal_compiled_target_map_size() const {
+  return compiled_target_map_.size();
+}
+inline int WBCSInfo::compiled_target_map_size() const {
+  return _internal_compiled_target_map_size();
+}
+inline void WBCSInfo::clear_compiled_target_map() {
+  compiled_target_map_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSCompiledTargetInfo >&
+WBCSInfo::_internal_compiled_target_map() const {
+  return compiled_target_map_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSCompiledTargetInfo >&
+WBCSInfo::compiled_target_map() const {
+  // @@protoc_insertion_point(field_map:galbot.singorix_proto.WBCSInfo.compiled_target_map)
+  return _internal_compiled_target_map();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSCompiledTargetInfo >*
+WBCSInfo::_internal_mutable_compiled_target_map() {
+  return compiled_target_map_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSCompiledTargetInfo >*
+WBCSInfo::mutable_compiled_target_map() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.singorix_proto.WBCSInfo.compiled_target_map)
+  return _internal_mutable_compiled_target_map();
+}
+
+// map<string, .galbot.singorix_proto.WBCSTargetContributionStatusInfo> target_contribution_map = 7;
+inline int WBCSInfo::_internal_target_contribution_map_size() const {
+  return target_contribution_map_.size();
+}
+inline int WBCSInfo::target_contribution_map_size() const {
+  return _internal_target_contribution_map_size();
+}
+inline void WBCSInfo::clear_target_contribution_map() {
+  target_contribution_map_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSTargetContributionStatusInfo >&
+WBCSInfo::_internal_target_contribution_map() const {
+  return target_contribution_map_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSTargetContributionStatusInfo >&
+WBCSInfo::target_contribution_map() const {
+  // @@protoc_insertion_point(field_map:galbot.singorix_proto.WBCSInfo.target_contribution_map)
+  return _internal_target_contribution_map();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSTargetContributionStatusInfo >*
+WBCSInfo::_internal_mutable_target_contribution_map() {
+  return target_contribution_map_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSTargetContributionStatusInfo >*
+WBCSInfo::mutable_target_contribution_map() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.singorix_proto.WBCSInfo.target_contribution_map)
+  return _internal_mutable_target_contribution_map();
+}
+
+// .galbot.singorix_proto.WBCSSampleProvenanceInfo sample_provenance = 8;
+inline bool WBCSInfo::_internal_has_sample_provenance() const {
+  return this != internal_default_instance() && sample_provenance_ != nullptr;
+}
+inline bool WBCSInfo::has_sample_provenance() const {
+  return _internal_has_sample_provenance();
+}
+inline void WBCSInfo::clear_sample_provenance() {
+  if (GetArena() == nullptr && sample_provenance_ != nullptr) {
+    delete sample_provenance_;
+  }
+  sample_provenance_ = nullptr;
+}
+inline const ::galbot::singorix_proto::WBCSSampleProvenanceInfo& WBCSInfo::_internal_sample_provenance() const {
+  const ::galbot::singorix_proto::WBCSSampleProvenanceInfo* p = sample_provenance_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::singorix_proto::WBCSSampleProvenanceInfo&>(
+      ::galbot::singorix_proto::_WBCSSampleProvenanceInfo_default_instance_);
+}
+inline const ::galbot::singorix_proto::WBCSSampleProvenanceInfo& WBCSInfo::sample_provenance() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSInfo.sample_provenance)
+  return _internal_sample_provenance();
+}
+inline void WBCSInfo::unsafe_arena_set_allocated_sample_provenance(
+    ::galbot::singorix_proto::WBCSSampleProvenanceInfo* sample_provenance) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(sample_provenance_);
+  }
+  sample_provenance_ = sample_provenance;
+  if (sample_provenance) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.singorix_proto.WBCSInfo.sample_provenance)
+}
+inline ::galbot::singorix_proto::WBCSSampleProvenanceInfo* WBCSInfo::release_sample_provenance() {
+  
+  ::galbot::singorix_proto::WBCSSampleProvenanceInfo* temp = sample_provenance_;
+  sample_provenance_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::singorix_proto::WBCSSampleProvenanceInfo* WBCSInfo::unsafe_arena_release_sample_provenance() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSInfo.sample_provenance)
+  
+  ::galbot::singorix_proto::WBCSSampleProvenanceInfo* temp = sample_provenance_;
+  sample_provenance_ = nullptr;
+  return temp;
+}
+inline ::galbot::singorix_proto::WBCSSampleProvenanceInfo* WBCSInfo::_internal_mutable_sample_provenance() {
+  
+  if (sample_provenance_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::singorix_proto::WBCSSampleProvenanceInfo>(GetArena());
+    sample_provenance_ = p;
+  }
+  return sample_provenance_;
+}
+inline ::galbot::singorix_proto::WBCSSampleProvenanceInfo* WBCSInfo::mutable_sample_provenance() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSInfo.sample_provenance)
+  return _internal_mutable_sample_provenance();
+}
+inline void WBCSInfo::set_allocated_sample_provenance(::galbot::singorix_proto::WBCSSampleProvenanceInfo* sample_provenance) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete sample_provenance_;
+  }
+  if (sample_provenance) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(sample_provenance);
+    if (message_arena != submessage_arena) {
+      sample_provenance = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, sample_provenance, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  sample_provenance_ = sample_provenance;
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSInfo.sample_provenance)
+}
+
+// map<string, .galbot.singorix_proto.RuntimeGraphGroupStatus> runtime_graph_group_status_map = 9;
+inline int WBCSInfo::_internal_runtime_graph_group_status_map_size() const {
+  return runtime_graph_group_status_map_.size();
+}
+inline int WBCSInfo::runtime_graph_group_status_map_size() const {
+  return _internal_runtime_graph_group_status_map_size();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::RuntimeGraphGroupStatus >&
+WBCSInfo::_internal_runtime_graph_group_status_map() const {
+  return runtime_graph_group_status_map_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::RuntimeGraphGroupStatus >&
+WBCSInfo::runtime_graph_group_status_map() const {
+  // @@protoc_insertion_point(field_map:galbot.singorix_proto.WBCSInfo.runtime_graph_group_status_map)
+  return _internal_runtime_graph_group_status_map();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::RuntimeGraphGroupStatus >*
+WBCSInfo::_internal_mutable_runtime_graph_group_status_map() {
+  return runtime_graph_group_status_map_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::RuntimeGraphGroupStatus >*
+WBCSInfo::mutable_runtime_graph_group_status_map() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.singorix_proto.WBCSInfo.runtime_graph_group_status_map)
+  return _internal_mutable_runtime_graph_group_status_map();
+}
+
+// repeated .galbot.singorix_proto.RuntimeGraphClaimStatus runtime_graph_active_claims = 10;
+inline int WBCSInfo::_internal_runtime_graph_active_claims_size() const {
+  return runtime_graph_active_claims_.size();
+}
+inline int WBCSInfo::runtime_graph_active_claims_size() const {
+  return _internal_runtime_graph_active_claims_size();
+}
+inline ::galbot::singorix_proto::RuntimeGraphClaimStatus* WBCSInfo::mutable_runtime_graph_active_claims(int index) {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSInfo.runtime_graph_active_claims)
+  return runtime_graph_active_claims_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::RuntimeGraphClaimStatus >*
+WBCSInfo::mutable_runtime_graph_active_claims() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.singorix_proto.WBCSInfo.runtime_graph_active_claims)
+  return &runtime_graph_active_claims_;
+}
+inline const ::galbot::singorix_proto::RuntimeGraphClaimStatus& WBCSInfo::_internal_runtime_graph_active_claims(int index) const {
+  return runtime_graph_active_claims_.Get(index);
+}
+inline const ::galbot::singorix_proto::RuntimeGraphClaimStatus& WBCSInfo::runtime_graph_active_claims(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSInfo.runtime_graph_active_claims)
+  return _internal_runtime_graph_active_claims(index);
+}
+inline ::galbot::singorix_proto::RuntimeGraphClaimStatus* WBCSInfo::_internal_add_runtime_graph_active_claims() {
+  return runtime_graph_active_claims_.Add();
+}
+inline ::galbot::singorix_proto::RuntimeGraphClaimStatus* WBCSInfo::add_runtime_graph_active_claims() {
+  // @@protoc_insertion_point(field_add:galbot.singorix_proto.WBCSInfo.runtime_graph_active_claims)
+  return _internal_add_runtime_graph_active_claims();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::RuntimeGraphClaimStatus >&
+WBCSInfo::runtime_graph_active_claims() const {
+  // @@protoc_insertion_point(field_list:galbot.singorix_proto.WBCSInfo.runtime_graph_active_claims)
+  return runtime_graph_active_claims_;
+}
+
+// map<string, string> runtime_graph_blocked_after_stage_map = 11;
+inline int WBCSInfo::_internal_runtime_graph_blocked_after_stage_map_size() const {
+  return runtime_graph_blocked_after_stage_map_.size();
+}
+inline int WBCSInfo::runtime_graph_blocked_after_stage_map_size() const {
+  return _internal_runtime_graph_blocked_after_stage_map_size();
+}
+inline void WBCSInfo::clear_runtime_graph_blocked_after_stage_map() {
+  runtime_graph_blocked_after_stage_map_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+WBCSInfo::_internal_runtime_graph_blocked_after_stage_map() const {
+  return runtime_graph_blocked_after_stage_map_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
+WBCSInfo::runtime_graph_blocked_after_stage_map() const {
+  // @@protoc_insertion_point(field_map:galbot.singorix_proto.WBCSInfo.runtime_graph_blocked_after_stage_map)
+  return _internal_runtime_graph_blocked_after_stage_map();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+WBCSInfo::_internal_mutable_runtime_graph_blocked_after_stage_map() {
+  return runtime_graph_blocked_after_stage_map_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
+WBCSInfo::mutable_runtime_graph_blocked_after_stage_map() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.singorix_proto.WBCSInfo.runtime_graph_blocked_after_stage_map)
+  return _internal_mutable_runtime_graph_blocked_after_stage_map();
+}
+
+// map<string, .galbot.singorix_proto.RuntimeControllerStatus> runtime_controller_state_map = 12;
+inline int WBCSInfo::_internal_runtime_controller_state_map_size() const {
+  return runtime_controller_state_map_.size();
+}
+inline int WBCSInfo::runtime_controller_state_map_size() const {
+  return _internal_runtime_controller_state_map_size();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::RuntimeControllerStatus >&
+WBCSInfo::_internal_runtime_controller_state_map() const {
+  return runtime_controller_state_map_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::RuntimeControllerStatus >&
+WBCSInfo::runtime_controller_state_map() const {
+  // @@protoc_insertion_point(field_map:galbot.singorix_proto.WBCSInfo.runtime_controller_state_map)
+  return _internal_runtime_controller_state_map();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::RuntimeControllerStatus >*
+WBCSInfo::_internal_mutable_runtime_controller_state_map() {
+  return runtime_controller_state_map_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::RuntimeControllerStatus >*
+WBCSInfo::mutable_runtime_controller_state_map() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.singorix_proto.WBCSInfo.runtime_controller_state_map)
+  return _internal_mutable_runtime_controller_state_map();
+}
+
+// repeated .galbot.singorix_proto.RuntimeGraphLifecycleEvent runtime_graph_lifecycle_events = 13;
+inline int WBCSInfo::_internal_runtime_graph_lifecycle_events_size() const {
+  return runtime_graph_lifecycle_events_.size();
+}
+inline int WBCSInfo::runtime_graph_lifecycle_events_size() const {
+  return _internal_runtime_graph_lifecycle_events_size();
+}
+inline ::galbot::singorix_proto::RuntimeGraphLifecycleEvent* WBCSInfo::mutable_runtime_graph_lifecycle_events(int index) {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSInfo.runtime_graph_lifecycle_events)
+  return runtime_graph_lifecycle_events_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::RuntimeGraphLifecycleEvent >*
+WBCSInfo::mutable_runtime_graph_lifecycle_events() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.singorix_proto.WBCSInfo.runtime_graph_lifecycle_events)
+  return &runtime_graph_lifecycle_events_;
+}
+inline const ::galbot::singorix_proto::RuntimeGraphLifecycleEvent& WBCSInfo::_internal_runtime_graph_lifecycle_events(int index) const {
+  return runtime_graph_lifecycle_events_.Get(index);
+}
+inline const ::galbot::singorix_proto::RuntimeGraphLifecycleEvent& WBCSInfo::runtime_graph_lifecycle_events(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSInfo.runtime_graph_lifecycle_events)
+  return _internal_runtime_graph_lifecycle_events(index);
+}
+inline ::galbot::singorix_proto::RuntimeGraphLifecycleEvent* WBCSInfo::_internal_add_runtime_graph_lifecycle_events() {
+  return runtime_graph_lifecycle_events_.Add();
+}
+inline ::galbot::singorix_proto::RuntimeGraphLifecycleEvent* WBCSInfo::add_runtime_graph_lifecycle_events() {
+  // @@protoc_insertion_point(field_add:galbot.singorix_proto.WBCSInfo.runtime_graph_lifecycle_events)
+  return _internal_add_runtime_graph_lifecycle_events();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::RuntimeGraphLifecycleEvent >&
+WBCSInfo::runtime_graph_lifecycle_events() const {
+  // @@protoc_insertion_point(field_list:galbot.singorix_proto.WBCSInfo.runtime_graph_lifecycle_events)
+  return runtime_graph_lifecycle_events_;
+}
+
+// map<string, .galbot.singorix_proto.WBCSLoopTimingMetricInfo> loop_timing_map = 14;
+inline int WBCSInfo::_internal_loop_timing_map_size() const {
+  return loop_timing_map_.size();
+}
+inline int WBCSInfo::loop_timing_map_size() const {
+  return _internal_loop_timing_map_size();
+}
+inline void WBCSInfo::clear_loop_timing_map() {
+  loop_timing_map_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSLoopTimingMetricInfo >&
+WBCSInfo::_internal_loop_timing_map() const {
+  return loop_timing_map_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSLoopTimingMetricInfo >&
+WBCSInfo::loop_timing_map() const {
+  // @@protoc_insertion_point(field_map:galbot.singorix_proto.WBCSInfo.loop_timing_map)
+  return _internal_loop_timing_map();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSLoopTimingMetricInfo >*
+WBCSInfo::_internal_mutable_loop_timing_map() {
+  return loop_timing_map_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::singorix_proto::WBCSLoopTimingMetricInfo >*
+WBCSInfo::mutable_loop_timing_map() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.singorix_proto.WBCSInfo.loop_timing_map)
+  return _internal_mutable_loop_timing_map();
+}
+
+// .galbot.singorix_proto.WBCSLoopTimingSummaryInfo loop_timing_summary = 15;
+inline bool WBCSInfo::_internal_has_loop_timing_summary() const {
+  return this != internal_default_instance() && loop_timing_summary_ != nullptr;
+}
+inline bool WBCSInfo::has_loop_timing_summary() const {
+  return _internal_has_loop_timing_summary();
+}
+inline void WBCSInfo::clear_loop_timing_summary() {
+  if (GetArena() == nullptr && loop_timing_summary_ != nullptr) {
+    delete loop_timing_summary_;
+  }
+  loop_timing_summary_ = nullptr;
+}
+inline const ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo& WBCSInfo::_internal_loop_timing_summary() const {
+  const ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* p = loop_timing_summary_;
+  return p != nullptr ? *p : reinterpret_cast<const ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo&>(
+      ::galbot::singorix_proto::_WBCSLoopTimingSummaryInfo_default_instance_);
+}
+inline const ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo& WBCSInfo::loop_timing_summary() const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSInfo.loop_timing_summary)
+  return _internal_loop_timing_summary();
+}
+inline void WBCSInfo::unsafe_arena_set_allocated_loop_timing_summary(
+    ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* loop_timing_summary) {
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(loop_timing_summary_);
+  }
+  loop_timing_summary_ = loop_timing_summary;
+  if (loop_timing_summary) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:galbot.singorix_proto.WBCSInfo.loop_timing_summary)
+}
+inline ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* WBCSInfo::release_loop_timing_summary() {
+  
+  ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* temp = loop_timing_summary_;
+  loop_timing_summary_ = nullptr;
+  if (GetArena() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+  return temp;
+}
+inline ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* WBCSInfo::unsafe_arena_release_loop_timing_summary() {
+  // @@protoc_insertion_point(field_release:galbot.singorix_proto.WBCSInfo.loop_timing_summary)
+  
+  ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* temp = loop_timing_summary_;
+  loop_timing_summary_ = nullptr;
+  return temp;
+}
+inline ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* WBCSInfo::_internal_mutable_loop_timing_summary() {
+  
+  if (loop_timing_summary_ == nullptr) {
+    auto* p = CreateMaybeMessage<::galbot::singorix_proto::WBCSLoopTimingSummaryInfo>(GetArena());
+    loop_timing_summary_ = p;
+  }
+  return loop_timing_summary_;
+}
+inline ::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* WBCSInfo::mutable_loop_timing_summary() {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSInfo.loop_timing_summary)
+  return _internal_mutable_loop_timing_summary();
+}
+inline void WBCSInfo::set_allocated_loop_timing_summary(::galbot::singorix_proto::WBCSLoopTimingSummaryInfo* loop_timing_summary) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
+  if (message_arena == nullptr) {
+    delete loop_timing_summary_;
+  }
+  if (loop_timing_summary) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+      ::PROTOBUF_NAMESPACE_ID::Arena::GetArena(loop_timing_summary);
+    if (message_arena != submessage_arena) {
+      loop_timing_summary = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, loop_timing_summary, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  loop_timing_summary_ = loop_timing_summary;
+  // @@protoc_insertion_point(field_set_allocated:galbot.singorix_proto.WBCSInfo.loop_timing_summary)
+}
+
+// repeated .galbot.singorix_proto.WBCSFaultInfo fault_infos = 16;
+inline int WBCSInfo::_internal_fault_infos_size() const {
+  return fault_infos_.size();
+}
+inline int WBCSInfo::fault_infos_size() const {
+  return _internal_fault_infos_size();
+}
+inline void WBCSInfo::clear_fault_infos() {
+  fault_infos_.Clear();
+}
+inline ::galbot::singorix_proto::WBCSFaultInfo* WBCSInfo::mutable_fault_infos(int index) {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSInfo.fault_infos)
+  return fault_infos_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSFaultInfo >*
+WBCSInfo::mutable_fault_infos() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.singorix_proto.WBCSInfo.fault_infos)
+  return &fault_infos_;
+}
+inline const ::galbot::singorix_proto::WBCSFaultInfo& WBCSInfo::_internal_fault_infos(int index) const {
+  return fault_infos_.Get(index);
+}
+inline const ::galbot::singorix_proto::WBCSFaultInfo& WBCSInfo::fault_infos(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSInfo.fault_infos)
+  return _internal_fault_infos(index);
+}
+inline ::galbot::singorix_proto::WBCSFaultInfo* WBCSInfo::_internal_add_fault_infos() {
+  return fault_infos_.Add();
+}
+inline ::galbot::singorix_proto::WBCSFaultInfo* WBCSInfo::add_fault_infos() {
+  // @@protoc_insertion_point(field_add:galbot.singorix_proto.WBCSInfo.fault_infos)
+  return _internal_add_fault_infos();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSFaultInfo >&
+WBCSInfo::fault_infos() const {
+  // @@protoc_insertion_point(field_list:galbot.singorix_proto.WBCSInfo.fault_infos)
+  return fault_infos_;
+}
+
+// repeated .galbot.singorix_proto.WBCSRuntimeActionResultInfo runtime_action_results = 17;
+inline int WBCSInfo::_internal_runtime_action_results_size() const {
+  return runtime_action_results_.size();
+}
+inline int WBCSInfo::runtime_action_results_size() const {
+  return _internal_runtime_action_results_size();
+}
+inline void WBCSInfo::clear_runtime_action_results() {
+  runtime_action_results_.Clear();
+}
+inline ::galbot::singorix_proto::WBCSRuntimeActionResultInfo* WBCSInfo::mutable_runtime_action_results(int index) {
+  // @@protoc_insertion_point(field_mutable:galbot.singorix_proto.WBCSInfo.runtime_action_results)
+  return runtime_action_results_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSRuntimeActionResultInfo >*
+WBCSInfo::mutable_runtime_action_results() {
+  // @@protoc_insertion_point(field_mutable_list:galbot.singorix_proto.WBCSInfo.runtime_action_results)
+  return &runtime_action_results_;
+}
+inline const ::galbot::singorix_proto::WBCSRuntimeActionResultInfo& WBCSInfo::_internal_runtime_action_results(int index) const {
+  return runtime_action_results_.Get(index);
+}
+inline const ::galbot::singorix_proto::WBCSRuntimeActionResultInfo& WBCSInfo::runtime_action_results(int index) const {
+  // @@protoc_insertion_point(field_get:galbot.singorix_proto.WBCSInfo.runtime_action_results)
+  return _internal_runtime_action_results(index);
+}
+inline ::galbot::singorix_proto::WBCSRuntimeActionResultInfo* WBCSInfo::_internal_add_runtime_action_results() {
+  return runtime_action_results_.Add();
+}
+inline ::galbot::singorix_proto::WBCSRuntimeActionResultInfo* WBCSInfo::add_runtime_action_results() {
+  // @@protoc_insertion_point(field_add:galbot.singorix_proto.WBCSInfo.runtime_action_results)
+  return _internal_add_runtime_action_results();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::galbot::singorix_proto::WBCSRuntimeActionResultInfo >&
+WBCSInfo::runtime_action_results() const {
+  // @@protoc_insertion_point(field_list:galbot.singorix_proto.WBCSInfo.runtime_action_results)
+  return runtime_action_results_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

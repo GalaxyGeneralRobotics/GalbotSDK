@@ -50,8 +50,14 @@ try:
     printStatus(status)
     assert status == gm.MotionStatus.SUCCESS, "load failed"
     print(f"✅ Tool attached successfully")
+
+    # Clean up the attached tool model to avoid affecting subsequent examples.
+    status = motion.detach_tool(chain=chain_name)
+    printStatus(status)
+    assert status == gm.MotionStatus.SUCCESS, "detach failed"
+    print(f"✅ Tool detached successfully")
 except Exception as e:
-    print(f"❌ Tool attachment exception: {e}")
+    print(f"❌ Tool operation exception: {e}")
 
 robot.request_shutdown()
 robot.wait_for_shutdown()

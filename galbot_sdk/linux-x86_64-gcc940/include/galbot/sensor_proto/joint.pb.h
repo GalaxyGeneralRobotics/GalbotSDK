@@ -30,8 +30,12 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/map.h>  // IWYU pragma: export
+#include <google/protobuf/map_entry.h>
+#include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/unknown_field_set.h>
 #include "galbot/core_proto/header.pb.h"
+#include "galbot/core_proto/wrapper.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_galbot_2fsensor_5fproto_2fjoint_2eproto
@@ -47,7 +51,7 @@ struct TableStruct_galbot_2fsensor_5fproto_2fjoint_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[1]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[2]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -59,15 +63,49 @@ namespace sensor_proto {
 class JointSensor;
 class JointSensorDefaultTypeInternal;
 extern JointSensorDefaultTypeInternal _JointSensor_default_instance_;
+class JointSensor_CustomSensorMapEntry_DoNotUse;
+class JointSensor_CustomSensorMapEntry_DoNotUseDefaultTypeInternal;
+extern JointSensor_CustomSensorMapEntry_DoNotUseDefaultTypeInternal _JointSensor_CustomSensorMapEntry_DoNotUse_default_instance_;
 }  // namespace sensor_proto
 }  // namespace galbot
 PROTOBUF_NAMESPACE_OPEN
 template<> ::galbot::sensor_proto::JointSensor* Arena::CreateMaybeMessage<::galbot::sensor_proto::JointSensor>(Arena*);
+template<> ::galbot::sensor_proto::JointSensor_CustomSensorMapEntry_DoNotUse* Arena::CreateMaybeMessage<::galbot::sensor_proto::JointSensor_CustomSensorMapEntry_DoNotUse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace galbot {
 namespace sensor_proto {
 
 // ===================================================================
+
+class JointSensor_CustomSensorMapEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<JointSensor_CustomSensorMapEntry_DoNotUse, 
+    std::string, ::galbot::core_proto::Value,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<JointSensor_CustomSensorMapEntry_DoNotUse, 
+    std::string, ::galbot::core_proto::Value,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  JointSensor_CustomSensorMapEntry_DoNotUse();
+  explicit JointSensor_CustomSensorMapEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const JointSensor_CustomSensorMapEntry_DoNotUse& other);
+  static const JointSensor_CustomSensorMapEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const JointSensor_CustomSensorMapEntry_DoNotUse*>(&_JointSensor_CustomSensorMapEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "galbot.sensor_proto.JointSensor.CustomSensorMapEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_galbot_2fsensor_5fproto_2fjoint_2eproto);
+    return ::descriptor_table_galbot_2fsensor_5fproto_2fjoint_2eproto.file_level_metadata[0];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
 
 class JointSensor PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:galbot.sensor_proto.JointSensor) */ {
@@ -110,7 +148,7 @@ class JointSensor PROTOBUF_FINAL :
                &_JointSensor_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   friend void swap(JointSensor& a, JointSensor& b) {
     a.Swap(&b);
@@ -178,6 +216,7 @@ class JointSensor PROTOBUF_FINAL :
 
   // nested types ----------------------------------------------------
 
+
   // accessors -------------------------------------------------------
 
   enum : int {
@@ -186,6 +225,7 @@ class JointSensor PROTOBUF_FINAL :
     kVelocityFieldNumber = 4,
     kEffortFieldNumber = 5,
     kCurrentFieldNumber = 6,
+    kCustomSensorMapFieldNumber = 7,
     kHeaderFieldNumber = 1,
   };
   // repeated string name = 2;
@@ -300,6 +340,23 @@ class JointSensor PROTOBUF_FINAL :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< double >*
       mutable_current();
 
+  // map<string, .galbot.core_proto.Value> custom_sensor_map = 7;
+  int custom_sensor_map_size() const;
+  private:
+  int _internal_custom_sensor_map_size() const;
+  public:
+  void clear_custom_sensor_map();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >&
+      _internal_custom_sensor_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >*
+      _internal_mutable_custom_sensor_map();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >&
+      custom_sensor_map() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >*
+      mutable_custom_sensor_map();
+
   // .galbot.core_proto.Header header = 1;
   bool has_header() const;
   private:
@@ -334,6 +391,11 @@ class JointSensor PROTOBUF_FINAL :
   mutable std::atomic<int> _effort_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< double > current_;
   mutable std::atomic<int> _current_cached_byte_size_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      JointSensor_CustomSensorMapEntry_DoNotUse,
+      std::string, ::galbot::core_proto::Value,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> custom_sensor_map_;
   ::galbot::core_proto::Header* header_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_galbot_2fsensor_5fproto_2fjoint_2eproto;
@@ -347,6 +409,8 @@ class JointSensor PROTOBUF_FINAL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // JointSensor
 
 // .galbot.core_proto.Header header = 1;
@@ -688,9 +752,37 @@ JointSensor::mutable_current() {
   return _internal_mutable_current();
 }
 
+// map<string, .galbot.core_proto.Value> custom_sensor_map = 7;
+inline int JointSensor::_internal_custom_sensor_map_size() const {
+  return custom_sensor_map_.size();
+}
+inline int JointSensor::custom_sensor_map_size() const {
+  return _internal_custom_sensor_map_size();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >&
+JointSensor::_internal_custom_sensor_map() const {
+  return custom_sensor_map_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >&
+JointSensor::custom_sensor_map() const {
+  // @@protoc_insertion_point(field_map:galbot.sensor_proto.JointSensor.custom_sensor_map)
+  return _internal_custom_sensor_map();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >*
+JointSensor::_internal_mutable_custom_sensor_map() {
+  return custom_sensor_map_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::galbot::core_proto::Value >*
+JointSensor::mutable_custom_sensor_map() {
+  // @@protoc_insertion_point(field_mutable_map:galbot.sensor_proto.JointSensor.custom_sensor_map)
+  return _internal_mutable_custom_sensor_map();
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 

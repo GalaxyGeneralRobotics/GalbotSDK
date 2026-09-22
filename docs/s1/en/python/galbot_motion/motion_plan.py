@@ -8,6 +8,17 @@ from galbot_sdk.s1 import GalbotMotion, GalbotRobot
 # - Motion collision checking uses self-collision + a collision world built from objects you load manually via
 #   add_obstacle()/attach_target_object() (including point clouds if you load them explicitly).
 
+
+def confirm_robot_safety():
+    print("WARNING: The robot will move to the initial joint state. Release the emergency stop and clear nearby obstacles.")
+    return input("Continue? (y/n): ").strip().lower() == "y"
+
+
+if not confirm_robot_safety():
+    print("Example cancelled.")
+    raise SystemExit(0)
+
+
 motion = GalbotMotion()
 robot = GalbotRobot()
 
@@ -46,15 +57,34 @@ else:
 time.sleep(1)
 
 chain_joints = {
-    "torso":     [1.1],
+    "torso":     [0.65],
     "head":      [0.0000, -0.26],
     "left_arm":  [-0.47, -0.94, -0.54, -1.92, 0.2, 0.0, 0.0],
     "right_arm": [0.47, 0.94, 0.54, 1.92, -0.2, 0.0, 0.0]
 }
-chain_pose_baselink = {
-    "left_arm":  [0.1267, 0.2342, 0.7356, 0.0220, 0.0127, 0.0343, 0.9991],
-    "right_arm": [0.1267, -0.2345, 0.7358, -0.0225, 0.0126, -0.0343, 0.9991]
-}
+
+whole_body_joint = [
+    value
+    for chain in ["torso", "head", "left_arm", "right_arm"]
+    for value in chain_joints[chain]
+]
+move_status = robot.set_joint_positions(
+    whole_body_joint,
+    ["torso", "head", "left_arm", "right_arm"],
+    [],
+    True,
+    0.1,
+    30.0,
+)
+if move_status != gm.ControlStatus.SUCCESS:
+    print(f"❌ Failed to move to the initial joint state: {move_status}")
+    robot.request_shutdown()
+    robot.wait_for_shutdown()
+    robot.destroy()
+    raise SystemExit(1)
+print("✅ Moved to the initial whole-body joint state")
+time.sleep(3.0)
+
 custom_param = gm.Parameter()
 
 # Scenario 1: joint-space planning, target type = joint state
@@ -63,7 +93,11 @@ try:
 
     target_joint = gm.JointStates()
     target_joint.chain_name = "left_arm"
-    target_joint.joint_positions = chain_joints[target_joint.chain_name]
+    target_positions = list(chain_joints[target_joint.chain_name])
+    target_positions[4] += 0.1
+    target_joint.joint_positions = target_positions
+    # 若设备处于 home 位，target 就是Current点、规划轨迹会为空，故增加偏移。
+    # 不使用 set_joint()：SDK 1.10.0 的该接口只接受整数，会拒绝浮点joint角。
 
     status, traj = motion.motion_plan(
         target=target_joint,
@@ -89,11 +123,24 @@ try:
     target_pose_state.chain_name = "left_arm"
     target_pose_state.frame_id = "EndEffector"
     target_pose_state.reference_frame = "base_link"
-    target_pose_state.pose = gm.Pose(chain_pose_baselink[target_pose_state.chain_name])
+
+    status, current_pose = motion.get_end_effector_pose_on_chain(
+        chain_name=target_pose_state.chain_name,
+        frame_id=target_pose_state.frame_id,
+        reference_frame=target_pose_state.reference_frame
+    )
+    assert status == gm.MotionStatus.SUCCESS and len(current_pose) == 7, \
+        "Failed to get current end-effector pose"
+
+    target_pose = list(current_pose)
+    target_pose[0] += 0.04  # Move forward 4 cm from the current pose.
+    target_pose[2] += 0.02  # Move upward 2 cm from the current pose.
+    target_pose_state.pose = gm.Pose(target_pose)
 
     status, traj = motion.motion_plan(
         target=target_pose_state,
-        enable_collision_check=False
+        enable_collision_check=False,
+        params=custom_param
     )
     printStatus(status)
     assert status == gm.MotionStatus.SUCCESS, "Planning failed"

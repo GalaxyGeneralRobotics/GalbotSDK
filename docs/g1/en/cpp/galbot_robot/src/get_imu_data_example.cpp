@@ -36,8 +36,12 @@ int main() {
     // Get object instance
     auto& robot = GalbotRobot::get_instance(MachineType::G1);
 
+    std::unordered_set<SensorType> sensor_types = {
+        SensorType::CHASSIS_IMU
+    };
+
     // Initialize system
-    if (robot.init()) {
+    if (robot.init(sensor_types)) {
         std::cout << "System initialized successfully!" << std::endl;
     } else {
         std::cerr << "System initialization failed!" << std::endl;
@@ -51,7 +55,7 @@ int main() {
     // - SensorType::TORSO_IMU: torso IMU
     // - SensorType::LIDAR_IMU: lidar IMU
     // - SensorType::CHASSIS_IMU: Chassis lidar IMU
-    std::shared_ptr<ImuData> imu_data = robot.get_imu_data(SensorType::TORSO_IMU);
+    std::shared_ptr<ImuData> imu_data = robot.get_imu_data(SensorType::CHASSIS_IMU);
     if (imu_data) {
         std::cout << "IMU data retrieved successfully!" << std::endl;
         print_imu_data(imu_data);

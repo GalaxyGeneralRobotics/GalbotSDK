@@ -1,0 +1,3096 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.galbot.com/s1/set_config_reference/">
+      
+      
+        <link rel="prev" href="../api_cpp_reference/">
+      
+      
+        <link rel="next" href="../troubleshooting/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>set_config 参考 - galbot_sdk - S1</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Fira Sans";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/nav_collapse.css">
+    
+      <link rel="stylesheet" href="../stylesheets/sidebar_scroll.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#set_config" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="galbot_sdk - S1" class="md-header__button md-logo" aria-label="galbot_sdk - S1" data-md-component="logo">
+      
+  <img src="/image/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            galbot_sdk - S1
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              set_config 参考
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GalaxyGeneralRobotics/GalbotSDK" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GalbotSDK
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../overview/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  概览
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../installation_system_requirements/" class="md-tabs__link">
+          
+  
+  
+  安装与配置
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../routine_operations/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  常规操作
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tutorials/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  入门教程
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../endtool_raw_passthrough/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  S1 末端工具原始透传
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples_python/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python 示例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../examples_cpp/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  C++ 示例
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api_python_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python API 参考
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api_cpp_reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  C++ API 参考
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  set_config 参考
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../troubleshooting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  故障排除
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../license/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  许可证
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="galbot_sdk - S1" class="md-nav__button md-logo" aria-label="galbot_sdk - S1" data-md-component="logo">
+      
+  <img src="/image/logo.png" alt="logo">
+
+    </a>
+    galbot_sdk - S1
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GalaxyGeneralRobotics/GalbotSDK" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GalbotSDK
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    安装与配置
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    安装与配置
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_system_requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统要求
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_and_configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    环境部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_version_compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    版本兼容性检查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation_terminology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    术语说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routine_operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常规操作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    入门教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../endtool_raw_passthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S1 末端工具原始透传
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples_python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python 示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples_cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ 示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_python_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python API 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_cpp_reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C++ API 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set_config 参考
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    set_config 参考
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本用法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configservicenavigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        导航服务（ConfigService.NAVIGATION）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="导航服务（ConfigService.NAVIGATION）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        地图与避障
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重规划与超时
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        末端工具碰撞检测
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        路径搜索安全距离
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        轨迹优化（安全距离与平滑度）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        碰撞检测
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        速度、加速度与控制周期
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        到位精度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        全向与短位移运动
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        过渡点自动插入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        脱困策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        其它
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相机服务
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="相机服务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#left_arm_camera-right_arm_camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LEFT_ARM_CAMERA / RIGHT_ARM_CAMERA（两个服务字段定义完全相同）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#front_head_camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FRONT_HEAD_CAMERA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#surround_cameras-front_head_camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SURROUND_CAMERAS（字段名与 FRONT_HEAD_CAMERA 相同，分辨率取值不同）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相机配置示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configservicemotion_plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        运动规划服务（ConfigService.MOTION_PLAN）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="运动规划服务（ConfigService.MOTION_PLAN）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按链字段的 key 命名规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        采样规划参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        轨迹规划参数（非按链）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按链轨迹速度/加速度/加加速度限制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ik" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IK 求解参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ik_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IK 软限位（按链，必须成对设置）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        采样规划限位（按链，必须成对设置）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        碰撞检测开关
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        轨迹校验开关
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        运动规划配置示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configservicecontrol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制服务（ConfigService.CONTROL）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="控制服务（ConfigService.CONTROL）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        通用参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        切换分组当前生效的 controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        底盘位姿 controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        底盘位姿 controller（高速变体，部分型号）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        底盘速度 controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        舵轮底盘位姿 controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controllernmpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        舵轮底盘位姿 controller（NMPC 变体）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        抬升高度 controller（部分型号）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制服务配置示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    故障排除
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    许可证
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="set_config">set_config 可配置字段参考（导航服务 / 相机服务 / 运动规划服务 / 控制服务）</h1>
+<p><code>GalbotRobot.set_config()</code> 用于修改导航服务、相机服务、运动规划服务和控制服务的运行时配置。本文档列出这些服务当前支持设置的全部字段、含义、类型和取值范围。接口本身的签名、参数、返回值请参见 <a href="../api_python_reference/">Python API 参考</a> / <a href="../api_cpp_reference/">C++ API 参考</a> 中 <code>GalbotRobot.set_config</code> 的说明。</p>
+<hr />
+<h2 id="_1">基本用法</h2>
+<p><code>set_config()</code> 接受一个 <code>ConfigService</code>（要修改哪个服务）和一组 <code>ConfigItem(key, value)</code>（要改哪些字段、改成什么值）：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">galbot_sdk.s1</span><span class="w"> </span><span class="kn">import</span> <span class="n">GalbotRobot</span><span class="p">,</span> <span class="n">ConfigService</span><span class="p">,</span> <span class="n">ConfigItem</span><span class="p">,</span> <span class="n">ControlStatus</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">robot</span> <span class="o">=</span> <span class="n">GalbotRobot</span><span class="p">()</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">robot</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">status</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">set_config</span><span class="p">(</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">ConfigService</span><span class="o">.</span><span class="n">NAVIGATION</span><span class="p">,</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="p">[</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="n">ConfigItem</span><span class="p">(</span><span class="s2">&quot;replan_threshold&quot;</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">),</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="n">ConfigItem</span><span class="p">(</span><span class="s2">&quot;no_replan_threshold&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="p">],</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>  <span class="c1"># ControlStatus.SUCCESS / INVALID_INPUT / ...</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="n">robot</span><span class="o">.</span><span class="n">request_shutdown</span><span class="p">()</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">robot</span><span class="o">.</span><span class="n">wait_for_shutdown</span><span class="p">()</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="n">robot</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+</span></code></pre></div>
+<p>几个关键行为，使用前务必了解：</p>
+<ul>
+<li><code>key</code> 直接使用下方表格中列出的字段名称即可。</li>
+<li>调用只返回一个整体的 <code>ControlStatus</code>，不会告诉你具体是哪个字段出的问题；失败时请查看 SDK 日志（<code>~/galbot_sdk_log/s1/</code> 下）里的 <code>ERR</code> 行定位原因。</li>
+<li>一次调用可以传多个字段；只要有一个字段不合法（不在下表中，或者值不满足取值范围），这一整批都不会生效。</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">注意事项</p>
+<p><code>set_config()</code> 调用成功（返回 <code>ControlStatus.SUCCESS</code>）仅表示配置已保存，<strong>不会立即生效</strong>。请在配置完成后重启设备，新的配置才会被相应服务重新加载并生效。</p>
+</div>
+<hr />
+<h2 id="configservicenavigation">导航服务（<code>ConfigService.NAVIGATION</code>）</h2>
+<p>以下按功能分组列出导航服务支持设置的全部 52 个字段。</p>
+<h3 id="_2">地图与避障</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>esdf_map_path</code></td>
+<td>str</td>
+<td>无限制</td>
+<td>ESDF 地图路径；地图不存在时服务将进入异常模式</td>
+</tr>
+<tr>
+<td><code>forbidden_dyn_map</code></td>
+<td>bool</td>
+<td>-</td>
+<td>是否禁用动态地图（开启/关闭动态避障功能）</td>
+</tr>
+<tr>
+<td><code>use_static_map</code></td>
+<td>bool</td>
+<td>-</td>
+<td>启用静态地图规划：路径搜索在静态地图中进行，动态地图仅用于实时碰撞检测；遭遇障碍物阻挡时停障而非绕障</td>
+</tr>
+<tr>
+<td><code>evaluate_at_dyn_map</code></td>
+<td>bool</td>
+<td>-</td>
+<td>是否在动态地图层进行点位可达预估（开启后同时在动态图层评估可达性；关闭时仅用静态图层评估）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">重规划与超时</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>no_replan</code></td>
+<td>bool</td>
+<td>-</td>
+<td>规划失败或运行中检测到碰撞时是否立即上报失败、不再进行重规划尝试</td>
+</tr>
+<tr>
+<td><code>task_timeout_sec</code></td>
+<td>float</td>
+<td>单位秒</td>
+<td>单次导航请求的全局超时时间，超过该时间未完成则判定导航失败并上报；正值为超时时长，非正值表示不设超时、允许无限重规划</td>
+</tr>
+<tr>
+<td><code>dyn_plan</code></td>
+<td>bool</td>
+<td>-</td>
+<td>是否启用动态连续重规划（Beta）：开启后重规划时不下发停止指令，以上一次轨迹执行位置为起始条件连续重规划，避障运动更连续；关闭（默认）则先停止底盘再重规划</td>
+</tr>
+<tr>
+<td><code>replan_threshold</code></td>
+<td>float</td>
+<td>&gt; 0.1，单位 m</td>
+<td>当前位置距离起始点小于该阈值时不进行重规划；<code>replan_threshold + no_replan_threshold</code> 之和须小于 <code>planning_horizen</code>，否则主动重规划会失效</td>
+</tr>
+<tr>
+<td><code>no_replan_threshold</code></td>
+<td>float</td>
+<td>&gt; 0.1，单位 m，一般设 1.0</td>
+<td>当前位置距离目标点小于该阈值时不进行重规划；过小容易在接近目标点时因重规划引起轨迹抖动</td>
+</tr>
+<tr>
+<td><code>planning_horizen</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m</td>
+<td>局部规划视界，每次仅规划该范围内的路径；超出部分按此长度截断，分多段完成导航</td>
+</tr>
+<tr>
+<td><code>search_closest_distance</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m</td>
+<td>路径搜索失败时，返回的部分路径与障碍物保持的距离；若大于可行通道宽度的一半，该区域将被视为不可达区域</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">末端工具碰撞检测</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>left_arm</code></td>
+<td>int</td>
+<td>枚举 0~6</td>
+<td>左臂末端工具类型，用于导航规划时纳入末端工具与环境的碰撞检测：0=None，1=gripper_hitbot，2=suction_cup，3=robotiq_gripper，4=galbot_gripper，5=GE103，6=GE103v1（默认 0，不考虑碰撞）</td>
+</tr>
+<tr>
+<td><code>right_arm</code></td>
+<td>int</td>
+<td>枚举 0~6</td>
+<td>右臂末端工具类型，含义同 <code>left_arm</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">路径搜索安全距离</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>point_safe_margin</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m</td>
+<td>路径点与障碍物的距离（硬约束）</td>
+</tr>
+<tr>
+<td><code>search_start_radius</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m</td>
+<td>路径搜索阶段，起始点特化范围半径</td>
+</tr>
+<tr>
+<td><code>search_end_radius</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m</td>
+<td>路径搜索阶段，目标点特化范围半径</td>
+</tr>
+<tr>
+<td><code>start_safe_margin</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m</td>
+<td>起始特化范围内点位与障碍物距离，适配起始点接近障碍物的情况</td>
+</tr>
+<tr>
+<td><code>end_safe_margin</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m</td>
+<td>目标特化范围内点位与障碍物距离，适配目标点接近障碍物的情况</td>
+</tr>
+<tr>
+<td><code>return_closest_path</code></td>
+<td>bool</td>
+<td>-</td>
+<td>路径搜索失败（通路被阻挡）时，是否返回可行域内距目标点最近的部分路径；目标点在货架/墙壁对面等场景慎用，可能出现"走错位置"的观感</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">轨迹优化（安全距离与平滑度）</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>safe_distance</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m</td>
+<td>路径控制点与障碍物距离（软约束）；应大于搜索阶段的安全距离，一般大 0.2~0.5m</td>
+</tr>
+<tr>
+<td><code>start_safe_distance</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m</td>
+<td>起始特化范围内点位与障碍物距离</td>
+</tr>
+<tr>
+<td><code>end_safe_distance</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m</td>
+<td>目标特化范围内点位与障碍物距离</td>
+</tr>
+<tr>
+<td><code>optimize_start_radius</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m</td>
+<td>轨迹优化阶段，起始点特化范围</td>
+</tr>
+<tr>
+<td><code>optimize_end_radius</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m</td>
+<td>轨迹优化阶段，目标点特化范围</td>
+</tr>
+<tr>
+<td><code>post_check_hard_safe_distance</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m</td>
+<td>轨迹优化后验硬约束：最终规划路径点与障碍物距离小于该值则判定规划失败</td>
+</tr>
+<tr>
+<td><code>weight_obstacle</code></td>
+<td>float</td>
+<td>&gt; 0</td>
+<td>障碍物距离权重（安全性权重），默认以安全性为优先，数值越大越优先避障</td>
+</tr>
+<tr>
+<td><code>weight_smooth</code></td>
+<td>float</td>
+<td>数值越大轨迹越平滑，20.0~50.0 通常有较好效果</td>
+<td>轨迹平滑性权重；场景宽敞、无需贴近障碍物时可适当调高以提升导航流畅度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">碰撞检测</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>check_collision_radius</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m，建议不超过 5</td>
+<td>导航执行时，沿规划路径基于机器人当前位置向前预测检测碰撞的距离；预测距离过大易导致频繁重规划、运动卡顿或抖动</td>
+</tr>
+<tr>
+<td><code>collision_check_plan_path</code></td>
+<td>bool</td>
+<td>-</td>
+<td>规划完成时是否检测全轨迹（圆柱包络）碰撞可行性，不可行则不下发控制执行；高动态响应/无图长程导航等场景可关闭，改为运行时碰撞预测+动态重规划配合使用</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_8">速度、加速度与控制周期</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max_velocity</code></td>
+<td>List[float]</td>
+<td>长度 3，单位 m/s、rad/s，元素范围 (0, 1.5)</td>
+<td>导航规划最大速度 <code>[vx, vy, w]</code>；需同步保证机器人控制端速度上限不小于此值，否则可能出现跟踪不上的情况</td>
+</tr>
+<tr>
+<td><code>max_acceleration</code></td>
+<td>List[float]</td>
+<td>长度 3</td>
+<td>导航规划最大加速度 <code>[ax, ay, aw]</code>；一般不修改</td>
+</tr>
+<tr>
+<td><code>max_jerk</code></td>
+<td>List[float]</td>
+<td>长度 3</td>
+<td>导航规划最大加加速度 <code>[jx, jy, jw]</code>；一般不修改</td>
+</tr>
+<tr>
+<td><code>enable_centripetal_constraint</code></td>
+<td>bool</td>
+<td>-</td>
+<td>是否启用向心加速度约束</td>
+</tr>
+<tr>
+<td><code>max_centripetal_acc</code></td>
+<td>float</td>
+<td>&gt; 0</td>
+<td>向心加速度约束上限</td>
+</tr>
+<tr>
+<td><code>control_cycle_time</code></td>
+<td>float</td>
+<td>一般不修改</td>
+<td>规划路点时间间隔（控制周期），决定路点密集程度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_9">到位精度</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>arrival_pos_err_x</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m</td>
+<td>到达位置误差（X 方向）；需保证机器人控制精度小于此处到位误差，否则会触发无法到位问题，控制精度不宜小于 1cm</td>
+</tr>
+<tr>
+<td><code>arrival_pos_err_y</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m</td>
+<td>到达位置误差（Y 方向）</td>
+</tr>
+<tr>
+<td><code>arrival_ori_err</code></td>
+<td>float</td>
+<td>&gt; 0，单位 rad</td>
+<td>到达角度误差</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_10">全向与短位移运动</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>omni_plan</code></td>
+<td>bool</td>
+<td>仅 G系列</td>
+<td>是否启用全向规划（同时平移与旋转）；关闭时为常规航向导航（先转向再直行）。受限于雷达可视范围，全向运动背对障碍物行进时存在碰撞风险，需结合场景判断是否开启。S1 机型传入会返回 <code>INVALID_INPUT</code></td>
+</tr>
+<tr>
+<td><code>stop_err</code></td>
+<td>float</td>
+<td>单位 m（G系列 默认 0.2，S1 默认 0.5）</td>
+<td>短位移判定阈值：当前位置与目标位置距离小于该值时，采用短位移运动方式</td>
+</tr>
+<tr>
+<td><code>adjust_motion_type</code></td>
+<td>int</td>
+<td>枚举 0~2</td>
+<td>短位移运动方式：0=全向（G系列），1=蟹行+旋转，2=旋转+蟹行（S1 推荐，避免关节碰撞）</td>
+</tr>
+<tr>
+<td><code>try_omni_plan_first</code></td>
+<td>bool</td>
+<td>-</td>
+<td>是否优先尝试全向（S1 为旋转+蟹行）直线运动到达，无碰撞则执行，否则进入常规规划流程</td>
+</tr>
+<tr>
+<td><code>try_omni_plan_min_obstacle_distance</code></td>
+<td>float</td>
+<td>&gt; 0，单位 m</td>
+<td>尝试全向直线路点与障碍物保持的距离</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_11">过渡点自动插入</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dis_with_obstacle</code></td>
+<td>float</td>
+<td>单位 m；≥0 生效（建议 0.2），&lt;0 关闭</td>
+<td>规划首末位置与障碍物（机器人或指定 link 圆柱包络表面）保持的距离；需结合 <code>find_valid_pos_step</code> 一并设置</td>
+</tr>
+<tr>
+<td><code>find_valid_pos_step</code></td>
+<td>float</td>
+<td>单位 m；≥0 生效（建议 0.05），&lt;0 关闭</td>
+<td>首末与障碍物保持距离无法达成（窄通道）时，搜索最佳安全距离的步长；需结合 <code>dis_with_obstacle</code> 一并设置</td>
+</tr>
+<tr>
+<td><code>find_start_valid_pos_check_link_list</code></td>
+<td>List[str]</td>
+<td>来自 URDF</td>
+<td>起点查找远离点时，纳入包络检测的 link 列表</td>
+</tr>
+<tr>
+<td><code>find_end_valid_pos_check_link_list</code></td>
+<td>List[str]</td>
+<td>来自 URDF</td>
+<td>终点查找远离点时，纳入包络检测的 link 列表；指定较小的 link 列表可避免上身姿态臂展较大时圆柱包络半径过大而插入冗余过渡点</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_12">脱困策略</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enable_adjustment</code></td>
+<td>bool</td>
+<td>-</td>
+<td>是否启用脱困调整（导航规划路径碰撞时进入脱困策略）；开启时若同时开启静态地图规划，停障功能将失效</td>
+</tr>
+<tr>
+<td><code>recovery_strategy_order</code></td>
+<td>List[int]</td>
+<td>元素枚举 0~3，建议顺序 <code>[1,2,3,0]</code></td>
+<td>脱困策略尝试顺序：0=指定过渡点导航，1=直接全向（S1 为旋转+蟹行）直线到达，2=按碰撞位置搜索可原地旋转点，3=按碰撞位置分类处理</td>
+</tr>
+<tr>
+<td><code>adjust_motion_types</code></td>
+<td>List[int]</td>
+<td>元素枚举 0~2</td>
+<td>到达远离障碍物过渡点尝试的运动方式，按配置顺序依次尝试：0=全向（G系列），1=蟹行+旋转，2=旋转+蟹行</td>
+</tr>
+<tr>
+<td><code>transition_poses</code></td>
+<td>List[List[float]]</td>
+<td>每项长度 3 或 7</td>
+<td>指定脱困过渡点位姿列表，每项为 <code>[x,y,yaw]</code> 或 <code>[x,y,z,rx,ry,rz,rw]</code>；设置多个时选运行耗时最短的可行点</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_13">其它</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>save_data</code></td>
+<td>bool</td>
+<td>-</td>
+<td>是否保存每次导航的过程数据（动态地图、碰撞时局部地图、规划路径），用于问题复现与可视化排查</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_14">相机服务</h2>
+<p>相机被拆成 4 个独立的 <code>ConfigService</code>：</p>
+<table>
+<thead>
+<tr>
+<th>ConfigService</th>
+<th>支持机型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LEFT_ARM_CAMERA</code></td>
+<td>G系列 / S1</td>
+</tr>
+<tr>
+<td><code>RIGHT_ARM_CAMERA</code></td>
+<td>G系列 / S1</td>
+</tr>
+<tr>
+<td><code>FRONT_HEAD_CAMERA</code></td>
+<td>G系列 / S1</td>
+</tr>
+<tr>
+<td><code>SURROUND_CAMERAS</code></td>
+<td>仅 G系列；S1 上调用会返回 <code>INVALID_INPUT</code></td>
+</tr>
+</tbody>
+</table>
+<p>只有下表列出的字段可以设置；其它字段不在可设置范围内，传入会导致整批被拒绝。</p>
+<div class="admonition warning">
+<p class="admonition-title">分辨率宽高必须成对设置</p>
+<p><code>color_width</code>/<code>color_height</code>（全部 4 个相机服务都有）和 <code>rs_color_width</code>/<code>rs_color_height</code>（仅 <code>LEFT_ARM_CAMERA</code>/<code>RIGHT_ARM_CAMERA</code>，RealSense 相机专用）必须在<strong>同一次 <code>set_config()</code> 调用</strong>里成对出现，且组合必须是下表取值范围列给出的合法组合之一；只传一个，或者两个都传但组合不合法，都会导致整批被拒绝。只想改其中一个也必须把另一个的目标值一起传上去。</p>
+</div>
+<h3 id="left_arm_camera-right_arm_camera"><code>LEFT_ARM_CAMERA</code> / <code>RIGHT_ARM_CAMERA</code>（两个服务字段定义完全相同）</h3>
+<p>左右臂相机既可能装的是单目（monocular）相机，也可能是 RealSense 深度相机，<code>color_width</code>/<code>color_height</code> 是最终输出分辨率（两种相机都用这组），<code>rs_color_width</code>/<code>rs_color_height</code> 是 RealSense 相机专用的采集分辨率；具体装的是哪种相机，由调用方自行确认，SDK 不做检测。</p>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>color_width</code></td>
+<td>int</td>
+<td>与 <code>color_height</code> 成对，合法组合：<code>(1920,1536)</code> <code>(1280,1024)</code></td>
+<td>最终输出图像宽度</td>
+</tr>
+<tr>
+<td><code>color_height</code></td>
+<td>int</td>
+<td>见上</td>
+<td>最终输出图像高度</td>
+</tr>
+<tr>
+<td><code>frame_rate</code></td>
+<td>int</td>
+<td>枚举 <code>30</code>、<code>15</code></td>
+<td>最终输出帧率</td>
+</tr>
+<tr>
+<td><code>rs_color_width</code></td>
+<td>int</td>
+<td>与 <code>rs_color_height</code> 成对，合法组合：<code>(1280,720)</code> <code>(848,480)</code> <code>(640,480)</code> <code>(640,360)</code> <code>(480,270)</code> <code>(424,240)</code></td>
+<td>RealSense 采集图像宽度</td>
+</tr>
+<tr>
+<td><code>rs_color_height</code></td>
+<td>int</td>
+<td>见上</td>
+<td>RealSense 采集图像高度</td>
+</tr>
+<tr>
+<td><code>rs_frame_rate</code></td>
+<td>int</td>
+<td>枚举 <code>30</code>、<code>15</code>、<code>9</code>、<code>6</code></td>
+<td>RealSense 相机帧率；RealSense 仅支持这 4 个值</td>
+</tr>
+<tr>
+<td><code>ir_enabled</code></td>
+<td>bool</td>
+<td>-</td>
+<td>是否开启红外图像发布</td>
+</tr>
+<tr>
+<td><code>imu_enabled</code></td>
+<td>bool</td>
+<td>-</td>
+<td>imu 数据发布的开关；目前仅 D436 支持</td>
+</tr>
+<tr>
+<td><code>iframe_interval</code></td>
+<td>int</td>
+<td>≥ 2</td>
+<td>I 帧间隔；建议为帧率的倍数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="front_head_camera"><code>FRONT_HEAD_CAMERA</code></h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>undistort_enabled</code></td>
+<td>bool</td>
+<td>默认 false</td>
+<td>是否开启畸变矫正</td>
+</tr>
+<tr>
+<td><code>color_width</code></td>
+<td>int</td>
+<td>与 <code>color_height</code> 成对，合法组合：<code>(1280,992)</code> 或 <code>(-1,-1)</code>（全尺寸）</td>
+<td>图像宽度</td>
+</tr>
+<tr>
+<td><code>color_height</code></td>
+<td>int</td>
+<td>见上</td>
+<td>图像高度</td>
+</tr>
+<tr>
+<td><code>frame_rate</code></td>
+<td>int</td>
+<td>枚举 <code>30</code>、<code>15</code></td>
+<td>帧率</td>
+</tr>
+<tr>
+<td><code>iframe_interval</code></td>
+<td>int</td>
+<td>≥ 2</td>
+<td>I 帧间隔；建议为帧率的倍数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="surround_cameras-front_head_camera"><code>SURROUND_CAMERAS</code>（字段名与 <code>FRONT_HEAD_CAMERA</code> 相同，分辨率取值不同）</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>undistort_enabled</code></td>
+<td>bool</td>
+<td>默认 false</td>
+<td>是否开启畸变矫正</td>
+</tr>
+<tr>
+<td><code>color_width</code></td>
+<td>int</td>
+<td>与 <code>color_height</code> 成对，合法组合：<code>(1920,1536)</code> 或 <code>(-1,-1)</code>（全尺寸）</td>
+<td>图像宽度</td>
+</tr>
+<tr>
+<td><code>color_height</code></td>
+<td>int</td>
+<td>见上</td>
+<td>图像高度</td>
+</tr>
+<tr>
+<td><code>frame_rate</code></td>
+<td>int</td>
+<td>枚举 <code>30</code>、<code>15</code></td>
+<td>帧率</td>
+</tr>
+<tr>
+<td><code>iframe_interval</code></td>
+<td>int</td>
+<td>≥ 2</td>
+<td>I 帧间隔；建议为帧率的倍数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_15">相机配置示例</h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">galbot_sdk.s1</span><span class="w"> </span><span class="kn">import</span> <span class="n">GalbotRobot</span><span class="p">,</span> <span class="n">ConfigService</span><span class="p">,</span> <span class="n">ConfigItem</span><span class="p">,</span> <span class="n">ControlStatus</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">robot</span> <span class="o">=</span> <span class="n">GalbotRobot</span><span class="p">()</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">robot</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># 头部相机：设置分辨率（宽高必须一起传）</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">status</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">set_config</span><span class="p">(</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">ConfigService</span><span class="o">.</span><span class="n">FRONT_HEAD_CAMERA</span><span class="p">,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="p">[</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="n">ConfigItem</span><span class="p">(</span><span class="s2">&quot;color_width&quot;</span><span class="p">,</span> <span class="mi">1280</span><span class="p">),</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="n">ConfigItem</span><span class="p">(</span><span class="s2">&quot;color_height&quot;</span><span class="p">,</span> <span class="mi">992</span><span class="p">),</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="p">],</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="p">)</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">robot</span><span class="o">.</span><span class="n">request_shutdown</span><span class="p">()</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">robot</span><span class="o">.</span><span class="n">wait_for_shutdown</span><span class="p">()</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">robot</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+</span></code></pre></div>
+<hr />
+<h2 id="configservicemotion_plan">运动规划服务（<code>ConfigService.MOTION_PLAN</code>）</h2>
+<p>以下按功能分组列出运动规划服务支持设置的全部字段（22 个非按链字段 + 3 组共 35 个按链字段），G系列 / S1 均可使用。</p>
+<h3 id="key">按链字段的 key 命名规则</h3>
+<p>部分字段需要按身体链路分别配置，链名可取以下 5 种：<code>head</code>（头部）、<code>left_arm</code>（左臂）、<code>right_arm</code>（右臂）、<code>torso</code>（腰部）、<code>leg</code>（腿部）。这类字段的 key 命名规则是 <code>{字段名}_{链名}</code>，例如 <code>max_velocity_left_arm</code>。</p>
+<p>各链对应的关节数（即数组长度）随机型不同：</p>
+<table>
+<thead>
+<tr>
+<th>链</th>
+<th>G系列</th>
+<th>S1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>head</code></td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>left_arm</code></td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>right_arm</code></td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>torso</code></td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>leg</code></td>
+<td>5</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>数组长度必须与当前连接机型对应链的关节数完全一致，否则该字段会被拒绝。</p>
+<h3 id="_16">采样规划参数</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>state_check_type</code></td>
+<td>str</td>
+<td>常见取值 <code>EUCLIDEAN_DISTANCE</code>、<code>RADIAN_DISTANCE</code>（不做强校验）</td>
+<td>状态距离度量方式</td>
+</tr>
+<tr>
+<td><code>state_check_resolution</code></td>
+<td>float</td>
+<td>&gt; 0</td>
+<td>判定两个状态是否视为不同的最小距离阈值</td>
+</tr>
+<tr>
+<td><code>interpolate</code></td>
+<td>bool</td>
+<td>-</td>
+<td>采样点之间是否插值</td>
+</tr>
+<tr>
+<td><code>interpolation_cnt</code></td>
+<td>float</td>
+<td>无强制限制；≤0 表示自动/保持原值</td>
+<td>插值中间点数量</td>
+</tr>
+<tr>
+<td><code>simplify</code></td>
+<td>bool</td>
+<td>-</td>
+<td>是否对规划路径做简化（shortcut）</td>
+</tr>
+<tr>
+<td><code>max_simplification_time</code></td>
+<td>float</td>
+<td>无强制限制，单位 s；≤0 表示保持原值</td>
+<td>路径简化的时间预算</td>
+</tr>
+<tr>
+<td><code>termination_condition_type</code></td>
+<td>str</td>
+<td>常见取值如 <code>TimeoutAndExactSolution</code>（不做强校验）</td>
+<td>规划终止条件类型</td>
+</tr>
+<tr>
+<td><code>plan_timeout</code></td>
+<td>float</td>
+<td>≥ 0，单位 s</td>
+<td>规划超时时间</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_17">轨迹规划参数（非按链）</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>min_move_time</code></td>
+<td>float</td>
+<td>≥ 0，单位 s</td>
+<td>单段轨迹最短执行时间；0 表示尽量按动力学上限最快执行</td>
+</tr>
+<tr>
+<td><code>move_line_intermidiate_point</code></td>
+<td>float</td>
+<td>&gt; 0</td>
+<td>直线段中间插值点数量（注意字段名拼写就是 <code>intermidiate</code>）</td>
+</tr>
+<tr>
+<td><code>way_point_plan_expected_time</code></td>
+<td>float</td>
+<td>无强制限制，建议 &gt; 0</td>
+<td>多路点轨迹期望总时长提示</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_18">按链轨迹速度/加速度/加加速度限制</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max_velocity_{链}</code></td>
+<td>List[float]</td>
+<td>长度为对应链的关节数</td>
+<td>该链的最大关节速度限制</td>
+</tr>
+<tr>
+<td><code>max_acceleration_{链}</code></td>
+<td>List[float]</td>
+<td>长度为对应链的关节数</td>
+<td>该链的最大关节加速度限制</td>
+</tr>
+<tr>
+<td><code>max_jerk_{链}</code></td>
+<td>List[float]</td>
+<td>长度为对应链的关节数</td>
+<td>该链的最大关节加加速度限制</td>
+</tr>
+</tbody>
+</table>
+<p><code>{链}</code> 可取 <code>head</code>、<code>left_arm</code>、<code>right_arm</code>、<code>torso</code>、<code>leg</code>，如 <code>max_velocity_left_arm</code>。</p>
+<h3 id="ik">IK 求解参数</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>col_aware_ik_timeout</code></td>
+<td>float</td>
+<td>&gt; 0，单位 ms</td>
+<td>碰撞感知 IK 单次求解的总时间预算</td>
+</tr>
+<tr>
+<td><code>seed_type</code></td>
+<td>str</td>
+<td>枚举 <code>RANDOM_SEED</code>、<code>RANDOM_PROGRESSIVE_SEED</code>、<code>USER_DEFINED_SEED</code></td>
+<td>IK 初值/随机种子策略；传入非法值该字段会被拒绝（避免导致 IK 配置整体加载失败）</td>
+</tr>
+<tr>
+<td><code>enable_collision_check_log</code></td>
+<td>bool</td>
+<td>默认 false</td>
+<td>是否输出碰撞检测诊断日志</td>
+</tr>
+<tr>
+<td><code>translation_eps</code></td>
+<td>List[float]</td>
+<td>长度 3，各分量 ≥ 0，单位 m</td>
+<td>位置收敛容差 <code>[x, y, z]</code></td>
+</tr>
+<tr>
+<td><code>rotation_eps</code></td>
+<td>List[float]</td>
+<td>长度 3，各分量 ≥ 0，单位 rad</td>
+<td>姿态收敛容差 <code>[roll, pitch, yaw]</code></td>
+</tr>
+<tr>
+<td><code>enable_collision_avoidance</code></td>
+<td>bool</td>
+<td>-</td>
+<td>IK 求解时是否开启碰撞规避</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ik_1">IK 软限位（按链，必须成对设置）</h3>
+<div class="admonition warning">
+<p class="admonition-title">lower / upper 必须成对设置</p>
+<p><code>ik_soft_limit_lower_{链}</code> 和 <code>ik_soft_limit_upper_{链}</code> 必须在<strong>同一次 <code>set_config()</code> 调用</strong>里成对出现，只传一个会导致整批被拒绝。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ik_soft_limit_lower_{链}</code></td>
+<td>List[float]</td>
+<td>长度为对应链的关节数</td>
+<td>IK 求解关节软限位下限</td>
+</tr>
+<tr>
+<td><code>ik_soft_limit_upper_{链}</code></td>
+<td>List[float]</td>
+<td>长度为对应链的关节数</td>
+<td>IK 求解关节软限位上限</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_19">采样规划限位（按链，必须成对设置）</h3>
+<div class="admonition warning">
+<p class="admonition-title">lower / upper 必须成对设置</p>
+<p><code>sample_planner_limit_lower_{链}</code> 和 <code>sample_planner_limit_upper_{链}</code> 必须在<strong>同一次 <code>set_config()</code> 调用</strong>里成对出现，只传一个会导致整批被拒绝。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sample_planner_limit_lower_{链}</code></td>
+<td>List[float]</td>
+<td>长度为对应链的关节数</td>
+<td>采样规划关节限位下限</td>
+</tr>
+<tr>
+<td><code>sample_planner_limit_upper_{链}</code></td>
+<td>List[float]</td>
+<td>长度为对应链的关节数</td>
+<td>采样规划关节限位上限</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_20">碰撞检测开关</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enable_self_collision_check</code></td>
+<td>bool</td>
+<td>-</td>
+<td>是否开启自碰撞检测</td>
+</tr>
+<tr>
+<td><code>enable_env_collision_check</code></td>
+<td>bool</td>
+<td>-</td>
+<td>是否开启环境碰撞检测；关闭后可能规划出与环境碰撞的轨迹</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_21">轨迹校验开关</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enable_collision_check</code></td>
+<td>bool</td>
+<td>-</td>
+<td>轨迹校验阶段是否做碰撞检查</td>
+</tr>
+<tr>
+<td><code>enable_joint_limit_check</code></td>
+<td>bool</td>
+<td>-</td>
+<td>轨迹校验阶段是否做关节限位检查</td>
+</tr>
+<tr>
+<td><code>enable_velocity_feasibility_check</code></td>
+<td>bool</td>
+<td>-</td>
+<td>轨迹校验阶段是否做速度可行性检查</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_22">运动规划配置示例</h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">galbot_sdk.s1</span><span class="w"> </span><span class="kn">import</span> <span class="n">GalbotRobot</span><span class="p">,</span> <span class="n">ConfigService</span><span class="p">,</span> <span class="n">ConfigItem</span><span class="p">,</span> <span class="n">ControlStatus</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">robot</span> <span class="o">=</span> <span class="n">GalbotRobot</span><span class="p">()</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">robot</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># 设置 plan_timeout</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">status</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">set_config</span><span class="p">(</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">ConfigService</span><span class="o">.</span><span class="n">MOTION_PLAN</span><span class="p">,</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="p">[</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="n">ConfigItem</span><span class="p">(</span><span class="s2">&quot;plan_timeout&quot;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">),</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    <span class="p">],</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">)</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="n">robot</span><span class="o">.</span><span class="n">request_shutdown</span><span class="p">()</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="n">robot</span><span class="o">.</span><span class="n">wait_for_shutdown</span><span class="p">()</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="n">robot</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+</span></code></pre></div>
+<hr />
+<h2 id="configservicecontrol">控制服务（<code>ConfigService.CONTROL</code>）</h2>
+<p>控制服务的字段分布在多个底盘/身体 controller 上，同一个字段名（如 <code>max_vel</code>、<code>stop_acc</code>、<code>pos_threshold</code>）会在好几个 controller 里各自出现一次，友好 key 用 <code>{字段名}_{controller 后缀}</code> 消歧，如 <code>max_vel_chassis_pose</code>、<code>max_vel_chassis_pose_fast</code>。哪个 controller 在当前连接的机器人上可用是运行时判断的（比如高速调参的底盘 controller 只在部分型号上存在），不适用时该字段会被拒绝。</p>
+<h3 id="_23">通用参数</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>机型</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>group_lists</code></td>
+<td>G系列 / S1</td>
+<td>List[str]</td>
+<td>无强制校验</td>
+<td>最终参与初始化的分组名称及顺序；结构性字段，误改可能导致部分子系统不再初始化，请谨慎修改</td>
+</tr>
+<tr>
+<td><code>report_error_skip</code></td>
+<td>G系列 / S1</td>
+<td>int</td>
+<td>≥ 1</td>
+<td>每隔多少主循环上报一次 error</td>
+</tr>
+<tr>
+<td><code>report_sensor_skip</code></td>
+<td>G系列 / S1</td>
+<td>int</td>
+<td>≥ 1</td>
+<td>每隔多少主循环上报一次 sensor</td>
+</tr>
+<tr>
+<td><code>report_wbc_info_skip</code></td>
+<td>G系列 / S1</td>
+<td>int</td>
+<td>≥ 1</td>
+<td>每隔多少主循环上报一次 wbc_info</td>
+</tr>
+<tr>
+<td><code>report_wbcs_info_skip</code></td>
+<td>G系列 / S1</td>
+<td>int</td>
+<td>≥ 1</td>
+<td>每隔多少主循环上报一次 wbcs_info</td>
+</tr>
+<tr>
+<td><code>report_fault_skip</code></td>
+<td>G系列 / S1</td>
+<td>int</td>
+<td>≥ 1</td>
+<td>每隔多少主循环上报一次 fault 心跳</td>
+</tr>
+<tr>
+<td><code>target_sub_log_skip</code></td>
+<td>G系列 / S1</td>
+<td>int</td>
+<td>≥ 1</td>
+<td>每隔多少 target 处理周期打印一次接收日志，只影响日志</td>
+</tr>
+<tr>
+<td><code>target_sampling_default</code></td>
+<td>G系列 / S1</td>
+<td>str</td>
+<td>枚举 <code>LinearInterpolate</code>、<code>DirectPass</code></td>
+<td>未单独指定时，控制目标在控制周期内的默认采样/插值策略</td>
+</tr>
+<tr>
+<td><code>wbc_rate</code></td>
+<td>G系列 / S1</td>
+<td>float</td>
+<td>&gt; 0，单位 Hz</td>
+<td>控制主循环目标频率；修改后需重启设备并核对实际生效频率</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controller">切换分组当前生效的 controller</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>机型</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>group_controller_default_{group}</code></td>
+<td>G系列 / S1</td>
+<td>str</td>
+<td>必须是 <code>{group}</code> 当前已注册的 controller 名字之一（运行时校验，没有固定枚举）；<code>{group}</code> 也必须是机器人上真实存在的分组，否则会被拒绝</td>
+<td>切换 <code>{group}</code> 分组当前生效的 controller，例如 <code>group_controller_default_chassis</code> 传 <code>"chassis_pose_ctrl_fast"</code> 可以把底盘切到高速调参的 controller（前提是这个 controller 已经在系统里注册过）；<code>{group}</code> 常见取值包括 <code>chassis</code>、<code>head</code>、<code>left_arm</code>、<code>right_arm</code> 等</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">取值范围是实时读取的，不是固定表格</p>
+<p><code>group_controller_default_{group}</code> 的合法取值取决于机器人当前实际注册了哪些 controller，会随机型、场景变化，不是一份固定的字段表；传一个不存在的分组名，或者一个该分组没有注册过的 controller 名字，都会被拒绝。</p>
+</div>
+<h3 id="controller_1">底盘位姿 controller</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>机型</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max_acc_chassis_pose</code></td>
+<td>仅 G系列</td>
+<td>List[float]</td>
+<td>长度 3，各项 &gt; 0</td>
+<td>底盘最大加速度 <code>[x, y, yaw]</code></td>
+</tr>
+<tr>
+<td><code>max_vel_chassis_pose</code></td>
+<td>仅 G系列</td>
+<td>List[float]</td>
+<td>长度 3，各项 ≥ 0</td>
+<td>底盘最大速度 <code>[x, y, yaw]</code></td>
+</tr>
+<tr>
+<td><code>pos_threshold_chassis_pose</code></td>
+<td>仅 G系列</td>
+<td>List[float]</td>
+<td>长度 3，各项 ≥ 0</td>
+<td>判断位姿目标到达的逐轴误差阈值</td>
+</tr>
+<tr>
+<td><code>slow_stop_when_shutdown_chassis_pose</code></td>
+<td>仅 G系列</td>
+<td>bool</td>
+<td>-</td>
+<td>controller 关闭时是否按 <code>stop_acc_chassis_pose</code> 渐减速度停止</td>
+</tr>
+<tr>
+<td><code>stop_acc_chassis_pose</code></td>
+<td>仅 G系列</td>
+<td>List[float]</td>
+<td>长度 3，各项 &gt; 0</td>
+<td>停止或关闭渐停阶段的逐轴减速度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controller_2">底盘位姿 controller（高速变体，部分型号）</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>机型</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max_vel_chassis_pose_fast</code></td>
+<td>仅 G系列部分型号</td>
+<td>List[float]</td>
+<td>长度 3，各项 ≥ 0</td>
+<td>底盘最大速度 <code>[x, y, yaw]</code>（高速调参变体）</td>
+</tr>
+<tr>
+<td><code>pos_threshold_chassis_pose_fast</code></td>
+<td>仅 G系列部分型号</td>
+<td>List[float]</td>
+<td>长度 3，各项 ≥ 0</td>
+<td>判断位姿目标到达的逐轴误差阈值</td>
+</tr>
+<tr>
+<td><code>slow_stop_when_shutdown_chassis_pose_fast</code></td>
+<td>仅 G系列部分型号</td>
+<td>bool</td>
+<td>-</td>
+<td>controller 关闭时是否按 <code>stop_acc_chassis_pose_fast</code> 渐减速度停止</td>
+</tr>
+<tr>
+<td><code>stop_acc_chassis_pose_fast</code></td>
+<td>仅 G系列部分型号</td>
+<td>List[float]</td>
+<td>长度 3，各项 &gt; 0</td>
+<td>停止或关闭渐停阶段的逐轴减速度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controller_3">底盘速度 controller</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>机型</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max_acc_down_chassis_twist</code></td>
+<td>仅 G系列</td>
+<td>List[float]</td>
+<td>长度 3，各项 &gt; 0</td>
+<td>速度指令减小时的逐轴减速度上限</td>
+</tr>
+<tr>
+<td><code>max_acc_up_chassis_twist</code></td>
+<td>仅 G系列</td>
+<td>List[float]</td>
+<td>长度 3，各项 &gt; 0</td>
+<td>速度指令增大时的逐轴加速度上限</td>
+</tr>
+<tr>
+<td><code>max_vel_chassis_twist</code></td>
+<td>仅 G系列</td>
+<td>List[float]</td>
+<td>长度 3，各项 ≥ 0</td>
+<td>底盘最大速度 <code>[x, y, yaw]</code></td>
+</tr>
+<tr>
+<td><code>slow_stop_when_shutdown_chassis_twist</code></td>
+<td>仅 G系列</td>
+<td>bool</td>
+<td>-</td>
+<td>controller 关闭时是否按 <code>stop_acc_chassis_twist</code> 渐减速度停止</td>
+</tr>
+<tr>
+<td><code>stop_acc_chassis_twist</code></td>
+<td>仅 G系列</td>
+<td>List[float]</td>
+<td>长度 3，各项 &gt; 0</td>
+<td>停止或关闭渐停阶段的逐轴减速度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controller_4">舵轮底盘位姿 controller</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>机型</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max_acc_swerve_chassis_pose</code></td>
+<td>仅 S1</td>
+<td>List[float]</td>
+<td>长度 3，各项 &gt; 0</td>
+<td>底盘最大加速度 <code>[x, y, yaw]</code></td>
+</tr>
+<tr>
+<td><code>max_vel_swerve_chassis_pose</code></td>
+<td>仅 S1</td>
+<td>List[float]</td>
+<td>长度 3，各项 ≥ 0</td>
+<td>底盘最大速度 <code>[x, y, yaw]</code></td>
+</tr>
+<tr>
+<td><code>pos_threshold_swerve_chassis_pose</code></td>
+<td>仅 S1</td>
+<td>List[float]</td>
+<td>长度 3，各项 ≥ 0</td>
+<td>判断位姿目标到达的逐轴误差阈值</td>
+</tr>
+<tr>
+<td><code>slow_stop_when_shutdown_swerve_chassis_pose</code></td>
+<td>仅 S1</td>
+<td>bool</td>
+<td>-</td>
+<td>controller 关闭时是否按 <code>stop_acc_swerve_chassis_pose</code> 渐减速度停止</td>
+</tr>
+<tr>
+<td><code>stop_acc_swerve_chassis_pose</code></td>
+<td>仅 S1</td>
+<td>List[float]</td>
+<td>长度 3，各项 &gt; 0</td>
+<td>停止或关闭渐停阶段的逐轴减速度</td>
+</tr>
+<tr>
+<td><code>final_pos_threshold_swerve_chassis_pose</code></td>
+<td>仅 S1</td>
+<td>List[float]</td>
+<td>长度 3，各项 ≥ 0</td>
+<td>最终停车阶段的逐轴到位阈值</td>
+</tr>
+<tr>
+<td><code>log_skip_swerve_chassis_pose</code></td>
+<td>仅 S1</td>
+<td>int</td>
+<td>≥ 0</td>
+<td>每隔多少控制周期输出一次相关日志</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controllernmpc">舵轮底盘位姿 controller（NMPC 变体）</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>机型</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>log_skip_swerve_chassis_pose_nmpc</code></td>
+<td>仅 S1</td>
+<td>int</td>
+<td>≥ 0</td>
+<td>每隔多少控制周期输出一次相关日志</td>
+</tr>
+<tr>
+<td><code>max_acc_swerve_chassis_pose_nmpc</code></td>
+<td>仅 S1</td>
+<td>List[float]</td>
+<td>长度 3，各项 &gt; 0</td>
+<td>底盘最大加速度 <code>[x, y, yaw]</code></td>
+</tr>
+<tr>
+<td><code>max_vel_swerve_chassis_pose_nmpc</code></td>
+<td>仅 S1</td>
+<td>List[float]</td>
+<td>长度 3，各项 ≥ 0</td>
+<td>底盘最大速度 <code>[x, y, yaw]</code></td>
+</tr>
+<tr>
+<td><code>pos_threshold_swerve_chassis_pose_nmpc</code></td>
+<td>仅 S1</td>
+<td>List[float]</td>
+<td>长度 3，各项 ≥ 0</td>
+<td>判断位姿目标到达的逐轴误差阈值</td>
+</tr>
+<tr>
+<td><code>slow_stop_when_shutdown_swerve_chassis_pose_nmpc</code></td>
+<td>仅 S1</td>
+<td>bool</td>
+<td>-</td>
+<td>controller 关闭时是否按 <code>stop_acc_swerve_chassis_pose_nmpc</code> 渐减速度停止</td>
+</tr>
+<tr>
+<td><code>stop_acc_swerve_chassis_pose_nmpc</code></td>
+<td>仅 S1</td>
+<td>List[float]</td>
+<td>长度 3，各项 &gt; 0</td>
+<td>停止或关闭渐停阶段的逐轴减速度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controller_5">抬升高度 controller（部分型号）</h3>
+<table>
+<thead>
+<tr>
+<th>字段 (key)</th>
+<th>机型</th>
+<th>类型</th>
+<th>取值范围</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>target_height_leg_height</code></td>
+<td>仅 G系列</td>
+<td>float</td>
+<td>取值范围来自设备当前配置的高度上下限（运行时读取，非固定常量，出厂典型范围约为 [1.14, 1.72] 米）</td>
+<td>目标机身高度，单位 m</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_24">控制服务配置示例</h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">galbot_sdk.s1</span><span class="w"> </span><span class="kn">import</span> <span class="n">GalbotRobot</span><span class="p">,</span> <span class="n">ConfigService</span><span class="p">,</span> <span class="n">ConfigItem</span><span class="p">,</span> <span class="n">ControlStatus</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">robot</span> <span class="o">=</span> <span class="n">GalbotRobot</span><span class="p">()</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">robot</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># report_error_skip 是 G系列 / S1 都支持的通用参数</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">status</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">set_config</span><span class="p">(</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">ConfigService</span><span class="o">.</span><span class="n">CONTROL</span><span class="p">,</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="p">[</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        <span class="n">ConfigItem</span><span class="p">(</span><span class="s2">&quot;report_error_skip&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="p">],</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">)</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="n">robot</span><span class="o">.</span><span class="n">request_shutdown</span><span class="p">()</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="n">robot</span><span class="o">.</span><span class="n">wait_for_shutdown</span><span class="p">()</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="n">robot</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+</span></code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023-2026 Galbot. All rights reserved.
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "navigation.top", "toc.follow", "toc.integrate", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../javascripts/language_switch.js"></script>
+      
+        <script src="../javascripts/api_collapse.js"></script>
+      
+        <script src="../javascripts/interactive_toc.js"></script>
+      
+        <script src="../javascripts/search_focus.js"></script>
+      
+        <script src="../javascripts/installation_nav.js"></script>
+      
+    
+  </body>
+</html>

@@ -26,7 +26,7 @@ int main() {
 
     // Get current WBC end-effector poses
     // Keys: "ree_pose", "lee_pose", "head_pose" — each is [x, y, z, qx, qy, qz, qw]
-    auto ee_info = robot.get_wbc_end_effector_poses();
+    auto ee_info = robot.get_wbc_end_effector_poses();// Before using this function, ensure that `using_wbc` in the configuration file is set to `true`.
     std::cout << "\nCurrent WBC end-effector poses:" << std::endl;
     for (const auto& [frame, pose] : ee_info) {
         std::cout << "  Frame: " << frame << ", Pose: [";

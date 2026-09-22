@@ -33,9 +33,6 @@ def main():
     frame_id = "base_link"
     reference_frame_id = "map"
 
-    # Chassis pose interpolation time (seconds), used to generate a smooth chassis trajectory
-    base_time_s = 15.0
-
     time.sleep(1)
 
     # reset to zero

@@ -1,0 +1,91 @@
+#include <iostream>
+#include <vector>
+#include <chrono>
+#include <thread>
+#include <string>
+
+#include "galbot_robot.hpp"
+
+using namespace galbot::sdk;
+
+std::string force_sensor_type_to_string(GalbotOneFoxtrotSensor sensor_type) {
+    switch (sensor_type) {
+        case GalbotOneFoxtrotSensor::LEFT_WRIST_FORCE:
+            return "LEFT_WRIST_FORCE";
+        case GalbotOneFoxtrotSensor::RIGHT_WRIST_FORCE:
+            return "RIGHT_WRIST_FORCE";
+        default:
+            return "UNKNOWN_FORCE_SENSOR";
+    }
+}
+
+void print_force_data(GalbotOneFoxtrotSensor sensor_type, const std::shared_ptr<ForceData>& force_data) {
+    std::cout << "--- " << force_sensor_type_to_string(sensor_type) << " ---" << std::endl;
+    if (!force_data) {
+        std::cerr << "  Force data is empty" << std::endl;
+        return;
+    }
+
+    std::cout << "  Timestamp (ns): " << force_data->timestamp_ns << std::endl;
+    std::cout << "  Force (N):  "
+              << "fx=" << force_data->force.x << ", "
+              << "fy=" << force_data->force.y << ", "
+              << "fz=" << force_data->force.z << std::endl;
+    std::cout << "  Torque (Nm): "
+              << "tx=" << force_data->torque.x << ", "
+              << "ty=" << force_data->torque.y << ", "
+              << "tz=" << force_data->torque.z << std::endl;
+}
+
+int main() {
+    // Get object instance
+    auto& robot = GalbotRobot::get_instance(MachineType::G3);
+
+    // Initialize system
+    if (robot.init()) {
+        std::cout << "System initialized successfully!" << std::endl;
+    } else {
+        std::cerr << "System initialization failed!" << std::endl;
+        return -1;
+    }
+
+    // Program started, waiting for data
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+
+    // Get left wrist force sensor data
+    std::cout << "\n===== Get left wrist force sensor data =====" << std::endl;
+    auto left_force_data = robot.get_force_sensor_data(GalbotOneFoxtrotSensor::LEFT_WRIST_FORCE);
+    print_force_data(GalbotOneFoxtrotSensor::LEFT_WRIST_FORCE, left_force_data);
+
+    // Get calibrated left-arm wrench expressed in base_link
+    std::cout << "\n===== Get calibrated left wrist force data in base_link =====" << std::endl;
+    auto calibrated_left_force_data =
+        robot.get_force_sensor_data(GalbotOneFoxtrotSensor::LEFT_WRIST_FORCE, true, "base_link");
+    print_force_data(GalbotOneFoxtrotSensor::LEFT_WRIST_FORCE, calibrated_left_force_data);
+
+    // Get right wrist force sensor data
+    std::cout << "\n===== Get right wrist force sensor data =====" << std::endl;
+    auto right_force_data = robot.get_force_sensor_data(GalbotOneFoxtrotSensor::RIGHT_WRIST_FORCE);
+    print_force_data(GalbotOneFoxtrotSensor::RIGHT_WRIST_FORCE, right_force_data);
+
+    // Keep calibrated right-arm wrench in its native end-effector mount frame
+    std::cout << "\n===== Get calibrated right wrist force data in mount frame =====" << std::endl;
+    auto calibrated_right_force_data = robot.get_force_sensor_data(
+        GalbotOneFoxtrotSensor::RIGHT_WRIST_FORCE, true, "right_arm_end_effector_mount_link");
+    print_force_data(GalbotOneFoxtrotSensor::RIGHT_WRIST_FORCE, calibrated_right_force_data);
+
+    // Iterate and get all force sensor data
+    std::cout << "\n===== Get all force sensor data =====" << std::endl;
+    for (int i = 0; i < static_cast<int>(GalbotOneFoxtrotSensor::FORCE_NUM); ++i) {
+        auto sensor_type = static_cast<GalbotOneFoxtrotSensor>(i);
+        auto force_data = robot.get_force_sensor_data(sensor_type);
+        print_force_data(sensor_type, force_data);
+    }
+
+    // Exit system and release SDK resources
+    robot.request_shutdown();
+    robot.wait_for_shutdown();
+    robot.destroy();
+
+    return 0;
+}

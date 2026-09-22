@@ -31,14 +31,6 @@ try:
     for i, link_name in enumerate(ee_link_names, 1):
         print(f"  {i}. {link_name}")
 
-    # example: link kinematics
-    if ee_link_names:
-        print(f"\nRun forward kinematics using end-effector link '{ee_link_names[0]}'...")
-        success, fk_result = motion.forward_kinematics(ee_link_names[0])
-        if success == gm.MotionStatus.SUCCESS:
-            print(f"Forward-kinematics result: {fk_result}")
-        else:
-            print(f"Forward-kinematics computation failed: {success}")
 except Exception as e:
     print(f"❌ Link-name retrieval exception: {e}")
 
